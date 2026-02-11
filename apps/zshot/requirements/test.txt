@@ -1,0 +1,11 @@
+pytest>=7.0
+pytest-cov>=3.0.0
+setuptools>=65.5.1
+scipy<1.13.0
+flair>=0.13
+gliner>=0.2.9
+flake8>=4.0.1
+coverage>=6.4.1
+pydantic==1.9.2
+relik==1.0.5
+IPython

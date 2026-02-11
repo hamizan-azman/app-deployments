@@ -1,0 +1,115 @@
+services:
+  postgres:
+    image: postgres:14-alpine
+    restart: always
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_USER=skyvern
+      - POSTGRES_PASSWORD=skyvern
+      - POSTGRES_DB=skyvern
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U skyvern"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  skyvern:
+    image: hoomzoom/skyvern
+    build:
+      context: ../../apps/skyvern
+      dockerfile: ../../dockerfiles/skyvern/Dockerfile
+      platforms:
+        - linux/amd64
+    restart: on-failure
+    ports:
+      - "8000:8000"
+      - "6080:6080"
+      - "9222:9222"
+    volumes:
+      - ./artifacts:/data/artifacts
+      - ./videos:/data/videos
+      - ./har:/data/har
+      - ./log:/data/log
+      - ./.streamlit:/app/.streamlit
+    environment:
+      - DATABASE_STRING=postgresql+psycopg://skyvern:skyvern@postgres:5432/skyvern
+      - BROWSER_TYPE=chromium-headful
+      - ENABLE_CODE_BLOCK=true
+      # LLM provider -- uncomment one block below
+      # OpenAI:
+      # - ENABLE_OPENAI=true
+      # - LLM_KEY=OPENAI_GPT4O
+      # - OPENAI_API_KEY=${OPENAI_API_KEY}
+      # Anthropic:
+      # - ENABLE_ANTHROPIC=true
+      # - LLM_KEY=ANTHROPIC_CLAUDE3.5_SONNET
+      # - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      # Gemini:
+      # - ENABLE_GEMINI=true
+      # - LLM_KEY=GEMINI_3.0_FLASH
+      # - GEMINI_API_KEY=${GEMINI_API_KEY}
+      # Azure OpenAI:
+      # - ENABLE_AZURE=true
+      # - LLM_KEY=AZURE_OPENAI
+      # - AZURE_DEPLOYMENT=${AZURE_DEPLOYMENT}
+      # - AZURE_API_KEY=${AZURE_API_KEY}
+      # - AZURE_API_BASE=${AZURE_API_BASE}
+      # - AZURE_API_VERSION=${AZURE_API_VERSION}
+      # AWS Bedrock:
+      # - ENABLE_BEDROCK=true
+      # - LLM_KEY=BEDROCK_ANTHROPIC_CLAUDE3.5_SONNET
+      # - AWS_REGION=us-west-2
+      # - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      # - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      # Ollama (local):
+      # - ENABLE_OLLAMA=true
+      # - LLM_KEY=OLLAMA
+      # - OLLAMA_MODEL=qwen2.5:7b-instruct
+      # - OLLAMA_SERVER_URL=http://host.docker.internal:11434
+      # - OLLAMA_SUPPORTS_VISION=false
+      # OpenRouter:
+      # - ENABLE_OPENROUTER=true
+      # - LLM_KEY=OPENROUTER
+      # - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      # - OPENROUTER_MODEL=mistralai/mistral-small-3.1-24b-instruct
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 15s
+      timeout: 10s
+      start_period: 60s
+      retries: 5
+
+  skyvern-ui:
+    image: hoomzoom/skyvern-ui
+    profiles: ["ui"]
+    build:
+      context: ../../apps/skyvern
+      dockerfile: ../../dockerfiles/skyvern/Dockerfile.ui
+      platforms:
+        - linux/amd64
+    restart: on-failure
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    volumes:
+      - ./artifacts:/data/artifacts
+      - ./videos:/data/videos
+      - ./har:/data/har
+      - ./.streamlit:/app/.streamlit
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8000/api/v1
+      - VITE_WSS_BASE_URL=ws://localhost:8000/api/v1
+      - VITE_ARTIFACT_API_BASE_URL=http://localhost:9090
+      # Set after first run (get from Skyvern UI settings page):
+      # - VITE_SKYVERN_API_KEY=${VITE_SKYVERN_API_KEY}
+    depends_on:
+      skyvern:
+        condition: service_healthy
+
+volumes:
+  postgres-data:

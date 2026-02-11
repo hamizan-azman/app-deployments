@@ -1,0 +1,19 @@
+# Pre-built images from Docker Hub (hoomzoom/). No build required.
+version: '3'
+
+services:
+  langchain-serve:
+    image: hoomzoom/pdfgpt-langchain-serve
+    ports:
+      - '8080:8080'
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+
+  pdf-gpt:
+    image: hoomzoom/pdfgpt-pdf-gpt
+    ports:
+      - '7860:7860'
+    environment:
+      - LCSERVE_HOST=http://langchain-serve:8080
+    depends_on:
+      - langchain-serve

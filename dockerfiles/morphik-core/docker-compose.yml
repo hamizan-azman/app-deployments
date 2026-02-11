@@ -1,0 +1,104 @@
+services:
+  morphik:
+    image: hoomzoom/morphik-core:latest
+    container_name: morphik-app
+    ports:
+      - "8000:8000"
+    environment:
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - SESSION_SECRET_KEY=${SESSION_SECRET_KEY}
+      - POSTGRES_URI=postgresql+asyncpg://morphik:morphik@postgres:5432/morphik
+      - PGPASSWORD=morphik
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+    volumes:
+      - morphik_storage:/app/storage
+      - morphik_logs:/app/logs
+      - huggingface_cache:/root/.cache/huggingface
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - morphik-network
+    restart: unless-stopped
+
+  worker:
+    image: hoomzoom/morphik-core:latest
+    container_name: morphik-worker
+    command: arq core.workers.ingestion_worker.WorkerSettings
+    environment:
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - SESSION_SECRET_KEY=${SESSION_SECRET_KEY}
+      - POSTGRES_URI=postgresql+asyncpg://morphik:morphik@postgres:5432/morphik
+      - PGPASSWORD=morphik
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+    volumes:
+      - morphik_storage:/app/storage
+      - morphik_logs:/app/logs
+      - huggingface_cache:/root/.cache/huggingface
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - morphik-network
+    restart: unless-stopped
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: morphik-postgres
+    environment:
+      - POSTGRES_USER=morphik
+      - POSTGRES_PASSWORD=morphik
+      - POSTGRES_DB=morphik
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U morphik -d morphik"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - morphik-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: morphik-redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - morphik-network
+    restart: unless-stopped
+
+networks:
+  morphik-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+  morphik_storage:
+  morphik_logs:
+  huggingface_cache:

@@ -1,0 +1,28 @@
+FROM node:20.12-slim
+
+RUN apt-get update && apt-get install -y --no-install-recommends tini && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY ./skyvern-frontend /app
+COPY ./entrypoint-skyvernui.sh /app/entrypoint-skyvernui.sh
+RUN sed -i 's/\r$//' /app/entrypoint-skyvernui.sh
+RUN npm install
+
+# Placeholders for runtime injection (replaced by entrypoint script)
+ENV VITE_API_BASE_URL=__VITE_API_BASE_URL_PLACEHOLDER__
+ENV VITE_WSS_BASE_URL=__VITE_WSS_BASE_URL_PLACEHOLDER__
+ENV VITE_ARTIFACT_API_BASE_URL=__VITE_ARTIFACT_API_BASE_URL_PLACEHOLDER__
+ENV VITE_SKYVERN_API_KEY=__SKYVERN_API_KEY_PLACEHOLDER__
+
+ARG APP_VERSION=development
+ENV APP_VERSION=$APP_VERSION
+
+RUN npm run build
+
+EXPOSE 8080 9090
+
+HEALTHCHECK --interval=15s --timeout=10s --start-period=30s --retries=3 \
+    CMD node -e "require('http').get('http://localhost:8080', r => process.exit(r.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))"
+
+ENTRYPOINT ["/usr/bin/tini", "--"]
+CMD ["/bin/bash", "/app/entrypoint-skyvernui.sh"]

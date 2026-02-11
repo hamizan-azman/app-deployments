@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Node
+node_modules/
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.tar
+
+# Large model files
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.ckpt
+*.h5
+
+# Temp/logs
+*.log
+.screenshots/
+
+# Secrets
+.env
+*.key
+
+# Internal/local docs
+*.local.md
+SETUP.md
+
+# Local workspace data
+dockerfiles/auto-news/workspace/
+
+# Local config and notes
+task2_prompt.md
