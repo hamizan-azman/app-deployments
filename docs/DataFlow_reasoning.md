@@ -3,50 +3,51 @@
 ## Analysis
 
 ### Repository Structure
-- `README.md`: Comprehensive docs in Chinese and English. Data preparation system for LLMs with CLI interface and optional WebUI.
-- `Dockerfile`: Uses `nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04` base image. Installs Python, pip, and the package with vLLM extra.
-- `pyproject.toml`: Package name `open-dataflow`, Python >= 3.10. Dependencies include torch, transformers, datasets, gradio, fastapi, uvicorn.
-- `requirements.txt`: 88 dependencies including numpy<2.0, torch, transformers, vllm.
-- `dataflow/cli.py`: Typer-based CLI with commands for text2model, pdf2model, eval, chat, webui, init.
-- `dataflow/cli_funcs/cli_webui.py`: WebUI launcher that downloads a separate executable from GitHub releases at runtime.
+DataFlow is a data preparation and training system by OpenDataLab. The repo has a CLI tool (`dataflow`) with subcommands for text-to-model training, PDF-to-model training, evaluation, chat, and a Gradio WebUI. The core value is its 100+ data processing operators (filters, evaluators, generators, refiners) that can be composed into pipelines.
 
-### Key Finding: GPU Required
-The Dockerfile uses NVIDIA CUDA base image. The core functionality (vLLM inference, transformers model training) requires GPU acceleration. CPU would technically work for some operations but with severe performance degradation.
-
-### Pre-built Image Available
-Docker Hub has `molyheci/dataflow:cu124` maintained by the original developers. The docker-compose.yml and README both reference this image.
+### Pre-built Image
+The developers maintain `molyheci/dataflow:cu124` on Docker Hub. This image is based on `nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04` with Python 3.10.12, PyTorch 2.7.0+cu126, and vLLM 0.9.2 pre-installed. No reason to build from scratch.
 
 ## Decision
 
-### Use Pre-built Image
-The original developers maintain `molyheci/dataflow:cu124` on Docker Hub. Using this aligns with architectural fidelity. Building from source would require a GPU host for testing, which we don't have.
+### Upgrading from PULL-ONLY to Deployed
+Originally marked PULL-ONLY because "GPU required (CUDA 12.4)." Tested on a GTX 1650 (4GB VRAM) and it works fine for the WebUI and CLI. The data processing operators run mostly on CPU. Only training and inference via vLLM actually need GPU memory. For security research purposes, the app's full attack surface (Gradio WebUI, pipeline configuration, file upload/processing) is exercisable even without heavy GPU workloads.
 
-### Mark as GPU-Only
-Neither the laptop nor the desktop have NVIDIA GPUs. We cannot pull the image (it's ~15GB and CUDA-specific), build it, or test it. Documenting the pull command and CLI usage from the README is the best we can do.
-
-### No Custom Dockerfile
-The provided Dockerfile is production-ready and uses the NVIDIA CUDA base image. No modifications needed. No point building a CPU-only variant since the core functionality requires GPU.
+### No Dockerfile Created
+Used the pre-built image as-is. No modifications needed. The developers maintain it and it already includes all dependencies.
 
 ## Other Options
 
-### CPU-Only Build
-Could strip vLLM and use python:3.10-slim base. Rejected because:
-- Core inference pipeline requires GPU
-- Would fundamentally change the app's behavior
-- Violates architectural fidelity
+### Building from the Repo's Dockerfile
+The repo has its own Dockerfile but it uses the Tsinghua University pip mirror (Chinese mirror), which is slower outside China. The pre-built image is already there on Docker Hub, so no benefit to rebuilding.
 
-### Testing on Cloud GPU
-Could spin up a cloud GPU instance for testing. Rejected because:
-- Outside the scope of this deployment project
-- Cost and complexity not justified
+### CPU-Only
+DataFlow doesn't have a CPU-only image. The CUDA base image runs fine even for non-GPU operations but is much larger than necessary if you only need the data processing operators. Not worth creating a custom CPU image for this project.
 
 ## Test Details
 
-All tests marked NOT TESTED because GPU is required. The pre-built image and CLI commands are documented from the README and source code analysis.
+### Test 1: Docker Pull
+Pulled `molyheci/dataflow:cu124` successfully. Image is large (multiple GB) due to CUDA + PyTorch + vLLM.
+
+### Test 2: GPU Detection
+Ran `nvidia-smi` inside the container with `--gpus all`. Detected GTX 1650 with 4GB VRAM and CUDA 13.1 driver (compatible with the 12.4 toolkit).
+
+### Test 3: CLI Help
+`dataflow --help` shows 7 subcommands: init, env, chat, eval, pdf2model, text2model, webui. The CLI requires a pseudo-TTY (`-t` flag) for commands that print formatted output (e.g., `dataflow -v`, `dataflow env`). Without it, `os.get_terminal_size()` throws `Inappropriate ioctl for device`.
+
+### Test 4: Environment Info
+`dataflow env` prints system info: Python 3.10.12, PyTorch 2.7.0+cu126, GPU type and memory, vLLM version. Confirms all dependencies are correctly installed and GPU is accessible.
+
+### Test 5: WebUI
+Started with `dataflow webui --host 0.0.0.0 --port 7862`. GET on port 7862 returns 200. The WebUI is a Gradio app with pipeline builder, operator selection, and configuration panels. Two benign warnings on startup about `vqa_extract_pipeline_mineru.py` (has 2 classes where 1 expected) and `rare_pipeline.py` (missing import).
+
+### Test 6: Gradio API
+GET `/gradio_api/info` returns a large JSON listing all available operators and their parameters. Over 100 operators across categories: general text, knowledge cleaning, code, math, rare, agentic RAG.
 
 ## Gotchas
 
-1. **WebUI downloads at runtime**: The webui command downloads a separate executable from GitHub. Container needs internet access.
-2. **NVIDIA Container Toolkit required**: Host must have nvidia-docker or NVIDIA Container Toolkit installed.
-3. **Large image**: CUDA base images are typically 5-10GB.
-4. **Optional MySQL**: The text2sql pipeline can connect to MySQL via pymysql, but it's not required for basic usage.
+1. **Port 7862, not 7860**: The WebUI defaults to port 7862 in operators mode, not the usual Gradio 7860.
+2. **Binds to 127.0.0.1**: Must pass `--host 0.0.0.0` for Docker access. Without it, the WebUI only listens on localhost inside the container.
+3. **TTY required for CLI**: `dataflow -v` and `dataflow env` crash without a terminal because they call `os.get_terminal_size()`. Use `docker run -t` (allocate pseudo-TTY) for these commands.
+4. **Chinese text in WebUI**: Some UI labels are in Chinese. The WebUI has a language switcher (Chinese/English).
+5. **vLLM memory**: Running actual model inference via vLLM will need more GPU memory than the GTX 1650's 4GB for most models. The WebUI and operators themselves are fine.
