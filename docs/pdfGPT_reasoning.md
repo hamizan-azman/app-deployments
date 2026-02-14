@@ -1,6 +1,6 @@
 # pdfGPT -- Reasoning Log
 
-## What I checked and why
+## Understanding the architecture
 
 ### Initial analysis
 - **README.md**: Confirmed pdfGPT is a PDF Q&A app using Universal Sentence Encoder for embeddings and OpenAI for LLM completion. The README explicitly mentions langchain-serve for production API deployment. Docker instructions say `docker-compose -f docker-compose.yaml up`.
@@ -14,7 +14,7 @@
 ### Why the two-service architecture matters
 This is a supply chain security research project. Other researchers will pentest these deployed apps. If we merge the backend and frontend into a single process (like app_docker.py did), pentesters would be testing our custom code, not the original developer's attack surface. The langchain-serve/Jina gateway, the `@serving` decorator, and the HTTP communication between services are all part of the real attack surface that needs to be preserved.
 
-## What I decided and why
+## Changes and rationale
 
 ### Architectural fidelity rule
 Added a formal rule to CLAUDE.md that codifies this principle for all future deployments. No custom API wrappers, no replacing core dependencies, no adding web servers the developer didn't create. Allowed changes are limited to: Dockerfiles, network binding, env vars, dependency pins, bug fixes.
@@ -59,7 +59,7 @@ The frontend's API host defaults to `http://localhost:8080`, which doesn't work 
 ### huggingface_hub version pin
 Gradio 4.11.0 imports `HfFolder` from `huggingface_hub`, which was removed in huggingface_hub >=1.0. Fix: pin `huggingface_hub<1.0` in the frontend stage.
 
-## Alternatives considered and why rejected
+## Roads not taken
 
 ### Replacing langchain-serve with a custom FastAPI wrapper
 This is what the previous app_docker.py did. Rejected because it violates architectural fidelity -- pentesters need to test the real langchain-serve/Jina attack surface.
@@ -79,7 +79,7 @@ The plan included a SKIP option if langchain-serve was truly broken. After signi
 ### Single-stage Dockerfile
 Would be simpler but doesn't match the original two-service architecture. The frontend and backend have very different dependency requirements -- the backend needs TensorFlow, scikit-learn, langchain-serve (hundreds of packages, ~4GB image) while the frontend only needs gradio and requests (~500MB image).
 
-## How each test validates the deployment
+## Test coverage
 
 1. **docker compose up starts both services**: Proves the multi-stage Dockerfile builds correctly for both targets, docker-compose networking works, and both services start without crashing. The backend takes ~30s to initialize TensorFlow.
 
@@ -93,7 +93,7 @@ Would be simpler but doesn't match the original two-service architecture. The fr
 
 6. **ask_file endpoint (NOT TESTED)**: Same as ask_url but with file upload instead of URL download. Would validate the multipart form handling in langchain-serve.
 
-## Gotchas and debugging steps
+## Trouble spots
 
 ### curl timeouts on Windows
 curl from Git Bash sometimes times out when connecting to Docker containers on localhost, even though the service is healthy. PowerShell's Invoke-WebRequest works reliably. Always verify with PowerShell if curl fails on Windows.

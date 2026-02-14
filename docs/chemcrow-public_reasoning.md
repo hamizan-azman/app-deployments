@@ -1,6 +1,6 @@
 # chemcrow-public -- Reasoning Log
 
-## What I Checked and Why
+## Repo Analysis
 
 ### Repository Structure
 - `setup.py`: Found Python >=3.9,<3.12 constraint. Key deps: openai==0.27.8, langchain>=0.0.234,<=0.0.275, langchain_core==0.0.1, paper-qa==1.1.1, rdkit, molbloom. The `paper-scraper` git dependency is commented out but the code still imports it.
@@ -19,7 +19,7 @@ Per the architectural fidelity rule: "If an app is a library with no web interfa
 - `langchain_core==0.0.1`: The very first release of langchain-core.
 - `paper-scraper`: Commented out in setup.py (`#"paper-scraper@git+https://github.com/blackadad/paper-scraper.git"`) but `from paperscraper import get_papers_from_queries` is used in `search.py`. Must be installed separately.
 
-## What I Decided and Why
+## Deployment Approach
 
 ### Base Image: python:3.11-slim
 Python 3.11 is within the required range. Slim variant since no GPU or system-level chemistry libraries are needed (RDKit has a pure Python PyPI wheel now).
@@ -36,7 +36,7 @@ The library has no web interface and no HTTP server. Per architectural fidelity,
 ### No Port Exposed
 Since there's no web server, no ports are exposed. The container's CMD just verifies the import works.
 
-## How Tests Were Chosen
+## Test Strategy
 
 ### Test 1: Agent Import
 `from chemcrow.agents import ChemCrow` -- verifies the main class loads, all its dependencies resolve, and the module structure is intact.
@@ -65,7 +65,7 @@ Confirmed correct dependency versions: RDKit 2025.09.4, LangChain 0.0.275, OpenA
 
 These are all API-dependent features. The core chemistry tools (RDKit-based) work fully offline and were tested.
 
-## Gotchas and Debugging
+## Problems Encountered
 
 ### paper-scraper Missing
 First build failed with `ModuleNotFoundError: No module named 'paperscraper'`. The dependency is commented out in setup.py but still imported. Had to add a separate `pip install` for it from the git URL.

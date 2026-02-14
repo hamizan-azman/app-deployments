@@ -8,7 +8,7 @@ The project also includes EnIGMA, a mode for solving offensive cybersecurity CTF
 
 Version on Docker Hub: 0.7.0. The current GitHub repo is 1.x, but the `latest` Docker tag is still 0.7.
 
-## What I Checked and Why
+## Exploration
 
 ### Repository and Docker image
 - `README.md` -- understand what the tool does and how to use it
@@ -43,7 +43,7 @@ This means the Docker Hub `latest` tag is stale. For this deployment I used the 
 - `sweagent/frontend/` -- React app on port 3000
 - `start_web_ui.sh` -- orchestration script that starts both
 
-## What I Decided and Why
+## Approach
 
 ### Use pre-built Docker Hub images
 Per the architectural fidelity rule, I used the published `sweagent/swe-agent-run:latest` and `sweagent/swe-agent:latest` images exactly as they are. No custom Dockerfile, no modifications to the runner code.
@@ -75,7 +75,7 @@ The v0.7 model registry uses custom shortcut names, not standard OpenAI model ID
 
 I discovered this when `--model_name gpt-4o` failed with `ValueError: Unregistered model`. Checked the model registry in `sweagent/agent/models.py` to find the correct shortcuts.
 
-## How Each Test Was Chosen and What It Validated
+## Test Matrix
 
 ### Test 1-2: Image pulls
 Validates that both required Docker images are available on Docker Hub and can be pulled. Without both images, nothing works.

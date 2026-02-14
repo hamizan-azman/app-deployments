@@ -1,6 +1,6 @@
 # OmniParse -- Reasoning Log
 
-## What I Checked and Why
+## Files Reviewed
 
 ### README.md
 First file to read for any deployment. Confirmed:
@@ -52,7 +52,7 @@ Read all four to map the exact endpoints, parameters, and behavior:
 - `POST /parse_website/crawl` -- stub, returns "Coming soon"
 - `POST /parse_website/search` -- stub, returns "Coming soon"
 
-## What I Decided and Why
+## Approach
 
 ### Use the pre-built Docker Hub image
 The repo provides an official image at `savatar101/omniparse:0.1`. No reason to build from source when the author published an image. This is the most faithful deployment -- it is exactly what the developer shipped.
@@ -63,7 +63,7 @@ This Windows machine with Docker Desktop on WSL2 does not have NVIDIA Container 
 ### No modifications to the app
 Zero changes needed. The image includes everything: models download on first use, Chrome for web crawling, LibreOffice for document conversion. This is exactly what the architectural fidelity rule requires.
 
-## How Each Test Was Chosen
+## Tests
 
 ### Test 1: Health check / Gradio UI
 Verify the container starts and the web server is accepting connections. Hit the root URL which serves the Gradio demo. This proves FastAPI + Gradio are running.

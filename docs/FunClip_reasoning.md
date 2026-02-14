@@ -1,6 +1,6 @@
 # FunClip -- Reasoning Log
 
-## What I Checked and Why
+## Analysis
 
 ### Repository Structure
 Read `README.md`, `requirements.txt`, all Python files in `funclip/`. The README is the primary source for understanding how the app is meant to run. The requirements.txt tells us the dependency stack. The Python files reveal the actual architecture.
@@ -42,7 +42,7 @@ The requirements.txt specifies `torch>=1.13` and `torchaudio`. By default, pip i
 ### No .dockerignore
 The repo includes a `docs/images/` directory with screenshots, but it's small enough that I didn't bother creating a .dockerignore. The total repo is under 10MB excluding dependencies.
 
-## Alternatives Considered and Rejected
+## What I Considered But Didn't Do
 
 ### GPU-enabled Image
 Could have used an nvidia/cuda base image, but Docker Desktop on this Windows machine doesn't support GPU passthrough. CPU inference works fine for FunASR models, just slower. If someone needs GPU, they can change the base image and torch install.
@@ -60,7 +60,7 @@ FunClip is self-contained -- no database, no Redis, no external services. A sing
 ### Pinning Gradio Version
 The requirements.txt has unpinned `gradio`. pip installed Gradio 6.5.1, which has some API differences from older versions (the `meta` field requirement for FileData, the `/gradio_api/` prefix instead of `/api/`). I let pip resolve the latest version because FunClip's code is straightforward Gradio usage (gr.Blocks, gr.Button.click, etc.) and works fine with 6.x.
 
-## How Each Change Relates to the Repo's Behavior
+## Why Each Change Matters
 
 ### `--listen` Flag
 Without this, `server_name='127.0.0.1'` and the Gradio server only accepts connections from inside the container. With `--listen`, it binds to `0.0.0.0` and the `-p 7860:7860` port mapping works.
@@ -71,7 +71,7 @@ The FunASR models run inference using PyTorch. CPU inference is slower but funct
 ### ImageMagick Policy
 If the policy isn't fixed, the "Clip+Subtitles" feature fails because moviepy calls ImageMagick's `convert` command, which is blocked by the default security policy. The basic "Clip" (without subtitles) still works because it only uses ffmpeg.
 
-## How Each Test Was Chosen and What It Validated
+## Test Rationale
 
 ### Test 1: Homepage GET /
 **Why:** Confirms the Gradio web server started and serves the UI. If this fails, nothing else works.
@@ -101,7 +101,7 @@ If the policy isn't fixed, the "Clip+Subtitles" feature fails because moviepy ca
 **What I did:** Passed the OPENAI_API_KEY env var into the container, then called /llm_inference with model `gpt-4-turbo`, a system prompt asking it to analyze SRT subtitles, and the SRT output from the ASR test. Note: the code routes `gpt-3.5-turbo` to moonshot.cn (not OpenAI!), and `deepseek` to deepseek.com. Only `gpt-4-turbo` and similar actually hit the OpenAI API (base_url stays None).
 **Result:** GPT-4-turbo returned `1. [00:00:00,680-00:00:03,050] mmhmmm mmhmm,` -- a properly formatted timestamp + text clip suggestion. PASS.
 
-## Gotchas and Debugging
+## Gotchas
 
 ### Gradio Log Output Invisible
 After "Initializing VideoClipper", no more log output appeared from `docker logs`. The Gradio startup message ("Running on http://0.0.0.0:7860") was not captured in Docker's log driver. However, the port was listening and responding to HTTP requests. This might be a Gradio 6.x stdout buffering issue. Takeaway: always test the actual port, don't rely on log output.

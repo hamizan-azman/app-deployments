@@ -1,6 +1,6 @@
 # pycorrector -- Reasoning Log
 
-## What I checked and why
+## Starting point
 
 ### Repository structure
 First read: `README.md`, `Dockerfile`, `requirements.txt`, `requirements-dev.txt`, `setup.py`, and the `pycorrector/` package directory. The README is in Chinese but comprehensive. It documents multiple correction models (kenlm, MacBERT, T5, ERNIE, GPT-based) with code examples for each.
@@ -38,7 +38,7 @@ The repo supports many models. I chose MacBERT because:
 - The kenlm model requires downloading a 2.8GB language model file, which is slower and more fragile
 - T5, GPT, ERNIE models are heavier and need more dependencies
 
-## What I decided and why
+## Dockerfile choices
 
 ### Base image: python:3.10-slim
 - Slim variant keeps the image smaller (no unnecessary system packages)
@@ -72,7 +72,7 @@ Gradio defaults to `127.0.0.1` which is only accessible inside the container. Bi
 ### Not adding a separate FastAPI/Flask wrapper
 The Gradio app already provides both a web UI and a REST API (`/gradio_api/call/predict`). Adding another layer would be unnecessary complexity. The Gradio API is two-step (submit -> poll), which is a minor inconvenience for curl users but works fine for programmatic access.
 
-## How tests were chosen and what they validated
+## Testing strategy
 
 ### Test 1: HTTP 200 on `/`
 Validates that the Gradio web UI is serving. This confirms the container started, the model loaded, and Gradio bound to the port correctly. If any dependency was missing or the model failed to load, this would fail.
@@ -89,7 +89,7 @@ Each test sentence has known errors from the README examples:
 
 These test the core model inference pipeline: tokenization, BERT forward pass, error detection, correction lookup. All returned correct results.
 
-## Gotchas and debugging
+## Debugging notes
 
 ### Chinese characters display as `?` in curl output
 When testing from Git Bash on Windows, curl output shows Chinese characters as `?` because the terminal uses cp1252 encoding. The data is actually correct UTF-8. To verify, pipe through Python with `sys.stdout.reconfigure(encoding='utf-8')`.

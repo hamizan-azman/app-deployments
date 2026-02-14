@@ -1,6 +1,6 @@
 # codeqai -- Reasoning Log
 
-## What I Checked and Why
+## Understanding the App
 
 ### Repository Structure
 Read `pyproject.toml` to understand dependencies and entry points. Key findings:
@@ -37,7 +37,7 @@ This means FAISS index MUST exist before Streamlit starts. The `codeqai app` com
 ### Vector Store (vector_store.py)
 Uses FAISS with langchain's FAISS wrapper. Index is serialized to `~/.cache/codeqai/{repo_name}.faiss.bytes`. A JSON cache maps filenames to vector IDs and commit hashes for incremental sync.
 
-## What I Decided and Why
+## Key Decisions
 
 ### Base Image: python:3.11-slim
 - Python 3.11 is within the required range (>=3.9,<3.12)
@@ -81,7 +81,7 @@ Uses the original CLI command, not a custom script. The `codeqai app` flow:
 5. Launches Streamlit via internal click group
 This is the exact flow the developer intended, no architectural modifications.
 
-## How Tests Were Chosen
+## Test Plan
 
 ### Test 1: Streamlit UI (GET /)
 Confirms the web interface loads. Streamlit returns an HTML shell that bootstraps the React frontend. 200 OK with 1.5KB response.
@@ -108,7 +108,7 @@ Verified the pre-created config at `/root/.config/codeqai/config.yaml` is correc
 - Dataset export (CLI only, not web-accessible)
 These are functional tests that require Streamlit's WebSocket protocol. The infrastructure tests confirm the full stack is operational (Streamlit + FAISS + OpenAI connection).
 
-## Gotchas and Debugging
+## Things That Broke
 
 ### EOFError on Missing API Key
 If `OPENAI_API_KEY` is not passed via `docker run -e`, the app crashes with `EOFError: EOF when reading a line`. The env_loader function tries to prompt for the key via stdin, which fails in non-interactive Docker. Always pass the key as an environment variable.

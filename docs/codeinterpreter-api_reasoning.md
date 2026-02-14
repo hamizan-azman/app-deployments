@@ -1,6 +1,6 @@
 # codeinterpreter-api -- Reasoning Log
 
-## What I Checked and Why
+## What I Looked At
 
 ### Repository Structure
 Read `README.md`, `pyproject.toml`, `requirements.lock`, and all Python source files in `src/codeinterpreterapi/`. Also checked the `examples/` and `tests/` directories.
@@ -53,7 +53,7 @@ The default CMD simply imports the library and prints a success message. This is
 ### No OPENAI_API_KEY in Dockerfile
 The API key is passed at runtime via `-e OPENAI_API_KEY=...`. Never bake secrets into images.
 
-## How Each Test Was Chosen and What It Validated
+## Testing Approach
 
 ### Test 1: Library Import
 **Why:** Most basic test. If the import fails, the entire dependency chain is broken.
@@ -80,7 +80,7 @@ The API key is passed at runtime via `-e OPENAI_API_KEY=...`. Never bake secrets
 **Why:** Tests clean shutdown of the CodeBox subprocess.
 **Result:** PASS. Session stopped without errors.
 
-## Gotchas and Debugging
+## Gotchas
 
 ### codeboxapi Has No __version__
 Initial CMD tried to print `codeboxapi.__version__` which doesn't exist. Minor issue, fixed by removing that check.

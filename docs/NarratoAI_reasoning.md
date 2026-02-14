@@ -4,7 +4,7 @@
 
 NarratoAI is an automated video narration/commentary tool. You upload a video, it uses an LLM vision model to understand the video frames, generates a narration script with a text LLM, converts it to speech via TTS, and produces a final video with voiceover and subtitles. It was originally forked from MoneyPrinterTurbo and refactored to focus on film/drama commentary. The web UI is built with Streamlit.
 
-## What I Checked and Why
+## Files I Read
 
 ### README-en.md
 English version of the README. Confirmed:
@@ -67,7 +67,7 @@ Clean, well-organized. Key deps:
 - Pillow>=10.3.0 (image processing)
 - No torch/GPU deps required (optional)
 
-## What I Decided and Why
+## Deployment Decisions
 
 ### Build from Dockerfile (not docker pull)
 No pre-built image exists on Docker Hub. The repo's Dockerfile is well-structured and builds cleanly. This is the intended deployment method.
@@ -88,7 +88,7 @@ The app requires LLM API keys to be configured in config.toml or via the Streaml
 3. Triggering the generation pipeline
 This is UI-driven and cannot be easily automated with curl.
 
-## Alternatives Considered
+## Other Options I Considered
 
 ### Using docker-compose
 The repo provides docker-compose.yml. However, it mounts local directories (storage/, config.toml, resource/) which requires setup, and maps to port 8501 instead of the requested 9000. A simple `docker run` with port mapping is cleaner for testing.
@@ -96,7 +96,7 @@ The repo provides docker-compose.yml. However, it mounts local directories (stor
 ### Modifying the entrypoint to skip pip install
 The entrypoint's `pip install --user` fails harmlessly. Could have patched it out, but it doesn't affect startup time significantly (takes ~2 seconds) and doesn't break anything.
 
-## How Each Test Was Chosen
+## Why These Tests
 
 ### Test 1: GET / (Main UI)
 **Why:** Proves the Streamlit app started, all Python imports succeeded (webui.py, app modules, LLM providers), and the web server is serving.
@@ -118,7 +118,7 @@ The entrypoint's `pip install --user` fails harmlessly. Could have patched it ou
 **Why:** Core pipeline test. Uploaded a 143.7s 1080p video, configured OpenAI key via UI, triggered script generation.
 **Result:** PARTIAL PASS. The app successfully extracted 72 keyframes from the video and sent them to OpenAI's API. The LLM call was rate-limited (`RATE_LIMIT_ERROR: API调用频率超限`) due to a low-tier OpenAI key. A second attempt with reduced batch size hit a different error (`'bool' object is not a mapping`), likely a bug in error recovery logic. The pipeline up to and including the LLM API call is confirmed working.
 
-## Gotchas and Debugging
+## What Went Wrong
 
 ### Chinese pip mirror in Dockerfile
 The original Dockerfile uses `pypi.tuna.tsinghua.edu.cn`. If building from China, keep it. Outside China, swap to default PyPI or your preferred mirror.

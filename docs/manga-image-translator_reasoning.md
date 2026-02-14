@@ -1,6 +1,6 @@
 # manga-image-translator -- Reasoning Log
 
-## What I Checked and Why
+## Investigation
 
 ### Docker Image vs Building from Source
 The repo has a Dockerfile, but there is also a pre-built image `zyddnys/manga-image-translator:main` on Docker Hub. The image is ~10GB and contains the full ML pipeline (text detection, OCR, translation, inpainting, rendering models). Building from source would require downloading all the same models during build, plus compiling dependencies. Using the pre-built image saves significant time and matches what users of the tool actually run.
@@ -41,7 +41,7 @@ Key flags:
 ### Port Selection
 Used port 5003 on the host to avoid conflicts with other deployments. The server internally uses 5003 for the API and 5004 for the translator instance.
 
-## What I Decided and Why
+## Decisions Made
 
 ### Using Pre-built Image
 Decided to use `zyddnys/manga-image-translator:main` instead of building from source:
@@ -67,7 +67,7 @@ The default translator for Japanese-to-English is "sugoi", which is an offline n
 - Good quality for manga dialogue
 - Other translators (GPT-4, DeepL) are available but require API keys
 
-## How Tests Were Chosen
+## Testing
 
 ### Test 1: Web UI (GET /)
 Validates the web frontend loads. This is the primary user-facing interface. A 75KB HTML response confirms the full frontend assets are served.
@@ -104,7 +104,7 @@ Validates the help/manual page loads. 6.9KB HTML response.
 - Image/bytes response formats: Same translation, different serialization.
 - Delete/clear results: Destructive operations, not needed for validation.
 
-## Gotchas and Debugging
+## Pitfalls
 
 ### First Request Timeout
 The first translation request triggers model downloads. The sugoi translator models are ~622MB and take several minutes to download and extract. If you set a short timeout (e.g. 30s), the request will fail. Use at least 600s timeout for the first request, or wait for logs to confirm models are loaded before sending requests.

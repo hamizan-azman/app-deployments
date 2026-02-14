@@ -6,7 +6,7 @@ gpt-engineer is a CLI tool (not a web service) that takes a natural language des
 
 The project is by Anton Osika (gpt-engineer-org on GitHub). Version 0.3.1. Uses Python, Poetry for dependency management, Typer for CLI, LangChain + OpenAI for LLM interaction.
 
-## What I Checked and Why
+## What I Looked At
 
 ### Repository structure
 - `README.md` -- understand what the app does, how it's installed, how it's used
@@ -26,7 +26,7 @@ The project is by Anton Osika (gpt-engineer-org on GitHub). Version 0.3.1. Uses 
 6. **Interactive tool** -- prompts for user input (y/n confirmations, text input if no prompt file)
 7. **`--no_execution` flag** -- runs setup without calling LLM, useful for infrastructure testing (but still requires API key for client initialization)
 
-## What I Decided and Why
+## Design Choices
 
 ### Use the existing Dockerfile
 The project ships its own Dockerfile at `docker/Dockerfile`. Per the architectural fidelity rule, I used it as-is with one minimal fix. The Dockerfile is a clean multi-stage build:
@@ -73,7 +73,7 @@ find "$project_dir" -mindepth 1 -maxdepth 1 ! -path "$project_dir/prompt" -exec 
 1. Runs `gpt-engineer /project` with any extra args passed via `docker run ... gpt-engineer <args>`
 2. After completion, sets all generated files (except `prompt`) to nobody:nogroup with 777 permissions -- so the host user can access them regardless of UID mismatch
 
-## How Each Test Was Chosen and What It Validated
+## Test Plan
 
 ### Test 1: Docker image builds
 Validates that all dependencies install correctly and the multi-stage build completes. This catches dependency resolution issues, missing system packages, or broken build steps.
