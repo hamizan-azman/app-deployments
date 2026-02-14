@@ -47,7 +47,7 @@
 All apps accounted for: 25 deployed + 5 skipped + 1 pull-only = 31 total.
 
 ## Docker Hub Images (hoomzoom/)
-rawdog, bilingual_book_maker, chemcrow, codeinterpreter-api, pdfgpt-frontend, pdfgpt-langchain-serve, pdfgpt-backend, pdfgpt-pdf-gpt, agenticseek-frontend, agenticseek-backend, rd-agent, pycorrector, funclip, chatdbg, zshot, slidedeckai, codeqai, paper2poster, gpt-migrate, bettafish, localgpt-frontend, localgpt-backend, localgpt-rag-api, agentgpt-platform, agentgpt-frontend
+rawdog, bilingual_book_maker, chemcrow, codeinterpreter-api, pdfgpt-frontend, pdfgpt-langchain-serve, pdfgpt-backend, pdfgpt-pdf-gpt, agenticseek-frontend, agenticseek-backend, rd-agent, pycorrector, funclip, chatdbg, zshot, slidedeckai, codeqai, paper2poster, gpt-migrate, bettafish, localgpt-frontend, localgpt-backend, localgpt-rag-api, agentgpt-platform, agentgpt-frontend, dataflow, huixiangdou, omniparse, manga-image-translator, gpt_academic, swe-agent, gpt-engineer, narratoai
 
-## Pre-existing Public Images (not pushed)
-savatar101/omniparse:0.1, zyddnys/manga-image-translator:main, ghcr.io/binary-husky/gpt_academic_nolocal:master, ghcr.io/666ghj/bettafish:latest, ollama/ollama, sweagent/swe-agent-run:latest, molyheci/dataflow:cu124, tpoisonooo/huixiangdou:20240814
+## External Images (not ours)
+ollama/ollama

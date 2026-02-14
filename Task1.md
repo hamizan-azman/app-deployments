@@ -43,7 +43,7 @@ There is also a **reasoning doc** (`docs/<appname>_reasoning.md`) explaining why
 | 12 | agenticSeek | Multi-agent assistant (chat, code, files, web browsing) | React + Python + Redis | `hoomzoom/agenticseek-*` (2 images) | Yes (OpenAI) | 8/8 | [usage](docs/agenticSeek_usage.md) |
 | 13 | zshot | Zero-shot named entity recognition (IBM spaCy + T5) | FastAPI | `hoomzoom/zshot` | No | 4/4 | [usage](docs/zshot_usage.md) |
 | 14 | AgentGPT | Autonomous AI agent platform (goal decomposition + task execution) | Next.js + FastAPI + MySQL | `hoomzoom/agentgpt-*` (2 images) | Yes (OpenAI) | 9/9 | [usage](docs/AgentGPT_usage.md) |
-| 15 | DataFlow | Data preparation and training system for LLMs (100+ operators) | Gradio | `molyheci/dataflow:cu124` | No | 6/6 | [usage](docs/DataFlow_usage.md) |
+| 15 | DataFlow | Data preparation and training system for LLMs (100+ operators) | Gradio | `hoomzoom/dataflow` | No | 6/6 | [usage](docs/DataFlow_usage.md) |
 
 ### CLI Apps
 
@@ -87,7 +87,7 @@ Image exists on Docker Hub but is a base environment only, not a ready-to-run ap
 
 | App | Image | Notes |
 |-----|-------|-------|
-| HuixiangDou | `tpoisonooo/huixiangdou:20240814` | Base conda/CUDA env only. Package not installed in image, faiss-gpu incompatible with Python 3.12 in image. |
+| HuixiangDou | `hoomzoom/huixiangdou` | Base conda/CUDA env only. Package not installed in image, faiss-gpu incompatible with Python 3.12 in image. |
 
 ---
 
@@ -128,6 +128,8 @@ docker pull hoomzoom/gpt-engineer
 docker pull hoomzoom/narratoai
 docker pull hoomzoom/agentgpt-platform
 docker pull hoomzoom/agentgpt-frontend
+docker pull hoomzoom/dataflow
+docker pull hoomzoom/huixiangdou
 docker pull ollama/ollama
 ```
 
