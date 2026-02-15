@@ -99,6 +99,7 @@ curl -X POST http://localhost:8080/ask_file \
 - The original `text-davinci-003` model in api.py is deprecated by OpenAI; litellm may route to alternatives
 - Uses openai==0.27.8 (old API) -- this is the original developer's architecture
 - langchain-serve is abandoned software with broken dependency chains; multiple version pins required
+- **Abandoned dependencies (supply chain research note):** This app depends on langchain-serve (abandoned), jina 3.x (superseded), and openai 0.27.x (pre-1.0 API). All are pinned to 2023-era versions. The dependency chain is fragile and full of known vulnerabilities from that era. Worth investigating from a supply chain perspective.
 
 ## Changes from Original
 **Category: Modified.** Gradio compatibility fixes and 7 dependency pins.

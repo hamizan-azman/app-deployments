@@ -87,6 +87,7 @@ data: ["{'source': '少先队员因该为老人让坐', 'target': '少先队员�
 - This is a Chinese spelling correction model (CSC). It handles phonetic and visual similarity errors, not grammar restructuring.
 - CPU-only. No GPU required.
 - Gradio API is async (two-step: submit, then poll for result).
+- **First startup downloads models (~500 MB).** The MacBERT model is downloaded on first run. This takes a few minutes depending on connection speed. The container may appear to hang -- check progress with `docker logs -f <container>`. Subsequent launches are fast.
 
 ## Changes from Original
 **Category: Modified.** One source file changed.

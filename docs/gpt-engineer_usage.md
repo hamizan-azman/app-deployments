@@ -173,6 +173,7 @@ The mounted `/project` directory should contain:
 - Generated files in `/project` are owned by nobody:nogroup with 777 permissions (entrypoint does this).
 - The tool defaults to gpt-4o model. Override with `--model`.
 - Dockerfile modification: added `sed -i 's/\r$//' /app/entrypoint.sh` to fix Windows line ending issue.
+- **Security: executes arbitrary code.** gpt-engineer generates and executes code projects. Do not run with access to sensitive data or networks. High-value target for code injection research.
 
 ## Changes from Original
 **Category: Modified.** One line added to Dockerfile.

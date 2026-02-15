@@ -227,6 +227,8 @@ Note: Use shortcuts, not raw model names (e.g. `gpt4o` not `gpt-4o`).
 - **keys.cfg warning**: Harmless. The tool logs `keys.cfg not found` but works fine with env vars.
 - **Cost**: A single task run costs $0.10-0.50+ depending on complexity and model.
 - **Windows Docker socket**: Use `-v //var/run/docker.sock:/var/run/docker.sock` (double slash for Git Bash path mangling).
+- **Security: executes arbitrary code.** SWE-agent runs LLM-generated shell commands and code edits autonomously. Do not run with access to sensitive data or networks. High-value target for code injection research.
+- **Security: Docker socket access.** This app requires `-v /var/run/docker.sock:/var/run/docker.sock`, giving the container full control over the host's Docker daemon. A compromised container can create, modify, or delete any container on the host, mount host filesystems, and effectively gain root on the host machine. Run on an isolated machine or VM only.
 
 ## Changes from Original
 None. Uses the developer's own pre-built image (sweagent/swe-agent-run:latest). At runtime, `sed` patches server.py to bind 0.0.0.0 instead of 127.0.0.1 (makes web UI network-accessible from outside the container). This is not baked into the image.

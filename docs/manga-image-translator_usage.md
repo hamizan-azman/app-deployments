@@ -184,6 +184,7 @@ See `/docs` endpoint for full schema or the repo's README for all configuration 
 - Default translator is "sugoi" (offline, no API key needed) for Japanese-to-English. Other language pairs may require online translators (GPT, DeepL) with API keys.
 - The server runs on port 5003 (API) and spawns a translator instance on port 5004 internally.
 - `--ipc=host` flag recommended for shared memory when processing large images.
+- **First startup downloads models (~2-3 GB).** Translation and OCR models are downloaded on first run. This takes 5-15 minutes depending on connection speed. The container may appear to hang -- check progress with `docker logs -f <container>`. Subsequent launches are fast.
 
 ## Changes from Original
 None. Uses the developer's own pre-built image (zyddnys/manga-image-translator:main). Entrypoint overridden at runtime to start the web server (developer's own server/main.py).

@@ -90,6 +90,7 @@ curl -X POST http://localhost:8000/visualize \
 - Build takes ~10 minutes (model download is the bottleneck).
 - Default entities are hardcoded in app.py. To change them, edit the DEFAULT_ENTITIES list.
 - Only CPU inference is supported (no GPU).
+- **First startup downloads models (~1-2 GB).** The T5 model and spaCy pipelines are downloaded on first run. This takes 5-10 minutes depending on connection speed. The container may appear to hang -- check progress with `docker logs -f <container>`. Subsequent launches are fast.
 
 ## Changes from Original
 **Category: Modified.** Import guards added, custom API wrapper added.

@@ -106,6 +106,7 @@ http://localhost:8000
 - Image is ~9.35 GB. Based on CUDA 11.8 / Ubuntu 22.04.
 - PDF parsing uses Marker (Surya OCR). Best on digital PDFs, may struggle with heavy OCR or non-English text.
 - PPT and DOCX parsing converts to PDF via LibreOffice first.
+- **First startup downloads models (~2-4 GB).** Parsing models are downloaded on first run. This takes 5-20 minutes depending on connection speed. The container may appear to hang -- check progress with `docker logs -f <container>`. Subsequent launches are fast.
 
 ## Changes from Original
 None. Uses the developer's own pre-built image (savatar101/omniparse:0.1), byte-for-byte.

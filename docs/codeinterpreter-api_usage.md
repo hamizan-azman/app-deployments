@@ -129,6 +129,7 @@ settings.MODEL = "gpt-4-turbo"
 - The library uses LangChain 0.1.x (pinned <0.2)
 - Streamlit frontend available at `examples/frontend/app.py` but is not the primary interface
 - `.env` file support via pydantic-settings
+- **Security: executes arbitrary code.** Code Interpreter runs LLM-generated Python in a sandboxed CodeBox, but the container itself has network access. High-value target for code injection research.
 
 ## Changes from Original
 None. Installed from the developer's pyproject.toml. This is a library with no web server -- deployed as-is.

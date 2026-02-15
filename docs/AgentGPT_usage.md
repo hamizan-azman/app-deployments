@@ -172,6 +172,7 @@ docker compose up -d
 - Auth uses NextAuth with Prisma adapter. In dev mode, sign-in is simplified
 - Database auto-migrates on first frontend start via Prisma
 - The `mock_mode` setting lets you test without an OpenAI key (returns fake agent responses)
+- **Dependency mismatch (supply chain research note):** The deployed langchain version (0.0.335) does not match the developer's poetry.lock (0.0.295) -- 40 patch versions of difference. The base OS was also changed from Debian Buster to Bookworm, and Java from 11 to 17. See the "Changes from Original" section below for full details.
 
 ## Changes from Original
 **Category: Dependencies only.** Source code untouched.

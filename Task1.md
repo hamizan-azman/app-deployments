@@ -132,7 +132,10 @@ docker pull ollama/ollama
 - **Multi-container apps:** pdfGPT (4 containers), agenticSeek (4 containers), localGPT (4 containers), AgentGPT (3 containers), and BettaFish (2 containers) use docker-compose. The usage docs have the exact compose commands.
 - **Port conflicts:** Each app's usage doc specifies which port it runs on. If running multiple apps at once, check for port collisions.
 - **GPU required:** DataFlow requires an NVIDIA GPU with CUDA 12.4+ and the NVIDIA Container Toolkit. Run with `--gpus all`. Works on GTX 1650 (4GB VRAM) for WebUI and data processing operators.
-- **Model downloads:** Some apps (FunClip, omniparse, manga-image-translator, zshot, pycorrector) download ML models on first startup. First launch will be slow; subsequent launches are fast if you don't delete the container.
+- **Code execution by design:** 5 apps execute arbitrary code as their core function: rawdog, gpt-engineer, SWE-agent, codeinterpreter-api, gpt-migrate. These are high-value targets for code injection research. Do not run them with access to sensitive data or networks.
+- **Docker socket (SWE-agent):** SWE-agent requires `-v /var/run/docker.sock:/var/run/docker.sock`, giving the container full control over the host's Docker daemon. Run it on an isolated machine or VM only.
+- **Model downloads:** FunClip, omniparse, manga-image-translator, zshot, and pycorrector download ML models on first startup (1-5 GB depending on the app). First launch takes 5-30 minutes depending on connection speed. The container will appear to hang during download -- check logs with `docker logs -f <container>` to monitor progress. Subsequent launches are fast if you don't delete the container.
+- **Deprecated/abandoned dependencies:** pdfGPT depends on abandoned software (langchain-serve, jina 3.x, openai 0.27.x) pinned to 2023-era versions. AgentGPT's langchain (0.0.335) does not match the developer's lockfile (0.0.295). These version mismatches are worth investigating from a supply chain perspective. See each app's usage doc for details.
 - **Testing coverage:** All apps were tested with API keys where applicable. pdfGPT's LLM-dependent endpoints require additional testing with a valid key. The reasoning docs explain what was and wasn't tested for each app.
 
 ---

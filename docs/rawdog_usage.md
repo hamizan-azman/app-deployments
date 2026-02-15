@@ -81,6 +81,7 @@ Example:
 ## Notes
 - Rawdog writes config to `~/.rawdog/config.yaml` on first run.
 - The container needs internet access to reach the configured LLM provider.
+- **Security: executes arbitrary code.** Rawdog generates and runs Python scripts as its core function. Do not run with access to sensitive data or networks. High-value target for code injection research.
 
 ## Changes from Original
 None. Dockerfile written from scratch but source code and dependencies are untouched.

@@ -89,6 +89,7 @@ Note: Newer model names (gpt-4o, gpt-4-turbo, gpt-4o-mini) are NOT recognized by
 - The tool generates Dockerfiles, builds images, and runs containers internally
 - Hardcoded `max_tokens=10000` means only models with >10k output token support work
 - The default model `openrouter/openai/gpt-4-32k` requires an OpenRouter API key
+- **Security: executes arbitrary code.** gpt-migrate generates and runs code as part of migration. Do not run with access to sensitive data or networks. High-value target for code injection research.
 
 ## Changes from Original
 **Category: Dependencies only.** Source code untouched.
