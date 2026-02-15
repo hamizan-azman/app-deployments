@@ -9,7 +9,7 @@ Each app has its own subdirectory containing:
 - `docker-compose.yml` -- for multi-container apps (already configured to pull from `hoomzoom/`)
 - `.env.example` -- environment variable template (where applicable)
 - `config*.ini` -- config files (where applicable)
-- `README.md` -- notes for apps without a custom Dockerfile
+- `README.md` -- notes for apps using retagged pre-built images (no custom Dockerfile)
 
 ## Multi-Container Apps
 
