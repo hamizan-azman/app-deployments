@@ -23,7 +23,7 @@ There is also a **reasoning doc** (`docs/<appname>_reasoning.md`) explaining why
 
 ---
 
-## Deployed Apps (23)
+## Deployed Apps (26)
 
 ### Web UI Apps
 
@@ -106,7 +106,6 @@ docker pull hoomzoom/slidedeckai
 docker pull hoomzoom/codeqai
 docker pull hoomzoom/paper2poster
 docker pull hoomzoom/gpt-migrate
-docker pull hoomzoom/bettafish
 docker pull hoomzoom/localgpt-frontend
 docker pull hoomzoom/localgpt-backend
 docker pull hoomzoom/localgpt-rag-api
