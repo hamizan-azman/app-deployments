@@ -33,7 +33,7 @@ N/A. This is a CLI tool.
 - **Description:** Starts interactive session until Ctrl-C.
 - **Request:** `rawdog`
 - **Response:** Interactive prompt in terminal.
-- **Tested:** No (requires LLM API key)
+- **Tested:** No (interactive mode)
 
 ### Show Help
 - **Command:** `rawdog --help`
@@ -49,7 +49,7 @@ N/A. This is a CLI tool.
 - **Description:** Requires confirmation before executing each script and limits retries.
 - **Request:** `rawdog --leash --retries 1 "Summarize files in this directory"`
 - **Response:** Prompts for execution approval before running scripts.
-- **Tested:** No (requires LLM API key)
+- **Tested:** No (interactive mode)
 
 ### Config Flags
 All config fields can be set via CLI flags:
@@ -65,7 +65,7 @@ All config fields can be set via CLI flags:
 
 Example:
 - **Request:** `rawdog --llm-model gpt-3.5-turbo --leash "List python files"`
-- **Tested:** No (requires LLM API key)
+- **Tested:** No (interactive mode)
 
 ## Environment Variables
 | Variable | Required | Default | Description |

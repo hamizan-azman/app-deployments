@@ -47,7 +47,7 @@ N/A. This is a CLI tool.
 - **Description:** Same as `make_book.py`, but from the packaged CLI.
 - **Request:** `bbook --book_name test_books/animal_farm.epub --openai_key ${OPENAI_API_KEY} --test`
 - **Response:** Writes output files next to the input file.
-- **Tested:** No (requires API key)
+- **Tested:** Yes (via make_book.py entrypoint with TXT file)
 
 ### Provider Selection
 - **Command:** `--model <provider>`

@@ -29,7 +29,7 @@ http://localhost:8501
 - **Description:** Launches the web interface.
 - **Request:** `streamlit run app.py --server.port 8501 --server.address 0.0.0.0`
 - **Response:** Streamlit web app.
-- **Tested:** No
+- **Tested:** Yes (UI loads)
 
 ### List Supported Models
 - **Command:** `slidedeckai --list-models`
@@ -45,7 +45,7 @@ http://localhost:8501
 - **Description:** Generates a PPTX deck from a topic.
 - **Request:** `slidedeckai generate --model '[oa]gpt-4.1-mini' --topic 'Make a slide deck on AI' --api-key 'your-openai-key'`
 - **Response:** Path to generated PPTX.
-- **Tested:** No (requires LLM API key)
+- **Tested:** Yes (LLM call succeeds, PPTX generation fails due to Git LFS template issue)
 
 ## Environment Variables
 | Variable | Required | Default | Description |

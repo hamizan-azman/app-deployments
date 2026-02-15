@@ -73,7 +73,7 @@ This is a Gradio web application. All interaction happens through the browser UI
 ### Chat Functionality
 - **Method:** Gradio WebSocket-based interaction via the browser UI
 - **Requires:** Valid API_KEY for the chosen LLM provider
-- **Tested:** Yes (via internal predict_no_ui_long_connection)
+- **Tested:** Yes (via internal predict_no_ui_long_connection with gpt-4.1-mini, correct response received)
 
 ## Environment Variables
 | Variable | Required | Default | Description |

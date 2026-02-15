@@ -34,10 +34,10 @@ There is also a **reasoning doc** (`docs/<appname>_reasoning.md`) explaining why
 | 3 | omniparse | Parses PDFs, images, web pages into structured markdown | Gradio + FastAPI | `hoomzoom/omniparse` | No | 5/5 | [usage](docs/omniparse_usage.md) |
 | 4 | manga-image-translator | Translates text in manga/comic images | Web UI + REST API | `hoomzoom/manga-image-translator` | No | 5/5 | [usage](docs/manga-image-translator_usage.md) |
 | 5 | pdfGPT | PDF question-answering with embeddings + LLM | Gradio + langchain-serve | `hoomzoom/pdfgpt-*` (4 images) | Yes (OpenAI) | 4/4 infra | [usage](docs/pdfGPT_usage.md) |
-| 6 | gpt_academic | Academic writing assistant, code interpreter, Latex | Gradio | `hoomzoom/gpt_academic` | Yes (OpenAI) | Infra only | [usage](docs/gpt_academic_usage.md) |
+| 6 | gpt_academic | Academic writing assistant, code interpreter, Latex | Gradio | `hoomzoom/gpt_academic` | Yes (OpenAI) | 7/7 | [usage](docs/gpt_academic_usage.md) |
 | 7 | NarratoAI | Automated video narration (script + TTS + subtitles) | Streamlit | `hoomzoom/narratoai` | Yes (LLM provider) | 5/5 | [usage](docs/NarratoAI_usage.md) |
 | 8 | codeqai | Semantic code search + GPT chat over codebases | Streamlit + CLI | `hoomzoom/codeqai` | Yes (OpenAI) | 5/5 | [usage](docs/codeqai_usage.md) |
-| 9 | slide-deck-ai | Generates PowerPoint decks from a topic | Streamlit | `hoomzoom/slidedeckai` | Yes (OpenAI) | Infra only | [usage](docs/slide-deck-ai_usage.md) |
+| 9 | slide-deck-ai | Generates PowerPoint decks from a topic | Streamlit | `hoomzoom/slidedeckai` | Yes (OpenAI) | 3/3 | [usage](docs/slide-deck-ai_usage.md) |
 | 10 | BettaFish | Multi-agent opinion/sentiment analysis | Flask + Streamlit | `hoomzoom/bettafish` | Yes (API keys) | 4/5 | [usage](docs/BettaFish_usage.md) |
 | 11 | localGPT | Local RAG system with document indexing and chat | Next.js + Python + Ollama | `hoomzoom/localgpt-*` (3 images) | No (local Ollama) | 10/10 | [usage](docs/localGPT_usage.md) |
 | 12 | agenticSeek | Multi-agent assistant (chat, code, files, web browsing) | React + Python + Redis | `hoomzoom/agenticseek-*` (2 images) | Yes (OpenAI) | 8/8 | [usage](docs/agenticSeek_usage.md) |
@@ -53,8 +53,8 @@ There is also a **reasoning doc** (`docs/<appname>_reasoning.md`) explaining why
 | 17 | ChatDBG | LLM-powered debugger (pdb, lldb, gdb) | `hoomzoom/chatdbg` | Yes (OpenAI) | 7/7 | [usage](docs/ChatDBG_usage.md) |
 | 18 | RD-Agent | Autonomous R&D for quant trading, Kaggle, ML papers | `hoomzoom/rd-agent` | Yes (OpenAI) | 5/5 | [usage](docs/RD-Agent_usage.md) |
 | 19 | Paper2Poster | Converts academic papers to posters (PPTX) | `hoomzoom/paper2poster` | Yes (OpenAI) | 5/5 | [usage](docs/Paper2Poster_usage.md) |
-| 20 | rawdog | CLI assistant that generates and runs Python scripts | `hoomzoom/rawdog` | Yes (OpenAI) | Infra only | [usage](docs/rawdog_usage.md) |
-| 21 | bilingual_book_maker | Translates EPUB/TXT/SRT into bilingual books | `hoomzoom/bilingual_book_maker` | Yes (OpenAI) | Infra only | [usage](docs/bilingual_book_maker_usage.md) |
+| 20 | rawdog | CLI assistant that generates and runs Python scripts | `hoomzoom/rawdog` | Yes (OpenAI) | 3/3 | [usage](docs/rawdog_usage.md) |
+| 21 | bilingual_book_maker | Translates EPUB/TXT/SRT into bilingual books | `hoomzoom/bilingual_book_maker` | Yes (OpenAI) | 3/3 | [usage](docs/bilingual_book_maker_usage.md) |
 | 22 | gpt-engineer | Generates/improves code projects from natural language | `hoomzoom/gpt-engineer` | Yes (OpenAI) | 11/11 | [usage](docs/gpt-engineer_usage.md) |
 | 23 | gpt-migrate | Migrates codebases between languages using LLMs | `hoomzoom/gpt-migrate` | Yes (OpenAI) | 5/6 | [usage](docs/gpt-migrate_usage.md) |
 | 24 | SWE-agent | Autonomous agent that fixes GitHub issues | `hoomzoom/swe-agent` | Yes (OpenAI) | 10/10 | [usage](docs/SWE-agent_usage.md) |
@@ -132,7 +132,7 @@ docker pull ollama/ollama
 - **Port conflicts:** Each app's usage doc specifies which port it runs on. If running multiple apps at once, check for port collisions.
 - **GPU required:** DataFlow requires an NVIDIA GPU with CUDA 12.4+ and the NVIDIA Container Toolkit. Run with `--gpus all`. Works on GTX 1650 (4GB VRAM) for WebUI and data processing operators.
 - **Model downloads:** Some apps (FunClip, omniparse, manga-image-translator, zshot, pycorrector) download ML models on first startup. First launch will be slow; subsequent launches are fast if you don't delete the container.
-- **Testing coverage:** Apps that don't need API keys were fully tested end-to-end. Apps that need keys were tested for infrastructure (container starts, endpoints respond, UI loads) and marked accordingly. The reasoning docs explain what was and wasn't tested for each app.
+- **Testing coverage:** All apps were tested with API keys where applicable. pdfGPT's LLM-dependent endpoints require additional testing with a valid key. The reasoning docs explain what was and wasn't tested for each app.
 
 ---
 
