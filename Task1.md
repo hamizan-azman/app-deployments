@@ -173,6 +173,8 @@ app-deployments/
   tracker.md         # Status tracker with test counts
 ```
 
+Note: The `apps/` directory (cloned source repos) is local working data and not included in this repository. Source code lives at the original GitHub URLs linked in the tables above.
+
 ### dockerfiles/
 
 Each app has a subdirectory in `dockerfiles/` containing everything needed to rebuild or run:
