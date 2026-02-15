@@ -111,3 +111,13 @@ Interactive config wizard. Requires TTY.
 - FAISS index stored at `/root/.cache/codeqai/`. Delete to re-index.
 - Image is large (~5GB) due to torch + sentence-transformers pulled by langchain-huggingface.
 - Python >=3.9,<3.12 required. Image uses 3.11.
+
+## Changes from Original
+**Category: Modified.** Configuration and sample data added.
+
+| File | Change | Why |
+|------|--------|-----|
+| `/root/.config/codeqai/config.yaml` (new) | Pre-created config selecting OpenAI embeddings and gpt-4o-mini | Interactive config wizard can't run in Docker |
+| `/app/sample-project/` (new) | Initialized git repo with codeqai source as sample data | App requires running inside a git repo |
+
+Config pre-selects OpenAI backend (user would choose this interactively anyway). No application source code was modified.

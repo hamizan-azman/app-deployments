@@ -87,3 +87,12 @@ data: ["{'source': '少先队员因该为老人让坐', 'target': '少先队员�
 - This is a Chinese spelling correction model (CSC). It handles phonetic and visual similarity errors, not grammar restructuring.
 - CPU-only. No GPU required.
 - Gradio API is async (two-step: submit, then poll for result).
+
+## Changes from Original
+**Category: Modified.** One source file changed.
+
+| File | Change | Why |
+|------|--------|-----|
+| `examples/macbert/gradio_demo.py` | `.launch()` changed to `.launch(server_name="0.0.0.0", server_port=7860)` | Standard Docker network binding. Without this, Gradio only listens on 127.0.0.1 inside the container |
+
+No impact on application logic. Network binding change only.

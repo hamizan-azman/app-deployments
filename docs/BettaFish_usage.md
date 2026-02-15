@@ -105,3 +105,6 @@ docker compose up -d
 - Database auto-initializes on first run.
 - CPU-only (torch CPU version), no GPU needed.
 - Chinese social media focused (Weibo, Bilibili, etc.).
+
+## Changes from Original
+None. Uses the developer's own pre-built image (ghcr.io/666ghj/bettafish:latest).

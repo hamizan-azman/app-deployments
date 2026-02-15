@@ -172,3 +172,12 @@ docker compose up -d
 - Auth uses NextAuth with Prisma adapter. In dev mode, sign-in is simplified
 - Database auto-migrates on first frontend start via Prisma
 - The `mock_mode` setting lets you test without an OpenAI key (returns fake agent responses)
+
+## Changes from Original
+**Category: Dependencies only.** Source code untouched.
+
+- Base image changed from `python:3.11-slim-buster` (Debian Buster, EOL) to `python:3.11-slim-bookworm`. Buster's apt repos return 404.
+- `openjdk-11-jdk` changed to `openjdk-17-jdk-headless` (Java 11 not available on Bookworm).
+- `langchain` force-installed at `0.0.335` over poetry lockfile's `0.0.295`. Required because `lanarky==0.7.17` imports `langchain.globals` which doesn't exist in 0.0.295.
+
+**Note for pentesters:** The langchain version (0.0.335) does not match the developer's `poetry.lock` (0.0.295). 40 patch versions of difference. Different OS packages (Bookworm vs Buster) and Java version also differ.

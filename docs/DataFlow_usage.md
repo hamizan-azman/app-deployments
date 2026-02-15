@@ -83,3 +83,6 @@ dataflow webui --ui_mode pdf
 - WebUI binds to 127.0.0.1 by default. Must pass --host 0.0.0.0 for Docker access.
 - Pre-built image maintained by original developers on Docker Hub.
 - Two warnings on startup about pipeline analysis (vqa_extract, rare_pipeline) are benign.
+
+## Changes from Original
+None. Uses the developer's own pre-built image (molyheci/dataflow:cu124).

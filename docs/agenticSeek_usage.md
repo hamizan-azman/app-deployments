@@ -156,3 +156,15 @@ stealth_mode = False
 - Browser agent runs headless Chrome inside the container
 - Backend image is ~15.8GB due to PyTorch, Chrome, and ML models
 - Frontend image is ~2.1GB (Node.js + React)
+
+## Changes from Original
+**Category: Modified.** Configuration file changed.
+
+| File | Change | Why |
+|------|--------|-----|
+| `config.ini` | `is_local = True` changed to `is_local = False` | Docker deployment uses remote API, not local Ollama |
+| `config.ini` | `provider_name = ollama` changed to `provider_name = openai` | Same reason |
+| `config.ini` | `provider_model = deepseek-r1:14b` changed to `provider_model = gpt-4o-mini` | Use available model |
+| `config.ini` | `provider_server_address = 127.0.0.1:11434` changed to `provider_server_address = api.openai.com` | Point to OpenAI API |
+
+Config-only changes selecting LLM provider. All application code unchanged.

@@ -174,3 +174,6 @@ docker run -it --rm \
 - All R&D scenario commands (fin_*, data_science, general_model) require an LLM API key and Docker socket.
 - Image is based on python:3.10-slim. Build takes ~2 minutes on first run.
 - Official support is Linux only; the Docker container handles this on Windows/Mac.
+
+## Changes from Original
+None. Dockerfile written from scratch but source code and dependencies are untouched.

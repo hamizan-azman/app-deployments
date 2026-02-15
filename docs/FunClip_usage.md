@@ -125,3 +125,6 @@ docker exec funclip python funclip/videoclipper.py --stage 2 --file /path/to/vid
 - Clip endpoints only work through the browser UI (Gradio session state manages numpy arrays)
 - Default language is English (`-l en`). Change to Chinese with `-l zh` in the CMD
 - Requires ~2GB RAM for model loading and inference
+
+## Changes from Original
+None. Dockerfile written from scratch. PyTorch CPU variant used (same version, different build). ImageMagick policy fix follows the developer's own README instructions.

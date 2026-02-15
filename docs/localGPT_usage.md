@@ -148,3 +148,6 @@ docker pull hoomzoom/localgpt-rag-api:latest
 - Backend image is ~3.4GB. Frontend image is ~1.5GB. Ollama is ~9GB.
 - Database is SQLite (local file), no external DB needed.
 - Document upload and indexing require Ollama models for embedding and enrichment.
+
+## Changes from Original
+None. All three of the developer's Dockerfiles used unmodified.

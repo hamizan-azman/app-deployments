@@ -90,3 +90,17 @@ curl -X POST http://localhost:8000/visualize \
 - Build takes ~10 minutes (model download is the bottleneck).
 - Default entities are hardcoded in app.py. To change them, edit the DEFAULT_ENTITIES list.
 - Only CPU inference is supported (no GPU).
+
+## Changes from Original
+**Category: Modified.** Import guards added, custom API wrapper added.
+
+| File | Change | Why |
+|------|--------|-----|
+| `zshot/knowledge_extractor/__init__.py` | Wrapped `relik` import in try/except ImportError | Prevents crash when optional `relik` package is not installed |
+| `zshot/linker/__init__.py` | Wrapped `blink`, `tars`, `relik`, `gliner` imports in try/except ImportError | Same -- optional backends |
+| `zshot/mentions_extractor/__init__.py` | Wrapped `gliner` import in try/except ImportError | Same |
+| `app.py` (NEW FILE) | FastAPI wrapper with `/health`, `/extract`, `/visualize` endpoints | Zshot is a library with no web interface. This custom wrapper was added to expose it as a service |
+
+Dependency change: `transformers` pinned to `<5` (original unpinned). Transformers v5 removed `batch_encode_plus` from T5Tokenizer.
+
+**WARNING:** The `app.py` FastAPI wrapper is entirely custom code not written by the original developer. It introduces HTTP endpoints that do not exist in the original library. Any vulnerability found in `app.py` is NOT a valid supply chain finding.

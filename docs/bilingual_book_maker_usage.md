@@ -275,3 +275,8 @@ Supported providers include:
 - Output filenames end with `_bilingual.*` for bilingual results, or `*_bilingual_temp.*` on interruption.
 - The container needs internet access to reach the configured provider.
 - Retranslate failed in testing with `ValueError: Element has no parent, so 'after' has no meaning.`
+
+## Changes from Original
+**Category: Dependencies only.** Source code untouched.
+
+- `PyMuPDF==1.24.2` added (not in original requirements.txt). The code imports `fitz` at module load time -- this was a missing dependency in the original repo.

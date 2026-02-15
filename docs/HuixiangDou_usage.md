@@ -108,3 +108,33 @@ docker run -it -v /path/to/docs:/app/repodir hoomzoom/huixiangdou \
 - Feature store must be built before the app can answer questions about specific documents.
 - The pre-built image from the original developers (`tpoisonooo/huixiangdou:20240814`) is broken. This custom build fixes all issues.
 - Web search requires either DuckDuckGo (free, default) or Serper (needs API key).
+
+## Changes from Original
+**Category: Modified.** Source patches, Gradio client fix, and 6 dependency pins.
+
+**Source changes:**
+
+| File | Change | Why |
+|------|--------|-----|
+| `huixiangdou/gradio_ui.py` line 243 | `debug=True` changed to `debug=False` | Debug mode exposes extra info and causes health check issues in Docker |
+| `huixiangdou/gradio_ui.py` lines 243-248 | Wrapped `demo.launch()` in try/except ValueError with sleep loop | Gradio health check fails in Docker even when server is running |
+
+**Inline patches (applied at build time in Dockerfile):**
+
+| Patch | Target | Change |
+|-------|--------|--------|
+| `sed` in requirements.txt | `faiss-gpu` | Replaced with `faiss-cpu` (pre-installed). Drop-in replacement, same API |
+| Python script patches `gradio_client/utils.py` | `get_type()` and `_json_schema_to_python_type()` | Added `if not isinstance(schema, dict): return "Any"` guard. Fixes crash when pydantic v2 emits boolean in JSON schema |
+
+**Dependency pins (6):**
+
+| Package | Original | Deployed | Why |
+|---------|----------|----------|-----|
+| gradio | >=4.41 | ==4.44.1 | Era-match with huggingface_hub <1.0 |
+| gradio_client | transitive | ==1.3.0 | Match gradio 4.44.1 |
+| huggingface_hub | transitive | ==0.24.7 | gradio 4.x requires <1.0 |
+| transformers | >=4.38 | ==4.44.2 | Must work with huggingface_hub 0.x |
+| sentence_transformers | transitive | ==3.0.1 | Compatible with transformers 4.44 |
+| tokenizers | transitive | ==0.19.1 | Match transformers 4.44 |
+
+The developer's own pre-built image was broken (empty), so building from source was the only option.

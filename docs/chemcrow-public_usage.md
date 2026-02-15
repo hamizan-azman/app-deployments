@@ -108,3 +108,6 @@ print(chem.run('What is the molecular weight of aspirin?'))
 - Paper-qa requires Semantic Scholar API for best results.
 - The `paperscraper` dependency is installed from git (commented out in setup.py but required at runtime).
 - Optional self-hosted reaction prediction requires GPU Docker images: `doncamilom/rxnpred:latest` and `doncamilom/retrosynthesis:latest`.
+
+## Changes from Original
+None. Dockerfile written from scratch. Restored `paper-scraper` dependency that the developer left commented out in setup.py but imports in code.

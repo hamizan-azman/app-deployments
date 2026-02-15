@@ -88,3 +88,8 @@ To persist config, mount a volume: `-v ./config.toml:/NarratoAI/config.toml`
 - Internal port is 8501 (Streamlit default). Map to any host port.
 - Requires ffmpeg and ImageMagick (both included in the Docker image).
 - For persistent storage of generated videos, mount: `-v ./storage:/NarratoAI/storage`
+
+## Changes from Original
+**Category: Dependencies only.** Source code untouched.
+
+- Chinese pip mirror (`pypi.tuna.tsinghua.edu.cn`) replaced with default PyPI. Same packages, different download source.

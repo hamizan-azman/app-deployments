@@ -69,3 +69,6 @@ http://localhost:8501
 - The `slidedeckai launch` command is disabled in the current CLI. Use `streamlit run app.py` for the UI.
 - This repo uses Git LFS for PPTX templates. Run `git lfs pull` before building if templates are LFS pointers.
 - `slidedeckai --list-models` triggers a Hugging Face model load on first run.
+
+## Changes from Original
+None. Dockerfile written from scratch but source code and dependencies are untouched.

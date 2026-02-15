@@ -89,3 +89,8 @@ Note: Newer model names (gpt-4o, gpt-4-turbo, gpt-4o-mini) are NOT recognized by
 - The tool generates Dockerfiles, builds images, and runs containers internally
 - Hardcoded `max_tokens=10000` means only models with >10k output token support work
 - The default model `openrouter/openai/gpt-4-32k` requires an OpenRouter API key
+
+## Changes from Original
+**Category: Dependencies only.** Source code untouched.
+
+- 6 era-matched pins added: openai==0.27.8, langchain==0.0.238, typer==0.9.0, click==8.1.7, yaspin==2.5.0, tree-sitter==0.20.4. All fall within the developer's `pyproject.toml` version ranges. Without these, the app crashes on import.

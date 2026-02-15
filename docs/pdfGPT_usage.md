@@ -99,3 +99,29 @@ curl -X POST http://localhost:8080/ask_file \
 - The original `text-davinci-003` model in api.py is deprecated by OpenAI; litellm may route to alternatives
 - Uses openai==0.27.8 (old API) -- this is the original developer's architecture
 - langchain-serve is abandoned software with broken dependency chains; multiple version pins required
+
+## Changes from Original
+**Category: Modified.** Gradio compatibility fixes and 7 dependency pins.
+
+**Source changes:**
+
+| File | Change | Why |
+|------|--------|-----|
+| `app.py` | Removed `btn.style(full_width=True)` | Gradio 3.x API removed in 4.x |
+| `app.py` | Removed `demo.app.server.timeout = 60000` | Not available in Gradio 4.x |
+| `app.py` | Removed `enable_queue=True` from `demo.launch()`, added `server_name="0.0.0.0"` | Gradio compat + Docker binding |
+| `app.py` | Added `os.environ.get('LCSERVE_HOST', 'http://localhost:8080')` for backend host | Docker compose networking |
+
+**Dependency pins (7):**
+
+| Package | Original | Deployed | Why |
+|---------|----------|----------|-----|
+| langchain | unpinned | ==0.0.267 | langchain-serve requires pre-split monolithic langchain |
+| litellm | unpinned | ==0.1.424 | Modern litellm requires openai>=1.0 which is incompatible |
+| openai | ==0.27.4 | ==0.27.8 | litellm 0.1.424 requires >=0.27.8 |
+| pydantic | unpinned | <2 | Jina 3.x crashes with pydantic v2 |
+| huggingface_hub | unpinned | <1.0 | Gradio 4.x imports HfFolder removed in hub >=1.0 |
+| setuptools | unpinned | <71 (build constraint) | langchain-serve uses pkg_resources |
+| opentelemetry-exporter-prometheus | unpinned | ==1.12.0rc1 | Yanked from PyPI but required by jina 3.14.1 |
+
+The Gradio compat fixes change UI behavior slightly but not the backend API. The era-matched dependency pins lock the backend to 2023-era versions. The hardcoded `text-davinci-003` model in `api.py` was NOT changed.

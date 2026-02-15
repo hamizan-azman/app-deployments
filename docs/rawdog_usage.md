@@ -81,3 +81,6 @@ Example:
 ## Notes
 - Rawdog writes config to `~/.rawdog/config.yaml` on first run.
 - The container needs internet access to reach the configured LLM provider.
+
+## Changes from Original
+None. Dockerfile written from scratch but source code and dependencies are untouched.

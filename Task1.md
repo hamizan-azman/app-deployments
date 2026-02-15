@@ -16,6 +16,7 @@ Each deployed app has a **usage doc** (`docs/<appname>_usage.md`) in the repo wi
 - curl/test examples
 - Environment variables and configuration
 - Test results (pass/fail per endpoint)
+- **Changes from original** -- what was modified from the developer's source code (if anything)
 
 There is also a **reasoning doc** (`docs/<appname>_reasoning.md`) explaining why each deployment decision was made, what broke, and how it was fixed.
 

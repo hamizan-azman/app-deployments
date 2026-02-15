@@ -227,3 +227,6 @@ Note: Use shortcuts, not raw model names (e.g. `gpt4o` not `gpt-4o`).
 - **keys.cfg warning**: Harmless. The tool logs `keys.cfg not found` but works fine with env vars.
 - **Cost**: A single task run costs $0.10-0.50+ depending on complexity and model.
 - **Windows Docker socket**: Use `-v //var/run/docker.sock:/var/run/docker.sock` (double slash for Git Bash path mangling).
+
+## Changes from Original
+None. Uses the developer's own pre-built image (sweagent/swe-agent-run:latest). At runtime, `sed` patches server.py to bind 0.0.0.0 instead of 127.0.0.1 (makes web UI network-accessible from outside the container). This is not baked into the image.

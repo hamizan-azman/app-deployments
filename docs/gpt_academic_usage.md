@@ -113,3 +113,6 @@ This is a Gradio web application. All interaction happens through the browser UI
 - The app binds to 0.0.0.0 internally, so port mapping works on all platforms.
 - File security: config.py, __pycache__, docker-compose.yml, Dockerfile are blocked from `/file=` access.
 - For multi-model setups, set AVAIL_LLM_MODELS as a JSON list string.
+
+## Changes from Original
+None. Uses the developer's own GHCR image (ghcr.io/binary-husky/gpt_academic_nolocal:master). Configuration via environment variables only.

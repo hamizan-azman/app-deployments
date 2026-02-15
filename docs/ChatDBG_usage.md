@@ -115,3 +115,6 @@ docker run -it --rm -e OPENAI_API_KEY=$OPENAI_API_KEY chatdbg bash -c \
 - The image uses unpinned `FROM ubuntu`. For reproducibility, pin to a specific tag.
 - Default model is gpt-4o. Can be changed with `--model` flag.
 - Supports litellm backend, so other LLM providers may work with appropriate config.
+
+## Changes from Original
+None. The deployed container uses the developer's original Dockerfile with no source code or dependency changes.

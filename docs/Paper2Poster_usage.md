@@ -123,3 +123,9 @@ The repo includes a Gradio demo at `demo/app.py` for the HuggingFace Spaces depl
 - With a 30k TPM OpenAI tier, use `--max_workers=1` to avoid rate limit errors during content generation.
 - Supports local models via vLLM (e.g., Qwen-2.5-7B-Instruct) as alternative to OpenAI API.
 - YAML style customization available via `config/poster.yaml` or per-poster `poster.yaml` next to `paper.pdf`.
+
+## Changes from Original
+**Category: Dependencies only.** Source code untouched.
+
+- `docling_parse` pinned to `==4.0.0` (original unpinned). Newer versions removed `pdf_parser_v2` API that the vendored `docling/` directory uses.
+- `setuptools<71` build constraint (build-time only, not runtime).

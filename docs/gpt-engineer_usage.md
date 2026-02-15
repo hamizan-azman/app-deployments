@@ -173,3 +173,12 @@ The mounted `/project` directory should contain:
 - Generated files in `/project` are owned by nobody:nogroup with 777 permissions (entrypoint does this).
 - The tool defaults to gpt-4o model. Override with `--model`.
 - Dockerfile modification: added `sed -i 's/\r$//' /app/entrypoint.sh` to fix Windows line ending issue.
+
+## Changes from Original
+**Category: Modified.** One line added to Dockerfile.
+
+| File | Change | Why |
+|------|--------|-----|
+| `docker/Dockerfile` | Added `RUN sed -i 's/\r$//' /app/entrypoint.sh` | Strips Windows CRLF line endings. On Linux/Mac clones this is a no-op |
+
+Whitespace normalization only.
