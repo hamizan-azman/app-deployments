@@ -5,8 +5,13 @@ Chinese text correction toolkit. Detects and corrects spelling errors (phonetic 
 
 ## Quick Start
 ```bash
+# Pull from Docker Hub (recommended)
+docker pull hoomzoom/pycorrector
+
+# Or build from source
 docker build -t pycorrector apps/pycorrector/
-docker run -p 7860:7860 pycorrector
+
+docker run -p 7860:7860 hoomzoom/pycorrector
 ```
 
 ## Base URL

@@ -5,8 +5,13 @@ Rawdog is a CLI assistant that generates and executes Python scripts to complete
 
 ## Quick Start
 ```
+# Pull from Docker Hub (recommended)
+docker pull hoomzoom/rawdog
+
+# Or build from source
 docker build -t rawdog .
-docker run -it -e OPENAI_API_KEY=your-api-key rawdog "List files in the current directory"
+
+docker run -it -e OPENAI_API_KEY=your-api-key hoomzoom/rawdog "List files in the current directory"
 ```
 
 ## Base URL

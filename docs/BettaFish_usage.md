@@ -5,7 +5,7 @@ Multi-agent opinion analysis system. Performs sentiment analysis across social m
 
 ## Quick Start
 ```bash
-docker pull ghcr.io/666ghj/bettafish:latest
+docker pull hoomzoom/bettafish
 ```
 
 ## Docker Compose
@@ -86,7 +86,7 @@ docker compose up -d
 | 5 | Engine start/search | NOT TESTED (requires API keys) |
 
 ## Notes
-- Pre-built image from `ghcr.io/666ghj/bettafish:latest` (4.6GB).
+- Pre-built image from `hoomzoom/bettafish` (4.6GB).
 - Requires multiple LLM API keys (Insight, Media, Query, Report agents).
 - Requires at least one search API key (Tavily, Anspire, or Bocha).
 - Database auto-initializes on first run.

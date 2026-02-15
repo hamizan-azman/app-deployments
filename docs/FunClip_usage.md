@@ -5,8 +5,13 @@ Open-source video/audio clipping tool powered by Alibaba FunASR. Recognizes spee
 
 ## Quick Start
 ```bash
+# Pull from Docker Hub (recommended)
+docker pull hoomzoom/funclip
+
+# Or build from source
 docker build -t funclip apps/FunClip/
-docker run -d --name funclip -p 7860:7860 funclip
+
+docker run -d --name funclip -p 7860:7860 hoomzoom/funclip
 ```
 
 First startup downloads ~1.2GB of ASR models from ModelScope (takes a few minutes). Subsequent starts use cached models in the container.

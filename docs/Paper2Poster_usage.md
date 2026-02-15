@@ -5,8 +5,13 @@ Multi-agent system that converts academic papers (PDFs) into professional poster
 
 ## Quick Start
 ```bash
+# Pull from Docker Hub (recommended)
+docker pull hoomzoom/paper2poster
+
+# Or build from source
 docker build -t paper2poster ./Paper2Poster
-docker run --rm paper2poster python -m PosterAgent.new_pipeline --help
+
+docker run --rm hoomzoom/paper2poster python -m PosterAgent.new_pipeline --help
 ```
 
 ## Dockerfile Modifications

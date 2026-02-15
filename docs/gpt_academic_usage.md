@@ -5,7 +5,7 @@ GPT Academic (GPT 学术优化) is a Gradio-based web UI for interacting with LL
 
 ## Quick Start
 ```bash
-docker pull ghcr.io/binary-husky/gpt_academic_nolocal:master
+docker pull hoomzoom/gpt_academic
 
 docker run -d --name gpt_academic \
   -p 12345:12345 \
@@ -14,7 +14,7 @@ docker run -d --name gpt_academic \
   -e USE_PROXY="False" \
   -e AUTO_OPEN_BROWSER="False" \
   -e LLM_MODEL="gpt-3.5-turbo" \
-  ghcr.io/binary-husky/gpt_academic_nolocal:master
+  hoomzoom/gpt_academic
 ```
 
 ## Base URL

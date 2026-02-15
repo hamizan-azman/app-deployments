@@ -5,8 +5,13 @@ Python library for reasoning-intensive chemical tasks using LLM agents. Combines
 
 ## Quick Start
 ```bash
+# Pull from Docker Hub (recommended)
+docker pull hoomzoom/chemcrow
+
+# Or build from source
 docker build -t chemcrow apps/chemcrow-public/
-docker run -it -e OPENAI_API_KEY=your-key chemcrow python
+
+docker run -it -e OPENAI_API_KEY=your-key hoomzoom/chemcrow python
 ```
 
 ## Type

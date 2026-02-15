@@ -5,8 +5,13 @@ CLI tool that generates or improves code projects using OpenAI (or Anthropic) LL
 
 ## Quick Start
 ```bash
+# Pull from Docker Hub (recommended)
+docker pull hoomzoom/gpt-engineer
+
+# Or build from source
 docker build --rm -t gpt-engineer -f docker/Dockerfile .
-docker run -it --rm -e OPENAI_API_KEY=your-key -v ./my-project:/project gpt-engineer
+
+docker run -it --rm -e OPENAI_API_KEY=your-key -v ./my-project:/project hoomzoom/gpt-engineer
 ```
 
 ## Base URL

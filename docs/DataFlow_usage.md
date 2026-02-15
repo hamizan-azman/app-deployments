@@ -5,8 +5,8 @@ Data preparation and training system for LLMs. CLI + WebUI for text/PDF data pip
 
 ## Quick Start
 ```bash
-docker pull molyheci/dataflow:cu124
-docker run --gpus all -it -p 7862:7862 molyheci/dataflow:cu124 \
+docker pull hoomzoom/dataflow
+docker run --gpus all -it -p 7862:7862 hoomzoom/dataflow \
   dataflow webui --host 0.0.0.0 --port 7862
 ```
 Access WebUI at `http://localhost:7862`.
@@ -23,11 +23,11 @@ http://localhost:7862 (WebUI)
 ## CLI Commands
 ```bash
 # Must use -t flag for interactive commands (terminal size detection)
-docker run --gpus all -t molyheci/dataflow:cu124 dataflow --help
-docker run --gpus all -t molyheci/dataflow:cu124 dataflow env
+docker run --gpus all -t hoomzoom/dataflow dataflow --help
+docker run --gpus all -t hoomzoom/dataflow dataflow env
 
 # Inside an interactive container
-docker run --gpus all -it molyheci/dataflow:cu124 bash
+docker run --gpus all -it hoomzoom/dataflow bash
 dataflow -v                              # Check version (1.0.6)
 dataflow init repo                       # Initialize a project
 dataflow text2model init                 # Initialize text-to-QA pipeline

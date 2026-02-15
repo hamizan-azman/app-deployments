@@ -5,12 +5,16 @@ SlideDeck AI is a Streamlit app and CLI that generates PowerPoint slide decks fr
 
 ## Quick Start
 ```
+# Pull from Docker Hub (recommended)
+docker pull hoomzoom/slidedeckai
+
+# Or build from source
 docker build -t slidedeckai .
 
 docker run --rm -p 8501:8501 \
   -e OPENAI_API_KEY=your-api-key \
   -e PEXEL_API_KEY=your-pexels-key \
-  slidedeckai
+  hoomzoom/slidedeckai
 ```
 
 ## Base URL

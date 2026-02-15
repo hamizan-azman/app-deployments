@@ -5,11 +5,15 @@ NarratoAI is an AI-powered automated video narration tool. Provides script writi
 
 ## Quick Start
 ```bash
+# Pull from Docker Hub (recommended)
+docker pull hoomzoom/narratoai
+
+# Or build from source
 docker build -t narratoai apps/NarratoAI/
 
 docker run -d --name narratoai \
   -p 9000:8501 \
-  narratoai:latest
+  hoomzoom/narratoai
 ```
 
 ## Base URL

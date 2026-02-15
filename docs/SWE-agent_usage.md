@@ -5,14 +5,14 @@ Autonomous software engineering agent that uses LLMs to fix GitHub issues, solve
 
 ## Quick Start
 ```bash
-docker pull sweagent/swe-agent-run:latest
+docker pull hoomzoom/swe-agent
 docker pull sweagent/swe-agent:latest
 ```
 
 ## Images Required
 | Image | Purpose | Size |
 |-------|---------|------|
-| `sweagent/swe-agent-run:latest` | Runner (CLI + web UI) | ~2GB |
+| `hoomzoom/swe-agent` | Runner (CLI + web UI) | ~2GB |
 | `sweagent/swe-agent:latest` | Environment (spawned by runner) | ~1GB |
 
 Both images are required. The runner spawns environment containers via Docker socket.
@@ -38,7 +38,7 @@ docker run --rm \
   -e OPENAI_API_KEY=your-key \
   -v /var/run/docker.sock:/var/run/docker.sock \
   --entrypoint /bin/bash \
-  sweagent/swe-agent-run:latest \
+  hoomzoom/swe-agent \
   -c 'cd /app && python3 run.py \
     --model_name gpt4o \
     --data_path "https://github.com/owner/repo/issues/123" \
@@ -51,7 +51,7 @@ docker run --rm \
   -e OPENAI_API_KEY=your-key \
   -v /var/run/docker.sock:/var/run/docker.sock \
   --entrypoint /bin/bash \
-  sweagent/swe-agent-run:latest \
+  hoomzoom/swe-agent \
   -c 'cd /app && python3 run.py \
     --model_name gpt4o \
     --data_path "text://Your task description here" \
@@ -66,7 +66,7 @@ docker run --rm \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v /path/to/local/repo:/repo \
   --entrypoint /bin/bash \
-  sweagent/swe-agent-run:latest \
+  hoomzoom/swe-agent \
   -c 'cd /app && python3 run.py \
     --model_name gpt4o \
     --data_path "/path/to/issue.md" \
@@ -81,7 +81,7 @@ docker run --rm \
   -e OPENAI_API_KEY=your-key \
   -v /var/run/docker.sock:/var/run/docker.sock \
   --entrypoint /bin/bash \
-  sweagent/swe-agent-run:latest \
+  hoomzoom/swe-agent \
   -c 'cd /app && python3 run.py \
     --model_name gpt4o \
     --data_path "text://Your challenge" \
@@ -95,7 +95,7 @@ docker run --rm \
   -e OPENAI_API_KEY=your-key \
   -v /var/run/docker.sock:/var/run/docker.sock \
   --entrypoint /bin/bash \
-  sweagent/swe-agent-run:latest \
+  hoomzoom/swe-agent \
   -c 'cd /app && python3 run.py \
     --model_name gpt4o \
     --ctf \
@@ -108,7 +108,7 @@ docker run --rm \
 docker run --rm \
   -v /var/run/docker.sock:/var/run/docker.sock \
   --entrypoint /bin/bash \
-  sweagent/swe-agent-run:latest \
+  hoomzoom/swe-agent \
   -c 'cd /app && python3 run_replay.py \
     --traj_path /path/to/trajectory.traj \
     --config_file config/default_from_url.yaml'
@@ -117,7 +117,7 @@ docker run --rm \
 ### Help
 ```bash
 docker run --rm --entrypoint /bin/bash \
-  sweagent/swe-agent-run:latest \
+  hoomzoom/swe-agent \
   -c 'cd /app && python3 run.py --help'
 ```
 
@@ -127,7 +127,7 @@ docker run --rm -p 8000:8000 -p 3000:3000 \
   -e OPENAI_API_KEY=your-key \
   -v /var/run/docker.sock:/var/run/docker.sock \
   --entrypoint /bin/bash \
-  sweagent/swe-agent-run:latest \
+  hoomzoom/swe-agent \
   -c 'cd /app && sed -i "s/socketio.run(app, port=8000/socketio.run(app, host=\"0.0.0.0\", port=8000/" sweagent/api/server.py && python3 sweagent/api/server.py &
 sleep 5
 cd sweagent/frontend && npx pm2 start --name swe-agent npm -- start

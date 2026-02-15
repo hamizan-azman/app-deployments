@@ -5,8 +5,13 @@ Microsoft's autonomous R&D framework that uses LLMs to automate data-driven rese
 
 ## Quick Start
 ```bash
+# Pull from Docker Hub (recommended)
+docker pull hoomzoom/rd-agent
+
+# Or build from source
 docker build -t rd-agent ./RD-Agent
-docker run --rm rd-agent --help
+
+docker run --rm hoomzoom/rd-agent --help
 ```
 
 ## Base URL

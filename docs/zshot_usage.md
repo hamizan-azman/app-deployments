@@ -5,8 +5,13 @@ Zero-shot named entity recognition using IBM's Zshot library. Uses spaCy pipelin
 
 ## Quick Start
 ```bash
+# Pull from Docker Hub (recommended)
+docker pull hoomzoom/zshot
+
+# Or build from source
 docker build -t zshot apps/zshot/
-docker run -d --name zshot -p 8000:8000 zshot
+
+docker run -d --name zshot -p 8000:8000 hoomzoom/zshot
 ```
 
 ## Base URL

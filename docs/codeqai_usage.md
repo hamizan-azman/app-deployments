@@ -5,8 +5,13 @@ CLI + Streamlit app for semantic code search and GPT-powered chat over codebases
 
 ## Quick Start
 ```bash
+# Pull from Docker Hub (recommended)
+docker pull hoomzoom/codeqai
+
+# Or build from source
 docker build -t codeqai apps/codeqai/
-docker run -p 8501:8501 -e OPENAI_API_KEY=your-key codeqai
+
+docker run -p 8501:8501 -e OPENAI_API_KEY=your-key hoomzoom/codeqai
 ```
 
 First run indexes the bundled sample project (~10s). Then Streamlit launches on port 8501.

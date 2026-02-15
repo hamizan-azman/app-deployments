@@ -5,8 +5,13 @@ AI-powered debugging assistant that integrates LLMs into standard debuggers (pdb
 
 ## Quick Start
 ```bash
+# Pull from Docker Hub (recommended)
+docker pull hoomzoom/chatdbg
+
+# Or build from source
 docker build -t chatdbg ./ChatDBG
-docker run -it --rm -e OPENAI_API_KEY=$OPENAI_API_KEY chatdbg
+
+docker run -it --rm -e OPENAI_API_KEY=$OPENAI_API_KEY hoomzoom/chatdbg
 ```
 
 ## Tool Type

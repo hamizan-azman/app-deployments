@@ -5,8 +5,8 @@ One-click translation of text in manga/comic images. Detects text regions, perfo
 
 ## Quick Start
 ```bash
-docker pull zyddnys/manga-image-translator:main
-docker run -p 5003:5003 --ipc=host --entrypoint python zyddnys/manga-image-translator:main server/main.py --verbose --start-instance --host=0.0.0.0 --port=5003
+docker pull hoomzoom/manga-image-translator
+docker run -p 5003:5003 --ipc=host --entrypoint python hoomzoom/manga-image-translator server/main.py --verbose --start-instance --host=0.0.0.0 --port=5003
 ```
 
 First run downloads translator models (~622MB sugoi-models.zip). Wait for logs to show model loading complete before sending translation requests.

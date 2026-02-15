@@ -5,8 +5,13 @@ Python library implementing ChatGPT's Code Interpreter using LangChain and CodeB
 
 ## Quick Start
 ```bash
+# Pull from Docker Hub (recommended)
+docker pull hoomzoom/codeinterpreter-api
+
+# Or build from source
 docker build -t codeinterpreter-api apps/codeinterpreter-api/
-docker run --rm -e OPENAI_API_KEY=sk-... codeinterpreter-api
+
+docker run --rm -e OPENAI_API_KEY=sk-... hoomzoom/codeinterpreter-api
 ```
 
 ## Type

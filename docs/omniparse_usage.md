@@ -5,8 +5,8 @@ Platform that ingests and parses unstructured data (documents, images, audio, vi
 
 ## Quick Start
 ```bash
-docker pull savatar101/omniparse:0.1
-docker run -p 8000:8000 savatar101/omniparse:0.1
+docker pull hoomzoom/omniparse
+docker run -p 8000:8000 hoomzoom/omniparse
 ```
 
 ## Base URL

@@ -9,6 +9,12 @@ cd apps/pdfGPT
 OPENAI_API_KEY=sk-... docker compose up -d
 ```
 
+Docker Hub images are available for all pdfGPT services:
+- `docker pull hoomzoom/pdfgpt-frontend`
+- `docker pull hoomzoom/pdfgpt-langchain-serve`
+- `docker pull hoomzoom/pdfgpt-backend`
+- `docker pull hoomzoom/pdfgpt-pdf-gpt`
+
 ## Base URLs
 - Frontend (Gradio UI): http://localhost:7860
 - Backend (langchain-serve API): http://localhost:8080

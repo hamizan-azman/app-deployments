@@ -5,12 +5,16 @@ CLI tool to translate EPUB/TXT/MD/SRT/PDF files and produce bilingual outputs us
 
 ## Quick Start
 ```
+# Pull from Docker Hub (recommended)
+docker pull hoomzoom/bilingual_book_maker
+
+# Or build from source
 docker build -t bilingual_book_maker .
 
 docker run --rm \
   -e OPENAI_API_KEY=your-api-key \
   --mount type=bind,source=/path/to/books,target=/app/test_books \
-  bilingual_book_maker \
+  hoomzoom/bilingual_book_maker \
   --book_name /app/test_books/animal_farm.epub \
   --test
 ```
