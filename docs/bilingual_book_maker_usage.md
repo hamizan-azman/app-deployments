@@ -1,4 +1,4 @@
-# bilingual_book_maker — Usage Documentation
+# bilingual_book_maker -- Usage Documentation
 
 ## Overview
 CLI tool to translate EPUB/TXT/MD/SRT/PDF files and produce bilingual outputs using OpenAI and other providers.

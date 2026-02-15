@@ -1,4 +1,4 @@
-# SlideDeck AI — Usage Documentation
+# SlideDeck AI -- Usage Documentation
 
 ## Overview
 SlideDeck AI is a Streamlit app and CLI that generates PowerPoint slide decks from a topic using LLMs, and optionally enriches slides with images.

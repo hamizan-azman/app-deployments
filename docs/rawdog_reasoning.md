@@ -1,6 +1,6 @@
-# Rawdog — Detailed Decision Log (Teaching Version)
+# Rawdog -- Reasoning Log
 
-This document explains every explicit decision I made for the Rawdog repo, including alternatives and why they were not chosen. It is a teachable, externalized reasoning log, not internal chain-of-thought.
+Covers every decision made for the Rawdog deployment, including alternatives considered and why they were rejected.
 
 ## 1) Clarify The Product Type
 **What I checked**
@@ -51,7 +51,7 @@ This document explains every explicit decision I made for the Rawdog repo, inclu
 **Why**
 - The project workflow requires extracting all commands/endpoints.
 
-## 4) Dockerfile Design — Base Image
+## 4) Dockerfile Design -- Base Image
 **Decision**
 - Use `python:3.11.8-slim`.
 
@@ -63,7 +63,7 @@ This document explains every explicit decision I made for the Rawdog repo, inclu
 - `python:3.10-slim`: viable but slightly older.
 - `python:3.12-slim`: newer, but higher risk of library incompatibilities.
 
-## 5) Dockerfile Design — System Packages
+## 5) Dockerfile Design -- System Packages
 **Decision**
 - Install `git`.
 
@@ -74,7 +74,7 @@ This document explains every explicit decision I made for the Rawdog repo, inclu
 **Alternative**
 - Skip `git` to reduce size. Rejected because it risks breaking runtime behavior.
 
-## 6) Dockerfile Design — Copy and Install Strategy
+## 6) Dockerfile Design -- Copy and Install Strategy
 **Decision**
 - Copy `pyproject.toml`, `README.md`, `src/`.
 - Run `pip install .`.
@@ -86,7 +86,7 @@ This document explains every explicit decision I made for the Rawdog repo, inclu
 **Alternative**
 - Copy entire repo. Rejected because it’s unnecessary and larger.
 
-## 7) Dockerfile Design — ENTRYPOINT
+## 7) Dockerfile Design -- ENTRYPOINT
 **Decision**
 - `ENTRYPOINT ["rawdog"]`.
 

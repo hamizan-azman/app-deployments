@@ -1,6 +1,6 @@
-# slide-deck-ai — Detailed Decision Log (Teaching Version)
+# slide-deck-ai -- Reasoning Log
 
-This is a teachable, external decision log for SlideDeck AI. It explains what I checked, what I chose, and why. It is not internal chain-of-thought.
+Covers every decision made for the slide-deck-ai deployment, including alternatives considered and why they were rejected.
 
 ## 1) Clarify The Product Type
 What I checked

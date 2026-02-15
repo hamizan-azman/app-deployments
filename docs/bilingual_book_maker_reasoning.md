@@ -1,6 +1,6 @@
-# bilingual_book_maker — Detailed Decision Log (Teaching Version)
+# bilingual_book_maker -- Reasoning Log
 
-This is a teachable, external decision log for how I approached bilingual_book_maker. It includes what I checked, what I decided, and why. It is not internal chain-of-thought.
+Covers every decision made for the bilingual_book_maker deployment, including alternatives considered and why they were rejected.
 
 ## 0) Quick Assessment Of Rawdog Log
 Rawdog log is already complete and does not need changes.

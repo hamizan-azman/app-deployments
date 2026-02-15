@@ -1,4 +1,4 @@
-# Rawdog — Usage Documentation
+# Rawdog -- Usage Documentation
 
 ## Overview
 Rawdog is a CLI assistant that generates and executes Python scripts to complete tasks. It supports direct single prompt mode and interactive conversation mode.
