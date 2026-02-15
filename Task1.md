@@ -39,7 +39,7 @@ There is also a **reasoning doc** (`docs/<appname>_reasoning.md`) explaining why
 | 7 | [NarratoAI](https://github.com/linyqh/NarratoAI) | Automated video narration (script + TTS + subtitles) | Streamlit | `hoomzoom/narratoai` | Yes (LLM provider) | 5/5 | [usage](docs/NarratoAI_usage.md) |
 | 8 | [codeqai](https://github.com/fynnfluegge/codeqai) | Semantic code search + GPT chat over codebases | Streamlit + CLI | `hoomzoom/codeqai` | Yes (OpenAI) | 5/5 | [usage](docs/codeqai_usage.md) |
 | 9 | [slide-deck-ai](https://github.com/barun-saha/slide-deck-ai) | Generates PowerPoint decks from a topic | Streamlit | `hoomzoom/slidedeckai` | Yes (OpenAI) | 3/3 | [usage](docs/slide-deck-ai_usage.md) |
-| 10 | [BettaFish](https://github.com/666ghj/BettaFish) | Multi-agent opinion/sentiment analysis | Flask + Streamlit | `hoomzoom/bettafish` | Yes (API keys) | 4/5 | [usage](docs/BettaFish_usage.md) |
+| 10 | [BettaFish](https://github.com/666ghj/BettaFish) | Multi-agent opinion/sentiment analysis | Flask + Streamlit | `hoomzoom/bettafish` | Yes (API keys) | 4/5 \* | [usage](docs/BettaFish_usage.md) |
 | 11 | [localGPT](https://github.com/PromtEngineer/localGPT) | Local RAG system with document indexing and chat | Next.js + Python + Ollama | `hoomzoom/localgpt-*` (3 images) | No (local Ollama) | 10/10 | [usage](docs/localGPT_usage.md) |
 | 12 | [agenticSeek](https://github.com/Fosowl/agenticSeek) | Multi-agent assistant (chat, code, files, web browsing) | React + Python + Redis | `hoomzoom/agenticseek-*` (2 images) | Yes (OpenAI) | 8/8 | [usage](docs/agenticSeek_usage.md) |
 | 13 | [zshot](https://github.com/IBM/zshot) | Zero-shot named entity recognition (IBM spaCy + T5) | FastAPI | `hoomzoom/zshot` | No | 4/4 | [usage](docs/zshot_usage.md) |
@@ -57,8 +57,11 @@ There is also a **reasoning doc** (`docs/<appname>_reasoning.md`) explaining why
 | 20 | [rawdog](https://github.com/AbanteAI/rawdog) | CLI assistant that generates and runs Python scripts | `hoomzoom/rawdog` | Yes (OpenAI) | 3/3 | [usage](docs/rawdog_usage.md) |
 | 21 | [bilingual_book_maker](https://github.com/yihong0618/bilingual_book_maker) | Translates EPUB/TXT/SRT into bilingual books | `hoomzoom/bilingual_book_maker` | Yes (OpenAI) | 3/3 | [usage](docs/bilingual_book_maker_usage.md) |
 | 22 | [gpt-engineer](https://github.com/AntonOsika/gpt-engineer) | Generates/improves code projects from natural language | `hoomzoom/gpt-engineer` | Yes (OpenAI) | 11/11 | [usage](docs/gpt-engineer_usage.md) |
-| 23 | [gpt-migrate](https://github.com/joshpxyne/gpt-migrate) | Migrates codebases between languages using LLMs | `hoomzoom/gpt-migrate` | Yes (OpenAI) | 5/6 | [usage](docs/gpt-migrate_usage.md) |
+| 23 | [gpt-migrate](https://github.com/joshpxyne/gpt-migrate) | Migrates codebases between languages using LLMs | `hoomzoom/gpt-migrate` | Yes (OpenAI) | 5/6 \* | [usage](docs/gpt-migrate_usage.md) |
 | 24 | [SWE-agent](https://github.com/SWE-agent/SWE-agent) | Autonomous agent that fixes GitHub issues | `hoomzoom/swe-agent` | Yes (OpenAI) | 10/10 | [usage](docs/SWE-agent_usage.md) |
+
+\* **BettaFish 4/5:** The analysis engine endpoints require provider-specific API keys (not just OpenAI) that were unavailable during testing. Infrastructure and all other endpoints work.
+\* **gpt-migrate 5/6:** The interactive chat mode requires gpt-4-32k, which OpenAI has deprecated. All other modes (migrate, create, test) work.
 
 ### Libraries (no web interface)
 
@@ -137,6 +140,27 @@ docker pull ollama/ollama
 - **Model downloads:** FunClip, omniparse, manga-image-translator, zshot, and pycorrector download ML models on first startup (1-5 GB depending on the app). First launch takes 5-30 minutes depending on connection speed. The container will appear to hang during download -- check logs with `docker logs -f <container>` to monitor progress. Subsequent launches are fast if you don't delete the container.
 - **Deprecated/abandoned dependencies:** pdfGPT depends on abandoned software (langchain-serve, jina 3.x, openai 0.27.x) pinned to 2023-era versions. AgentGPT's langchain (0.0.335) does not match the developer's lockfile (0.0.295). These version mismatches are worth investigating from a supply chain perspective. See each app's usage doc for details.
 - **Testing coverage:** All apps were tested with API keys where applicable. pdfGPT's LLM-dependent endpoints require additional testing with a valid key. The reasoning docs explain what was and wasn't tested for each app.
+
+---
+
+## Building from Source
+
+All Docker Hub images can be rebuilt from the Dockerfiles in `dockerfiles/`. The workflow is the same for every app:
+
+```bash
+# 1. Clone the original repo
+git clone https://github.com/<org>/<repo>.git
+
+# 2. Copy the Dockerfile (and any config files) into the cloned repo
+cp dockerfiles/<app>/Dockerfile <repo>/
+cp dockerfiles/<app>/.env.example <repo>/   # if it exists
+
+# 3. Build
+cd <repo>
+docker build -t <app> .
+```
+
+For multi-container apps (pdfGPT, agenticSeek, localGPT, AgentGPT, BettaFish, gpt_academic), the compose files in `dockerfiles/<app>/` are pre-configured to pull from Docker Hub. To build from source instead, edit the compose file to replace `image:` with `build:` and point to the cloned repo.
 
 ---
 
