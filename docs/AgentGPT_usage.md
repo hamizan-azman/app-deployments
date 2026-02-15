@@ -4,19 +4,34 @@
 Autonomous AI agent platform. Users define goals, the system breaks them into tasks, selects tools (search, code, image gen), executes them, and returns results. Next.js frontend + FastAPI backend + MySQL.
 
 ## Quick Start
-```bash
-cd apps/AgentGPT
-cp .env.example next/.env
-# Edit next/.env to set REWORKD_PLATFORM_OPENAI_API_KEY
-docker compose build
-docker compose up -d
-```
 
-## Docker Pull (pre-built)
+### Option 1: Pull from Docker Hub (recommended)
 ```bash
 docker pull hoomzoom/agentgpt-frontend
 docker pull hoomzoom/agentgpt-platform
 # MySQL uses stock image: mysql:8.0
+```
+You still need the repo's `docker-compose.yml` and `.env` file to run. Clone the repo, then:
+```bash
+cd apps/AgentGPT
+cp .env.example next/.env
+```
+Open `next/.env` in a text editor and replace `changeme` with your actual OpenAI API key:
+```
+REWORKD_PLATFORM_OPENAI_API_KEY=sk-proj-your-key-here
+```
+Then start all services:
+```bash
+docker compose up -d
+```
+
+### Option 2: Build from source
+```bash
+cd apps/AgentGPT
+cp .env.example next/.env
+# Edit next/.env as described above
+docker compose build
+docker compose up -d
 ```
 
 ## Architecture
