@@ -1,53 +1,97 @@
 # HuixiangDou -- Usage Documentation
 
 ## Overview
-Professional knowledge assistant based on LLM. Three-stage pipeline (preprocess, rejection, response) for group chat and real-time streaming chat with RAG capabilities. Supports CPU-only, 2GB GPU, and 10GB GPU configurations.
+Knowledge assistant powered by LLM. RAG pipeline for document Q&A with Gradio WebUI and FastAPI. Supports web search, code search, multimodal queries. CPU-only deployment with remote LLM APIs.
 
 ## Quick Start
 ```bash
-docker pull tpoisonooo/huixiangdou:20240814
-docker run -it -p 7860:7860 -p 23333:23333 tpoisonooo/huixiangdou:20240814
+docker pull hoomzoom/huixiangdou
+docker run -d -p 7860:7860 hoomzoom/huixiangdou
 ```
+Access WebUI at `http://localhost:7860`.
+
+## Base URL
+http://localhost:7860 (Gradio WebUI)
+
+## Core Features
+- Document Q&A via RAG pipeline
+- Web search integration (DuckDuckGo or Serper)
+- Code search over repositories
+- Multimodal queries (text + image)
+- Parallel and serial pipeline modes
+- FastAPI REST API (port 23333)
+
+## Gradio WebUI
+The default entry point. Provides:
+- Text input for questions
+- Optional image upload for multimodal queries
+- Language toggle (English/Chinese)
+- Web search toggle
+- Code search toggle
+- Pipeline type selection (chat_with_repo / chat_in_group)
+
+## FastAPI API Server
+Alternative entry point for programmatic access:
+```bash
+docker run -d -p 23333:23333 hoomzoom/huixiangdou \
+  python -m huixiangdou.api_server --config_path config-cpu.ini --port 23333
+```
+
+### POST /huixiangdou_inference
+- **Method:** POST
+- **Description:** Single-shot Q&A inference
+- **Request:** `curl -X POST http://localhost:23333/huixiangdou_inference -H "Content-Type: application/json" -d '{"text": "How to install HuixiangDou?"}'`
+- **Response:** JSON with response text and references
+
+### POST /huixiangdou_stream
+- **Method:** POST
+- **Description:** Streaming Q&A inference (server-sent events)
+- **Request:** `curl -X POST http://localhost:23333/huixiangdou_stream -H "Content-Type: application/json" -d '{"text": "How to install HuixiangDou?"}'`
+- **Response:** Streaming text/event-stream
+
+### GET / (Swagger docs)
+- **URL:** `/`
+- **Method:** GET
+- **Description:** FastAPI auto-generated Swagger documentation
 
 ## Configuration
-Requires LLM API configuration. Supports: kimi, deepseek, stepfun, siliconcloud, OpenAI-compatible APIs.
-
-CPU-only mode (no local GPU needed):
+The app uses `config-cpu.ini` by default (remote embeddings + remote LLM). To use a custom config:
 ```bash
-docker run -it \
-  -p 7860:7860 \
-  -p 23333:23333 \
-  -e LLM_API_KEY=your-key \
-  tpoisonooo/huixiangdou:20240814
+docker run -d -p 7860:7860 -v /path/to/config.ini:/app/config.ini hoomzoom/huixiangdou \
+  python -m huixiangdou.gradio_ui --config_path config.ini
 ```
-
-## Interfaces
-- Web UI: http://localhost:7860 (Gradio)
-- API: http://localhost:23333
-
-## Features
-- Group chat integration (WeChat, Feishu, Discord)
-- Knowledge base creation from documents
-- Hybrid retrieval (dense + sparse + knowledge graph)
-- Image and text retrieval
-- Real-time streaming chat
-- Android app support
 
 ## Environment Variables
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| LLM_API_KEY | Yes | None | API key for LLM provider |
+| (via config.ini) remote_api_key | Yes | None | LLM API key (OpenAI, Kimi, DeepSeek, SiliconCloud, etc.) |
+| (via config.ini) remote_type | Yes | siliconcloud | LLM provider type |
+| (via config.ini) serper_x_api_key | No | None | Serper web search API key |
+
+## Building Feature Store
+Before the app can answer questions about your documents, build a feature store:
+```bash
+docker run -it -v /path/to/docs:/app/repodir hoomzoom/huixiangdou \
+  python -m huixiangdou.services.store --config_path config-cpu.ini
+```
 
 ## Test Results
 | # | Test | Result |
 |---|------|--------|
-| 1 | Docker pull | NOT TESTED (large image, manual setup required) |
-| 2 | Web UI | NOT TESTED |
-| 3 | API | NOT TESTED |
+| 1 | Docker build | PASS |
+| 2 | Gradio WebUI GET / | PASS (200, 17KB) |
+| 3 | Gradio /info endpoint | PASS (200) |
+| 4 | Gradio /config endpoint | PASS (200, 11KB) |
+| 5 | Package import (huixiangdou) | PASS |
+| 6 | Pipeline imports (Serial + Parallel) | PASS |
+| 7 | FeatureStore import | PASS |
+
+7/7 tests passed.
 
 ## Notes
-- Pre-built image maintained by original developers.
-- Requires manual knowledge base setup after first run.
-- CPU-only mode works but is slower.
-- Web UI for creating knowledge bases, managing positive/negative examples, and testing chat.
-- Full setup requires configuring LLM providers in config files inside the container.
+- LLM API key required for actual inference. Without it, the UI loads but queries fail.
+- `config-cpu.ini` uses SiliconCloud API for embeddings/reranking (no local models needed).
+- Default `config.ini` uses local embedding models (requires download on first run).
+- Feature store must be built before the app can answer questions about specific documents.
+- The pre-built image from the original developers (`tpoisonooo/huixiangdou:20240814`) is broken. This custom build fixes all issues.
+- Web search requires either DuckDuckGo (free, default) or Serper (needs API key).

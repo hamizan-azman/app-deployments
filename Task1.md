@@ -4,7 +4,7 @@
 
 Deployed 31 LLM-powered GitHub applications into Docker containers for supply chain security analysis. Each app was cloned, analyzed, containerized (Dockerfile written or pre-built image used), tested, and documented. Custom-built images are published to Docker Hub under `hoomzoom/`.
 
-**Results:** 25 deployed, 5 skipped (incompatible with Docker), 1 pull-only (base env only).
+**Results:** 26 deployed, 5 skipped (incompatible with Docker).
 
 ---
 
@@ -44,26 +44,27 @@ There is also a **reasoning doc** (`docs/<appname>_reasoning.md`) explaining why
 | 13 | zshot | Zero-shot named entity recognition (IBM spaCy + T5) | FastAPI | `hoomzoom/zshot` | No | 4/4 | [usage](docs/zshot_usage.md) |
 | 14 | AgentGPT | Autonomous AI agent platform (goal decomposition + task execution) | Next.js + FastAPI + MySQL | `hoomzoom/agentgpt-*` (2 images) | Yes (OpenAI) | 9/9 | [usage](docs/AgentGPT_usage.md) |
 | 15 | DataFlow | Data preparation and training system for LLMs (100+ operators) | Gradio | `hoomzoom/dataflow` | No | 6/6 | [usage](docs/DataFlow_usage.md) |
+| 16 | HuixiangDou | Knowledge assistant with RAG pipeline for document Q&A | Gradio + FastAPI | `hoomzoom/huixiangdou` | Yes (LLM provider) | 7/7 | [usage](docs/HuixiangDou_usage.md) |
 
 ### CLI Apps
 
 | # | App | What It Does | Docker Image | Needs API Key | Tests | Docs |
 |---|-----|-------------|-------------|---------------|-------|------|
-| 16 | ChatDBG | LLM-powered debugger (pdb, lldb, gdb) | `hoomzoom/chatdbg` | Yes (OpenAI) | 7/7 | [usage](docs/ChatDBG_usage.md) |
-| 17 | RD-Agent | Autonomous R&D for quant trading, Kaggle, ML papers | `hoomzoom/rd-agent` | Yes (OpenAI) | 5/5 | [usage](docs/RD-Agent_usage.md) |
-| 18 | Paper2Poster | Converts academic papers to posters (PPTX) | `hoomzoom/paper2poster` | Yes (OpenAI) | 5/5 | [usage](docs/Paper2Poster_usage.md) |
-| 19 | rawdog | CLI assistant that generates and runs Python scripts | `hoomzoom/rawdog` | Yes (OpenAI) | Infra only | [usage](docs/rawdog_usage.md) |
-| 20 | bilingual_book_maker | Translates EPUB/TXT/SRT into bilingual books | `hoomzoom/bilingual_book_maker` | Yes (OpenAI) | Infra only | [usage](docs/bilingual_book_maker_usage.md) |
-| 21 | gpt-engineer | Generates/improves code projects from natural language | `hoomzoom/gpt-engineer` | Yes (OpenAI) | 11/11 | [usage](docs/gpt-engineer_usage.md) |
-| 22 | gpt-migrate | Migrates codebases between languages using LLMs | `hoomzoom/gpt-migrate` | Yes (OpenAI) | 5/6 | [usage](docs/gpt-migrate_usage.md) |
-| 23 | SWE-agent | Autonomous agent that fixes GitHub issues | `hoomzoom/swe-agent` | Yes (OpenAI) | 10/10 | [usage](docs/SWE-agent_usage.md) |
+| 17 | ChatDBG | LLM-powered debugger (pdb, lldb, gdb) | `hoomzoom/chatdbg` | Yes (OpenAI) | 7/7 | [usage](docs/ChatDBG_usage.md) |
+| 18 | RD-Agent | Autonomous R&D for quant trading, Kaggle, ML papers | `hoomzoom/rd-agent` | Yes (OpenAI) | 5/5 | [usage](docs/RD-Agent_usage.md) |
+| 19 | Paper2Poster | Converts academic papers to posters (PPTX) | `hoomzoom/paper2poster` | Yes (OpenAI) | 5/5 | [usage](docs/Paper2Poster_usage.md) |
+| 20 | rawdog | CLI assistant that generates and runs Python scripts | `hoomzoom/rawdog` | Yes (OpenAI) | Infra only | [usage](docs/rawdog_usage.md) |
+| 21 | bilingual_book_maker | Translates EPUB/TXT/SRT into bilingual books | `hoomzoom/bilingual_book_maker` | Yes (OpenAI) | Infra only | [usage](docs/bilingual_book_maker_usage.md) |
+| 22 | gpt-engineer | Generates/improves code projects from natural language | `hoomzoom/gpt-engineer` | Yes (OpenAI) | 11/11 | [usage](docs/gpt-engineer_usage.md) |
+| 23 | gpt-migrate | Migrates codebases between languages using LLMs | `hoomzoom/gpt-migrate` | Yes (OpenAI) | 5/6 | [usage](docs/gpt-migrate_usage.md) |
+| 24 | SWE-agent | Autonomous agent that fixes GitHub issues | `hoomzoom/swe-agent` | Yes (OpenAI) | 10/10 | [usage](docs/SWE-agent_usage.md) |
 
 ### Libraries (no web interface)
 
 | # | App | What It Does | Docker Image | Needs API Key | Docs |
 |---|-----|-------------|-------------|---------------|------|
-| 24 | codeinterpreter-api | ChatGPT Code Interpreter via LangChain + CodeBox | `hoomzoom/codeinterpreter-api` | Yes (OpenAI) | [usage](docs/codeinterpreter-api_usage.md) |
-| 25 | chemcrow-public | LLM agent for chemistry tasks (RDKit, PubChem) | `hoomzoom/chemcrow` | Yes (OpenAI) | [usage](docs/chemcrow-public_usage.md) |
+| 25 | codeinterpreter-api | ChatGPT Code Interpreter via LangChain + CodeBox | `hoomzoom/codeinterpreter-api` | Yes (OpenAI) | [usage](docs/codeinterpreter-api_usage.md) |
+| 26 | chemcrow-public | LLM agent for chemistry tasks (RDKit, PubChem) | `hoomzoom/chemcrow` | Yes (OpenAI) | [usage](docs/chemcrow-public_usage.md) |
 
 ---
 
@@ -78,16 +79,6 @@ These cannot run meaningfully in Docker:
 | TaskMatrix | Requires heavy GPU (Visual ChatGPT with multiple vision models). |
 | MedRAX | Needs GPU + multiple large medical imaging models. No existing Dockerfile. |
 | home-llm | Home Assistant integration -- not a standalone application. |
-
----
-
-## Pull-Only Apps (1)
-
-Image exists on Docker Hub but is a base environment only, not a ready-to-run app:
-
-| App | Image | Notes |
-|-----|-------|-------|
-| HuixiangDou | `hoomzoom/huixiangdou` | Base conda/CUDA env only. Package not installed in image, faiss-gpu incompatible with Python 3.12 in image. |
 
 ---
 

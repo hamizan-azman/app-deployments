@@ -1,6 +1,6 @@
 # App Deployment Tracker
 
-## Completed (25/31)
+## Completed (26/31)
 | # | App | Status | Notes |
 |---|-----|--------|-------|
 | 1 | ChatDBG | DONE | CLI debugger, 7/7 tests |
@@ -28,6 +28,7 @@
 | 23 | SWE-agent | DONE | docker pull, CLI + web UI, 10/10 tests |
 | 24 | AgentGPT | DONE | 3-service compose (Next.js+FastAPI+MySQL), 9/9 tests |
 | 25 | DataFlow | DONE | docker pull molyheci/dataflow:cu124, GPU, Gradio WebUI, 6/6 tests |
+| 26 | HuixiangDou | DONE | Custom Dockerfile, Gradio + FastAPI, CPU-only, 7/7 tests |
 
 ## SKIP (5)
 | App | Reason |
@@ -38,13 +39,8 @@
 | MedRAX | GPU + multiple large models, no Dockerfile |
 | home-llm | Home Assistant integration, not standalone |
 
-## PULL-ONLY (1)
-| App | Image | Reason |
-|-----|-------|--------|
-| HuixiangDou | tpoisonooo/huixiangdou:20240814 | Base env only, needs manual install, faiss-gpu incompatible with Python 3.12 in image |
-
 ## Remaining (0)
-All apps accounted for: 25 deployed + 5 skipped + 1 pull-only = 31 total.
+All apps accounted for: 26 deployed + 5 skipped = 31 total.
 
 ## Docker Hub Images (hoomzoom/)
 rawdog, bilingual_book_maker, chemcrow, codeinterpreter-api, pdfgpt-frontend, pdfgpt-langchain-serve, pdfgpt-backend, pdfgpt-pdf-gpt, agenticseek-frontend, agenticseek-backend, rd-agent, pycorrector, funclip, chatdbg, zshot, slidedeckai, codeqai, paper2poster, gpt-migrate, bettafish, localgpt-frontend, localgpt-backend, localgpt-rag-api, agentgpt-platform, agentgpt-frontend, dataflow, huixiangdou, omniparse, manga-image-translator, gpt_academic, swe-agent, gpt-engineer, narratoai
