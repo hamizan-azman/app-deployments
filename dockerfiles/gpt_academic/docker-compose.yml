@@ -34,7 +34,7 @@ services:
     image: hoomzoom/gpt_academic
     environment:
       # 请查阅 `config.py`或者 github wiki 以查看所有的配置信息
-      API_KEY:                  '  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                        '
+      API_KEY:                  '  sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx                        '
       # USE_PROXY:                '  True                                                                       '
       # proxies:                  '  { "http": "http://localhost:10881", "https": "http://localhost:10881", }   '
       LLM_MODEL:                '  gpt-3.5-turbo                                                              '
