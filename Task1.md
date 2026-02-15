@@ -140,7 +140,16 @@ docker pull ollama/ollama
 
 ```
 app-deployments/
-  apps/              # Cloned source repos (one per app)
+  dockerfiles/       # Dockerfiles, docker-compose files, and config templates for all 26 apps
   docs/              # Usage docs (*_usage.md) and reasoning docs (*_reasoning.md)
   tracker.md         # Status tracker with test counts
 ```
+
+### dockerfiles/
+
+Each app has a subdirectory in `dockerfiles/` containing everything needed to rebuild or run:
+- **Dockerfiles** for all 24 custom-built apps
+- **docker-compose.yml** for 6 multi-container apps (AgentGPT, agenticSeek, BettaFish, gpt_academic, localGPT, pdfGPT) -- pre-configured to pull from `hoomzoom/` Docker Hub, no build required
+- **.env.example** templates and **config files** where needed
+
+To run a multi-container app, copy its compose file, create the `.env`, and run `docker compose up -d`. See the app's usage doc for details.
