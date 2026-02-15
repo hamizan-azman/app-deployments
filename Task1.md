@@ -33,7 +33,7 @@ There is also a **reasoning doc** (`docs/<appname>_reasoning.md`) explaining why
 | 2 | FunClip | Video/audio clipping with ASR + speaker diarization | Gradio | `hoomzoom/funclip` | No | 4/4 | [usage](docs/FunClip_usage.md) |
 | 3 | omniparse | Parses PDFs, images, web pages into structured markdown | Gradio + FastAPI | `hoomzoom/omniparse` | No | 5/5 | [usage](docs/omniparse_usage.md) |
 | 4 | manga-image-translator | Translates text in manga/comic images | Web UI + REST API | `hoomzoom/manga-image-translator` | No | 5/5 | [usage](docs/manga-image-translator_usage.md) |
-| 5 | pdfGPT | PDF question-answering with embeddings + LLM | Gradio + langchain-serve | `hoomzoom/pdfgpt-*` (4 images) | Yes (OpenAI) | 4/4 infra | [usage](docs/pdfGPT_usage.md) |
+| 5 | pdfGPT | PDF question-answering with embeddings + LLM | Gradio + langchain-serve | `hoomzoom/pdfgpt-*` (4 images) | Yes (OpenAI) | 5/5 | [usage](docs/pdfGPT_usage.md) |
 | 6 | gpt_academic | Academic writing assistant, code interpreter, Latex | Gradio | `hoomzoom/gpt_academic` | Yes (OpenAI) | 7/7 | [usage](docs/gpt_academic_usage.md) |
 | 7 | NarratoAI | Automated video narration (script + TTS + subtitles) | Streamlit | `hoomzoom/narratoai` | Yes (LLM provider) | 5/5 | [usage](docs/NarratoAI_usage.md) |
 | 8 | codeqai | Semantic code search + GPT chat over codebases | Streamlit + CLI | `hoomzoom/codeqai` | Yes (OpenAI) | 5/5 | [usage](docs/codeqai_usage.md) |
