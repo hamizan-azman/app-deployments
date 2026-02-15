@@ -43,3 +43,8 @@ Thumbs.db
 # Secrets
 .env
 *.key
+
+# Internal docs
+CLAUDE.md
+AGENTS.md
+SETUP.md
