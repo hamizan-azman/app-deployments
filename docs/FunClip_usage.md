@@ -16,6 +16,8 @@ docker run -d --name funclip -p 7860:7860 hoomzoom/funclip
 
 First startup downloads ~1.2GB of ASR models from ModelScope (takes a few minutes). Subsequent starts use cached models in the container.
 
+No API key needed for basic speech recognition and clipping. For LLM-based smart clipping, enter your API key (OpenAI, DeepSeek, or Qwen) in the web UI's LLM settings panel.
+
 ## Base URL
 http://localhost:7860
 

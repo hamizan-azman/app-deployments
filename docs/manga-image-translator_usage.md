@@ -11,6 +11,13 @@ docker run -p 5003:5003 --ipc=host --entrypoint python hoomzoom/manga-image-tran
 
 First run downloads translator models (~622MB sugoi-models.zip). Wait for logs to show model loading complete before sending translation requests.
 
+No API key needed for the default "sugoi" translator (Japanese to English). For GPT-based translation to other languages, add your OpenAI key:
+```bash
+docker run -p 5003:5003 --ipc=host -e OPENAI_API_KEY=sk-your-key \
+  --entrypoint python hoomzoom/manga-image-translator \
+  server/main.py --verbose --start-instance --host=0.0.0.0 --port=5003
+```
+
 ## Base URL
 http://localhost:5003
 

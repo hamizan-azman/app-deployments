@@ -5,17 +5,17 @@ AI-powered assistant with multiple specialized agents (casual chat, coding, file
 
 ## Quick Start
 ```bash
-# Clone repo
+# Clone repo (needed for docker-compose.yml and config files)
 git clone https://github.com/Fosowl/agenticSeek
 cd agenticSeek
 
-# Create .env
+# Create .env -- replace YOUR_OPENAI_KEY with your actual OpenAI API key
 cat > .env <<EOF
 SEARXNG_SECRET_KEY=supersecretkey123
 SEARXNG_BASE_URL=http://searxng:8080
 REDIS_BASE_URL=redis://redis:6379/0
 BACKEND_PORT=7777
-OPENAI_API_KEY=your-openai-api-key
+OPENAI_API_KEY=YOUR_OPENAI_KEY
 EOF
 
 # Edit config.ini: set provider to openai, model to gpt-4o-mini, is_local=False

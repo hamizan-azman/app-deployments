@@ -10,7 +10,20 @@ docker pull hoomzoom/bettafish
 
 ## Docker Compose
 ```bash
-# Create .env from .env.example, configure API keys
+# 1. Copy example env and fill in your API keys
+cp .env.example .env
+```
+Open `.env` in a text editor and set these values:
+```
+INSIGHT_ENGINE_API_KEY=sk-your-openai-key
+MEDIA_ENGINE_API_KEY=sk-your-openai-key
+QUERY_ENGINE_API_KEY=sk-your-openai-key
+REPORT_ENGINE_API_KEY=sk-your-openai-key
+TAVILY_API_KEY=your-tavily-key
+```
+All four engine keys can use the same OpenAI API key. TAVILY_API_KEY is for web search (optional).
+```bash
+# 2. Start services
 docker compose up -d
 ```
 

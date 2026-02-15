@@ -10,6 +10,19 @@ docker run -d -p 7860:7860 hoomzoom/huixiangdou
 ```
 Access WebUI at `http://localhost:7860`.
 
+The UI loads without an API key, but queries require one. To configure your LLM API key, mount a custom `config-cpu.ini`:
+```bash
+# 1. Copy the default config out of the container
+docker run --rm hoomzoom/huixiangdou cat config-cpu.ini > config-cpu.ini
+
+# 2. Edit config-cpu.ini -- find the [web_search] and [llm] sections and set:
+#    remote_api_key = "sk-your-api-key"
+#    remote_type = "openai"  (or "kimi", "deepseek", "siliconcloud", etc.)
+
+# 3. Run with your config mounted
+docker run -d -p 7860:7860 -v ./config-cpu.ini:/app/config-cpu.ini hoomzoom/huixiangdou
+```
+
 ## Base URL
 http://localhost:7860 (Gradio WebUI)
 

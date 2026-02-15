@@ -16,6 +16,8 @@ docker run -d --name narratoai \
   hoomzoom/narratoai
 ```
 
+LLM API key is configured through the web UI settings panel (not via environment variables). Open `http://localhost:9000`, go to Settings, and enter your API key and model name. Supports OpenAI, DeepSeek, Gemini, Qwen, Claude, and 100+ other providers via LiteLLM.
+
 ## Base URL
 http://localhost:9000
 
