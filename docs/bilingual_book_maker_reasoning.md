@@ -48,7 +48,7 @@ Decision
 - Update Dockerfile to be more deterministic and to fix runtime dependency gaps.
 
 Why
-- AGENTS.md requires pinned base image and a working container.
+- The project workflow requires pinned base image and a working container.
 
 ## 4) Fix Runtime Dependency Gaps
 What I checked
@@ -86,7 +86,7 @@ Decision
 - Build image to ensure dependencies resolve in container.
 
 Why
-- Required by AGENTS.md Step 3.
+- Required by the project workflow (Step 3: build and verify).
 
 ## 7) Testing Strategy
 Goal

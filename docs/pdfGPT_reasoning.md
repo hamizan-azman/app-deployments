@@ -17,7 +17,7 @@ This is a supply chain security research project. Other researchers will pentest
 ## Changes and rationale
 
 ### Architectural fidelity rule
-Added a formal rule to CLAUDE.md that codifies this principle for all future deployments. No custom API wrappers, no replacing core dependencies, no adding web servers the developer didn't create. Allowed changes are limited to: Dockerfiles, network binding, env vars, dependency pins, bug fixes.
+Established a formal rule for all future deployments: no custom API wrappers, no replacing core dependencies, no adding web servers the developer didn't create. Allowed changes are limited to: Dockerfiles, network binding, env vars, dependency pins, bug fixes.
 
 ### Delete app_docker.py
 This file merged the backend and frontend into a single Gradio app with direct function calls, bypassing langchain-serve entirely. It violated the fidelity rule. Deleted.

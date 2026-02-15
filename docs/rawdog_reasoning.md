@@ -49,7 +49,7 @@ This document explains every explicit decision I made for the Rawdog repo, inclu
 - Include all relevant flags in usage doc.
 
 **Why**
-- The AGENTS.md instructions require extracting all commands/endpoints.
+- The project workflow requires extracting all commands/endpoints.
 
 ## 4) Dockerfile Design — Base Image
 **Decision**
@@ -101,7 +101,7 @@ This document explains every explicit decision I made for the Rawdog repo, inclu
 - Run `docker build` to verify image builds.
 
 **Why**
-- Required by AGENTS.md Step 3.
+- Required by the project workflow (Step 3: build and verify).
 
 ## 9) Test Strategy
 **Test A: `rawdog --help`**

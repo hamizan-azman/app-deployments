@@ -35,7 +35,7 @@ Decision
 
 Why
 - Removing dependencies may break functionality or diverge from upstream.
-- AGENTS.md requires working builds, not optimized size.
+- The project requires working builds, not optimized size.
 
 ## 4) Dockerfile Design Decisions
 Base image
