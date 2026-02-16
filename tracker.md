@@ -1,6 +1,6 @@
 # App Deployment Tracker
 
-## Completed (26/31)
+## Completed (31/47)
 | # | App | Status | Notes |
 |---|-----|--------|-------|
 | 1 | ChatDBG | DONE | CLI debugger, 7/7 tests |
@@ -29,6 +29,11 @@
 | 24 | AgentGPT | DONE | 3-service compose (Next.js+FastAPI+MySQL), 9/9 tests |
 | 25 | DataFlow | DONE | docker pull molyheci/dataflow:cu124, GPU, Gradio WebUI, 6/6 tests |
 | 26 | HuixiangDou | DONE | Custom Dockerfile, Gradio + FastAPI, CPU-only, 7/7 tests |
+| 27 | attackgen | DONE | Streamlit, existing Dockerfile, 5/5 tests |
+| 28 | stride-gpt | DONE | Streamlit, existing Dockerfile, 2/2 tests |
+| 29 | gpt-researcher | DONE | FastAPI + Web UI, existing Dockerfile, 4/4 tests |
+| 30 | gptme | DONE | Flask + Web UI, two-stage build, 2/2 tests |
+| 31 | local-deep-researcher | DONE | LangGraph API, existing Dockerfile, 4/4 tests |
 
 ## SKIP (5)
 | App | Reason |
@@ -39,11 +44,23 @@
 | MedRAX | GPU + multiple large models, no Dockerfile |
 | home-llm | Home Assistant integration, not standalone |
 
-## Remaining (0)
-All apps accounted for: 26 deployed + 5 skipped = 31 total.
+## Remaining (11)
+| App | Notes |
+|-----|-------|
+| TaskWeaver | |
+| devika | |
+| AiNiee | |
+| Integuru | |
+| django-ai-assistant | |
+| TradingAgents | |
+| pyvideotrans | |
+| itext2kg | |
+| auto-news | |
+| magentic-ui | |
+| Windrecorder | Likely SKIP (desktop recording app) |
 
 ## Docker Hub Images (hoomzoom/)
-rawdog, bilingual_book_maker, chemcrow, codeinterpreter-api, pdfgpt-frontend, pdfgpt-langchain-serve, pdfgpt-backend, pdfgpt-pdf-gpt, agenticseek-frontend, agenticseek-backend, rd-agent, pycorrector, funclip, chatdbg, zshot, slidedeckai, codeqai, paper2poster, gpt-migrate, bettafish, localgpt-frontend, localgpt-backend, localgpt-rag-api, agentgpt-platform, agentgpt-frontend, dataflow, huixiangdou, omniparse, manga-image-translator, gpt_academic, swe-agent, gpt-engineer, narratoai
+rawdog, bilingual_book_maker, chemcrow, codeinterpreter-api, pdfgpt-frontend, pdfgpt-langchain-serve, pdfgpt-backend, pdfgpt-pdf-gpt, agenticseek-frontend, agenticseek-backend, rd-agent, pycorrector, funclip, chatdbg, zshot, slidedeckai, codeqai, paper2poster, gpt-migrate, bettafish, localgpt-frontend, localgpt-backend, localgpt-rag-api, agentgpt-platform, agentgpt-frontend, dataflow, huixiangdou, omniparse, manga-image-translator, gpt_academic, swe-agent, gpt-engineer, narratoai, attackgen, stride-gpt, gpt-researcher, gptme-server, local-deep-researcher
 
 ## External Images (not ours)
 ollama/ollama

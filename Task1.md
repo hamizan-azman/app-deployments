@@ -4,7 +4,7 @@
 
 Assigned 31 of the 49 applications from the team applist. Each app was cloned, analyzed, containerized (Dockerfile written or pre-built image used), tested, and documented. Custom-built images are published to Docker Hub under `hoomzoom/`.
 
-**Results:** 26 deployed, 5 skipped (incompatible with Docker).
+**Results:** 31 deployed, 5 skipped (incompatible with Docker), 11 remaining.
 
 ---
 
@@ -24,7 +24,7 @@ There is also a **reasoning doc** (`docs/<appname>_reasoning.md`) explaining why
 
 ---
 
-## Deployed Apps (26)
+## Deployed Apps (31)
 
 ### Web UI Apps
 
@@ -46,19 +46,24 @@ There is also a **reasoning doc** (`docs/<appname>_reasoning.md`) explaining why
 | 14 | [AgentGPT](https://github.com/reworkd/AgentGPT) | Autonomous AI agent platform (goal decomposition + task execution) | Next.js + FastAPI + MySQL | `hoomzoom/agentgpt-*` (2 images) | Yes (OpenAI) | 9/9 | [usage](docs/AgentGPT_usage.md) |
 | 15 | [DataFlow](https://github.com/OpenDCAI/DataFlow) | Data preparation and training system for LLMs (100+ operators) | Gradio | `hoomzoom/dataflow` | No | 6/6 | [usage](docs/DataFlow_usage.md) |
 | 16 | [HuixiangDou](https://github.com/InternLM/HuixiangDou) | Knowledge assistant with RAG pipeline for document Q&A | Gradio + FastAPI | `hoomzoom/huixiangdou` | Yes (LLM provider) | 7/7 | [usage](docs/HuixiangDou_usage.md) |
+| 17 | [attackgen](https://github.com/mrwadams/attackgen) | Incident response scenario generator using MITRE ATT&CK | Streamlit | `hoomzoom/attackgen` | Yes (via UI) | 5/5 | [usage](docs/attackgen_usage.md) |
+| 18 | [stride-gpt](https://github.com/mrwadams/stride-gpt) | AI-powered STRIDE threat modeling | Streamlit | `hoomzoom/stride-gpt` | Yes (via UI) | 2/2 | [usage](docs/stride-gpt_usage.md) |
+| 19 | [gpt-researcher](https://github.com/assafelovic/gpt-researcher) | Autonomous web research agent with report generation | FastAPI + Web UI | `hoomzoom/gpt-researcher` | Yes (OpenAI + Tavily) | 4/4 | [usage](docs/gpt-researcher_usage.md) |
+| 20 | [gptme](https://github.com/ErikBjare/gptme) | AI coding assistant with shell/file execution | Flask + Web UI | `hoomzoom/gptme-server` | Yes (OpenAI) | 2/2 | [usage](docs/gptme_usage.md) |
+| 21 | [local-deep-researcher](https://github.com/langchain-ai/local-deep-researcher) | Iterative web research using local LLMs via Ollama | LangGraph API | `hoomzoom/local-deep-researcher` | No (local Ollama) | 4/4 | [usage](docs/local-deep-researcher_usage.md) |
 
 ### CLI Apps
 
 | # | App | What It Does | Docker Image | Needs API Key | Tests | Docs |
 |---|-----|-------------|-------------|---------------|-------|------|
-| 17 | [ChatDBG](https://github.com/plasma-umass/ChatDBG) | LLM-powered debugger (pdb, lldb, gdb) | `hoomzoom/chatdbg` | Yes (OpenAI) | 7/7 | [usage](docs/ChatDBG_usage.md) |
-| 18 | [RD-Agent](https://github.com/microsoft/RD-Agent) | Autonomous R&D for quant trading, Kaggle, ML papers | `hoomzoom/rd-agent` | Yes (OpenAI) | 5/5 | [usage](docs/RD-Agent_usage.md) |
-| 19 | [Paper2Poster](https://github.com/Paper2Poster/Paper2Poster) | Converts academic papers to posters (PPTX) | `hoomzoom/paper2poster` | Yes (OpenAI) | 5/5 | [usage](docs/Paper2Poster_usage.md) |
-| 20 | [rawdog](https://github.com/AbanteAI/rawdog) | CLI assistant that generates and runs Python scripts | `hoomzoom/rawdog` | Yes (OpenAI) | 3/3 | [usage](docs/rawdog_usage.md) |
-| 21 | [bilingual_book_maker](https://github.com/yihong0618/bilingual_book_maker) | Translates EPUB/TXT/SRT into bilingual books | `hoomzoom/bilingual_book_maker` | Yes (OpenAI) | 3/3 | [usage](docs/bilingual_book_maker_usage.md) |
-| 22 | [gpt-engineer](https://github.com/AntonOsika/gpt-engineer) | Generates/improves code projects from natural language | `hoomzoom/gpt-engineer` | Yes (OpenAI) | 11/11 | [usage](docs/gpt-engineer_usage.md) |
-| 23 | [gpt-migrate](https://github.com/joshpxyne/gpt-migrate) | Migrates codebases between languages using LLMs | `hoomzoom/gpt-migrate` | Yes (OpenAI) | 5/6 \* | [usage](docs/gpt-migrate_usage.md) |
-| 24 | [SWE-agent](https://github.com/SWE-agent/SWE-agent) | Autonomous agent that fixes GitHub issues | `hoomzoom/swe-agent` | Yes (OpenAI) | 10/10 | [usage](docs/SWE-agent_usage.md) |
+| 22 | [ChatDBG](https://github.com/plasma-umass/ChatDBG) | LLM-powered debugger (pdb, lldb, gdb) | `hoomzoom/chatdbg` | Yes (OpenAI) | 7/7 | [usage](docs/ChatDBG_usage.md) |
+| 23 | [RD-Agent](https://github.com/microsoft/RD-Agent) | Autonomous R&D for quant trading, Kaggle, ML papers | `hoomzoom/rd-agent` | Yes (OpenAI) | 5/5 | [usage](docs/RD-Agent_usage.md) |
+| 24 | [Paper2Poster](https://github.com/Paper2Poster/Paper2Poster) | Converts academic papers to posters (PPTX) | `hoomzoom/paper2poster` | Yes (OpenAI) | 5/5 | [usage](docs/Paper2Poster_usage.md) |
+| 25 | [rawdog](https://github.com/AbanteAI/rawdog) | CLI assistant that generates and runs Python scripts | `hoomzoom/rawdog` | Yes (OpenAI) | 3/3 | [usage](docs/rawdog_usage.md) |
+| 26 | [bilingual_book_maker](https://github.com/yihong0618/bilingual_book_maker) | Translates EPUB/TXT/SRT into bilingual books | `hoomzoom/bilingual_book_maker` | Yes (OpenAI) | 3/3 | [usage](docs/bilingual_book_maker_usage.md) |
+| 27 | [gpt-engineer](https://github.com/AntonOsika/gpt-engineer) | Generates/improves code projects from natural language | `hoomzoom/gpt-engineer` | Yes (OpenAI) | 11/11 | [usage](docs/gpt-engineer_usage.md) |
+| 28 | [gpt-migrate](https://github.com/joshpxyne/gpt-migrate) | Migrates codebases between languages using LLMs | `hoomzoom/gpt-migrate` | Yes (OpenAI) | 5/6 \* | [usage](docs/gpt-migrate_usage.md) |
+| 29 | [SWE-agent](https://github.com/SWE-agent/SWE-agent) | Autonomous agent that fixes GitHub issues | `hoomzoom/swe-agent` | Yes (OpenAI) | 10/10 | [usage](docs/SWE-agent_usage.md) |
 
 \* **BettaFish 4/5:** The analysis engine endpoints require provider-specific API keys (not just OpenAI) that were unavailable during testing. Infrastructure and all other endpoints work.
 \* **gpt-migrate 5/6:** The interactive chat mode requires gpt-4-32k, which OpenAI has deprecated. All other modes (migrate, create, test) work.
@@ -67,8 +72,8 @@ There is also a **reasoning doc** (`docs/<appname>_reasoning.md`) explaining why
 
 | # | App | What It Does | Docker Image | Needs API Key | Docs |
 |---|-----|-------------|-------------|---------------|------|
-| 25 | [codeinterpreter-api](https://github.com/shroominic/codeinterpreter-api) | ChatGPT Code Interpreter via LangChain + CodeBox | `hoomzoom/codeinterpreter-api` | Yes (OpenAI) | [usage](docs/codeinterpreter-api_usage.md) |
-| 26 | [chemcrow-public](https://github.com/ur-whitelab/chemcrow-public) | LLM agent for chemistry tasks (RDKit, PubChem) | `hoomzoom/chemcrow` | Yes (OpenAI) | [usage](docs/chemcrow-public_usage.md) |
+| 30 | [codeinterpreter-api](https://github.com/shroominic/codeinterpreter-api) | ChatGPT Code Interpreter via LangChain + CodeBox | `hoomzoom/codeinterpreter-api` | Yes (OpenAI) | [usage](docs/codeinterpreter-api_usage.md) |
+| 31 | [chemcrow-public](https://github.com/ur-whitelab/chemcrow-public) | LLM agent for chemistry tasks (RDKit, PubChem) | `hoomzoom/chemcrow` | Yes (OpenAI) | [usage](docs/chemcrow-public_usage.md) |
 
 ---
 
@@ -124,6 +129,11 @@ docker pull hoomzoom/agentgpt-platform
 docker pull hoomzoom/agentgpt-frontend
 docker pull hoomzoom/dataflow
 docker pull hoomzoom/huixiangdou
+docker pull hoomzoom/attackgen
+docker pull hoomzoom/stride-gpt
+docker pull hoomzoom/gpt-researcher
+docker pull hoomzoom/gptme-server
+docker pull hoomzoom/local-deep-researcher
 docker pull ollama/ollama
 ```
 
@@ -135,7 +145,7 @@ docker pull ollama/ollama
 - **Multi-container apps:** pdfGPT (4 containers), agenticSeek (4 containers), localGPT (4 containers), AgentGPT (3 containers), and BettaFish (2 containers) use docker-compose. The usage docs have the exact compose commands.
 - **Port conflicts:** Each app's usage doc specifies which port it runs on. If running multiple apps at once, check for port collisions.
 - **GPU required:** DataFlow requires an NVIDIA GPU with CUDA 12.4+ and the NVIDIA Container Toolkit. Run with `--gpus all`. Works on GTX 1650 (4GB VRAM) for WebUI and data processing operators.
-- **Code execution by design:** 5 apps execute arbitrary code as their core function: rawdog, gpt-engineer, SWE-agent, codeinterpreter-api, gpt-migrate. These are high-value targets for code injection research. Do not run them with access to sensitive data or networks.
+- **Code execution by design:** 6 apps execute arbitrary code as their core function: rawdog, gpt-engineer, SWE-agent, codeinterpreter-api, gpt-migrate, gptme. These are high-value targets for code injection research. Do not run them with access to sensitive data or networks.
 - **Docker socket (SWE-agent):** SWE-agent requires `-v /var/run/docker.sock:/var/run/docker.sock`, giving the container full control over the host's Docker daemon. Run it on an isolated machine or VM only.
 - **Model downloads:** FunClip, omniparse, manga-image-translator, zshot, and pycorrector download ML models on first startup (1-5 GB depending on the app). First launch takes 5-30 minutes depending on connection speed. The container will appear to hang during download -- check logs with `docker logs -f <container>` to monitor progress. Subsequent launches are fast if you don't delete the container.
 - **Deprecated/abandoned dependencies:** pdfGPT depends on abandoned software (langchain-serve, jina 3.x, openai 0.27.x) pinned to 2023-era versions. AgentGPT's langchain (0.0.335) does not match the developer's lockfile (0.0.295). These version mismatches are worth investigating from a supply chain perspective. See each app's usage doc for details.
@@ -168,7 +178,7 @@ For multi-container apps (pdfGPT, agenticSeek, localGPT, AgentGPT, BettaFish, gp
 
 ```
 app-deployments/
-  dockerfiles/       # Dockerfiles, docker-compose files, and config templates for all 26 apps
+  dockerfiles/       # Dockerfiles, docker-compose files, and config templates for all 31 apps
   docs/              # Usage docs (*_usage.md) and reasoning docs (*_reasoning.md)
   tracker.md         # Status tracker with test counts
 ```
@@ -178,7 +188,7 @@ Note: The `apps/` directory (cloned source repos) is local working data and not 
 ### dockerfiles/
 
 Each app has a subdirectory in `dockerfiles/` containing everything needed to rebuild or run:
-- **Dockerfiles** for all 24 custom-built apps
+- **Dockerfiles** for all 29 custom-built apps
 - **docker-compose.yml** for 6 multi-container apps (AgentGPT, agenticSeek, BettaFish, gpt_academic, localGPT, pdfGPT) -- pre-configured to pull from `hoomzoom/` Docker Hub, no build required
 - **.env.example** templates and **config files** where needed
 
