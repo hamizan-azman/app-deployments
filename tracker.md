@@ -35,7 +35,7 @@
 | 30 | gptme | DONE | Flask + Web UI, two-stage build, 2/2 tests |
 | 31 | local-deep-researcher | DONE | LangGraph API, existing Dockerfile, 4/4 tests |
 
-## SKIP (5)
+## SKIP (8)
 | App | Reason |
 |-----|--------|
 | autoMate | Desktop RPA, requires GUI, useless in Docker |
@@ -43,21 +43,21 @@
 | TaskMatrix | Heavy GPU requirement (multiple vision models) |
 | MedRAX | GPU + multiple large models, no Dockerfile |
 | home-llm | Home Assistant integration, not standalone |
+| AiNiee | Desktop GUI (PyQt5), no headless mode |
+| itext2kg | Library only, no web interface or entry point |
+| Windrecorder | Windows-only desktop app (pywin32), requires screen |
 
-## Remaining (11)
+## Remaining (8)
 | App | Notes |
 |-----|-------|
-| TaskWeaver | |
-| devika | |
-| AiNiee | |
-| Integuru | |
-| django-ai-assistant | |
-| TradingAgents | |
-| pyvideotrans | |
-| itext2kg | |
-| auto-news | |
-| magentic-ui | |
-| Windrecorder | Likely SKIP (desktop recording app) |
+| TaskWeaver | Has Dockerfile, Chainlit web UI |
+| devika | Has docker-compose, Flask + Svelte |
+| Integuru | CLI tool, browser capture needs manual step |
+| django-ai-assistant | Django library with example app |
+| TradingAgents | CLI + possible Chainlit, needs Redis |
+| pyvideotrans | CLI mode only, GUI not Docker-compatible |
+| auto-news | Airflow, 6+ containers |
+| magentic-ui | Docker-in-Docker, needs socket access |
 
 ## Docker Hub Images (hoomzoom/)
 rawdog, bilingual_book_maker, chemcrow, codeinterpreter-api, pdfgpt-frontend, pdfgpt-langchain-serve, pdfgpt-backend, pdfgpt-pdf-gpt, agenticseek-frontend, agenticseek-backend, rd-agent, pycorrector, funclip, chatdbg, zshot, slidedeckai, codeqai, paper2poster, gpt-migrate, bettafish, localgpt-frontend, localgpt-backend, localgpt-rag-api, agentgpt-platform, agentgpt-frontend, dataflow, huixiangdou, omniparse, manga-image-translator, gpt_academic, swe-agent, gpt-engineer, narratoai, attackgen, stride-gpt, gpt-researcher, gptme-server, local-deep-researcher
