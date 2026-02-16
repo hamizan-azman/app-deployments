@@ -47,11 +47,15 @@
 | itext2kg | Library only, no web interface or entry point |
 | Windrecorder | Windows-only desktop app (pywin32), requires screen |
 
-## Remaining (8)
+## In Progress (2)
+| App | Status | Notes |
+|-----|--------|-------|
+| TaskWeaver | Dockerfiles + docs done, image built, pushed to Docker Hub. Needs Task1.md row. | Chainlit web UI, 4/4 tests |
+| devika | Dockerfiles + docs done, images built on laptop (backend 27.5GB, frontend 3.12GB). Needs testing, Docker Hub push, Task1.md row. | Flask + Svelte, 3-service compose |
+
+## Remaining (6)
 | App | Notes |
 |-----|-------|
-| TaskWeaver | Has Dockerfile, Chainlit web UI |
-| devika | Has docker-compose, Flask + Svelte |
 | Integuru | CLI tool, browser capture needs manual step |
 | django-ai-assistant | Django library with example app |
 | TradingAgents | CLI + possible Chainlit, needs Redis |
@@ -60,7 +64,7 @@
 | magentic-ui | Docker-in-Docker, needs socket access |
 
 ## Docker Hub Images (hoomzoom/)
-rawdog, bilingual_book_maker, chemcrow, codeinterpreter-api, pdfgpt-frontend, pdfgpt-langchain-serve, pdfgpt-backend, pdfgpt-pdf-gpt, agenticseek-frontend, agenticseek-backend, rd-agent, pycorrector, funclip, chatdbg, zshot, slidedeckai, codeqai, paper2poster, gpt-migrate, bettafish, localgpt-frontend, localgpt-backend, localgpt-rag-api, agentgpt-platform, agentgpt-frontend, dataflow, huixiangdou, omniparse, manga-image-translator, gpt_academic, swe-agent, gpt-engineer, narratoai, attackgen, stride-gpt, gpt-researcher, gptme-server, local-deep-researcher
+rawdog, bilingual_book_maker, chemcrow, codeinterpreter-api, pdfgpt-frontend, pdfgpt-langchain-serve, pdfgpt-backend, pdfgpt-pdf-gpt, agenticseek-frontend, agenticseek-backend, rd-agent, pycorrector, funclip, chatdbg, zshot, slidedeckai, codeqai, paper2poster, gpt-migrate, bettafish, localgpt-frontend, localgpt-backend, localgpt-rag-api, agentgpt-platform, agentgpt-frontend, dataflow, huixiangdou, omniparse, manga-image-translator, gpt_academic, swe-agent, gpt-engineer, narratoai, attackgen, stride-gpt, gpt-researcher, gptme-server, local-deep-researcher, taskweaver
 
 ## External Images (not ours)
 ollama/ollama
