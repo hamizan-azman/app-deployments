@@ -1,52 +1,73 @@
-# MedRAX -- Usage Documentation
+# MedRAX -- Local Install Guide
 
-## Status: SKIP (not compatible with Docker)
+## Overview
+MedRAX is an AI agent for chest X-ray analysis that integrates multiple specialized medical imaging models (CheXagent, LLaVA-Med, MedSAM, Maira-2) with GPT-4o to perform detection, classification, segmentation, and report generation. It exposes a Gradio web interface.
 
-## Reason
-- Requires GPU for medical imaging model inference
-- Multiple large models from HuggingFace (CheXagent, LLaVA-Med, MedSAM, Maira-2)
-- No Dockerfile provided
-- Specialized medical imaging pipeline requiring automatic model download
-- GPU-only inference with torch, transformers, accelerate, bitsandbytes
+## Why Not Dockerized
+MedRAX loads multiple large vision-language models simultaneously. The official deployment configuration used an NVIDIA RTX 6000 (48 GB VRAM). Even with 8-bit quantization, the combined model stack requires well beyond the 8 GB available on the RTX 3070. The models are also downloaded dynamically from HuggingFace at first launch, making Docker image size unmanageable.
 
-## What It Does
-Medical reasoning agent for chest X-ray interpretation using specialized AI tools and multimodal LLMs. Gradio web interface.
+## Requirements
+- OS: Linux or Windows with WSL2 (recommended); macOS (CPU only, very slow)
+- Python 3.8+
+- NVIDIA GPU: 12 GB+ VRAM minimum (for a subset of tools); 24 GB+ for full tool set; 48 GB for full official configuration
+- CUDA 11.8+ and matching PyTorch
+- OpenAI API key (GPT-4o used as the reasoning backbone)
+- 50+ GB free disk space for model weights
 
-## Original Repo
-https://github.com/bowang-lab/MedRAX
-
-## Manual Build Steps
-
-Since Docker cannot practically host the required GPU model stack, build and run natively:
+## Installation
 
 ```bash
-# Requires: Python 3.10+, NVIDIA GPU with CUDA, OpenAI API key
-# Models download automatically from HuggingFace on first run
-
-# 1. Clone
+# Clone the repo
 git clone https://github.com/bowang-lab/MedRAX.git
 cd MedRAX
 
-# 2. Install
+# Create and activate a virtual environment (Python 3.8+)
+python -m venv venv
+source venv/bin/activate        # Linux/macOS
+# venv\Scripts\activate         # Windows
+
+# Install the package
 pip install -e .
 
-# 3. Create .env file
+# Create .env with your API key
 echo "OPENAI_API_KEY=your-key-here" > .env
+```
 
-# 4. Run
+## Usage
+
+Before running, open `main.py` and set `model_dir` to the directory where HuggingFace model weights should be stored:
+
+```python
+# In main.py, find and set:
+model_dir = "/path/to/your/model/directory"
+```
+
+To reduce VRAM usage, comment out tool initializations for models you do not need (LlavaMedTool and Maira2Tool are the most resource-intensive).
+
+Then launch:
+
+```bash
 python main.py
 ```
 
-Models are downloaded from HuggingFace on first launch (several GB). The Gradio web UI will start after models are loaded.
+The Gradio web UI will start after models finish loading. First run downloads several GB of model weights from HuggingFace.
 
-## Core Features
-- Chest X-ray interpretation
-- Medical image segmentation (MedSAM)
-- Multi-tool agent pipeline (CheXagent, LLaVA-Med, Maira-2)
-- Gradio web interface
+### Quickstart (minimal, for testing)
+
+```bash
+python quickstart.py
+```
+
+This loads a minimal subset of tools for basic chest X-ray analysis.
 
 ## Environment Variables
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| OPENAI_API_KEY | Yes | None | OpenAI API key (or compatible provider). Set in .env file |
-| OPENAI_BASE_URL | No | OpenAI default | Override for local LLMs (e.g. http://localhost:11434/v1 for Ollama) |
+| OPENAI_API_KEY | Yes | None | OpenAI API key for GPT-4o reasoning backbone. Set in `.env`. |
+| OPENAI_BASE_URL | No | OpenAI default | Override for OpenAI-compatible local LLMs (e.g., Ollama). |
+
+## Notes
+- RTX 3070 (8 GB) is insufficient for the full stack. You may be able to run a single tool (e.g., CheXagent only) with 8-bit quantization, but this is not a supported configuration.
+- 8-bit quantization is enabled by default where supported (bitsandbytes). Disable it if you have abundant VRAM for better accuracy.
+- Selective tool initialization: comment out tools in `main.py` to reduce memory footprint.
+- GitHub: https://github.com/bowang-lab/MedRAX

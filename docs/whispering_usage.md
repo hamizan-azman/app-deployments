@@ -1,56 +1,70 @@
-# whispering (Whispering Tiger) -- Usage Documentation
+# whispering -- Local Install Guide
 
-## Status: SKIP (not compatible with Docker)
+## Overview
+Whispering (braden-w/whispering) is a desktop speech-to-text app built with Tauri and Svelte: press a global shortcut, speak, and get transcribed text. It uses OpenAI's Whisper API or a local Whisper backend.
 
-## Reason
-- Requires live audio device (microphone) -- crashes without one
-- Windows-centric: PyAudioWPatch, pywin32, winsdk, triton-windows
-- WebSocket-only interface (no HTTP API)
-- ~185 direct dependencies, many from custom GitHub forks
-- No deployment Dockerfile (only PyInstaller build Dockerfiles)
-- Would require significant architectural changes to run in Docker headless
+## Why Not Dockerized
+Whispering is a native desktop application that requires access to the host microphone and system audio subsystem. Docker containers cannot access audio input devices without complex OS-level passthrough that is not supported on Windows. The app also has a system-tray GUI component that requires a display.
 
-## What It Does
-Speech transcription tool using Whisper models. Streams audio from microphone, transcribes in real-time via WebSocket, outputs to OSC. Supports Whisper, Seamless M4T, Speech T5, Phi-4, NeMo Canary models.
+## Requirements
+- OS: Windows, macOS, or Linux (desktop required)
+- Microphone or audio input device
+- Node.js 18+ and pnpm (for building from source)
+- Rust toolchain (for building from source via Tauri)
+- OpenAI API key (for cloud Whisper) or local Whisper setup
 
-## Original Repo
-https://github.com/Sharrnah/whispering
+## Installation
 
-## Manual Build Steps
+### Option 1: Download prebuilt installer (recommended)
 
-Since Docker cannot provide audio device access, build and run natively:
+Download the latest release for your OS from the releases page:
 
-```bash
-# Requires: Python 3.10, microphone/audio input device, FFmpeg in PATH
-# GPU recommended (NVIDIA CUDA) for real-time transcription
-
-# 1. Clone
-git clone https://github.com/Sharrnah/whispering.git
-cd whispering
-
-# 2. Install dependencies
-pip install -r requirements.txt -U
-
-# For NVIDIA GPU support:
-pip install -r requirements.nvidia.txt -U
-
-# For AMD GPU support:
-pip install -r requirements.amd.txt -U
-
-# 3. List available audio devices
-python audioWhisper.py --devices true
-
-# 4. Run with a specific device
-python audioWhisper.py --device_index <index> --model medium --task transcribe
+```
+https://github.com/braden-w/whispering/releases
 ```
 
-## Core Features
-- Real-time speech-to-text from microphone
-- Multiple model backends (Whisper, Seamless M4T, Speech T5, NeMo Canary)
-- WebSocket interface for streaming results
-- OSC output for integration with other tools
+Run the installer (`.msi` on Windows, `.dmg` on macOS, `.AppImage` or `.deb` on Linux).
+
+Note: the project has migrated to the EpicenterHQ organization. The current release page is:
+
+```
+https://github.com/epicenter-so/epicenter/releases
+```
+
+### Option 2: Build from source
+
+```bash
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Install Node.js 18+ and pnpm
+npm install -g pnpm
+
+# Clone the repo
+git clone https://github.com/braden-w/whispering.git
+cd whispering
+
+# Install JS dependencies
+pnpm install
+
+# Build and run the Tauri desktop app
+pnpm tauri dev
+```
+
+## Usage
+
+1. Launch the app from the installer or with `pnpm tauri dev`.
+2. Enter your OpenAI API key in Settings (for cloud transcription).
+3. Press the configured global shortcut (default: `Ctrl+Shift+.` on Windows).
+4. Speak. Release the shortcut or press Stop.
+5. Transcribed text is copied to clipboard and/or inserted at cursor.
 
 ## Environment Variables
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| (none) | - | - | No env vars required. Configuration via CLI flags. |
+| OPENAI_API_KEY | Yes (via UI) | None | Entered in the app settings; used for Whisper API calls |
+
+## Notes
+- The original braden-w/whispering repository has been archived and redirects to EpicenterHQ/epicenter. Check that repo for the latest release.
+- Local Whisper (no API key) requires a separate Whisper server; see the app settings for supported local backends.
+- GitHub: https://github.com/braden-w/whispering (archived, redirects to https://github.com/epicenter-so/epicenter)

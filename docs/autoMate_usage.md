@@ -1,49 +1,58 @@
-# autoMate -- Usage Documentation
+# autoMate -- Local Install Guide
 
-## Status: SKIP (not compatible with Docker)
+## Overview
+autoMate is an AI-powered RPA tool built on OmniParser that takes natural language task descriptions and automates desktop UI interactions by capturing the screen, interpreting it with a vision model, and simulating mouse/keyboard actions.
 
-## Reason
-- Desktop RPA (Robotic Process Automation) tool
-- Requires GUI/display for screen automation
-- Useless in Docker (no desktop environment)
-- Designed for Windows desktop with mouse/keyboard control
+## Why Not Dockerized
+autoMate captures and controls the live desktop display. It uses `pyautogui` and `pynput` to simulate input and reads the screen via OmniParser's OCR pipeline. Docker containers have no display server or input device access, and there is no headless mode.
 
-## What It Does
-Desktop automation tool using LLMs to control mouse, keyboard, and screen interactions. Web UI on port 7888.
+## Requirements
+- OS: Windows 10/11 (primary; macOS reported to work with caveats)
+- Python 3.12
+- Conda (miniconda or anaconda)
+- NVIDIA GPU with 4GB+ VRAM strongly recommended (OmniParser's OCR pipeline is GPU-intensive; CPU fallback is very slow)
+- OpenAI API key (gpt-4o or later; requires multimodal + structured output support)
 
-## Original Repo
-https://github.com/yuruotong1/autoMate
-
-## Manual Build Steps
-
-Since Docker cannot provide a GUI environment, build and run natively:
+## Installation
 
 ```bash
-# Requires: Python 3.12, conda, NVIDIA GPU (4GB+ VRAM recommended)
-
-# 1. Clone
+# Clone the repo
 git clone https://github.com/yuruotong1/autoMate.git
 cd autoMate
 
-# 2. Create environment
-conda create -n automate python==3.12
+# Create and activate environment
+conda create -n automate python=3.12 -y
 conda activate automate
 
-# 3. Install dependencies and download model weights
+# Run the project install script (installs deps and downloads OmniParser weights)
 python install.py
+```
 
-# 4. Run
+If you have a CUDA GPU, replace the default torch with a CUDA-enabled build after running install.py. Check your CUDA version first with `nvidia-smi`, then:
+
+```bash
+# Example for CUDA 12.4:
+pip uninstall -y torch torchvision torchaudio
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+```
+
+## Usage
+
+```bash
+conda activate automate
 python main.py
 ```
 
-Access the web UI at `http://localhost:7888/`.
-
-## Core Features
-- Screen automation via LLM-driven mouse/keyboard control
-- Supports OpenAI models (gpt-4o, o1, etc.)
-- Web UI for task configuration
+Open `http://localhost:7888` in a browser. Enter your OpenAI API key in Settings, then describe a task in natural language and click Run.
 
 ## Environment Variables
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| (via UI) | Yes | None | LLM API key, configured through the web interface |
+| OpenAI API key | Yes (via UI) | None | Entered through the Gradio web UI settings page |
+
+## Notes
+- The Gradio web UI at port 7888 handles configuration and task input only. The actual automation runs on the host desktop -- keep the desktop visible and unlocked while tasks run.
+- Only OpenAI models with multimodal + structured output are supported: gpt-4o, gpt-4o-2024-08-06, gpt-4o-2024-11-20, o1.
+- `install.py` downloads OmniParser model weights. Requires several GB of free disk space and a stable internet connection.
+- On CPU-only machines, each automation step will be significantly slower due to OmniParser's OCR overhead.
+- GitHub: https://github.com/yuruotong1/autoMate
