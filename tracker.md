@@ -1,6 +1,6 @@
 # App Deployment Tracker
 
-## Completed (39/47)
+## Completed (41/47)
 | # | App | Status | Notes |
 |---|-----|--------|-------|
 | 1 | ChatDBG | DONE | CLI debugger, 7/7 tests |
@@ -42,6 +42,8 @@
 | 37 | auto-news | DONE | docker pull finaldie/auto-news:0.9.15, Airflow 9-service compose, 6/6 tests |
 | 38 | devika | IN PROGRESS | Dockerfiles + docs done, needs build + push (27GB backend) |
 | 39 | magentic-ui | DONE | Docker-in-Docker, FastAPI + web UI, 2/2 tests (chat needs API key) |
+| 40 | Biomni | DONE | Gradio, editable install + undeclared deps, 2/2 infra tests (full test needs 11GB data download + API key) |
+| 41 | Data-Copilot | DONE | Gradio, Chinese financial data, era-matched deps, 2/2 tests (query needs Tushare token + OpenAI key) |
 
 ## SKIP (8) -- local install docs in docs/
 | App | Reason | Local Install Doc |
@@ -56,7 +58,8 @@
 | Windrecorder | Windows-only desktop app (pywin32), requires screen | docs/windrecorder_usage.md |
 
 ## Docker Hub Images (hoomzoom/)
-rawdog, bilingual_book_maker, chemcrow, codeinterpreter-api, pdfgpt-frontend, pdfgpt-langchain-serve, pdfgpt-backend, pdfgpt-pdf-gpt, agenticseek-frontend, agenticseek-backend, rd-agent, pycorrector, funclip, chatdbg, zshot, slidedeckai, codeqai, paper2poster, gpt-migrate, bettafish, localgpt-frontend, localgpt-backend, localgpt-rag-api, agentgpt-platform, agentgpt-frontend, dataflow, huixiangdou, omniparse, manga-image-translator, gpt_academic, swe-agent, gpt-engineer, narratoai, attackgen, stride-gpt, gpt-researcher, gptme-server, local-deep-researcher, taskweaver, tradingagents, integuru, django-ai-assistant, pyvideotrans, magentic-ui
+rawdog, bilingual_book_maker, chemcrow, codeinterpreter-api, pdfgpt-frontend, pdfgpt-langchain-serve, pdfgpt-backend, pdfgpt-pdf-gpt, agenticseek-frontend, agenticseek-backend, rd-agent, pycorrector, funclip, chatdbg, zshot, slidedeckai, codeqai, paper2poster, gpt-migrate, bettafish, localgpt-frontend, localgpt-backend, localgpt-rag-api, agentgpt-platform, agentgpt-frontend, dataflow, huixiangdou, omniparse, manga-image-translator, gpt_academic, swe-agent, gpt-engineer, narratoai, attackgen, stride-gpt, gpt-researcher, gptme-server, local-deep-researcher, taskweaver, tradingagents, integuru, django-ai-assistant, pyvideotrans, magentic-ui, biomni, data-copilot
 
 ## External Images (not ours)
 ollama/ollama, finaldie/auto-news
+
