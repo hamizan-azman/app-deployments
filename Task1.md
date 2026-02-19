@@ -1,8 +1,8 @@
-# Task 1: Application Dockerization and Deployment
+# App Catalog
 
 ## Summary
 
-Assigned all 49 applications from the team applist (plus 1 extra: Data-Copilot). Each app was cloned, analyzed, containerized (Dockerfile written or pre-built image used), tested, and documented. Custom-built images are published to Docker Hub under `hoomzoom/`.
+50 open-source LLM applications analyzed and containerized for supply chain security research. Each app was cloned, analyzed, containerized (Dockerfile written or pre-built image used), tested, and documented. Custom-built images are published to Docker Hub under `hoomzoom/`.
 
 **Results:** 42 deployed, 8 skipped (incompatible with Docker).
 
@@ -20,11 +20,11 @@ Each deployed app has a **usage doc** (`docs/<appname>_usage.md`) in the repo wi
 
 There is also a **reasoning doc** (`docs/<appname>_reasoning.md`) explaining why each deployment decision was made, what broke, and how it was fixed.
 
-> **To access the docs:** They are all in the `docs/` folder of the [app-deployments repo](https://github.com/hamizan-azman/app-deployments). You can also find them attached below if I've uploaded them to this Lark doc.
+> **To access the docs:** They are all in the [`docs/`](docs/) folder of this repo.
 
 ---
 
-## Deployed Apps (42)
+## Deployed Apps
 
 ### Web UI Apps
 
@@ -87,7 +87,7 @@ There is also a **reasoning doc** (`docs/<appname>_reasoning.md`) explaining why
 
 ---
 
-## Skipped Apps (8)
+## Skipped Apps
 
 These cannot run meaningfully in Docker. Local install docs are provided in `docs/` for each.
 
@@ -163,7 +163,7 @@ docker pull finaldie/auto-news:0.9.15
 
 ---
 
-## Notes for the Team
+## Notes
 
 - **API keys:** About half the apps need an OpenAI API key (or similar) for full functionality. Without a key, the infrastructure still runs -- you just can't make LLM calls. Each usage doc specifies which env vars to set.
 - **Multi-container apps:** pdfGPT (4 containers), agenticSeek (4 containers), localGPT (4 containers), AgentGPT (3 containers), BettaFish (2 containers), devika (3 containers), and auto-news (9 containers) use docker-compose. The usage docs have the exact compose commands.
@@ -207,13 +207,13 @@ app-deployments/
   tracker.md         # Status tracker with test counts
 ```
 
-Note: The `apps/` directory (cloned source repos) is local working data and not included in this repository. Source code lives at the original GitHub URLs linked in the tables above.
+The `apps/` directory (cloned source repos) is not included in this repository. Source code lives at the original GitHub URLs linked in the tables above.
 
 ### dockerfiles/
 
 Each app has a subdirectory in `dockerfiles/` containing everything needed to rebuild or run:
-- **Dockerfiles** for all 40 custom-built apps
-- **docker-compose.yml** for 8 multi-container apps (AgentGPT, agenticSeek, BettaFish, gpt_academic, localGPT, pdfGPT, devika, auto-news) pre-configured to pull from Docker Hub, no build required
+- **Dockerfiles** for all custom-built apps
+- **docker-compose.yml** for multi-container apps (AgentGPT, agenticSeek, BettaFish, gpt_academic, localGPT, pdfGPT, devika, auto-news), pre-configured to pull from Docker Hub
 - **.env.example** templates and **config files** where needed
 
 To run a multi-container app, copy its compose file, create the `.env`, and run `docker compose up -d`. See the app's usage doc for details.
