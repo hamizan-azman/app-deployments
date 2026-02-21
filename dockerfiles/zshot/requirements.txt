@@ -1,0 +1,2 @@
+# V2 pinned versions — copied from app source after minimum version pinning
+-e .
