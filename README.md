@@ -9,6 +9,61 @@ Dockerized deployment of 41 open-source LLM applications for supply chain securi
 - **48 Docker images** published to [Docker Hub](https://hub.docker.com/u/hoomzoom) under `hoomzoom/`
 - **Every app tested** with documented pass/fail results per endpoint
 
+## App Access Types
+
+**30 apps with web UI/API** (start with port mapping, access from browser or HTTP):
+
+| App | Port | UI Type |
+|-----|------|---------|
+| pycorrector | 7860 | Gradio |
+| FunClip | 7860 | Gradio |
+| omniparse | 8000 | FastAPI + Gradio |
+| manga-image-translator | 5003 | Web API |
+| pdfGPT | 7860 | Gradio + langchain-serve (compose) |
+| gpt_academic | 12345 | Gradio |
+| NarratoAI | 8501 | Streamlit |
+| codeqai | 8501 | Streamlit |
+| slide-deck-ai | 8501 | Streamlit |
+| BettaFish | 8000 | Flask + PostgreSQL (compose) |
+| localGPT | 3000, 8000 | React + FastAPI (compose) |
+| agenticSeek | 3000, 8000 | React + FastAPI (compose) |
+| zshot | 8000 | FastAPI |
+| AgentGPT | 3000, 8000 | Next.js + FastAPI + MySQL (compose) |
+| DataFlow | 7860 | Gradio (GPU required) |
+| HuixiangDou | 7860, 8888 | Gradio + FastAPI |
+| attackgen | 8501 | Streamlit |
+| stride-gpt | 8501 | Streamlit |
+| gpt-researcher | 8000 | FastAPI + Web UI |
+| gptme | 5000 | Flask |
+| local-deep-researcher | 8123 | LangGraph API |
+| TaskWeaver | 8000 | Chainlit |
+| devika | 3000, 1337 | Svelte + Flask (compose) |
+| django-ai-assistant | 8000 | Django + React |
+| magentic-ui | 8000 | FastAPI + Web UI |
+| Biomni | 7860 | Gradio |
+| Data-Copilot | 7860 | Gradio |
+| auto-news | 8080 | Airflow (compose) |
+| RD-Agent | 8501 | Streamlit (also has CLI) |
+| SWE-agent | 8000 | Web UI (also has CLI) |
+
+**11 apps that are CLI or library only** (run commands inside the container):
+
+| App | Usage |
+|-----|-------|
+| ChatDBG | `chatdbg` (ipdb debugger extension) |
+| Paper2Poster | `python pipeline.py` (poster generator) |
+| bilingual_book_maker | `python make_book.py` (book translator) |
+| rawdog | `rawdog` (script generator) |
+| gpt-engineer | `gpte` (code generator) |
+| gpt-migrate | `python main.py` (codebase migrator) |
+| TradingAgents | `python main.py` (stock analysis) |
+| Integuru | `python main.py` (API reverse engineering) |
+| pyvideotrans | `python cli.py` (video translator) |
+| codeinterpreter-api | Python library, `from codeinterpreterapi import CodeInterpreterSession` |
+| chemcrow-public | Python library, `from chemcrow import ChemCrow` |
+
+---
+
 ## Quick Start
 
 Pick any app and pull from Docker Hub:
