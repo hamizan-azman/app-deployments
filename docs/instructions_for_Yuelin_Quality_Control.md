@@ -5,9 +5,8 @@
 You are performing quality control on 41 Dockerized LLM applications deployed by Hamiz for supply chain security research. Your goal is to verify that each app can be pulled from Docker Hub, started, and has its documented endpoints responding correctly. This is prep work for dynamic vulnerability scanning.
 
 **Important files to read first:**
-- `Task1.md`. full app catalog with Docker images, test counts, and usage doc links
-- `tracker.md`. deployment status tracker
-- `docs/qc_log.md`. QC log with results so far (12 apps tested, 30 remaining)
+- `README.md`. full app catalog with Docker images, ports, test counts, and usage doc links
+- `docs/qc_log.md`. QC log with all test results
 - Each app's `docs/<appname>_usage.md`. exact commands, endpoints, and expected responses
 
 ## What Has Been Done
