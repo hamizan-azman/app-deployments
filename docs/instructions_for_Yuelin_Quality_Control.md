@@ -2,7 +2,7 @@
 
 ## Context
 
-You are performing quality control on 42 Dockerized LLM applications deployed by Hamiz for supply chain security research. Your goal is to verify that each app can be pulled from Docker Hub, started, and has its documented endpoints responding correctly. This is prep work for dynamic vulnerability scanning.
+You are performing quality control on 41 Dockerized LLM applications deployed by Hamiz for supply chain security research. Your goal is to verify that each app can be pulled from Docker Hub, started, and has its documented endpoints responding correctly. This is prep work for dynamic vulnerability scanning.
 
 **Important files to read first:**
 - `Task1.md` -- full app catalog with Docker images, test counts, and usage doc links
@@ -12,7 +12,7 @@ You are performing quality control on 42 Dockerized LLM applications deployed by
 
 ## What Has Been Done
 
-### Apps Already Tested (12/42)
+### Apps Already Tested (12/41)
 These have been pulled, started, and endpoint-tested. Results in `docs/yuelin_qc_log.md`.
 
 | # | App | Image | Result |
