@@ -1,6 +1,6 @@
 # V2 pinned versions — copied from app source after minimum version pinning
 numpy==1.26.4
-pandas==2.0.3
+pandas==2.1.0
 matplotlib==3.7.0
 seaborn==0.11.0
 python-dotenv==1.0.0
