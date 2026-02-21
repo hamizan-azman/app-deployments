@@ -21,6 +21,14 @@ This document summarizes all dependency version changes made during V2 minimum v
 | opencv-python | >=4.8.0 | ==4.8.0.74 | 4.8.0 doesn't exist on PyPI |
 | black | >=23.0.0 | ==23.1.0 | 23.0.0 doesn't exist on PyPI |
 | psycopg[binary] | >=3.1.0 | ==3.1.8 | 3.1.0 binary wheel not available for Python 3.11 |
+| lxml | >=4.9.0 | ==4.9.3 | 4.9.0 fails to build from source without libxml2-dev |
+| aiohttp | >=3.8.0 | ==3.9.0 | 3.8.0 fails on Python 3.11 due to missing longintrepr.h |
+
+### Biomni
+| Package | Original | Pinned | Reason |
+|---------|----------|--------|--------|
+| setuptools | >=61.0 | *(left unpinned)* | Project uses PEP 639 license format requiring setuptools>=77 |
+| gradio | >=5.0 | ==5.0 | No bump needed |
 
 ### chemcrow-public
 | Package | Original | Pinned | Reason |
@@ -49,16 +57,54 @@ This document summarizes all dependency version changes made during V2 minimum v
 | unstructured | >=0.13 | ==0.14.2 | 0.13 doesn't exist on PyPI; 0.13.x requires Python <3.12 |
 | lxml | >=4.9.2 | ==4.9.3 | 4.9.2 fails to build on Python 3.12 |
 | langgraph | >=0.2.76 | ==1.0.0 | langchain 1.0.0 requires langgraph>=1.0.0 |
+| pydantic | >=2.5.1 | ==2.9.0 | ollama 0.6.0 requires pydantic>=2.9 |
+| requests | >=2.31.0 | ==2.32.5 | langchain-community 0.4 requires requests>=2.32.5 |
+| ollama | >=0.4.8 | ==0.6.0 | langchain-ollama 1.0.0 requires ollama>=0.6.0 |
+| openai | >=1.3.3 | ==1.109.1 | langchain-openai 1.0.0 requires openai>=1.109.1 |
+| arxiv | >=2.0.0 | ==2.1.3 | 2.0.0 pins requests==2.31.0 which conflicts |
+| fastapi | >=0.104.1 | ==0.115.0 | 0.104.1 needs anyio<4.0.0 which conflicts with mcp |
+| python-multipart | >=0.0.6 | ==0.0.9 | mcp 1.9.1 requires >=0.0.9 |
+| langchain-mcp-adapters | >=0.1.0 | ==0.2.0 | 0.1.x needs langchain-core<0.4 |
+| mcp | >=1.9.1 | ==1.9.2 | langchain-mcp-adapters 0.2.0 requires mcp>=1.9.2 |
 
 ### HuixiangDou
 | Package | Original | Pinned | Reason |
 |---------|----------|--------|--------|
-| pydantic | ==1.10.13 | ==2.0.0 | gradio 4.44.1 requires pydantic>=2.0 |
+| pydantic | ==1.10.13 | ==2.0.2 | gradio 4.44.1 requires pydantic>=2.0; fastapi 0.100.0 excludes 2.0.0 |
+| fastapi | *(unpinned)* | ==0.100.0 | First version compatible with pydantic v2 (QC fix) |
+| gradio | *(unpinned)* | ==4.44.1 | Era-match with huggingface_hub <1.0 |
+| gradio_client | *(unpinned)* | ==1.3.0 | Match gradio 4.44.1 |
+| huggingface_hub | *(unpinned)* | ==0.24.7 | gradio 4.x requires <1.0 |
+| transformers | *(unpinned)* | ==4.44.2 | Must work with huggingface_hub 0.x |
+| sentence_transformers | *(unpinned)* | ==3.0.1 | Compatible with transformers 4.44 |
+| tokenizers | *(unpinned)* | ==0.19.1 | Match transformers 4.44 |
+
+### local-deep-researcher
+| Package | Original | Pinned | Reason |
+|---------|----------|--------|--------|
+| openai | ==1.12.0 | ==1.66.3 | langchain-openai==0.3.9 requires openai>=1.66.3 (QC fix) |
 
 ### NarratoAI
 | Package | Original | Pinned | Reason |
 |---------|----------|--------|--------|
 | openai | ==1.77.0 | ==1.75.0 | litellm 1.70.0 requires openai<1.76.0 |
+
+### Paper2Poster
+| Package | Original | Pinned | Reason |
+|---------|----------|--------|--------|
+| docling_parse | *(unpinned)* | ==4.0.0 | Newer versions removed `pdf_parser_v2` API used by vendored docling code |
+| setuptools | *(unpinned)* | <71 | Build constraint; pkg_resources compatibility |
+
+### pdfGPT
+| Package | Original | Pinned | Reason |
+|---------|----------|--------|--------|
+| langchain | *(unpinned)* | ==0.0.267 | langchain-serve requires pre-split monolithic langchain |
+| litellm | *(unpinned)* | ==0.1.424 | Modern litellm requires openai>=1.0 which is incompatible |
+| openai | *(unpinned)* | ==0.27.8 | litellm 0.1.424 requires >=0.27.8 |
+| pydantic | *(unpinned)* | <2 | Jina 3.x crashes with pydantic v2 |
+| huggingface_hub | *(unpinned)* | <1.0 | Gradio 4.x imports HfFolder removed in hub >=1.0 |
+| setuptools | *(unpinned)* | <71 | Build constraint; langchain-serve uses pkg_resources |
+| opentelemetry-exporter-prometheus | *(unpinned)* | ==1.12.0rc1 | Yanked from PyPI but required by jina 3.14.1 |
 
 ### stride-gpt
 | Package | Original | Pinned | Reason |
@@ -71,6 +117,9 @@ This document summarizes all dependency version changes made during V2 minimum v
 | matplotlib | ==3.4 | ==3.7.0 | 3.4 has no prebuilt wheels for Python 3.12, fails to build from source |
 | seaborn | ==0.11 | ==0.11.0 | Version format fix |
 | pyyaml | ==6.0 | ==6.0.0 | Version format fix |
+| pandas | ==2.0.3 | ==2.1.0 | Binary incompatibility with numpy 1.26.x ABI (QC fix) |
+| numpy | ==1.24.2 | ==1.26.0 | Needed for compatibility with sentence-transformers numpy 2.x transitive dep |
+| scikit-learn | ==1.2.2 | ==1.5.0 | 1.2.2 incompatible with numpy 2.x pulled by sentence-transformers |
 
 ### zshot
 | Package | Original | Pinned | Reason |
@@ -78,17 +127,11 @@ This document summarizes all dependency version changes made during V2 minimum v
 | torch | ==1 | ==2.0.0 | 1.x fails with libtorch executable stack error under QEMU; version "1" invalid |
 | requests | ==2.28 | ==2.28.0 | Version format fix |
 | prettytable | ==3.4 | ==3.4.0 | Version format fix |
-
-### Biomni (partial)
-| Package | Original | Pinned | Reason |
-|---------|----------|--------|--------|
-| setuptools | >=61.0 | *(left unpinned)* | Project uses PEP 639 license format requiring setuptools>=77 |
-| gradio | >=5.0 | ==5.0 | No bump needed |
-
-### Paper2Poster
-| Package | Original | Pinned | Reason |
-|---------|----------|--------|--------|
-| docling_parse | *(unpinned)* | ==4.0.0 | Newer versions removed `pdf_parser_v2` API used by vendored docling code |
+| transformers | ==4.20 | ==4.30.0 | 4.20.0 can't download models from new HuggingFace Hub API |
+| datasets | ==2.9.1 | ==2.9.0 | 2.9.1 doesn't exist on PyPI |
+| numpy | *(unpinned)* | <1.25.0 | spacy 3.4.1 + thinc compiled against numpy<1.25 |
+| pydantic | *(unpinned)* | <2.0.0 | spacy 3.4.1 requires pydantic v1 |
+| fastapi | *(unpinned)* | <0.100.0 | fastapi >=0.100 requires pydantic v2 |
 
 ---
 
@@ -106,9 +149,7 @@ All `>=`/`~=`/`^` specifiers converted to `==` at the originally declared minimu
 - FunClip
 - gpt-migrate
 - Integuru (Poetry-based, lock file regenerated)
-- local-deep-researcher
 - localGPT
-- pdfGPT
 - pycorrector
 - pyvideotrans
 - rawdog
@@ -121,9 +162,9 @@ All `>=`/`~=`/`^` specifiers converted to `==` at the originally declared minimu
 
 | App | Reason |
 |-----|--------|
+| attackgen | No version specifiers to pin (all deps unpinned) |
 | gptme | 40+ interdependent packages create cascading conflicts; built with original caret/tilde constraints |
 | RD-Agent | No `>=` specifiers to convert (all deps unpinned) |
-| attackgen | No version specifiers to pin (all deps unpinned) |
 
 ---
 
