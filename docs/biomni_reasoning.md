@@ -9,10 +9,23 @@
 Python 3.11-slim (requires >=3.11 per pyproject.toml). Installed as editable package with gradio extra plus undeclared runtime deps.
 
 ## Key Decisions
-- **Editable install**: Used `-e ".[gradio]"` to install the package in development mode since it's a library
-- **Extra langchain packages**: The pyproject.toml only lists `langchain` but the code imports `langchain_openai`, `langchain_anthropic`, and `langchain_text_splitters`. Added these explicitly
-- **Custom entrypoint.py**: The repo has no CLI or server script. Created a minimal script that instantiates A1 and launches the Gradio demo
-- **No data lake pre-download**: The data lake is ~11GB and downloads on first run. Baking it into the image would make it huge. Users should mount a volume for persistence
+
+### Editable install (`-e ".[gradio]"`)
+The package uses a `src/` layout with `biomni/` as the importable package. A standard `pip install .` would work, but editable mode was chosen because the Gradio demo imports from `biomni.agent` which relies on package metadata being discoverable. This matches how the developers run it locally.
+
+### Undeclared runtime dependencies
+This is the most significant finding. The pyproject.toml declares `langchain` as a dependency, but the source code imports three additional langchain ecosystem packages that are NOT declared:
+- `langchain_openai` (used in `biomni/agent.py` for ChatOpenAI)
+- `langchain_anthropic` (used for Claude model support)
+- `langchain_text_splitters` (used in RAG pipeline)
+
+These are separate PyPI packages since the langchain 0.2.x ecosystem split. Without explicitly adding them, the container builds but crashes at runtime with `ModuleNotFoundError`. This is a supply chain concern — undeclared dependencies mean the app silently depends on packages not auditable from pyproject.toml alone.
+
+### Custom entrypoint.py
+The repo has no CLI entry point, server script, or `__main__.py`. The only way to launch the Gradio demo is programmatically: instantiate `A1()` and call `launch_gradio_demo()`. Created a minimal 5-line script for this.
+
+### No data lake pre-download
+The data lake (~11GB of biomedical databases) downloads on first `A1()` initialization. Baking it into the image would create an 11GB+ image unsuitable for distribution. Instead, users should mount a volume (`-v biomni_data:/app/data`) for persistence across container restarts.
 
 ## Testing
 1. **Import test**: `from biomni.agent import A1` succeeds, proving all dependencies resolve correctly
