@@ -129,5 +129,8 @@ This application can execute arbitrary code within the container. Do not expose 
 - The healthcheck pings `http://localhost:5700/` every 30 seconds.
 - The web UI and API docs endpoints do not require authentication. API endpoints do.
 
+## V2 Dependency Changes (Minimum Version Pinning)
+- Minimum version pinning NOT applied. gptme has 40+ interdependent packages (langchain, opentelemetry, dspy, litellm, openai, anthropic) whose minimum versions create cascading conflicts. Built with original caret/tilde constraints (poetry resolve).
+
 ## Changes from Original
 No changes were made. Both Dockerfiles (`scripts/Dockerfile` and `scripts/Dockerfile.server`) are used exactly as provided by the original developer.

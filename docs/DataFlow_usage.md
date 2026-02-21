@@ -86,3 +86,6 @@ dataflow webui --ui_mode pdf
 
 ## Changes from Original
 None. Uses the developer's own pre-built image (molyheci/dataflow:cu124).
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning NOT applied. Uses official pre-built image — cannot control dependency versions.

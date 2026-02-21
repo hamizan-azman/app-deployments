@@ -188,3 +188,6 @@ See `/docs` endpoint for full schema or the repo's README for all configuration 
 
 ## Changes from Original
 None. Uses the developer's own pre-built image (zyddnys/manga-image-translator:main). Entrypoint overridden at runtime to start the web server (developer's own server/main.py).
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning NOT applied. Uses official pre-built image — cannot control dependency versions.

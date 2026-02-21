@@ -182,3 +182,6 @@ docker compose up -d
 - `langchain` force-installed at `0.0.335` over poetry lockfile's `0.0.295`. Required because `lanarky==0.7.17` imports `langchain.globals` which doesn't exist in 0.0.295.
 
 **Note for pentesters:** The langchain version (0.0.335) does not match the developer's `poetry.lock` (0.0.295). 40 patch versions of difference. Different OS packages (Bookworm vs Buster) and Java version also differ.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied. No dependency bumps were needed — all minimum versions resolved successfully.

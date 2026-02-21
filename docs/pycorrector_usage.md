@@ -87,7 +87,7 @@ data: ["{'source': '少先队员因该为老人让坐', 'target': '少先队员�
 - This is a Chinese spelling correction model (CSC). It handles phonetic and visual similarity errors, not grammar restructuring.
 - CPU-only. No GPU required.
 - Gradio API is async (two-step: submit, then poll for result).
-- **First startup downloads models (~500 MB).** The MacBERT model is downloaded on first run. This takes a few minutes depending on connection speed. The container may appear to hang -- check progress with `docker logs -f <container>`. Subsequent launches are fast.
+- MacBERT model (~400MB) is pre-downloaded in the Docker Hub image. No additional downloads needed at runtime.
 
 ## Changes from Original
 **Category: Modified.** One source file changed.
@@ -97,3 +97,6 @@ data: ["{'source': '少先队员因该为老人让坐', 'target': '少先队员�
 | `examples/macbert/gradio_demo.py` | `.launch()` changed to `.launch(server_name="0.0.0.0", server_port=7860)` | Standard Docker network binding. Without this, Gradio only listens on 127.0.0.1 inside the container |
 
 No impact on application logic. Network binding change only.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

@@ -19,16 +19,18 @@ setup(name='zshot',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          "spacy>=3.4.1",
-          "requests>=2.28",
-          "tqdm>=4.62.3",
-          "setuptools>=65.5.1",  # Needed to install dynamic packages from source (e.g. Blink)
-          "prettytable>=3.4",
-          "torch>=1",
-          "transformers>=4.20",
-          "datasets>=2.9.1",
-          "evaluate>=0.3.0",
-          "seqeval>=1.2.2",
+          "spacy==3.4.1",
+          "requests==2.28.0",
+          "tqdm==4.62.3",
+          "setuptools==65.5.1",  # Needed to install dynamic packages from source (e.g. Blink)
+          "prettytable==3.4.0",
+          "numpy<1.25.0",
+          "pydantic<2.0.0",
+          "torch==2.0.0",
+          "transformers==4.30.0",
+          "datasets==2.9.0",
+          "evaluate==0.3.0",
+          "seqeval==1.2.2",
       ],
       entry_points="""
       # -*- Entry points: -*-

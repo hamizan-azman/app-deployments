@@ -90,7 +90,7 @@ curl -X POST http://localhost:8000/visualize \
 - Build takes ~10 minutes (model download is the bottleneck).
 - Default entities are hardcoded in app.py. To change them, edit the DEFAULT_ENTITIES list.
 - Only CPU inference is supported (no GPU).
-- **First startup downloads models (~1-2 GB).** The T5 model and spaCy pipelines are downloaded on first run. This takes 5-10 minutes depending on connection speed. The container may appear to hang -- check progress with `docker logs -f <container>`. Subsequent launches are fast.
+- Models (T5, spaCy pipelines) are pre-downloaded in the Docker Hub image. Startup is fast (~5s). If building from source, the build step downloads ~1-2 GB of models.
 
 ## Changes from Original
 **Category: Modified.** Import guards added, custom API wrapper added.
@@ -105,3 +105,14 @@ curl -X POST http://localhost:8000/visualize \
 Dependency change: `transformers` pinned to `<5` (original unpinned). Transformers v5 removed `batch_encode_plus` from T5Tokenizer.
 
 **WARNING:** The `app.py` FastAPI wrapper is entirely custom code not written by the original developer. It introduces HTTP endpoints that do not exist in the original library. Any vulnerability found in `app.py` is NOT a valid supply chain finding.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+- `torch==1` → `torch==2.0.0` (1.11.0 fails with libtorch executable stack error under QEMU cross-build; also version format "1" invalid)
+- `requests==2.28` → `requests==2.28.0` (version format fix)
+- `prettytable==3.4` → `prettytable==3.4.0` (version format fix)
+- `transformers==4.20` → `transformers==4.30.0` (4.20.0 can't download models from new HuggingFace Hub API)
+- `datasets==2.9.1` → `datasets==2.9.0` (2.9.1 doesn't exist on PyPI)
+- Added `numpy<1.25.0` constraint (spacy 3.4.1 + thinc compiled against numpy<1.25)
+- Added `pydantic<2.0.0` constraint (spacy 3.4.1 requires pydantic v1)
+- Changed fastapi install to `fastapi<0.100.0` (fastapi >=0.100 requires pydantic v2)
+- Changed spacy model install from `spacy download` to direct wheel URL (spacy 3.4.1 download command broken with newer pip)

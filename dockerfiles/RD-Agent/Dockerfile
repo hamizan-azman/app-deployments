@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 COPY . /app
 
+ENV SETUPTOOLS_SCM_PRETEND_VERSION=0.0.0
 RUN pip install --no-cache-dir -e .
 
 EXPOSE 19899

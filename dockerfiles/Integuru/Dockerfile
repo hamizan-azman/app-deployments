@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir poetry && \
     poetry config virtualenvs.create false
 
 COPY pyproject.toml poetry.lock ./
-RUN poetry install --only main --no-root --no-interaction
+RUN poetry lock && poetry install --only main --no-root --no-interaction
 
 RUN playwright install --with-deps chromium
 

@@ -74,6 +74,12 @@ All API endpoints require Django session authentication. Log in via admin panel 
 | 5 | Create/delete thread | PASS |
 | 6 | Send message (LLM call) | NOT TESTED (requires API key) |
 
+## V2 Dependency Changes (Minimum Version Pinning)
+- `openai ^1.48.0` bumped to `openai==1.109.1` (langchain-openai==1.1.7 requires openai>=1.109.1)
+- Removed `init_command` and `transaction_mode` from Django sqlite3 settings (Django 5.1+ features, incompatible with Django 4.2)
+- Dockerfile changed from `python:3.12-slim` to `python:3.11-slim` for compatibility
+- Added `poetry lock` step in Dockerfile to regenerate lock file after pinning
+
 ## Notes
 - Default superuser: admin/admin (created during build).
 - SQLite database (created at build time with migrations).

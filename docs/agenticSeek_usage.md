@@ -157,6 +157,11 @@ stealth_mode = False
 - Backend image is ~15.8GB due to PyTorch, Chrome, and ML models
 - Frontend image is ~2.1GB (Node.js + React)
 
+## V2 Dependency Changes (Minimum Version Pinning)
+- `playsound3>=1.0.0` bumped to `playsound3==3.0.0` (1.0.0 doesn't exist on PyPI; 2.0.0 requires pygobject/Cairo system deps)
+- `together>=1.5.0` bumped to `together==1.5.2` (1.5.0 doesn't exist on PyPI)
+- `tqdm>=4` bumped to `tqdm==4.66.2` (together 1.5.2 requires tqdm>=4.66.2)
+
 ## Changes from Original
 **Category: Modified.** Configuration file changed.
 

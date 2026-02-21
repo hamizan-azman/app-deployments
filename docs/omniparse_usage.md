@@ -110,3 +110,6 @@ http://localhost:8000
 
 ## Changes from Original
 None. Uses the developer's own pre-built image (savatar101/omniparse:0.1), byte-for-byte.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning NOT applied. Uses developer's pre-built image (savatar101/omniparse:0.1), retagged as hoomzoom/omniparse. Cannot control dependency versions.

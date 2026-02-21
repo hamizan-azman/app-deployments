@@ -280,3 +280,6 @@ Supported providers include:
 **Category: Dependencies only.** Source code untouched.
 
 - `PyMuPDF==1.24.2` added (not in original requirements.txt). The code imports `fitz` at module load time -- this was a missing dependency in the original repo.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

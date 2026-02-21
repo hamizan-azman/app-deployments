@@ -112,5 +112,19 @@ http://localhost:8000
 - Both OPENAI_API_KEY and TAVILY_API_KEY are needed for full functionality. The app starts without them but research will fail.
 - The web UI at `/` provides a user-friendly interface for conducting research.
 
+## V2 Dependency Changes (Minimum Version Pinning)
+- `unstructured>=0.13` bumped to `unstructured==0.14.2` (0.13 doesn't exist on PyPI; 0.13.x requires Python <3.12)
+- `lxml>=4.9.2` bumped to `lxml==4.9.3` (4.9.2 fails to build on Python 3.12)
+- `langgraph>=0.2.76` bumped to `langgraph==1.0.0` (langchain 1.0.0 requires langgraph>=1.0.0)
+- `pydantic>=2.5.1` bumped to `pydantic==2.9.0` (ollama 0.6.0 requires pydantic>=2.9)
+- `requests>=2.31.0` bumped to `requests==2.32.5` (langchain-community 0.4 requires requests>=2.32.5)
+- `ollama>=0.4.8` bumped to `ollama==0.6.0` (langchain-ollama 1.0.0 requires ollama>=0.6.0)
+- `openai>=1.3.3` bumped to `openai==1.109.1` (langchain-openai 1.0.0 requires openai>=1.109.1)
+- `arxiv>=2.0.0` bumped to `arxiv==2.1.3` (2.0.0 pins requests==2.31.0 which conflicts)
+- `fastapi>=0.104.1` bumped to `fastapi==0.115.0` (0.104.1 needs anyio<4.0.0 which conflicts with mcp)
+- `python-multipart>=0.0.6` bumped to `python-multipart==0.0.9` (mcp 1.9.1 requires >=0.0.9)
+- `langchain-mcp-adapters>=0.1.0` bumped to `langchain-mcp-adapters==0.2.0` (0.1.x needs langchain-core<0.4)
+- `mcp>=1.9.1` bumped to `mcp==1.9.2` (langchain-mcp-adapters 0.2.0 requires mcp>=1.9.2)
+
 ## Changes from Original
 - Changed CMD from shell form (`CMD uvicorn ...`) to exec form (`CMD ["uvicorn", ...]`) to handle signals properly. No functional change.

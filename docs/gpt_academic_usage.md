@@ -116,3 +116,6 @@ This is a Gradio web application. All interaction happens through the browser UI
 
 ## Changes from Original
 None. Uses the developer's own GHCR image (ghcr.io/binary-husky/gpt_academic_nolocal:master). Configuration via environment variables only.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning NOT applied. Uses official pre-built image — cannot control dependency versions.

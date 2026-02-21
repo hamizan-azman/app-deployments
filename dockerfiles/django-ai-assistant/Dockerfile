@@ -16,7 +16,7 @@ RUN sed -i 's|publicPath: "http://localhost:3000/webpack_bundles/"|publicPath: "
     npx webpack --mode=production
 
 # Stage 2: Python backend
-FROM python:3.12-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
@@ -29,7 +29,7 @@ RUN pip install --no-cache-dir poetry && \
 
 # Install library deps
 COPY pyproject.toml poetry.lock ./
-RUN poetry install --only main --no-root --no-interaction
+RUN poetry lock && poetry install --only main --no-root --no-interaction
 
 # Install example deps
 RUN pip install --no-cache-dir django-webpack-loader requests lxml wikipedia \

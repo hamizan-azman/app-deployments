@@ -56,6 +56,9 @@ API keys can also be entered through the web UI sidebar. Environment variables a
 - Stateless application. No database or persistent storage required.
 - The published Docker Hub image is `mrwadams/stridegpt`. We republish under `hoomzoom/stride-gpt` for this project.
 
+## V2 Dependency Changes (Minimum Version Pinning)
+- `streamlit>=1.40` pinned to `streamlit==1.40.0` (bumped from `==1.40` because `1.40` doesn't exist on PyPI; `1.40.0` is the actual minimum release)
+
 ## Changes from Original
 - Removed SHA256 pin from base image (`python:3.12-slim@sha256:...` to `python:3.12-slim`) to avoid Docker credential helper issues on remote builds.
 - Replaced curl-based healthcheck with Python urllib. The original Dockerfile's healthcheck uses `curl --fail` but `python:3.12-slim` does not include curl, causing the container to report as unhealthy despite functioning correctly. Our Dockerfile uses `python -c "import urllib.request; ..."` instead.

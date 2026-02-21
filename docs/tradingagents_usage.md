@@ -83,3 +83,6 @@ Reports are written to `./results/{ticker}/{date}/reports/`:
 - DuckDuckGo is not used here; stock data comes from yfinance by default.
 - Redis is in requirements but not actively used in the codebase.
 - Chainlit is a dependency but not the primary interface.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

@@ -93,3 +93,6 @@ To persist config, mount a volume: `-v ./config.toml:/NarratoAI/config.toml`
 **Category: Dependencies only.** Source code untouched.
 
 - Chinese pip mirror (`pypi.tuna.tsinghua.edu.cn`) replaced with default PyPI. Same packages, different download source.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+- `openai==1.77.0` → `openai==1.75.0` (litellm 1.70.0 requires openai<1.76.0)

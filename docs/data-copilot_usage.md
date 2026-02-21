@@ -58,3 +58,6 @@ docker pull hoomzoom/data-copilot:latest
 - UI and example queries are in Chinese
 - ZhiPu AI (GLM) integration unavailable due to pydantic v1/v2 conflict. OpenAI and DashScope (Qwen) integrations work.
 - CJK fonts pre-installed for matplotlib chart rendering
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

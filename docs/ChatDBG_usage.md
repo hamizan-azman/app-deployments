@@ -118,3 +118,6 @@ docker run -it --rm -e OPENAI_API_KEY=$OPENAI_API_KEY chatdbg bash -c \
 
 ## Changes from Original
 None. The deployed container uses the developer's original Dockerfile with no source code or dependency changes.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

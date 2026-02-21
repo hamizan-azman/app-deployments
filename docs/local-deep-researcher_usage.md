@@ -76,3 +76,6 @@ http://localhost:2024
 
 ## Changes from Original
 No changes from original. The Dockerfile is used as provided by the developer.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

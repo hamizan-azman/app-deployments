@@ -50,3 +50,6 @@ docker pull hoomzoom/magentic-ui:latest
 - Must mount Docker socket: `-v /var/run/docker.sock:/var/run/docker.sock`
 - First startup takes 2-3 minutes as it pulls internal helper images.
 - Chat functionality requires a valid OpenAI API key.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning NOT applied. Uses official pre-built image — cannot control dependency versions.

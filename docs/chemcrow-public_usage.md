@@ -109,5 +109,8 @@ print(chem.run('What is the molecular weight of aspirin?'))
 - The `paperscraper` dependency is installed from git (commented out in setup.py but required at runtime).
 - Optional self-hosted reaction prediction requires GPU Docker images: `doncamilom/rxnpred:latest` and `doncamilom/retrosynthesis:latest`.
 
+## V2 Dependency Changes (Minimum Version Pinning)
+- `langchain_core>=0.0.1` removed (incompatible with langchain==0.0.234 which predates the langchain_core split)
+
 ## Changes from Original
 None. Dockerfile written from scratch. Restored `paper-scraper` dependency that the developer left commented out in setup.py but imports in code.

@@ -68,3 +68,10 @@ Environment variable format: config key in uppercase with dots replaced by under
 ## Changes from Original
 - Changed the default ENTRYPOINT from CLI mode (`entrypoint.sh`) to Chainlit web UI mode (`entrypoint_chainlit.sh`). The original Dockerfile starts an interactive terminal session, which is not useful for Docker deployment. The web UI provides the same functionality through a browser.
 - Built with `WITH_WEB_SEARCH=false` for the Docker Hub image to avoid network timeouts downloading the sentence-transformers model during build. Web search can be added by rebuilding with `--build-arg WITH_WEB_SEARCH=true`.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+- `matplotlib==3.4` → `matplotlib==3.7.0` (3.4 has no prebuilt wheels for Python 3.12, fails to build from source)
+- `seaborn==0.11` → `seaborn==0.11.0` (version format fix)
+- `pyyaml==6.0` → `pyyaml==6.0.0` (version format fix)
+- `numpy==1.24.2` → `numpy==1.26.0` (needed for compatibility with sentence-transformers numpy 2.x transitive dep)
+- `scikit-learn==1.2.2` → `scikit-learn==1.5.0` (1.2.2/1.3.0 incompatible with numpy 2.x pulled by sentence-transformers)

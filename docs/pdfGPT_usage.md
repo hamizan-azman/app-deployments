@@ -126,3 +126,6 @@ curl -X POST http://localhost:8080/ask_file \
 | opentelemetry-exporter-prometheus | unpinned | ==1.12.0rc1 | Yanked from PyPI but required by jina 3.14.1 |
 
 The Gradio compat fixes change UI behavior slightly but not the backend API. The era-matched dependency pins lock the backend to 2023-era versions. The hardcoded `text-davinci-003` model in `api.py` was NOT changed.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

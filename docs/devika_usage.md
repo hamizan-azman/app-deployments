@@ -216,3 +216,6 @@ Devika executes arbitrary code and commands inside the backend container via Pla
 - **devika.dockerfile**: Replaced `uv` installation via curl script with `pip install uv` to avoid path issues with newer uv versions. Removed `COPY config.toml` (config.toml is gitignored and auto-created at runtime from sample.config.toml). Added `libcairo2-dev`, `pkg-config`, and `python3-dev` to apt dependencies for pycairo/xhtml2pdf support. Removed duplicate `uv venv` call.
 - **app.dockerfile**: Changed `COPY config.toml` to `COPY sample.config.toml /home/nonroot/client/config.toml` since config.toml does not exist in the repo.
 - **docker-compose.yml**: Rewrote to use pre-built `hoomzoom/` images instead of building from source. Added health checks for backend and Ollama services. Added named volume for backend database persistence.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

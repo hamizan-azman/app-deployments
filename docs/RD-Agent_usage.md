@@ -177,3 +177,6 @@ docker run -it --rm \
 
 ## Changes from Original
 None. Dockerfile written from scratch but source code and dependencies are untouched.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+- Minimum version pinning NOT applied. RD-Agent uses unpinned deps (no `>=` specifiers to convert). Added `SETUPTOOLS_SCM_PRETEND_VERSION=0.0.0` env var to Dockerfile to fix setuptools-scm version detection without .git folder.

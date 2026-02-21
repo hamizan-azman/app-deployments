@@ -74,3 +74,6 @@ API keys can also be entered through the web UI on the Welcome page. Environment
 ## Changes from Original
 - Removed SHA256 pin from base image (`python:3.12-slim@sha256:...` to `python:3.12-slim`) to avoid Docker credential helper issues on remote builds. No functional change.
 - Replaced curl-based healthcheck with Python urllib (matching the original Dockerfile's approach). The original `docker-compose.yml` used curl but the Dockerfile used Python urllib. We use the Dockerfile's approach.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

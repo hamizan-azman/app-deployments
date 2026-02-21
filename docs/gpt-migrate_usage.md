@@ -95,3 +95,6 @@ Note: Newer model names (gpt-4o, gpt-4-turbo, gpt-4o-mini) are NOT recognized by
 **Category: Dependencies only.** Source code untouched.
 
 - 6 era-matched pins added: openai==0.27.8, langchain==0.0.238, typer==0.9.0, click==8.1.7, yaspin==2.5.0, tree-sitter==0.20.4. All fall within the developer's `pyproject.toml` version ranges. Without these, the app crashes on import.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

@@ -13,10 +13,10 @@ RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/wh
 COPY setup.py setup.cfg README.md ./
 COPY zshot/ zshot/
 RUN pip install --no-cache-dir "transformers>=4.20,<5" && pip install --no-cache-dir -e .
-RUN pip install --no-cache-dir fastapi uvicorn
+RUN pip install --no-cache-dir "fastapi<0.100.0" uvicorn
 
 # Download spaCy model
-RUN python -m spacy download en_core_web_sm
+RUN pip install --no-cache-dir https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.1/en_core_web_sm-3.4.1-py3-none-any.whl
 
 # Pre-download the LinkerRegen model to zshot's cache path
 RUN python -c "\

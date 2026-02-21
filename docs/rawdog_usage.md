@@ -85,3 +85,6 @@ Example:
 
 ## Changes from Original
 None. Dockerfile written from scratch but source code and dependencies are untouched.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

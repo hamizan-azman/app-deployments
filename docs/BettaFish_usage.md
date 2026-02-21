@@ -106,5 +106,12 @@ docker compose up -d
 - CPU-only (torch CPU version), no GPU needed.
 - Chinese social media focused (Weibo, Bilibili, etc.).
 
+## V2 Dependency Changes (Minimum Version Pinning)
+- `opencv-python>=4.8.0` bumped to `opencv-python==4.8.0.74` (4.8.0 doesn't exist on PyPI)
+- `black>=23.0.0` bumped to `black==23.1.0` (23.0.0 doesn't exist on PyPI)
+- `psycopg[binary]>=3.1.0` bumped to `psycopg[binary]==3.1.8` (3.1.0 binary wheel not available for Python 3.11)
+- `lxml>=4.9.0` bumped to `lxml==4.9.3` (4.9.0 fails to build from source without libxml2-dev)
+- `aiohttp>=3.8.0` bumped to `aiohttp==3.9.0` (3.8.0 fails on Python 3.11 due to missing longintrepr.h)
+
 ## Changes from Original
 None. Uses the developer's own pre-built image (ghcr.io/666ghj/bettafish:latest).

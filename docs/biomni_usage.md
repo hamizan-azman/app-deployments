@@ -41,6 +41,10 @@ http://localhost:7860
 docker pull hoomzoom/biomni:latest
 ```
 
+## V2 Dependency Changes (Minimum Version Pinning)
+- `setuptools>=61.0` left unpinned (project uses PEP 639 license format requiring setuptools>=77)
+- `gradio>=5.0` pinned to `gradio==5.0` (no change needed, 5.0 exists)
+
 ## Notes
 - First startup downloads biomedical data lake (~11GB). Subsequent runs use cached data if volume is mounted: `-v biomni-data:/app/data`
 - The agent executes LLM-generated Python code. Run in a sandboxed environment.

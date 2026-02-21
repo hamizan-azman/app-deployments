@@ -129,3 +129,6 @@ docker exec funclip python funclip/videoclipper.py --stage 2 --file /path/to/vid
 
 ## Changes from Original
 None. Dockerfile written from scratch. PyTorch CPU variant used (same version, different build). ImageMagick policy fix follows the developer's own README instructions.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

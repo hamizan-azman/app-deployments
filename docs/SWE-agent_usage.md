@@ -232,3 +232,6 @@ Note: Use shortcuts, not raw model names (e.g. `gpt4o` not `gpt-4o`).
 
 ## Changes from Original
 None. Uses the developer's own pre-built image (sweagent/swe-agent-run:latest). At runtime, `sed` patches server.py to bind 0.0.0.0 instead of 127.0.0.1 (makes web UI network-accessible from outside the container). This is not baked into the image.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning NOT applied. Uses official pre-built image — cannot control dependency versions.

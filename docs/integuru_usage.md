@@ -58,3 +58,6 @@ This opens a Chromium browser. Log into the target platform, perform the action 
 - The tool works best with o1-mini or o1 models for code generation accuracy.
 - Output includes a dependency graph visualization and generated Python code.
 - Playwright + Chromium are installed in the image for potential headless browser operations within the agent.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied via Poetry. Added `poetry lock` step to Dockerfile to regenerate lock file after pinning. No dependency bumps were needed.

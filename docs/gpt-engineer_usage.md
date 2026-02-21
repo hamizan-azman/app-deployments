@@ -175,6 +175,15 @@ The mounted `/project` directory should contain:
 - Dockerfile modification: added `sed -i 's/\r$//' /app/entrypoint.sh` to fix Windows line ending issue.
 - **Security: executes arbitrary code.** gpt-engineer generates and executes code projects. Do not run with access to sensitive data or networks. High-value target for code injection research.
 
+## V2 Dependency Changes (Minimum Version Pinning)
+- `poetry-core>=1.0.0` left unpinned (1.0.0 doesn't support PEP 660 editable installs)
+- `tiktoken>=0.0.4` bumped to `tiktoken==0.7.0` (0.0.4 doesn't exist; langchain-openai requires >=0.7)
+- `langchain ^0.1.2` bumped to `langchain==0.2.0` (0.1.2 incompatible with langchain-community==0.2.0)
+- `langchain-anthropic ^0.1.1` bumped to `langchain-anthropic==0.1.13` (0.1.1 needs langchain-core<0.2)
+- `langchain_openai *` pinned to `langchain_openai==0.1.7` (needed compatible version for langchain 0.2.x)
+- `openai ^1.0` bumped to `openai==1.24.0` (langchain-openai 0.1.7 requires openai>=1.24.0)
+- `typer ^0.3.2` bumped to `typer==0.9.0` (0.3.2 needs click<7.2 which conflicts with black)
+
 ## Changes from Original
 **Category: Modified.** One line added to Dockerfile.
 

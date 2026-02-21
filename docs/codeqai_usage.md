@@ -121,3 +121,6 @@ Interactive config wizard. Requires TTY.
 | `/app/sample-project/` (new) | Initialized git repo with codeqai source as sample data | App requires running inside a git repo |
 
 Config pre-selects OpenAI backend (user would choose this interactively anyway). No application source code was modified.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

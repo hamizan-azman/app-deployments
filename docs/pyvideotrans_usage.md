@@ -66,3 +66,6 @@ docker run --rm -v ./input:/input -v ./output:/app/output \
 - Mount `/app/output` to retrieve results.
 - CPU-only by default. For GPU, use NVIDIA runtime and `--cuda` flag.
 - Python 3.10 strictly required.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

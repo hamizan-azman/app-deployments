@@ -71,3 +71,6 @@ docker compose up -d
 - Worker requires `.env` file in `workspace/airflow/config/` or it will exit.
 - Milvus vector DB (etcd + minio + milvus) is optional and not included in our compose for simplicity. Add from the original compose if needed.
 - Default credentials: Airflow (airflow/airflow), MySQL (bot/bot), PostgreSQL (airflow/airflow).
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning NOT applied. Uses official pre-built image — cannot control dependency versions.

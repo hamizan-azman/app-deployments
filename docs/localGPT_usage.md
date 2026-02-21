@@ -151,3 +151,6 @@ docker pull hoomzoom/localgpt-rag-api:latest
 
 ## Changes from Original
 None. All three of the developer's Dockerfiles used unmodified.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.

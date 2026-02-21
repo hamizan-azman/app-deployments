@@ -138,3 +138,6 @@ docker run -it -v /path/to/docs:/app/repodir hoomzoom/huixiangdou \
 | tokenizers | transitive | ==0.19.1 | Match transformers 4.44 |
 
 The developer's own pre-built image was broken (empty), so building from source was the only option.
+
+## V2 Dependency Changes (Minimum Version Pinning)
+- `pydantic==1.10.13` → `pydantic==2.0.0` (gradio 4.44.1 requires pydantic>=2.0)
