@@ -1,12 +1,12 @@
 # LLM Application Deployment Collection
 
-Dockerized deployment of 42 open-source LLM applications for supply chain security research. Each app is containerized, tested, and documented with usage guides and reasoning logs.
+Dockerized deployment of 41 open-source LLM applications for supply chain security research. Each app is containerized, tested, and documented with usage guides and reasoning logs.
 
 ## At a Glance
 
-- **42 apps deployed** across web UIs, CLI tools, and libraries
+- **41 apps deployed** across web UIs, CLI tools, and libraries
 - **8 apps skipped** (incompatible with Docker, local install docs provided)
-- **46 Docker images** published to [Docker Hub](https://hub.docker.com/u/hoomzoom) under `hoomzoom/`
+- **48 Docker images** published to [Docker Hub](https://hub.docker.com/u/hoomzoom) under `hoomzoom/`
 - **Every app tested** with documented pass/fail results per endpoint
 
 ## Quick Start
@@ -31,7 +31,7 @@ Each app's usage doc has the exact commands.
 ## Full App Catalog
 
 See **[App Catalog](Task1.md)** for the complete list with:
-- GitHub links, Docker images, and test results for all 42 apps
+- GitHub links, Docker images, and test results for all 41 apps
 - API key requirements and security warnings
 - Multi-container setup instructions
 - Notes on deprecated dependencies and supply chain concerns
@@ -58,12 +58,14 @@ Skipped apps also have usage docs with local install instructions.
 
 | Category | Apps | Examples |
 |----------|------|----------|
-| AI agents | 12 | SWE-agent, devika, AgentGPT, gpt-engineer, TaskWeaver |
-| Research tools | 8 | gpt-researcher, local-deep-researcher, RD-Agent, Data-Copilot |
+| AI agents | 12 | SWE-agent, devika, AgentGPT, gpt-engineer, TaskWeaver, agenticSeek |
+| Research tools | 8 | gpt-researcher, local-deep-researcher, RD-Agent, Data-Copilot, TradingAgents |
 | NLP/ML | 7 | pycorrector, zshot, HuixiangDou, FunClip, omniparse |
 | Security | 3 | attackgen, stride-gpt, Integuru |
 | Developer tools | 6 | ChatDBG, codeqai, gptme, rawdog, gpt-migrate, codeinterpreter-api |
 | Content generation | 6 | NarratoAI, slide-deck-ai, bilingual_book_maker, manga-image-translator, pyvideotrans, Paper2Poster |
+| RAG/Q&A | 5 | pdfGPT, localGPT, BettaFish, Biomni, chemcrow-public |
+| Other | 3 | auto-news, django-ai-assistant, gpt_academic |
 
 ## Security Notes
 

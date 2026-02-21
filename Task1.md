@@ -2,9 +2,9 @@
 
 ## Summary
 
-50 open-source LLM applications analyzed and containerized for supply chain security research. Each app was cloned, analyzed, containerized (Dockerfile written or pre-built image used), tested, and documented. Custom-built images are published to Docker Hub under `hoomzoom/`.
+49 open-source LLM applications analyzed and containerized for supply chain security research. Each app was cloned, analyzed, containerized (Dockerfile written or pre-built image used), tested, and documented. Custom-built images are published to Docker Hub under `hoomzoom/`.
 
-**Results:** 42 deployed, 8 skipped (incompatible with Docker).
+**Results:** 41 deployed, 8 skipped (incompatible with Docker).
 
 ---
 
@@ -202,7 +202,7 @@ For multi-container apps (pdfGPT, agenticSeek, localGPT, AgentGPT, BettaFish, gp
 
 ```
 app-deployments/
-  dockerfiles/       # Dockerfiles, docker-compose files, and config templates for all 31 apps
+  dockerfiles/       # Dockerfiles, docker-compose files, config templates, and V2 pinned dependency files
   docs/              # Usage docs (*_usage.md) and reasoning docs (*_reasoning.md)
   tracker.md         # Status tracker with test counts
 ```

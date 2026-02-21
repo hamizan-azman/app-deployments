@@ -15,7 +15,18 @@ Used `python:3.12-slim` with `docker.io` installed for Docker CLI access. The ap
 ## Docker-in-Docker Approach
 The container doesn't run its own Docker daemon. Instead, it mounts the host's Docker socket (`/var/run/docker.sock`), so when magentic-ui spawns helper containers (VNC browser, Python executor), they run as sibling containers on the host Docker.
 
-This is the standard DinD pattern -- simpler than running dockerd inside the container, but requires the `-v /var/run/docker.sock:/var/run/docker.sock` mount.
+Two alternatives were considered:
+1. **Full DinD (dockerd inside container)**: Would require `--privileged`, add complexity, and still need 2GB+ for the nested daemon. No benefit for research purposes.
+2. **Disable Docker entirely (`RUN_WITHOUT_DOCKER=True`)**: Would make the app non-functional — the browser and code execution agents are the core feature.
+
+Socket mounting is the standard pattern — simpler, no privilege escalation beyond socket access, and helper containers share the host's image cache.
+
+## Helper Image Architecture
+On first startup, magentic-ui pulls two images:
+- **VNC browser container**: Runs a headless Chromium instance accessible via VNC, used by the browsing agent to navigate web pages
+- **Python executor container**: Sandboxed Python environment where the coding agent runs generated code
+
+These are sibling containers managed by the magentic-ui backend via the Docker API. They're created per-session and destroyed when the session ends.
 
 ## Testing
 1. **Web UI (/)**: Returns 200, serves the React frontend

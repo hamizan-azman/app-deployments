@@ -19,11 +19,20 @@ auto-news by finaldie is an automated news aggregation system built on Apache Ai
 ### Use pre-built image (docker pull, not docker build)
 The developer publishes `finaldie/auto-news:0.9.15` on Docker Hub. No reason to rebuild from source. This matches our pattern for docker-pull apps.
 
-### Simplified docker-compose
-Removed the Milvus stack (etcd, minio, milvus, milvus-ui) from our compose file. Milvus is only needed for vector search/embedding features and adds 4 more containers. The core news pipeline works without it. Users can add Milvus from the original compose if needed.
+### Simplified docker-compose (13 → 9 services)
+The original compose defines 13 services. We removed 4:
+
+| Removed Service | Why |
+|----------------|-----|
+| etcd | Milvus coordination — only needed for vector search features |
+| minio | Milvus object storage — only needed for vector search features |
+| milvus-standalone | Vector DB — optional feature for embedding-based retrieval |
+| milvus-ui (Attu) | Milvus admin UI — irrelevant without Milvus |
+
+The 9 retained services form the complete Airflow pipeline: webserver, scheduler, worker, triggerer, init (schema migration), PostgreSQL (Airflow metadata), Redis (Celery broker), MySQL (app data), and Adminer (DB admin UI). This is the minimum needed for the news aggregation workflow.
 
 ### Removed airflow-init-user service
-This service runs post-init to apply patches, copy .env, and unpause DAGs. For our research deployment, users can unpause DAGs manually through the Airflow UI after configuring .env.
+This service runs post-init to apply patches, copy .env, and unpause DAGs. For our research deployment, users can unpause DAGs manually through the Airflow UI after configuring .env. Removing it avoids a hard failure when .env is missing during first startup.
 
 ### Worker .env handling
 Changed the worker's .env copy step from `exit 1` on missing file to a warning. This allows the worker to start even without a .env file, though it won't process content without API keys.

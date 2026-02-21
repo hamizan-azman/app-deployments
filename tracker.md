@@ -1,6 +1,6 @@
 # App Deployment Tracker
 
-## Completed (42/47)
+## Completed (41/49)
 | # | App | Status | Notes |
 |---|-----|--------|-------|
 | 1 | ChatDBG | DONE | CLI debugger, 7/7 tests |
