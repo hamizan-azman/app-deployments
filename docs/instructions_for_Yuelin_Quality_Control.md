@@ -7,13 +7,13 @@ You are performing quality control on 41 Dockerized LLM applications deployed by
 **Important files to read first:**
 - `Task1.md`. full app catalog with Docker images, test counts, and usage doc links
 - `tracker.md`. deployment status tracker
-- `docs/yuelin_qc_log.md`. QC log with results so far (12 apps tested, 30 remaining)
+- `docs/qc_log.md`. QC log with results so far (12 apps tested, 30 remaining)
 - Each app's `docs/<appname>_usage.md`. exact commands, endpoints, and expected responses
 
 ## What Has Been Done
 
 ### Apps Already Tested (12/41)
-These have been pulled, started, and endpoint-tested. Results in `docs/yuelin_qc_log.md`.
+These have been pulled, started, and endpoint-tested. Results in `docs/qc_log.md`.
 
 | # | App | Image | Result |
 |---|-----|-------|--------|
@@ -185,7 +185,7 @@ Check startup with `docker logs -f <container>`. The container may look hung but
 
 ## What to Record
 
-For each app, log in `docs/yuelin_qc_log.md`:
+For each app, log in `docs/qc_log.md`:
 1. Pull result (OK / FAIL with error)
 2. Run command used
 3. Startup time and any issues
@@ -198,4 +198,4 @@ For each app, log in `docs/yuelin_qc_log.md`:
 1. **Test remaining 30 apps** (follow procedures above)
 2. **Fix TaskWeaver image**. rebuild from `dockerfiles/TaskWeaver/Dockerfile` and push to Docker Hub
 3. **Retry manga-image-translator pull**. failed due to network (10GB image)
-4. **Update `docs/yuelin_qc_log.md`** with all results
+4. **Update `docs/qc_log.md`** with all results
