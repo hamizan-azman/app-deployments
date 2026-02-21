@@ -22,3 +22,96 @@
 [submodule "apps/stride-gpt"]
 	path = apps/stride-gpt
 	url = https://github.com/mrwadams/stride-gpt.git
+[submodule "apps/pyvideotrans"]
+	path = apps/pyvideotrans
+	url = https://github.com/jianchang512/pyvideotrans
+[submodule "apps/AgentGPT"]
+	path = apps/AgentGPT
+	url = https://github.com/reworkd/AgentGPT.git
+[submodule "apps/BettaFish"]
+	path = apps/BettaFish
+	url = https://github.com/666ghj/BettaFish.git
+[submodule "apps/DataFlow"]
+	path = apps/DataFlow
+	url = https://github.com/OpenDCAI/DataFlow.git
+[submodule "apps/FunClip"]
+	path = apps/FunClip
+	url = https://github.com/modelscope/FunClip.git
+[submodule "apps/HuixiangDou"]
+	path = apps/HuixiangDou
+	url = https://github.com/InternLM/HuixiangDou.git
+[submodule "apps/Integuru"]
+	path = apps/Integuru
+	url = https://github.com/Integuru-AI/Integuru
+[submodule "apps/MedRAX"]
+	path = apps/MedRAX
+	url = https://github.com/bowang-lab/MedRAX.git
+[submodule "apps/NarratoAI"]
+	path = apps/NarratoAI
+	url = https://github.com/linyqh/NarratoAI.git
+[submodule "apps/SWE-agent"]
+	path = apps/SWE-agent
+	url = https://github.com/SWE-agent/SWE-agent
+[submodule "apps/TaskMatrix"]
+	path = apps/TaskMatrix
+	url = https://github.com/microsoft/TaskMatrix.git
+[submodule "apps/TradingAgents"]
+	path = apps/TradingAgents
+	url = https://github.com/TauricResearch/TradingAgents
+[submodule "apps/agenticSeek"]
+	path = apps/agenticSeek
+	url = https://github.com/Fosowl/agenticSeek
+[submodule "apps/auto-news"]
+	path = apps/auto-news
+	url = https://github.com/finaldie/auto-news
+[submodule "apps/autoMate"]
+	path = apps/autoMate
+	url = https://github.com/yuruotong1/autoMate.git
+[submodule "apps/chemcrow-public"]
+	path = apps/chemcrow-public
+	url = https://github.com/ur-whitelab/chemcrow-public.git
+[submodule "apps/codeinterpreter-api"]
+	path = apps/codeinterpreter-api
+	url = https://github.com/shroominic/codeinterpreter-api.git
+[submodule "apps/codeqai"]
+	path = apps/codeqai
+	url = https://github.com/fynnfluegge/codeqai.git
+[submodule "apps/devika"]
+	path = apps/devika
+	url = https://github.com/stitionai/devika.git
+[submodule "apps/django-ai-assistant"]
+	path = apps/django-ai-assistant
+	url = https://github.com/vintasoftware/django-ai-assistant
+[submodule "apps/gpt-engineer"]
+	path = apps/gpt-engineer
+	url = https://github.com/AntonOsika/gpt-engineer
+[submodule "apps/gpt-migrate"]
+	path = apps/gpt-migrate
+	url = https://github.com/joshpxyne/gpt-migrate.git
+[submodule "apps/gpt_academic"]
+	path = apps/gpt_academic
+	url = https://github.com/binary-husky/gpt_academic.git
+[submodule "apps/home-llm"]
+	path = apps/home-llm
+	url = https://github.com/acon96/home-llm.git
+[submodule "apps/localGPT"]
+	path = apps/localGPT
+	url = https://github.com/PromtEngineer/localGPT.git
+[submodule "apps/magentic-ui"]
+	path = apps/magentic-ui
+	url = https://github.com/microsoft/magentic-ui
+[submodule "apps/manga-image-translator"]
+	path = apps/manga-image-translator
+	url = https://github.com/zyddnys/manga-image-translator.git
+[submodule "apps/omniparse"]
+	path = apps/omniparse
+	url = https://github.com/adithya-s-k/omniparse.git
+[submodule "apps/pdfGPT"]
+	path = apps/pdfGPT
+	url = https://github.com/bhaskatripathi/pdfGPT.git
+[submodule "apps/pycorrector"]
+	path = apps/pycorrector
+	url = https://github.com/shibing624/pycorrector.git
+[submodule "apps/whispering"]
+	path = apps/whispering
+	url = https://github.com/braden-w/whispering.git
