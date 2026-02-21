@@ -1,0 +1,24 @@
+[submodule "apps/Biomni"]
+	path = apps/Biomni
+	url = https://github.com/snap-stanford/Biomni.git
+[submodule "apps/Data-Copilot"]
+	path = apps/Data-Copilot
+	url = https://github.com/zwq2018/Data-Copilot.git
+[submodule "apps/TaskWeaver"]
+	path = apps/TaskWeaver
+	url = https://github.com/microsoft/TaskWeaver.git
+[submodule "apps/attackgen"]
+	path = apps/attackgen
+	url = https://github.com/mrwadams/attackgen.git
+[submodule "apps/gpt-researcher"]
+	path = apps/gpt-researcher
+	url = https://github.com/assafelovic/gpt-researcher.git
+[submodule "apps/gptme"]
+	path = apps/gptme
+	url = https://github.com/ErikBjare/gptme.git
+[submodule "apps/local-deep-researcher"]
+	path = apps/local-deep-researcher
+	url = https://github.com/langchain-ai/local-deep-researcher.git
+[submodule "apps/stride-gpt"]
+	path = apps/stride-gpt
+	url = https://github.com/mrwadams/stride-gpt.git
