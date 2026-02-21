@@ -1,0 +1,7 @@
+# Patch layer on top of existing image to restore deleted ws protobuf module
+FROM hoomzoom/manga-image-translator:latest
+
+# Restore manga_translator/server package (deleted in upstream commit 8aeff8e)
+RUN mkdir -p /app/manga_translator/server && touch /app/manga_translator/server/__init__.py
+
+COPY ws_pb2.py /app/manga_translator/server/ws_pb2.py
