@@ -1,0 +1,44 @@
+# NOTE: Copied from apps/magentic-ui/pyproject.toml for reference.
+# The Dockerfile installs magentic-ui from PyPI (pip install magentic-ui),
+# so these are the upstream-declared dependencies with their version constraints.
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "magentic_ui"
+license = "MIT"
+dynamic = ["version"]
+description = "A research prototype of a human-centered interface powered by a multi-agent system"
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["agents", "browser-use", "multi-agent", "ai-assistant", "playwright", "web-automation"]
+authors = [
+    {name = "Microsoft Corporation", email = "magui@service.microsoft.com"}
+]
+dependencies = [
+    "autogen-agentchat==0.5.7",
+    "autogen-core==0.5.7",
+    "autogen-ext[openai,docker,file-surfer,web-surfer,magentic-one,task-centric-memory,mcp]==0.5.7",
+    "aioconsole",
+    "nest_asyncio",
+    "docker",
+    "aiohttp",
+    "playwright==1.51",
+    "tldextract",
+    "loguru",
+    "pydantic",
+    "pydantic-settings",
+    "fastapi[standard]",
+    "typer",
+    "aiofiles",
+    "python-dotenv",
+    "websockets",
+    "sqlmodel",
+    "psycopg",
+    "alembic",
+    "pyyaml",
+    "html2text",
+    "psutil",
+]

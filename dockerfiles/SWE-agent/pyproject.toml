@@ -1,0 +1,42 @@
+# NOTE: Copied from apps/SWE-agent/pyproject.toml for reference.
+# SWE-agent uses the official pre-built image (sweagent/swe-agent-run:latest)
+# retagged to hoomzoom/swe-agent. No custom dependency pinning was applied.
+# This file documents the upstream dependencies for completeness.
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sweagent"
+dynamic = ["version"]
+description = "The official SWE-agent package - an open source Agent Computer Interface for running language models as software engineers."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+keywords = ["nlp", "agents", "code"]
+
+dependencies = [
+    "datasets",
+    "numpy",
+    "pandas",
+    "rich",
+    "ruamel.yaml",
+    "tenacity",
+    "unidiff",
+    "simple-parsing",
+    "rich-argparse",
+    "flask",
+    "flask-cors",
+    "flask-socketio",
+    "pydantic",
+    "python-dotenv",
+    "pydantic_settings",
+    "litellm",
+    "GitPython",
+    "ghapi",
+    "swe-rex>=1.4.0",
+    "tabulate",
+    "textual>=1.0.0",
+    "requests",
+]

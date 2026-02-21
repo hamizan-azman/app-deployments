@@ -112,6 +112,3 @@
 [submodule "apps/pycorrector"]
 	path = apps/pycorrector
 	url = https://github.com/shibing624/pycorrector.git
-[submodule "apps/whispering"]
-	path = apps/whispering
-	url = https://github.com/braden-w/whispering.git
