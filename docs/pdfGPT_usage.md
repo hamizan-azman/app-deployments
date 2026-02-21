@@ -1,4 +1,4 @@
-# pdfGPT -- Usage Documentation
+# pdfGPT. Usage Documentation
 
 ## Overview
 PDF question-answering app using Universal Sentence Encoder embeddings and OpenAI. Two-service architecture: langchain-serve backend (Jina/FastAPI) + Gradio frontend.
@@ -90,15 +90,15 @@ curl -X POST http://localhost:8080/ask_file \
 | 2 | Backend health check (/healthz) | PASS |
 | 3 | Backend Swagger UI (/docs) | PASS |
 | 4 | Frontend Gradio UI (port 7860) | PASS |
-| 5 | ask_url endpoint (full pipeline) | PASS (pipeline works; text-davinci-003 deprecated by OpenAI) |
+| 5 | ask_url endpoint (full pipeline) | PASS (pipeline works. text-davinci-003 deprecated by OpenAI) |
 | 6 | ask_file endpoint (full pipeline) | NOT TESTED (same pipeline as ask_url) |
 
 ## Notes
 - The backend image is large (~4GB) due to TensorFlow + Universal Sentence Encoder model baked in
 - First startup takes ~30s as TensorFlow initializes
-- The original `text-davinci-003` model in api.py is deprecated by OpenAI; litellm may route to alternatives
-- Uses openai==0.27.8 (old API) -- this is the original developer's architecture
-- langchain-serve is abandoned software with broken dependency chains; multiple version pins required
+- The original `text-davinci-003` model in api.py is deprecated by OpenAI. litellm may route to alternatives
+- Uses openai==0.27.8 (old API). this is the original developer's architecture
+- langchain-serve is abandoned software with broken dependency chains. multiple version pins required
 - **Abandoned dependencies (supply chain research note):** This app depends on langchain-serve (abandoned), jina 3.x (superseded), and openai 0.27.x (pre-1.0 API). All are pinned to 2023-era versions. The dependency chain is fragile and full of known vulnerabilities from that era. Worth investigating from a supply chain perspective.
 
 ## Changes from Original
@@ -128,4 +128,4 @@ curl -X POST http://localhost:8080/ask_file \
 The Gradio compat fixes change UI behavior slightly but not the backend API. The era-matched dependency pins lock the backend to 2023-era versions. The hardcoded `text-davinci-003` model in `api.py` was NOT changed.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed - all minimum versions resolved successfully.

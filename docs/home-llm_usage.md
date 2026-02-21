@@ -1,4 +1,4 @@
-# home-llm -- Local Install Guide
+# home-llm. Local Install Guide
 
 ## Overview
 home-llm is a Home Assistant custom integration that connects local LLMs (via Ollama, llama.cpp, or an OpenAI-compatible API) to Home Assistant, enabling voice and chat control of smart home devices without cloud services.
@@ -10,7 +10,7 @@ home-llm is not a standalone application. It is a Home Assistant custom componen
 - Home Assistant 2025.7.0 or newer (running instance)
 - HACS (Home Assistant Community Store) for easy install, or manual file copy
 - An LLM backend: Ollama, llama.cpp, LM Studio, or any OpenAI-compatible API
-- No dedicated GPU required for small models (Phi-3-mini, Llama-3.2-3B); larger models benefit from GPU
+- No dedicated GPU required for small models (Phi-3-mini, Llama-3.2-3B). larger models benefit from GPU
 
 ## Installation
 

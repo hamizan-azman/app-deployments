@@ -1,4 +1,4 @@
-# GPT Researcher -- Usage Documentation
+# GPT Researcher. Usage Documentation
 
 ## Overview
 FastAPI web application that conducts autonomous online research on any topic. Uses LLMs to plan research queries, scrapes web content with Chromium and Firefox, and generates comprehensive research reports.
@@ -113,7 +113,7 @@ http://localhost:8000
 - The web UI at `/` provides a user-friendly interface for conducting research.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-- `unstructured>=0.13` bumped to `unstructured==0.14.2` (0.13 doesn't exist on PyPI; 0.13.x requires Python <3.12)
+- `unstructured>=0.13` bumped to `unstructured==0.14.2` (0.13 doesn't exist on PyPI. 0.13.x requires Python <3.12)
 - `lxml>=4.9.2` bumped to `lxml==4.9.3` (4.9.2 fails to build on Python 3.12)
 - `langgraph>=0.2.76` bumped to `langgraph==1.0.0` (langchain 1.0.0 requires langgraph>=1.0.0)
 - `pydantic>=2.5.1` bumped to `pydantic==2.9.0` (ollama 0.6.0 requires pydantic>=2.9)

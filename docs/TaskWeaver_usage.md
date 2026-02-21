@@ -1,4 +1,4 @@
-# TaskWeaver -- Usage Documentation
+# TaskWeaver. Usage Documentation
 
 ## Overview
 Microsoft's code-first agent framework that uses LLMs to plan tasks and generate Python code for execution. Provides both a CLI and a Chainlit web UI for interactive sessions.

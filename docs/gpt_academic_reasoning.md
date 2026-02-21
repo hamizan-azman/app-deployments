@@ -1,4 +1,4 @@
-# GPT Academic -- Reasoning Log
+# GPT Academic. Reasoning Log
 
 ## What This App Is
 
@@ -15,9 +15,9 @@ The README is almost entirely in Chinese. Key findings:
 ### config.py
 This is the central configuration file. All settings can be overridden via environment variables. Key findings:
 - `API_KEY` is the main LLM key (OpenAI format by default)
-- `WEB_PORT = -1` means random port by default -- we need to set this explicitly
+- `WEB_PORT = -1` means random port by default. we need to set this explicitly
 - `USE_PROXY = False` by default, which is what we want
-- `AUTO_OPEN_BROWSER = True` by default -- need to disable in Docker
+- `AUTO_OPEN_BROWSER = True` by default. need to disable in Docker
 - Supports dozens of LLM providers: OpenAI, Azure, Zhipu GLM, Qwen, DeepSeek, Claude, Gemini, Baidu Qianfan, Xunfei Spark, Yi, Moonshot, etc.
 - The config comment at line 1-8 explicitly states: "Reading priority: environment variable > config_private.py > config.py"
 
@@ -57,14 +57,14 @@ The user requested port 12345. This matches the port used in the docker-compose 
 No real API key was provided. I used `sk-placeholder-for-testing` to allow the app to start. The app logs a warning about invalid key format but still boots and serves the UI. This is sufficient for infrastructure testing.
 
 ### Environment variables used
-- `WEB_PORT=12345` -- fixed port, not random
-- `API_KEY="sk-placeholder-for-testing"` -- allows boot without real key
-- `USE_PROXY="False"` -- no proxy needed
-- `AUTO_OPEN_BROWSER="False"` -- no browser in Docker container
-- `LLM_MODEL="gpt-3.5-turbo"` -- default model selection
+- `WEB_PORT=12345`. fixed port, not random
+- `API_KEY="sk-placeholder-for-testing"`. allows boot without real key
+- `USE_PROXY="False"`. no proxy needed
+- `AUTO_OPEN_BROWSER="False"`. no browser in Docker container
+- `LLM_MODEL="gpt-3.5-turbo"`. default model selection
 
 ### No Dockerfile creation needed
-We are using the pre-built image directly. No custom Dockerfile was created. This follows architectural fidelity -- the image is the developer's own build.
+We are using the pre-built image directly. No custom Dockerfile was created. This follows architectural fidelity. the image is the developer's own build.
 
 ## Alternatives Considered
 
@@ -109,7 +109,7 @@ The repo provides docker-compose.yml. Rejected because:
 **Result:** 200 OK.
 
 ### Test 6: GET /file=config.py (security test)
-**Why:** The app explicitly blocks access to sensitive files. Testing this proves the security middleware is active -- important for supply chain security research.
+**Why:** The app explicitly blocks access to sensitive files. Testing this proves the security middleware is active. important for supply chain security research.
 **Result:** Correctly returned 403 with message "File not allowed: config.py."
 
 ### Test 7: LLM chat (OpenAI gpt-3.5-turbo)
@@ -136,7 +136,7 @@ When running `docker exec` or `docker run` from Git Bash on Windows, paths like 
 If `WEB_PORT` doesn't match the port in `-p HOST:CONTAINER`, the app will listen on the wrong port inside the container and be unreachable. Both must be the same value.
 
 ### Chinese UI strings
-The entire UI is in Chinese by default. There is no built-in language toggle. The app works fine regardless of language -- it's purely cosmetic for the web interface.
+The entire UI is in Chinese by default. There is no built-in language toggle. The app works fine regardless of language. it's purely cosmetic for the web interface.
 
 ### No REST API for chat
 Unlike many LLM apps, GPT Academic does not expose a REST API for chat. All interaction goes through the Gradio WebSocket/queue system in the browser. The `/info` endpoint lists Gradio's internal unnamed endpoints, but these are meant for the Gradio client library, not direct curl usage.

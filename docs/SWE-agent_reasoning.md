@@ -1,4 +1,4 @@
-# SWE-agent -- Reasoning Log
+# SWE-agent. Reasoning Log
 
 ## What Is SWE-agent
 
@@ -11,16 +11,16 @@ Version on Docker Hub: 0.7.0. The current GitHub repo is 1.x, but the `latest` D
 ## Exploration
 
 ### Repository and Docker image
-- `README.md` -- understand what the tool does and how to use it
-- `pyproject.toml` -- dependencies, entry points, Python version
-- Searched for Dockerfiles in the repo -- found only test CTF Dockerfiles, not an app Dockerfile
-- `docker inspect sweagent/swe-agent-run:latest` -- understand image configuration (no entrypoint, CMD=python3, workdir=/app, no exposed ports)
-- Contents of `/app/` inside the image -- understand the deployed code structure
+- `README.md`. understand what the tool does and how to use it
+- `pyproject.toml`. dependencies, entry points, Python version
+- Searched for Dockerfiles in the repo. found only test CTF Dockerfiles, not an app Dockerfile
+- `docker inspect sweagent/swe-agent-run:latest`. understand image configuration (no entrypoint, CMD=python3, workdir=/app, no exposed ports)
+- Contents of `/app/` inside the image. understand the deployed code structure
 
 ### Key discovery: two-image architecture
 The Docker Hub provides two images:
-1. `sweagent/swe-agent-run:latest` -- the "runner" that contains the SWE-agent CLI, web UI, and orchestration code
-2. `sweagent/swe-agent:latest` -- the "environment" container that the runner spawns via Docker socket for each task
+1. `sweagent/swe-agent-run:latest`. the "runner" that contains the SWE-agent CLI, web UI, and orchestration code
+2. `sweagent/swe-agent:latest`. the "environment" container that the runner spawns via Docker socket for each task
 
 This is a Docker-in-Docker (DinD) setup. The runner container needs access to the Docker daemon (`/var/run/docker.sock`) because it creates, manages, and destroys environment containers for each coding task. Each environment container gets the target repo cloned into it, and the LLM-driven agent sends shell commands to it.
 
@@ -34,14 +34,14 @@ The GitHub repo has been rewritten for v1.0 with a completely different structur
 This means the Docker Hub `latest` tag is stale. For this deployment I used the Docker Hub image as-is (v0.7) since that's the pre-built image available. The alternative would be building v1.0 from source, which would require installing many additional dependencies and is a different project essentially.
 
 ### Exploring the CLI
-- `run.py` -- main entry point. Uses `simple_parsing` for arg parsing, `swebench` for harness
-- Model registry in `sweagent/agent/models.py` -- hardcoded model metadata (context size, cost per token). Only recognizes specific model names and shortcuts
-- Config files in `config/` -- YAML files that define the agent's system prompt, available commands, parsing behavior
+- `run.py`. main entry point. Uses `simple_parsing` for arg parsing, `swebench` for harness
+- Model registry in `sweagent/agent/models.py`. hardcoded model metadata (context size, cost per token). Only recognizes specific model names and shortcuts
+- Config files in `config/`. YAML files that define the agent's system prompt, available commands, parsing behavior
 
 ### Exploring the web UI
-- `sweagent/api/server.py` -- Flask + Flask-SocketIO backend on port 8000
-- `sweagent/frontend/` -- React app on port 3000
-- `start_web_ui.sh` -- orchestration script that starts both
+- `sweagent/api/server.py`. Flask + Flask-SocketIO backend on port 8000
+- `sweagent/frontend/`. React app on port 3000
+- `start_web_ui.sh`. orchestration script that starts both
 
 ## Approach
 
@@ -103,7 +103,7 @@ The agent:
 1. Cloned the test repo into an environment container
 2. Created `solution.py` with a recursive factorial function
 3. Created `test_solution.py` with assertions for factorial(0) through factorial(5)
-4. Ran the tests -- "All tests passed"
+4. Ran the tests. "All tests passed"
 5. Hit the $0.30 cost limit and auto-submitted the patch
 6. Saved the trajectory to a `.traj` file
 7. Cleaned up the environment container

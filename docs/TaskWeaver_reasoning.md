@@ -1,4 +1,4 @@
-# TaskWeaver -- Reasoning Log
+# TaskWeaver. Reasoning Log
 
 ## Initial Assessment
 

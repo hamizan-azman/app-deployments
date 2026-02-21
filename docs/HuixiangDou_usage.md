@@ -1,4 +1,4 @@
-# HuixiangDou -- Usage Documentation
+# HuixiangDou. Usage Documentation
 
 ## Overview
 Knowledge assistant powered by LLM. RAG pipeline for document Q&A with Gradio WebUI and FastAPI. Supports web search, code search, multimodal queries. CPU-only deployment with remote LLM APIs.
@@ -15,7 +15,7 @@ The UI loads without an API key, but queries require one. To configure your LLM 
 # 1. Copy the default config out of the container
 docker run --rm hoomzoom/huixiangdou cat config-cpu.ini > config-cpu.ini
 
-# 2. Edit config-cpu.ini -- find the [web_search] and [llm] sections and set:
+# 2. Edit config-cpu.ini. find the [web_search] and [llm] sections and set:
 #    remote_api_key = "sk-your-api-key"
 #    remote_type = "openai"  (or "kimi", "deepseek", "siliconcloud", etc.)
 

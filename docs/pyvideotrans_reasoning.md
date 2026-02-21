@@ -1,4 +1,4 @@
-# pyvideotrans -- Reasoning Log
+# pyvideotrans. Reasoning Log
 
 ## Initial Assessment
 

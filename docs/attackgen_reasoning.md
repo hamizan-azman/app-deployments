@@ -1,4 +1,4 @@
-# attackgen -- Reasoning Log
+# attackgen. Reasoning Log
 
 ## Initial Assessment
 

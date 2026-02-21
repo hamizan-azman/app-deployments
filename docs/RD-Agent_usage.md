@@ -1,4 +1,4 @@
-# RD-Agent -- Usage Documentation
+# RD-Agent. Usage Documentation
 
 ## Overview
 Microsoft's autonomous R&D framework that uses LLMs to automate data-driven research workflows: financial factor discovery, quantitative trading, Kaggle competition automation, and ML model extraction from papers.
@@ -47,13 +47,13 @@ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
 # Port check only
 docker run --rm rd-agent health_check --no-check-env --no-check-docker
 ```
-- **Tested:** Yes (port check passes; Docker/env checks require socket mount and API key)
+- **Tested:** Yes (port check passes. Docker/env checks require socket mount and API key)
 
 ### Collect system info
 - **Command:** `rdagent collect_info`
 - **Description:** Prints OS, Python version, and Docker status
 - **Run:** `docker run --rm rd-agent collect_info`
-- **Tested:** Yes (system info prints; Docker portion fails without socket mount)
+- **Tested:** Yes (system info prints. Docker portion fails without socket mount)
 
 ### Streamlit UI
 - **Command:** `rdagent ui --port 19899`
@@ -173,7 +173,7 @@ docker run -it --rm \
 - RD-Agent requires Docker-in-Docker for scenario execution. Without Docker socket mount, only the CLI, health_check, and UI work.
 - All R&D scenario commands (fin_*, data_science, general_model) require an LLM API key and Docker socket.
 - Image is based on python:3.10-slim. Build takes ~2 minutes on first run.
-- Official support is Linux only; the Docker container handles this on Windows/Mac.
+- Official support is Linux only. the Docker container handles this on Windows/Mac.
 
 ## Changes from Original
 None. Dockerfile written from scratch but source code and dependencies are untouched.

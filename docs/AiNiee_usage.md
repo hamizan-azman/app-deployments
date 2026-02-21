@@ -1,4 +1,4 @@
-# AiNiee -- Local Install Guide
+# AiNiee. Local Install Guide
 
 ## Overview
 AiNiee is a desktop AI translation tool with a PyQt5/PyQt-Fluent-Widgets GUI that automates bulk translation of games, novels, subtitles, and documents using AI APIs (OpenAI, DeepL, local models via Ollama/LM Studio, and others).
@@ -7,9 +7,9 @@ AiNiee is a desktop AI translation tool with a PyQt5/PyQt-Fluent-Widgets GUI tha
 AiNiee is a PyQt5 desktop GUI application with no headless or CLI mode. It requires a display server to render its interface and accepts input through its GUI (drag-and-drop file loading, button clicks, settings dialogs). There is no way to run it meaningfully without a desktop session.
 
 ## Requirements
-- OS: Windows 10/11 (primary and best-supported); Linux with a desktop environment may work
+- OS: Windows 10/11 (primary and best-supported). Linux with a desktop environment may work
 - Python 3.11 or 3.12
-- No GPU required for cloud API translation; GPU optional for local model backends
+- No GPU required for cloud API translation. GPU optional for local model backends
 - An API key for at least one translation backend (OpenAI, DeepSeek, etc.) or a local model server (Ollama, LM Studio)
 
 ## Installation
@@ -55,7 +55,7 @@ python main.py
 ## Environment Variables
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| (none) | -- | -- | All configuration (API keys, model selection, paths) is done through the GUI settings panel |
+| (none) |. |. | All configuration (API keys, model selection, paths) is done through the GUI settings panel |
 
 ## Notes
 - AiNiee supports many translation providers: OpenAI, Anthropic, DeepSeek, Gemini, DeepL, Cohere, local Ollama, LM Studio, and others.

@@ -1,4 +1,4 @@
-# SlideDeck AI -- Usage Documentation
+# SlideDeck AI. Usage Documentation
 
 ## Overview
 SlideDeck AI is a Streamlit app and CLI that generates PowerPoint slide decks from a topic using LLMs, and optionally enriches slides with images.
@@ -74,4 +74,4 @@ http://localhost:8501
 None. Dockerfile written from scratch but source code and dependencies are untouched.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed - all minimum versions resolved successfully.

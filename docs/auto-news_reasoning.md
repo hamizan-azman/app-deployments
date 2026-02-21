@@ -1,4 +1,4 @@
-# auto-news -- Reasoning Log
+# auto-news. Reasoning Log
 
 ## Initial Assessment
 
@@ -24,10 +24,10 @@ The original compose defines 13 services. We removed 4:
 
 | Removed Service | Why |
 |----------------|-----|
-| etcd | Milvus coordination — only needed for vector search features |
-| minio | Milvus object storage — only needed for vector search features |
-| milvus-standalone | Vector DB — optional feature for embedding-based retrieval |
-| milvus-ui (Attu) | Milvus admin UI — irrelevant without Milvus |
+| etcd | Milvus coordination - only needed for vector search features |
+| minio | Milvus object storage - only needed for vector search features |
+| milvus-standalone | Vector DB - optional feature for embedding-based retrieval |
+| milvus-ui (Attu) | Milvus admin UI - irrelevant without Milvus |
 
 The 9 retained services form the complete Airflow pipeline: webserver, scheduler, worker, triggerer, init (schema migration), PostgreSQL (Airflow metadata), Redis (Celery broker), MySQL (app data), and Adminer (DB admin UI). This is the minimum needed for the news aggregation workflow.
 

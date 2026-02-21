@@ -1,4 +1,4 @@
-# Windrecorder -- Local Install Guide
+# Windrecorder. Local Install Guide
 
 ## Overview
 Windrecorder is a Windows-only personal memory search app that continuously records your screen, indexes content via OCR, and lets you search or rewind through past screen activity. It runs entirely locally with no cloud uploads.
@@ -7,8 +7,8 @@ Windrecorder is a Windows-only personal memory search app that continuously reco
 Windrecorder uses Windows-only system APIs (pywin32, Windows OCR via wcocr, ffmpeg integration) to capture the screen and record desktop activity. Docker containers on Windows do not have access to the host desktop or display. The tool also uses `.bat` scripts for installation and startup, and is explicitly designed as a Windows desktop utility.
 
 ## Requirements
-- OS: Windows 10 or 11 (required; no Linux or macOS support)
-- Python 3.11 (specifically; 3.12 is not currently supported)
+- OS: Windows 10 or 11 (required. no Linux or macOS support)
+- Python 3.11 (specifically. 3.12 is not currently supported)
 - Git
 - FFmpeg (must be in `C:\Windows\System32\` or in PATH)
 - 10-20 GB free disk space per month of recordings
@@ -20,7 +20,7 @@ Windrecorder uses Windows-only system APIs (pywin32, Windows OCR via wcocr, ffmp
 
 Install Git from https://git-scm.com/downloads.
 
-Install Python 3.11 from https://www.python.org/downloads/ -- check "Add Python to PATH" during installation.
+Install Python 3.11 from https://www.python.org/downloads/. check "Add Python to PATH" during installation.
 
 Install FFmpeg:
 ```

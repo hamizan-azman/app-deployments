@@ -1,4 +1,4 @@
-# Rawdog -- Usage Documentation
+# Rawdog. Usage Documentation
 
 ## Overview
 Rawdog is a CLI assistant that generates and executes Python scripts to complete tasks. It supports direct single prompt mode and interactive conversation mode.
@@ -87,4 +87,4 @@ Example:
 None. Dockerfile written from scratch but source code and dependencies are untouched.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed - all minimum versions resolved successfully.

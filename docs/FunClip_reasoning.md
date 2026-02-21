@@ -1,4 +1,4 @@
-# FunClip -- Reasoning Log
+# FunClip. Reasoning Log
 
 ## Analysis
 
@@ -17,7 +17,7 @@ Key findings:
 The imports in launch.py are non-package relative: `from videoclipper import VideoClipper`. This works because Python adds the directory containing the executed script to sys.path. So when you run `python funclip/launch.py`, the `funclip/` directory is on sys.path and `videoclipper`, `llm.openai_api`, `utils.trans_utils`, `introduction` all resolve correctly. This means the working directory should be the project root, not `funclip/`.
 
 ### Server Binding
-launch.py has a `--listen` flag that switches `server_name` from `127.0.0.1` to `0.0.0.0`. This is critical for Docker -- without `--listen`, the Gradio server only binds to localhost inside the container, making it unreachable from the host.
+launch.py has a `--listen` flag that switches `server_name` from `127.0.0.1` to `0.0.0.0`. This is critical for Docker. without `--listen`, the Gradio server only binds to localhost inside the container, making it unreachable from the host.
 
 ### Language Flag
 The `-l` / `--lang` flag determines which FunASR model is loaded. Chinese (`zh`) uses SeACo-Paraformer with hotword support. English (`en`) uses a simpler Paraformer model. I chose `-l en` for the default CMD since the researchers are English-speaking. This can be changed by overriding the CMD.
@@ -25,7 +25,7 @@ The `-l` / `--lang` flag determines which FunASR model is loaded. Chinese (`zh`)
 ## Dockerfile Decisions
 
 ### Base Image: python:3.10-slim
-FunASR 1.3.1 requires Python 3.8+. Python 3.10 is a safe middle ground -- new enough for all deps, old enough to avoid compatibility issues. Slim variant keeps image size down while still having the build tools pip needs.
+FunASR 1.3.1 requires Python 3.8+. Python 3.10 is a safe middle ground. new enough for all deps, old enough to avoid compatibility issues. Slim variant keeps image size down while still having the build tools pip needs.
 
 ### System Dependencies
 - `ffmpeg`: Required by moviepy for video processing. Without it, all video operations fail.
@@ -48,14 +48,14 @@ The repo includes a `docs/images/` directory with screenshots, but it's small en
 Could have used an nvidia/cuda base image, but Docker Desktop on this Windows machine doesn't support GPU passthrough. CPU inference works fine for FunASR models, just slower. If someone needs GPU, they can change the base image and torch install.
 
 ### Pre-downloading Models into the Image
-FunASR models are downloaded from ModelScope at first startup (~1.2GB total: Paraformer ~823MB, VAD ~50MB, punctuation ~278MB, speaker model ~27MB). I could have added `RUN python -c "from funasr import AutoModel; AutoModel(...)"` to the Dockerfile to bake models into the image. I chose not to because:
+FunASR models are downloaded from ModelScope at first startup (~1.2GB total: Paraformer ~823MB, VAD ~50MB, punctuation ~278MB, speaker model ~27MB). I could have added `RUN python -c "from funasr import AutoModel. AutoModel(...)"` to the Dockerfile to bake models into the image. I chose not to because:
 1. It would make the Docker image 1.2GB larger
 2. The models cache inside the running container
 3. Users can mount a volume for persistence if needed
 4. Keeping the image lean is better for our use case (we build many images)
 
 ### Using docker-compose
-FunClip is self-contained -- no database, no Redis, no external services. A single `docker run` is sufficient. docker-compose would add complexity without benefit.
+FunClip is self-contained. no database, no Redis, no external services. A single `docker run` is sufficient. docker-compose would add complexity without benefit.
 
 ### Pinning Gradio Version
 The requirements.txt has unpinned `gradio`. pip installed Gradio 6.5.1, which has some API differences from older versions (the `meta` field requirement for FileData, the `/gradio_api/` prefix instead of `/api/`). I let pip resolve the latest version because FunClip's code is straightforward Gradio usage (gr.Blocks, gr.Button.click, etc.) and works fine with 6.x.
@@ -82,7 +82,7 @@ If the policy isn't fixed, the "Clip+Subtitles" feature fails because moviepy ca
 **Result:** 7 endpoints listed (/mix_recog, /mix_recog_speaker, /mix_clip, /video_clip_addsub, /llm_inference, /AI_clip, /AI_clip_subti). PASS.
 
 ### Test 3: /mix_recog (ASR)
-**Why:** This is the core feature -- speech recognition. Tests the entire FunASR pipeline: audio loading, VAD, Paraformer inference, punctuation, SRT generation.
+**Why:** This is the core feature. speech recognition. Tests the entire FunASR pipeline: audio loading, VAD, Paraformer inference, punctuation, SRT generation.
 **What I did:** Created a 3-second 440Hz sine wave with ffmpeg, uploaded it via the Gradio upload API, then called /mix_recog. A sine wave isn't speech, but FunASR still processes it and returns some output ("Mmhmmm mmhmm").
 **Result:** Returns text and SRT subtitle. The ASR models loaded correctly, inference ran, output was properly formatted. PASS.
 
@@ -91,7 +91,7 @@ If the policy isn't fixed, the "Clip+Subtitles" feature fails because moviepy ca
 **Result:** Returns text with `spk0` speaker label. The speaker model loaded and ran correctly. PASS.
 
 ### Test 5: /mix_clip (Clipping)
-**Why:** Tests the core clipping pipeline -- the main value of this app.
+**Why:** Tests the core clipping pipeline. the main value of this app.
 **Initial attempt:** Failed via Gradio JSON API because `gr.State` stores Python dicts with numpy arrays that can't round-trip through JSON (state comes back as `null`).
 **Fix:** Tested by calling the Python functions directly inside the container, bypassing the Gradio API serialization layer. Downloaded the real example audio file from the README (a Chinese interview clip). Used the Chinese SeACo-Paraformer model for recognition, then clipped using a substring from the middle of the recognized text.
 **Result:** ASR recognized the full interview. Text matching found 1 period at 95.72s-97.94s. Clipped 2.22 seconds of audio with correct SRT subtitles. PASS.
@@ -99,7 +99,7 @@ If the policy isn't fixed, the "Clip+Subtitles" feature fails because moviepy ca
 ### Test 6: /llm_inference
 **Why:** Tests the LLM integration end-to-end.
 **What I did:** Passed the OPENAI_API_KEY env var into the container, then called /llm_inference with model `gpt-4-turbo`, a system prompt asking it to analyze SRT subtitles, and the SRT output from the ASR test. Note: the code routes `gpt-3.5-turbo` to moonshot.cn (not OpenAI!), and `deepseek` to deepseek.com. Only `gpt-4-turbo` and similar actually hit the OpenAI API (base_url stays None).
-**Result:** GPT-4-turbo returned `1. [00:00:00,680-00:00:03,050] mmhmmm mmhmm,` -- a properly formatted timestamp + text clip suggestion. PASS.
+**Result:** GPT-4-turbo returned `1. [00:00:00,680-00:00:03,050] mmhmmm mmhmm,`. a properly formatted timestamp + text clip suggestion. PASS.
 
 ## Gotchas
 
@@ -113,7 +113,7 @@ The README instructions reference `/etc/ImageMagick-6/policy.xml` but current De
 Gradio 6.x requires a `meta` field in file upload payloads: `{'path': '...', 'meta': {'_type': 'gradio.FileData'}}`. Without it, pydantic validation fails. Older Gradio versions accepted just `{'path': '...'}`. The API prefix also changed from `/api/` to `/gradio_api/`.
 
 ### gr.State Serialization
-Gradio's `gr.State` component is designed for browser session state, not API usage. The state stores Python objects (dicts with numpy arrays) that can't be serialized to JSON. This means clip endpoints only work through the browser UI. This is the intended usage -- FunClip is a Gradio app, not a REST API.
+Gradio's `gr.State` component is designed for browser session state, not API usage. The state stores Python objects (dicts with numpy arrays) that can't be serialized to JSON. This means clip endpoints only work through the browser UI. This is the intended usage. FunClip is a Gradio app, not a REST API.
 
 ### Model Download on First Start
 FunASR models are downloaded from ModelScope on first container start. This takes 3-7 minutes depending on network speed. The container appears to hang during this time. To persist models across container restarts, mount a volume at `/root/.cache/modelscope`.

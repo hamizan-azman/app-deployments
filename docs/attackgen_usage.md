@@ -1,4 +1,4 @@
-# AttackGen -- Usage Documentation
+# AttackGen. Usage Documentation
 
 ## Overview
 Streamlit web application that generates tailored cybersecurity incident response testing scenarios based on the MITRE ATT&CK framework. Supports multiple LLM providers including OpenAI, Anthropic, Google, Mistral, Groq, and Ollama.
@@ -76,4 +76,4 @@ API keys can also be entered through the web UI on the Welcome page. Environment
 - Replaced curl-based healthcheck with Python urllib (matching the original Dockerfile's approach). The original `docker-compose.yml` used curl but the Dockerfile used Python urllib. We use the Dockerfile's approach.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed - all minimum versions resolved successfully.

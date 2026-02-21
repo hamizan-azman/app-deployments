@@ -1,4 +1,4 @@
-# pycorrector -- Usage Documentation
+# pycorrector. Usage Documentation
 
 ## Overview
 Chinese text correction toolkit. Detects and corrects spelling errors (phonetic similarity, visual similarity, grammar) in Chinese text using MacBERT model. Exposes a Gradio web UI and API.
@@ -99,4 +99,4 @@ data: ["{'source': '少先队员因该为老人让坐', 'target': '少先队员�
 No impact on application logic. Network binding change only.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed - all minimum versions resolved successfully.

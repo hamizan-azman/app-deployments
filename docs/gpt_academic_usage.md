@@ -1,4 +1,4 @@
-# GPT Academic -- Usage Documentation
+# GPT Academic. Usage Documentation
 
 ## Overview
 GPT Academic (GPT 学术优化) is a Gradio-based web UI for interacting with LLMs. Designed for academic workflows: paper reading, translation, code analysis, polishing, LaTeX editing. Supports OpenAI, Azure, Zhipu GLM, Qwen, DeepSeek, Claude, and other models. Plugin system for extended functionality.
@@ -31,7 +31,7 @@ http://localhost:12345
 - Dark/light theme toggle
 
 ## Web Interface
-This is a Gradio web application. All interaction happens through the browser UI at the base URL. There is no traditional REST API for chat -- users interact via the Gradio interface.
+This is a Gradio web application. All interaction happens through the browser UI at the base URL. There is no traditional REST API for chat. users interact via the Gradio interface.
 
 ### Gradio Infrastructure Endpoints
 
@@ -118,4 +118,4 @@ This is a Gradio web application. All interaction happens through the browser UI
 None. Uses the developer's own GHCR image (ghcr.io/binary-husky/gpt_academic_nolocal:master). Configuration via environment variables only.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning NOT applied. Uses official pre-built image — cannot control dependency versions.
+Minimum version pinning NOT applied. Uses official pre-built image - cannot control dependency versions.

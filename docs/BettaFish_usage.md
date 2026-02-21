@@ -1,4 +1,4 @@
-# BettaFish -- Usage Documentation
+# BettaFish. Usage Documentation
 
 ## Overview
 Multi-agent opinion analysis system. Performs sentiment analysis across social media platforms using specialized AI agents (Query, Media, Insight, Report). Flask web UI with Streamlit components and PostgreSQL backend.

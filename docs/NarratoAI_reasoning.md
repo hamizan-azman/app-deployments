@@ -1,4 +1,4 @@
-# NarratoAI -- Reasoning Log
+# NarratoAI. Reasoning Log
 
 ## What This App Is
 
@@ -44,7 +44,7 @@ The entrypoint script:
 3. Attempts to `pip install --user -r requirements.txt` at startup (for hot-updating deps when volume-mounting new code)
 4. Starts Streamlit on 0.0.0.0:8501 with CORS enabled, XSRF disabled, max upload 2048MB
 
-The `pip install --user` fails in the venv with "User site-packages are not visible in this virtualenv" but this is harmless -- all deps are already installed from the build stage.
+The `pip install --user` fails in the venv with "User site-packages are not visible in this virtualenv" but this is harmless. all deps are already installed from the build stage.
 
 ### webui.py
 The main Streamlit app:
@@ -124,7 +124,7 @@ The entrypoint's `pip install --user` fails harmlessly. Could have patched it ou
 The original Dockerfile uses `pypi.tuna.tsinghua.edu.cn`. If building from China, keep it. Outside China, swap to default PyPI or your preferred mirror.
 
 ### Entrypoint pip install --user failure
-The entrypoint script tries to install deps at startup with `--user` flag. This fails in a venv ("User site-packages are not visible in this virtualenv"). This is harmless -- all deps are installed during the Docker build. The error message appears in logs but doesn't affect the app.
+The entrypoint script tries to install deps at startup with `--user` flag. This fails in a venv ("User site-packages are not visible in this virtualenv"). This is harmless. all deps are installed during the Docker build. The error message appears in logs but doesn't affect the app.
 
 ### Config via TOML file, not env vars
 Unlike most apps in this project, NarratoAI configures LLM API keys via a TOML config file, not environment variables. To pre-configure, mount a config.toml: `-v ./config.toml:/NarratoAI/config.toml`.

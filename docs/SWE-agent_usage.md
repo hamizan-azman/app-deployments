@@ -1,4 +1,4 @@
-# SWE-agent -- Usage Documentation
+# SWE-agent. Usage Documentation
 
 ## Overview
 Autonomous software engineering agent that uses LLMs to fix GitHub issues, solve coding challenges, and find cybersecurity vulnerabilities. Operates via CLI or web UI. Uses Docker-in-Docker to create isolated coding environments.
@@ -130,7 +130,7 @@ docker run --rm -p 8000:8000 -p 3000:3000 \
   hoomzoom/swe-agent \
   -c 'cd /app && sed -i "s/socketio.run(app, port=8000/socketio.run(app, host=\"0.0.0.0\", port=8000/" sweagent/api/server.py && python3 sweagent/api/server.py &
 sleep 5
-cd sweagent/frontend && npx pm2 start --name swe-agent npm -- start
+cd sweagent/frontend && npx pm2 start --name swe-agent npm. start
 sleep 3600'
 ```
 Then open http://localhost:3000 in your browser.
@@ -234,4 +234,4 @@ Note: Use shortcuts, not raw model names (e.g. `gpt4o` not `gpt-4o`).
 None. Uses the developer's own pre-built image (sweagent/swe-agent-run:latest). At runtime, `sed` patches server.py to bind 0.0.0.0 instead of 127.0.0.1 (makes web UI network-accessible from outside the container). This is not baked into the image.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning NOT applied. Uses official pre-built image — cannot control dependency versions.
+Minimum version pinning NOT applied. Uses official pre-built image - cannot control dependency versions.

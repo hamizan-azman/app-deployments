@@ -1,4 +1,4 @@
-# gpt-engineer -- Usage Documentation
+# gpt-engineer. Usage Documentation
 
 ## Overview
 CLI tool that generates or improves code projects using OpenAI (or Anthropic) LLMs. You describe software in natural language and the AI writes and executes the code.
@@ -15,7 +15,7 @@ docker run -it --rm -e OPENAI_API_KEY=your-key -v ./my-project:/project hoomzoom
 ```
 
 ## Base URL
-N/A -- CLI tool, no HTTP server.
+N/A. CLI tool, no HTTP server.
 
 ## Core Features
 - Generate new code projects from natural language prompts
@@ -145,9 +145,9 @@ docker run --rm --entrypoint bench gpt-engineer --help
 
 ## Project Directory Structure
 The mounted `/project` directory should contain:
-- `prompt` -- text file with your instructions (required)
+- `prompt`. text file with your instructions (required)
 - Existing code files (for `--improve` mode)
-- `preprompts/` -- custom preprompts (with `--use-custom-preprompts`)
+- `preprompts/`. custom preprompts (with `--use-custom-preprompts`)
 
 ## Tests
 
@@ -177,7 +177,7 @@ The mounted `/project` directory should contain:
 
 ## V2 Dependency Changes (Minimum Version Pinning)
 - `poetry-core>=1.0.0` left unpinned (1.0.0 doesn't support PEP 660 editable installs)
-- `tiktoken>=0.0.4` bumped to `tiktoken==0.7.0` (0.0.4 doesn't exist; langchain-openai requires >=0.7)
+- `tiktoken>=0.0.4` bumped to `tiktoken==0.7.0` (0.0.4 doesn't exist. langchain-openai requires >=0.7)
 - `langchain ^0.1.2` bumped to `langchain==0.2.0` (0.1.2 incompatible with langchain-community==0.2.0)
 - `langchain-anthropic ^0.1.1` bumped to `langchain-anthropic==0.1.13` (0.1.1 needs langchain-core<0.2)
 - `langchain_openai *` pinned to `langchain_openai==0.1.7` (needed compatible version for langchain 0.2.x)

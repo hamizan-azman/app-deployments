@@ -1,4 +1,4 @@
-# AgentGPT -- Usage Documentation
+# AgentGPT. Usage Documentation
 
 ## Overview
 Autonomous AI agent platform. Users define goals, the system breaks them into tasks, selects tools (search, code, image gen), executes them, and returns results. Next.js frontend + FastAPI backend + MySQL.
@@ -61,7 +61,7 @@ docker compose up -d
 - **Method:** GET
 - **Request:** `curl http://localhost:8000/api/monitoring/health`
 - **Response:** `null` (200 OK)
-- **Tested:** Yes -- PASS
+- **Tested:** Yes. PASS
 
 ### Error Check
 - **URL:** `/api/monitoring/error`
@@ -69,35 +69,35 @@ docker compose up -d
 - **Description:** Intentionally throws an error (for logging verification)
 - **Request:** `curl http://localhost:8000/api/monitoring/error`
 - **Response:** 500 Internal Server Error (expected)
-- **Tested:** Yes -- PASS
+- **Tested:** Yes. PASS
 
 ### Swagger Docs
 - **URL:** `/api/docs`
 - **Method:** GET
 - **Request:** `curl http://localhost:8000/api/docs`
 - **Response:** 200 OK, Swagger UI
-- **Tested:** Yes -- PASS
+- **Tested:** Yes. PASS
 
 ### OpenAPI Spec
 - **URL:** `/api/openapi.json`
 - **Method:** GET
 - **Request:** `curl http://localhost:8000/api/openapi.json`
 - **Response:** 200 OK, full OpenAPI 3.0 schema
-- **Tested:** Yes -- PASS
+- **Tested:** Yes. PASS
 
 ### Get Tools
 - **URL:** `/api/agent/tools`
 - **Method:** GET
 - **Request:** `curl http://localhost:8000/api/agent/tools`
 - **Response:** `{"tools":[{"name":"image",...},{"name":"code",...},{"name":"sid",...}]}`
-- **Tested:** Yes -- PASS
+- **Tested:** Yes. PASS
 
 ### Extract Metadata
 - **URL:** `/api/metadata?url=<url>`
 - **Method:** GET
 - **Request:** `curl "http://localhost:8000/api/metadata?url=https://example.com"`
 - **Response:** `{"title":null,"hostname":"example.com","favicon":"https://example.com/favicon.ico"}`
-- **Tested:** Yes -- PASS
+- **Tested:** Yes. PASS
 
 ### Start Agent (auth required)
 - **URL:** `/api/agent/start`
@@ -138,7 +138,7 @@ docker compose up -d
 ### Frontend
 - **URL:** `http://localhost:3000`
 - **Method:** GET (browser)
-- **Tested:** Yes -- PASS (200 OK)
+- **Tested:** Yes. PASS (200 OK)
 
 ## Environment Variables
 | Variable | Required | Default | Description |
@@ -148,9 +148,9 @@ docker compose up -d
 | REWORKD_PLATFORM_FF_MOCK_MODE_ENABLED | No | false | Enable mock agent mode (no API key needed) |
 | REWORKD_PLATFORM_SERP_API_KEY | No | changeme | SerpAPI key for web search tool |
 | REWORKD_PLATFORM_REPLICATE_API_KEY | No | changeme | Replicate key for image generation |
-| GOOGLE_CLIENT_ID / SECRET | No | -- | Google OAuth |
-| GITHUB_CLIENT_ID / SECRET | No | -- | GitHub OAuth |
-| DISCORD_CLIENT_ID / SECRET | No | -- | Discord OAuth |
+| GOOGLE_CLIENT_ID / SECRET | No |. | Google OAuth |
+| GITHUB_CLIENT_ID / SECRET | No |. | GitHub OAuth |
+| DISCORD_CLIENT_ID / SECRET | No |. | Discord OAuth |
 
 ## Test Results
 | # | Test | Result |
@@ -172,7 +172,7 @@ docker compose up -d
 - Auth uses NextAuth with Prisma adapter. In dev mode, sign-in is simplified
 - Database auto-migrates on first frontend start via Prisma
 - The `mock_mode` setting lets you test without an OpenAI key (returns fake agent responses)
-- **Dependency mismatch (supply chain research note):** The deployed langchain version (0.0.335) does not match the developer's poetry.lock (0.0.295) -- 40 patch versions of difference. The base OS was also changed from Debian Buster to Bookworm, and Java from 11 to 17. See the "Changes from Original" section below for full details.
+- **Dependency mismatch (supply chain research note):** The deployed langchain version (0.0.335) does not match the developer's poetry.lock (0.0.295). 40 patch versions of difference. The base OS was also changed from Debian Buster to Bookworm, and Java from 11 to 17. See the "Changes from Original" section below for full details.
 
 ## Changes from Original
 **Category: Dependencies only.** Source code untouched.
@@ -184,4 +184,4 @@ docker compose up -d
 **Note for pentesters:** The langchain version (0.0.335) does not match the developer's `poetry.lock` (0.0.295). 40 patch versions of difference. Different OS packages (Bookworm vs Buster) and Java version also differ.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied. No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied. No dependency bumps were needed - all minimum versions resolved successfully.

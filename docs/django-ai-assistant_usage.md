@@ -1,4 +1,4 @@
-# django-ai-assistant -- Usage Documentation
+# django-ai-assistant. Usage Documentation
 
 ## Overview
 Django app integrating LangChain/LangGraph AI assistants with a web UI. Includes example assistants for weather, movies, issue tracking, RAG, and tour guide. React frontend with Mantine UI.

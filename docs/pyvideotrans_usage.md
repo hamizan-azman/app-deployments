@@ -1,4 +1,4 @@
-# pyvideotrans -- Usage Documentation
+# pyvideotrans. Usage Documentation
 
 ## Overview
 Video translation, speech transcription, AI dubbing, and subtitle translation tool. Supports multiple ASR engines (Whisper, FunASR), TTS providers (Edge-TTS, Elevenlabs), and translation APIs. CLI mode for headless Docker operation.
@@ -68,4 +68,4 @@ docker run --rm -v ./input:/input -v ./output:/app/output \
 - Python 3.10 strictly required.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed - all minimum versions resolved successfully.

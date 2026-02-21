@@ -1,4 +1,4 @@
-# bilingual_book_maker -- Reasoning Log
+# bilingual_book_maker. Reasoning Log
 
 Covers every decision made for the bilingual_book_maker deployment, including alternatives considered and why they were rejected.
 

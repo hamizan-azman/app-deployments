@@ -1,4 +1,4 @@
-# BettaFish -- Reasoning Log
+# BettaFish. Reasoning Log
 
 ## Initial Analysis
 
@@ -13,7 +13,7 @@
 ## Decisions
 
 ### Use Pre-built Image
-The docker-compose.yml already references `ghcr.io/666ghj/bettafish:latest`. This is the developer's official image. Building from source would require downloading Playwright chromium and 91 pip packages -- the pre-built image includes everything.
+The docker-compose.yml already references `ghcr.io/666ghj/bettafish:latest`. This is the developer's official image. Building from source would require downloading Playwright chromium and 91 pip packages. the pre-built image includes everything.
 
 ### Docker Compose for PostgreSQL
 BettaFish requires PostgreSQL for storing crawled data. The docker-compose.yml already configures this with sensible defaults (user/pass: bettafish, port 5444 on host mapping to 5432 internally).

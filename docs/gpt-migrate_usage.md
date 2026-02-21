@@ -1,4 +1,4 @@
-# gpt-migrate -- Usage Documentation
+# gpt-migrate. Usage Documentation
 
 ## Overview
 CLI tool that uses LLMs to migrate codebases between languages/frameworks. Generates Dockerfiles, migrates code, creates and runs tests automatically. Requires Docker socket access since it builds and runs Docker containers internally.
@@ -66,9 +66,9 @@ docker run -it --rm \
 
 ## Model Compatibility
 Uses litellm 0.1.213 (mid-2023). Recognized model names:
-- `gpt-3.5-turbo` (4096 max tokens -- too small, will fail)
-- `gpt-4` (8192 max tokens -- may fail on large prompts)
-- `gpt-4-32k` (32768 max tokens -- recommended)
+- `gpt-3.5-turbo` (4096 max tokens. too small, will fail)
+- `gpt-4` (8192 max tokens. may fail on large prompts)
+- `gpt-4-32k` (32768 max tokens. recommended)
 - `openrouter/*` prefix for OpenRouter models (requires OPENROUTER_API_KEY)
 
 Note: Newer model names (gpt-4o, gpt-4-turbo, gpt-4o-mini) are NOT recognized by this version of litellm.
@@ -97,4 +97,4 @@ Note: Newer model names (gpt-4o, gpt-4-turbo, gpt-4o-mini) are NOT recognized by
 - 6 era-matched pins added: openai==0.27.8, langchain==0.0.238, typer==0.9.0, click==8.1.7, yaspin==2.5.0, tree-sitter==0.20.4. All fall within the developer's `pyproject.toml` version ranges. Without these, the app crashes on import.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed - all minimum versions resolved successfully.

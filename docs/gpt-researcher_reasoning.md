@@ -1,4 +1,4 @@
-# gpt-researcher -- Reasoning Log
+# gpt-researcher. Reasoning Log
 
 ## Initial Assessment
 

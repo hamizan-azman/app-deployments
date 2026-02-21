@@ -1,4 +1,4 @@
-# RD-Agent -- Deployment Reasoning Log
+# RD-Agent. Deployment Reasoning Log
 
 ## What is RD-Agent?
 
@@ -15,8 +15,8 @@ Comprehensive documentation covering all the supported scenarios (financial fact
 
 ### Existing Dockerfiles
 I checked two locations:
-1. **Root Dockerfile** -- Did not exist. The repo had no public Dockerfile.
-2. **`.devcontainer/Dockerfile`** -- Exists but pulls from `rdagentappregistry.azurecr.io`, a private Azure Container Registry. This is Microsoft's internal dev image and is not accessible to the public.
+1. **Root Dockerfile**. Did not exist. The repo had no public Dockerfile.
+2. **`.devcontainer/Dockerfile`**. Exists but pulls from `rdagentappregistry.azurecr.io`, a private Azure Container Registry. This is Microsoft's internal dev image and is not accessible to the public.
 
 This meant I had to write a Dockerfile from scratch, which is harder because you have to figure out the full dependency chain yourself.
 
@@ -32,11 +32,11 @@ The package configuration. Told me:
 
 ### requirements.txt
 60+ runtime dependencies. Key ones:
-- `openai`, `litellm`, `langchain` -- LLM interaction
-- `pandas`, `numpy`, `scikit-learn` -- Data processing
-- `pymupdf` -- PDF reading (for paper extraction)
-- `docker` -- Python Docker SDK (for spawning inner containers)
-- `streamlit` -- Web UI for log visualization
+- `openai`, `litellm`, `langchain`. LLM interaction
+- `pandas`, `numpy`, `scikit-learn`. Data processing
+- `pymupdf`. PDF reading (for paper extraction)
+- `docker`. Python Docker SDK (for spawning inner containers)
+- `streamlit`. Web UI for log visualization
 
 ### rdagent/app/cli.py
 The CLI entry point. This is a Typer app that registers subcommands: `fin_factor`, `fin_model`, `data_science`, `health_check`, `ui`, etc. Understanding this file told me what commands the tool supports and what each one does.
@@ -98,25 +98,25 @@ Image size: relatively small compared to ChatDBG and Paper2Poster because there 
 
 ## Step 4: Test Selection and What Each Test Validates
 
-### Test 1: Docker build -- PASS
+### Test 1: Docker build. PASS
 **What it validates:** All pip dependencies resolve, no version conflicts, the package installs correctly.
 **Why this test matters:** Foundation test. Everything else depends on this.
 
-### Test 2: rdagent --help -- PASS
+### Test 2: rdagent --help. PASS
 **What it validates:** The Typer CLI app loads, all subcommands are registered, no import errors at startup. This exercises the full import chain from `rdagent.app.cli` through all the subcommand modules.
 **Why this test matters:** If any dependency is missing or incompatible, the import chain will break and `--help` will fail.
 
-### Test 3: health_check (port check) -- PASS
+### Test 3: health_check (port check). PASS
 **What it validates:** The built-in diagnostic tool works. We ran `rdagent health_check --no-check-env --no-check-docker` which skips the checks that require external resources (API keys, Docker socket). The port check verifies that the tool can bind to its expected ports.
 **Why this test matters:** health_check is the tool's own self-diagnostic. If it passes, the tool believes its environment is correct.
 
 **Why we skipped the full health check:** The full check requires `OPENAI_API_KEY` and Docker socket mount. Without these, it reports failures that are expected rather than bugs.
 
-### Test 4: collect_info -- PASS
+### Test 4: collect_info. PASS
 **What it validates:** The system information collector works. It prints OS version, Python version, pip packages, and Docker status. The Docker portion fails without socket mount (expected).
 **Why this test matters:** Validates that the tool can introspect its own environment, which is needed for debugging and logging.
 
-### Test 5: Streamlit UI (port 19899) -- PASS
+### Test 5: Streamlit UI (port 19899). PASS
 **What it validates:** The web UI starts and serves HTTP on port 19899. We ran `docker run -d -p 19899:19899 rd-agent ui --port 19899` and confirmed HTTP 200 response.
 **Why this test matters:** The UI is the primary way users monitor agent progress. It visualizes log traces from executed workflows. If the UI does not start, users cannot see what the agent is doing.
 

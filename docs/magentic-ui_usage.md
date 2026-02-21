@@ -1,4 +1,4 @@
-# magentic-ui -- Usage Documentation
+# magentic-ui. Usage Documentation
 
 ## Overview
 Microsoft's agentic web browsing UI built on AutoGen. Agents can browse the web, run code, and interact with pages via a VNC browser container.
@@ -16,7 +16,7 @@ docker run -d -p 8081:8081 \
 http://localhost:8081
 
 ## Requirements
-- Docker socket access (mounts `/var/run/docker.sock`) -- the app spawns helper containers (VNC browser, Python executor)
+- Docker socket access (mounts `/var/run/docker.sock`). the app spawns helper containers (VNC browser, Python executor)
 - OpenAI API key for LLM-powered browsing agents
 - On first run, pulls two internal images (~2-3 min)
 
@@ -52,4 +52,4 @@ docker pull hoomzoom/magentic-ui:latest
 - Chat functionality requires a valid OpenAI API key.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning NOT applied. Uses official pre-built image — cannot control dependency versions.
+Minimum version pinning NOT applied. Uses official pre-built image - cannot control dependency versions.

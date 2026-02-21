@@ -1,4 +1,4 @@
-# HuixiangDou -- Reasoning Log
+# HuixiangDou. Reasoning Log
 
 ## Initial Analysis
 
@@ -7,7 +7,7 @@ HuixiangDou is a professional knowledge assistant by InternLM/OpenMMLab. It impl
 
 ### Why the Pre-built Image Failed
 The original developers maintain `tpoisonooo/huixiangdou:20240814` on Docker Hub. When tested, this image was unusable:
-- The `/huixiangdou/` directory inside the container was empty -- no application code installed
+- The `/huixiangdou/` directory inside the container was empty. no application code installed
 - The image uses Python 3.12, but `faiss-gpu` (a core dependency for vector search) requires Python <3.12
 - Attempting to install from source inside the container failed with setuptools `NoneType` errors from a malformed `pyproject.toml`
 - Originally marked as PULL-ONLY because of these issues
@@ -36,12 +36,12 @@ This gives us the complete dependency set with faiss-cpu instead of faiss-gpu. T
 
 ### Era-Matched Dependency Pins
 The main conflict: gradio 4.44.1 (needed for the app's Gradio code) requires `huggingface_hub<1.0`, but the latest `transformers` (5.1.0) requires `huggingface_hub>=1.3.0`. Resolved by pinning:
-- `gradio==4.44.1` -- matches the app's `gradio>=4.41` requirement
-- `gradio_client==1.3.0` -- matches gradio 4.44.1
-- `huggingface_hub==0.24.7` -- works with gradio 4.x
-- `transformers==4.44.2` -- meets `>=4.38` requirement, works with huggingface_hub 0.x
-- `sentence_transformers==3.0.1` -- compatible with transformers 4.44
-- `tokenizers==0.19.1` -- matches transformers 4.44
+- `gradio==4.44.1`. matches the app's `gradio>=4.41` requirement
+- `gradio_client==1.3.0`. matches gradio 4.44.1
+- `huggingface_hub==0.24.7`. works with gradio 4.x
+- `transformers==4.44.2`. meets `>=4.38` requirement, works with huggingface_hub 0.x
+- `sentence_transformers==3.0.1`. compatible with transformers 4.44
+- `tokenizers==0.19.1`. matches transformers 4.44
 
 ### gradio_client Pydantic v2 Patch
 Even with pinned versions, gradio_client 1.3.0 crashes when processing pydantic v2 JSON schemas. The bug: pydantic v2 emits `additionalProperties: true` (a boolean) in JSON schemas, but gradio_client's `get_type()` and `_json_schema_to_python_type()` functions assume schema values are always dicts. They try `"const" in schema` where schema is `True`, which crashes with `TypeError: argument of type 'bool' is not iterable`.

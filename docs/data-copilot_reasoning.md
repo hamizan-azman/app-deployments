@@ -1,4 +1,4 @@
-# Data-Copilot -- Reasoning Log
+# Data-Copilot. Reasoning Log
 
 ## What Was Checked
 - `requirements.txt`: 18 packages including scikit-learn==1.0, typing_extensions==4.5.0, gradio (implicit via app.py), tushare, openai==0.27.0, zhipuai==2.0.1
@@ -30,7 +30,7 @@ Both had version pins in requirements.txt that caused pip resolution conflicts. 
 Initially tried `--no-deps` for the requirements.txt install to avoid resolution conflicts. This caused a cascade of missing runtime deps: websocket-client (tushare), beautifulsoup4 (tushare), regex (tiktoken), cachetools (zhipuai). Abandoned the `--no-deps` approach in favor of installing WITH deps and fixing conflicts via pins.
 
 ### CJK fonts
-The app renders Chinese text in matplotlib charts. Installed `fonts-wqy-zenhei` and `fonts-noto-cjk` system packages for CJK support. The app's original code referenced `SimHei.ttf` but the font file isn't included in the repo; the system CJK fonts serve as fallback via the matplotlib rcParams override in app.py.
+The app renders Chinese text in matplotlib charts. Installed `fonts-wqy-zenhei` and `fonts-noto-cjk` system packages for CJK support. The app's original code referenced `SimHei.ttf` but the font file isn't included in the repo. the system CJK fonts serve as fallback via the matplotlib rcParams override in app.py.
 
 ### Tushare token requirement
 `tool.py` calls `ts.pro_api(tushare_token)` at module level (line 30). If TUSHARE_TOKEN is not set, this raises an exception and the app crashes before Gradio even starts. With a dummy token, tushare initializes but API calls would fail at runtime. This is the original developer's design.
@@ -44,9 +44,9 @@ The app renders Chinese text in matplotlib charts. Installed `fonts-wqy-zenhei` 
 6. Patch zhipuai import to try/except + guard client instantiation: SUCCESS
 
 ## Testing
-1. **GET /** -- 200 OK, Gradio web UI loads with Chinese financial query interface
-2. **GET /info** -- 200 OK, returns full Gradio API schema with all registered endpoints
-3. **Query execution** -- NOT TESTED, requires valid Tushare Pro token and OpenAI API key
+1. **GET /**. 200 OK, Gradio web UI loads with Chinese financial query interface
+2. **GET /info**. 200 OK, returns full Gradio API schema with all registered endpoints
+3. **Query execution**. NOT TESTED, requires valid Tushare Pro token and OpenAI API key
 
 ## Gotchas
 - The app crashes at import time without TUSHARE_TOKEN (module-level API init in tool.py)

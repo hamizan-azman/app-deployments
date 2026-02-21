@@ -1,9 +1,9 @@
-# localGPT -- Reasoning Log
+# localGPT. Reasoning Log
 
 ## Repo Walkthrough
 
 ### Repository Structure
-- `docker-compose.yml`: Defines 4 services -- rag-frontend (Next.js, port 3000), rag-backend (Python HTTP server, port 8000), rag-api (Python RAG pipeline, port 8001), and rag-ollama (Ollama, port 11434, optional profile). The compose file already exists and is well-structured.
+- `docker-compose.yml`: Defines 4 services. rag-frontend (Next.js, port 3000), rag-backend (Python HTTP server, port 8000), rag-api (Python RAG pipeline, port 8001), and rag-ollama (Ollama, port 11434, optional profile). The compose file already exists and is well-structured.
 - `Dockerfile.frontend`: node:18-alpine, Next.js build with `npm run build` and `npm start`.
 - `Dockerfile.backend`: python:3.11-slim, installs backend requirements, runs `server.py`.
 - `Dockerfile.rag-api`: python:3.11-slim, installs rag_system requirements including ML deps (sentence-transformers, lancedb, etc.), runs `api_server.py`.
@@ -12,7 +12,7 @@
 - `backend/ollama_client.py`: Client for Ollama API. Has "thinking" mode enabled by default which some models (qwen2.5) don't support.
 
 ### Key Design Decisions in the App
-The app has a two-tier architecture: the backend (port 8000) handles session management and acts as a lightweight proxy, while the RAG API (port 8001) handles the heavy ML work (embeddings, retrieval, reranking, generation). The frontend talks to both. Ollama is optional -- can use host Ollama or containerized via the "with-ollama" profile.
+The app has a two-tier architecture: the backend (port 8000) handles session management and acts as a lightweight proxy, while the RAG API (port 8001) handles the heavy ML work (embeddings, retrieval, reranking, generation). The frontend talks to both. Ollama is optional. can use host Ollama or containerized via the "with-ollama" profile.
 
 ## Deployment Strategy
 
@@ -35,13 +35,13 @@ Needed a small model to test functionality. qwen2.5:0.5b is only ~400MB and suff
 - `/sessions` GET: Returns empty sessions list. Database working.
 - `/sessions` POST: Created a session with model "qwen2.5:0.5b". Session ID returned, stored in SQLite.
 - `/chat` POST: Endpoint works but qwen2.5:0.5b doesn't support "thinking" mode (the OllamaClient enables it by default). The error is wrapped in the response, not a server crash.
-- `/sessions/{id}/messages` POST: Smart routing kicks in -- detects "Say hello" as a greeting, routes to direct LLM (not RAG). Tries qwen3:8b (session default model mismatch). The routing and session management work correctly even when the model isn't available.
+- `/sessions/{id}/messages` POST: Smart routing kicks in. detects "Say hello" as a greeting, routes to direct LLM (not RAG). Tries qwen3:8b (session default model mismatch). The routing and session management work correctly even when the model isn't available.
 - `/models`: Returns generation models (from Ollama) and embedding models (hardcoded HuggingFace list).
 - `/indexes`: Returns empty index list. CRUD infrastructure works.
 
 ### Tests 9-10: RAG API Endpoints
 - `/models`: Returns same model list as backend (both query Ollama).
-- `/chat`: Accepts a query, runs through the RAG pipeline. With no indexed documents, returns "I could not find an answer in the documents." -- correct behavior.
+- `/chat`: Accepts a query, runs through the RAG pipeline. With no indexed documents, returns "I could not find an answer in the documents.". correct behavior.
 
 ## Gotchas
 

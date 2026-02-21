@@ -1,4 +1,4 @@
-# agenticSeek -- Usage Documentation
+# agenticSeek. Usage Documentation
 
 ## Overview
 AI-powered assistant with multiple specialized agents (casual chat, coding, file management, web browsing, planning). Uses OpenAI API with SearxNG for web search, Selenium/Chrome for browser automation, and Redis for task queue. React frontend provides chat interface.
@@ -9,7 +9,7 @@ AI-powered assistant with multiple specialized agents (casual chat, coding, file
 git clone https://github.com/Fosowl/agenticSeek
 cd agenticSeek
 
-# Create .env -- replace YOUR_OPENAI_KEY with your actual OpenAI API key
+# Create .env. replace YOUR_OPENAI_KEY with your actual OpenAI API key
 cat > .env <<EOF
 SEARXNG_SECRET_KEY=supersecretkey123
 SEARXNG_BASE_URL=http://searxng:8080
@@ -150,7 +150,7 @@ stealth_mode = False
 
 ## Notes
 - Backend takes 2-3 minutes to start (loads zero-shot classification pipeline and LLM router model on CPU)
-- Default config uses ollama -- must change to openai in config.ini for Docker deployment
+- Default config uses ollama. must change to openai in config.ini for Docker deployment
 - The /query endpoint blocks until the agent finishes (can be 10-60+ seconds for complex queries)
 - Only one query can be processed at a time (returns 429 if busy)
 - Browser agent runs headless Chrome inside the container
@@ -158,7 +158,7 @@ stealth_mode = False
 - Frontend image is ~2.1GB (Node.js + React)
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-- `playsound3>=1.0.0` bumped to `playsound3==3.0.0` (1.0.0 doesn't exist on PyPI; 2.0.0 requires pygobject/Cairo system deps)
+- `playsound3>=1.0.0` bumped to `playsound3==3.0.0` (1.0.0 doesn't exist on PyPI. 2.0.0 requires pygobject/Cairo system deps)
 - `together>=1.5.0` bumped to `together==1.5.2` (1.5.0 doesn't exist on PyPI)
 - `tqdm>=4` bumped to `tqdm==4.66.2` (together 1.5.2 requires tqdm>=4.66.2)
 

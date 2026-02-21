@@ -1,4 +1,4 @@
-# itext2kg -- Local Install Guide
+# itext2kg. Local Install Guide
 
 ## Overview
 itext2kg (now called ATOM) is a Python library for incremental construction of Temporal Knowledge Graphs from unstructured text. It uses LangChain-compatible LLMs to extract entities, relations, and temporal facts, and optionally stores results in Neo4j.
@@ -82,5 +82,5 @@ jupyter notebook
 ## Notes
 - itext2kg works with any LangChain-supported LLM, not just OpenAI. Substitute with `ChatOllama`, `ChatAnthropic`, etc.
 - The Neo4j integration requires a running Neo4j instance. Start one with: `docker run -p 7474:7474 -p 7687:7687 neo4j:latest`
-- The library name on PyPI is `itext2kg`; the internal module/API may refer to the newer name "ATOM".
+- The library name on PyPI is `itext2kg`. the internal module/API may refer to the newer name "ATOM".
 - GitHub: https://github.com/AuvaLab/itext2kg

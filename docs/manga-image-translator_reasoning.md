@@ -1,4 +1,4 @@
-# manga-image-translator -- Reasoning Log
+# manga-image-translator. Reasoning Log
 
 ## Investigation
 
@@ -19,7 +19,7 @@ The server spawns a translator subprocess on port 5004 (port + 1) when `--start-
 
 ### Request Model (server/request_extraction.py)
 Read `request_extraction.py` to understand how images are accepted:
-- `TranslateRequest.image` accepts `bytes|str` -- can be a URL (fetched via requests.get), base64-encoded data URI, or raw bytes from multipart upload
+- `TranslateRequest.image` accepts `bytes|str`. can be a URL (fetched via requests.get), base64-encoded data URI, or raw bytes from multipart upload
 - `Config` object controls translator, target language, and model selection
 - Queue-based processing: requests are added to a task queue and wait for a translator instance to process them
 

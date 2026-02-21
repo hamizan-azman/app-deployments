@@ -1,4 +1,4 @@
-# pdfGPT -- Reasoning Log
+# pdfGPT. Reasoning Log
 
 ## Understanding the architecture
 
@@ -35,7 +35,7 @@ langchain-serve is abandoned software from mid-2023. Its dependency chain is a m
 
 1. **pkg_resources missing**: `setuptools>=71` removed `pkg_resources`. langchain-serve's setup.py uses it during build. Fix: upgrade pip (need >=23.1 for PIP_BUILD_CONSTRAINT support) and set `PIP_BUILD_CONSTRAINT` to pin `setuptools<71` in build isolation environments.
 
-2. **opentelemetry-exporter-prometheus yanked**: `jina 3.14.1+` requires `opentelemetry-exporter-prometheus>=1.12.0rc1`, but that version was yanked from PyPI ("Version is deprecated"). The entire 1.x line never existed -- all available versions are 0.x betas. Fix: pre-install the specific yanked version (`pip install opentelemetry-exporter-prometheus==1.12.0rc1`) before installing langchain-serve. pip will install yanked versions when explicitly pinned, and since it's already installed, the resolver won't try to find it.
+2. **opentelemetry-exporter-prometheus yanked**: `jina 3.14.1+` requires `opentelemetry-exporter-prometheus>=1.12.0rc1`, but that version was yanked from PyPI ("Version is deprecated"). The entire 1.x line never existed. all available versions are 0.x betas. Fix: pre-install the specific yanked version (`pip install opentelemetry-exporter-prometheus==1.12.0rc1`) before installing langchain-serve. pip will install yanked versions when explicitly pinned, and since it's already installed, the resolver won't try to find it.
 
 3. **langchain community split**: langchain-serve imports from `langchain.agents.AgentExecutor` which moved to `langchain-community` in langchain >=0.1.0 (Jan 2024). Even langchain 0.0.350 had started the migration. Fix: pin `langchain==0.0.267` which is fully monolithic (pre-split).
 
@@ -62,7 +62,7 @@ Gradio 4.11.0 imports `HfFolder` from `huggingface_hub`, which was removed in hu
 ## Roads not taken
 
 ### Replacing langchain-serve with a custom FastAPI wrapper
-This is what the previous app_docker.py did. Rejected because it violates architectural fidelity -- pentesters need to test the real langchain-serve/Jina attack surface.
+This is what the previous app_docker.py did. Rejected because it violates architectural fidelity. pentesters need to test the real langchain-serve/Jina attack surface.
 
 ### Using the original Dockerfile as-is
 Impossible. It has `RUN pip3 install api` which tries to install a PyPI package, and never copies api.py into the container. It also uses python:3.8-slim-buster which is EOL.
@@ -77,13 +77,13 @@ Rejected because some dependencies in the langchain-serve tree have strict Pytho
 The plan included a SKIP option if langchain-serve was truly broken. After significant dependency wrangling, I got it working with era-matched pins. The app runs faithfully, so no need to SKIP.
 
 ### Single-stage Dockerfile
-Would be simpler but doesn't match the original two-service architecture. The frontend and backend have very different dependency requirements -- the backend needs TensorFlow, scikit-learn, langchain-serve (hundreds of packages, ~4GB image) while the frontend only needs gradio and requests (~500MB image).
+Would be simpler but doesn't match the original two-service architecture. The frontend and backend have very different dependency requirements. the backend needs TensorFlow, scikit-learn, langchain-serve (hundreds of packages, ~4GB image) while the frontend only needs gradio and requests (~500MB image).
 
 ## Test coverage
 
 1. **docker compose up starts both services**: Proves the multi-stage Dockerfile builds correctly for both targets, docker-compose networking works, and both services start without crashing. The backend takes ~30s to initialize TensorFlow.
 
-2. **Backend /healthz returns {"status":"ok"}**: Proves the Jina gateway is running and responsive. This is the first layer -- if the gateway is healthy, it means jina, langchain-serve, and all their dependencies loaded correctly.
+2. **Backend /healthz returns {"status":"ok"}**: Proves the Jina gateway is running and responsive. This is the first layer. if the gateway is healthy, it means jina, langchain-serve, and all their dependencies loaded correctly.
 
 3. **Backend /docs returns Swagger UI**: Proves the FastAPI application inside the Jina gateway is serving the auto-generated API documentation. This validates that the `@serving` decorators in api.py were properly processed and registered as HTTP routes.
 
@@ -112,7 +112,7 @@ langchain-serve was written for the monolithic era. Pin to 0.0.267 or earlier.
 Jina 3.x uses pydantic v1 internals extensively. With pydantic v2, the Jina gateway initialization fails with cryptic TypeErrors. Always pin `pydantic<2` when using jina 3.x.
 
 ### TF Hub model download during build
-The Universal Sentence Encoder model is ~1GB. Pre-downloading it during `docker build` means the image is large but container startup is fast. Without pre-download, every container start would download 1GB. The build step `RUN python -c "import tensorflow_hub as hub; hub.load('...')"` takes 1-2 minutes.
+The Universal Sentence Encoder model is ~1GB. Pre-downloading it during `docker build` means the image is large but container startup is fast. Without pre-download, every container start would download 1GB. The build step `RUN python -c "import tensorflow_hub as hub. hub.load('...')"` takes 1-2 minutes.
 
 ### text-davinci-003 deprecation
 The original api.py hardcodes `text-davinci-003` as the model. OpenAI deprecated this model. litellm 0.1.424 may or may not handle the routing gracefully. This is a bug in the original code, not something we fix per the fidelity rule.

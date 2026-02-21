@@ -5,10 +5,10 @@
 You are performing quality control on 41 Dockerized LLM applications deployed by Hamiz for supply chain security research. Your goal is to verify that each app can be pulled from Docker Hub, started, and has its documented endpoints responding correctly. This is prep work for dynamic vulnerability scanning.
 
 **Important files to read first:**
-- `Task1.md` -- full app catalog with Docker images, test counts, and usage doc links
-- `tracker.md` -- deployment status tracker
-- `docs/yuelin_qc_log.md` -- QC log with results so far (12 apps tested, 30 remaining)
-- Each app's `docs/<appname>_usage.md` -- exact commands, endpoints, and expected responses
+- `Task1.md`. full app catalog with Docker images, test counts, and usage doc links
+- `tracker.md`. deployment status tracker
+- `docs/yuelin_qc_log.md`. QC log with results so far (12 apps tested, 30 remaining)
+- Each app's `docs/<appname>_usage.md`. exact commands, endpoints, and expected responses
 
 ## What Has Been Done
 
@@ -31,8 +31,8 @@ These have been pulled, started, and endpoint-tested. Results in `docs/yuelin_qc
 | 12 | manga-image-translator | hoomzoom/manga-image-translator | PULL FAILED (network) |
 
 ### Issues Found and Fixed
-- `hoomzoom/devika-frontend` was missing from Docker Hub -- rebuilt and pushed
-- zshot and pycorrector usage docs had incorrect "first startup downloads models" notes -- fixed
+- `hoomzoom/devika-frontend` was missing from Docker Hub. rebuilt and pushed
+- zshot and pycorrector usage docs had incorrect "first startup downloads models" notes. fixed
 
 ### Issues Found, NOT Yet Fixed
 - **TaskWeaver wrong entrypoint**: The Docker Hub image `hoomzoom/taskweaver` has ENTRYPOINT `/app/entrypoint.sh` (CLI mode) instead of `/app/entrypoint_chainlit.sh` (Chainlit web UI). Running `docker run -p 8000:8000 hoomzoom/taskweaver` as the usage doc says will crash. Needs image rebuild from `dockerfiles/TaskWeaver/Dockerfile` (which has the correct entrypoint) and push to Docker Hub. The repo needs to be cloned first: `git clone --depth 1 https://github.com/microsoft/TaskWeaver.git apps/TaskWeaver`
@@ -66,21 +66,21 @@ Test with `docker run --rm <image> --help` or similar non-interactive command.
 |-----|-------|-------------|-------|
 | ChatDBG | hoomzoom/chatdbg | `docker run --rm hoomzoom/chatdbg chatdbg --help` | CLI debugger |
 | RD-Agent | hoomzoom/rd-agent | `docker run --rm hoomzoom/rd-agent rdagent --help` | CLI + Streamlit (port 80) |
-| Paper2Poster | hoomzoom/paper2poster | `docker run --rm hoomzoom/paper2poster python -c "import paper2poster; print('ok')"` | CLI |
+| Paper2Poster | hoomzoom/paper2poster | `docker run --rm hoomzoom/paper2poster python -c "import paper2poster. print('ok')"` | CLI |
 | bilingual_book_maker | hoomzoom/bilingual_book_maker | `docker run --rm hoomzoom/bilingual_book_maker python make_book.py --help` | CLI |
 | gpt-engineer | hoomzoom/gpt-engineer | `docker run --rm hoomzoom/gpt-engineer gpte --help` | CLI |
 | gpt-migrate | hoomzoom/gpt-migrate | `docker run --rm hoomzoom/gpt-migrate python main.py --help` | CLI |
 | SWE-agent | hoomzoom/swe-agent | `docker run --rm hoomzoom/swe-agent sweagent --help` | CLI + web UI (port 3000) |
-| TradingAgents | hoomzoom/tradingagents | `docker run --rm hoomzoom/tradingagents python -c "import tradingagents; print('ok')"` | CLI |
-| Integuru | hoomzoom/integuru | `docker run --rm hoomzoom/integuru python -c "import integuru; print('ok')"` | CLI + Playwright |
+| TradingAgents | hoomzoom/tradingagents | `docker run --rm hoomzoom/tradingagents python -c "import tradingagents. print('ok')"` | CLI |
+| Integuru | hoomzoom/integuru | `docker run --rm hoomzoom/integuru python -c "import integuru. print('ok')"` | CLI + Playwright |
 
 ### Libraries (no web interface)
 Test that imports work inside the container.
 
 | App | Image | Test Command |
 |-----|-------|-------------|
-| codeinterpreter-api | hoomzoom/codeinterpreter-api | `docker run --rm hoomzoom/codeinterpreter-api python -c "from codeinterpreterapi import CodeInterpreterSession; print('ok')"` |
-| chemcrow-public | hoomzoom/chemcrow | `docker run --rm hoomzoom/chemcrow python -c "from chemcrow import ChemCrow; print('ok')"` |
+| codeinterpreter-api | hoomzoom/codeinterpreter-api | `docker run --rm hoomzoom/codeinterpreter-api python -c "from codeinterpreterapi import CodeInterpreterSession. print('ok')"` |
+| chemcrow-public | hoomzoom/chemcrow | `docker run --rm hoomzoom/chemcrow python -c "from chemcrow import ChemCrow. print('ok')"` |
 
 ### Multi-Container (compose) Apps
 These require docker-compose files from `dockerfiles/<app>/` and often need the original repo cloned. More complex to test.
@@ -111,7 +111,7 @@ docker run -d --name <app>-test -p <port>:<port> hoomzoom/<image-name>
 # 4. Wait for startup (check logs)
 docker logs -f <app>-test
 
-# 5. Test endpoints (use PowerShell on Windows -- curl sometimes times out)
+# 5. Test endpoints (use PowerShell on Windows. curl sometimes times out)
 powershell -Command "(Invoke-WebRequest -Uri http://localhost:<port>/ -UseBasicParsing).StatusCode"
 
 # For Streamlit apps:
@@ -165,7 +165,7 @@ Check startup with `docker logs -f <container>`. The container may look hung but
    MSYS_NO_PATHCONV=1 docker run --entrypoint /app/entrypoint_chainlit.sh hoomzoom/taskweaver
    ```
 
-3. **Chinese text encoding**: Chinese characters show as `???` in Git Bash and PowerShell. Not a container bug -- it's Windows terminal encoding. Apps still work correctly.
+3. **Chinese text encoding**: Chinese characters show as `???` in Git Bash and PowerShell. Not a container bug. it's Windows terminal encoding. Apps still work correctly.
 
 4. **Docker Desktop crashes**: Docker Desktop on this machine crashes occasionally (500 Internal Server Error). Fix:
    ```bash
@@ -196,6 +196,6 @@ For each app, log in `docs/yuelin_qc_log.md`:
 ## Summary of What Needs Doing
 
 1. **Test remaining 30 apps** (follow procedures above)
-2. **Fix TaskWeaver image** -- rebuild from `dockerfiles/TaskWeaver/Dockerfile` and push to Docker Hub
-3. **Retry manga-image-translator pull** -- failed due to network (10GB image)
+2. **Fix TaskWeaver image**. rebuild from `dockerfiles/TaskWeaver/Dockerfile` and push to Docker Hub
+3. **Retry manga-image-translator pull**. failed due to network (10GB image)
 4. **Update `docs/yuelin_qc_log.md`** with all results

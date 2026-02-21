@@ -1,4 +1,4 @@
-# Integuru -- Reasoning Log
+# Integuru. Reasoning Log
 
 ## Initial Assessment
 

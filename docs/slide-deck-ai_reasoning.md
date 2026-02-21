@@ -1,4 +1,4 @@
-# slide-deck-ai -- Reasoning Log
+# slide-deck-ai. Reasoning Log
 
 Covers every decision made for the slide-deck-ai deployment, including alternatives considered and why they were rejected.
 
@@ -31,7 +31,7 @@ What I checked
 - `requirements.txt` includes `torch`, `transformers`, `scikit-learn`, etc.
 
 Decision
-- Accept that the image will be very large; do not attempt to remove deps.
+- Accept that the image will be very large. do not attempt to remove deps.
 
 Why
 - Removing dependencies may break functionality or diverge from upstream.

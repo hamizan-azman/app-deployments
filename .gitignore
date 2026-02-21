@@ -46,9 +46,11 @@ Thumbs.db
 
 # Internal docs
 CLAUDE.md
+CLAUDE2.md
 AGENTS.md
 SETUP.md
 
 # QC testing (internal)
 **/yuelin*
 **/Yuelin*
+.claude/

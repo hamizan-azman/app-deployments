@@ -1,4 +1,4 @@
-# Devika -- Reasoning Log
+# Devika. Reasoning Log
 
 ## Initial Assessment
 
@@ -10,7 +10,7 @@ Devika is an open-source AI software engineer by stitionai. The repo has an exis
 
 2. **devika.dockerfile (original)**: Based on debian:12. Installs Python 3, installs `uv` via a curl script that downloads the installer, creates a venv, installs requirements.txt, installs Playwright with Chromium, copies source code, and runs `python3 -m devika`. The file also copies `config.toml` which does not exist in the repo (it is gitignored).
 
-3. **app.dockerfile (original)**: Based on debian:12. Installs Node.js 20 via nodesource, copies UI source, runs npm install and installs bun. Also copies `config.toml` which doesn't exist. Runs the Svelte dev server via `npx bun run dev -- --host`.
+3. **app.dockerfile (original)**: Based on debian:12. Installs Node.js 20 via nodesource, copies UI source, runs npm install and installs bun. Also copies `config.toml` which doesn't exist. Runs the Svelte dev server via `npx bun run dev. --host`.
 
 4. **sample.config.toml**: Contains sections for storage paths, API keys (all placeholder values), API endpoints (Bing, Google, Ollama at localhost:11434, LM Studio, OpenAI), logging settings, and inference timeout.
 
@@ -35,7 +35,7 @@ The requirements.txt includes xhtml2pdf, which depends on pycairo. Building pyca
 The original Dockerfile calls `uv venv` twice (once in the main setup and once later). The second call is redundant. We removed it.
 
 ### Kept the Svelte dev server as the frontend entrypoint
-The original app.dockerfile runs `npx bun run dev -- --host`, which starts Vite's development server with hot reload. While a production build (`bun run build` + a static file server) would be more appropriate for deployment, the original developer designed the compose stack this way. Following architectural fidelity, we kept it as is.
+The original app.dockerfile runs `npx bun run dev. --host`, which starts Vite's development server with hot reload. While a production build (`bun run build` + a static file server) would be more appropriate for deployment, the original developer designed the compose stack this way. Following architectural fidelity, we kept it as is.
 
 ### Rewrote docker-compose.yml for pre-built images
 The original docker-compose.yaml builds from source using the Dockerfiles in the repo root. Our version uses the pre-built `hoomzoom/devika-backend` and `hoomzoom/devika-frontend` images from Docker Hub. We also added a health check for the Ollama service and a named volume for backend database persistence. The network and service structure remain the same.

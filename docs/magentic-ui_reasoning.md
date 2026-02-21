@@ -1,7 +1,7 @@
-# magentic-ui -- Reasoning Log
+# magentic-ui. Reasoning Log
 
 ## What Was Checked
-- PyPI package `magentic-ui` -- Microsoft's official package, installable via pip
+- PyPI package `magentic-ui`. Microsoft's official package, installable via pip
 - The app's architecture: it runs a FastAPI backend that spawns Docker containers for VNC browsing and Python code execution
 - Initially marked as SKIP because it requires Docker-in-Docker, but user approved DinD approach
 
@@ -17,9 +17,9 @@ The container doesn't run its own Docker daemon. Instead, it mounts the host's D
 
 Two alternatives were considered:
 1. **Full DinD (dockerd inside container)**: Would require `--privileged`, add complexity, and still need 2GB+ for the nested daemon. No benefit for research purposes.
-2. **Disable Docker entirely (`RUN_WITHOUT_DOCKER=True`)**: Would make the app non-functional — the browser and code execution agents are the core feature.
+2. **Disable Docker entirely (`RUN_WITHOUT_DOCKER=True`)**: Would make the app non-functional - the browser and code execution agents are the core feature.
 
-Socket mounting is the standard pattern — simpler, no privilege escalation beyond socket access, and helper containers share the host's image cache.
+Socket mounting is the standard pattern - simpler, no privilege escalation beyond socket access, and helper containers share the host's image cache.
 
 ## Helper Image Architecture
 On first startup, magentic-ui pulls two images:

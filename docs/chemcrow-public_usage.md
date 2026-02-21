@@ -1,4 +1,4 @@
-# chemcrow-public -- Usage Documentation
+# chemcrow-public. Usage Documentation
 
 ## Overview
 Python library for reasoning-intensive chemical tasks using LLM agents. Combines LangChain with chemistry tools including RDKit (molecular analysis), PubChem, Chem-Space, paper-qa (literature search), and reaction prediction. Uses GPT-4 as the reasoning engine.
@@ -82,14 +82,14 @@ print(chem.run('What is the molecular weight of aspirin?'))
 |------|--------|
 | Import chemcrow.agents.ChemCrow | PASS |
 | Import all tools | PASS |
-| RDKit molecular weight (aspirin SMILES) | PASS -- returned 180.042258736 |
-| RDKit functional groups (aspirin SMILES) | PASS -- identified esters, ketones, carboxylic acids |
-| Molecular similarity (Tanimoto) | PASS -- returned 0.24 for aspirin vs acetic acid |
-| Explosive check tool | PASS -- tool loaded (needs CAS number input) |
+| RDKit molecular weight (aspirin SMILES) | PASS. returned 180.042258736 |
+| RDKit functional groups (aspirin SMILES) | PASS. identified esters, ketones, carboxylic acids |
+| Molecular similarity (Tanimoto) | PASS. returned 0.24 for aspirin vs acetic acid |
+| Explosive check tool | PASS. tool loaded (needs CAS number input) |
 | RDKit version | 2025.09.4 |
 | LangChain version | 0.0.275 |
 | OpenAI version | 0.27.8 |
-| Full agent query | NOT TESTED -- requires OpenAI API key at runtime |
+| Full agent query | NOT TESTED. requires OpenAI API key at runtime |
 
 ## Environment Variables
 | Variable | Required | Default | Description |

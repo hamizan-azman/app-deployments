@@ -1,4 +1,4 @@
-# AgentGPT -- Reasoning Log
+# AgentGPT. Reasoning Log
 
 ## Why This App Was Initially Skipped
 
@@ -54,7 +54,7 @@ Tested three categories:
 
 **Auth-gated endpoints:**
 - /api/agent/start: Returns 403 without auth token. Confirms auth middleware works.
-- /api/models: Same -- 403 without auth.
+- /api/models: Same. 403 without auth.
 
 **Frontend:**
 - GET localhost:3000: Confirms Next.js built and serves the UI

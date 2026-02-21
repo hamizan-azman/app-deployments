@@ -1,4 +1,4 @@
-# TaskMatrix (Visual ChatGPT) -- Local Install Guide
+# TaskMatrix (Visual ChatGPT). Local Install Guide
 
 ## Overview
 TaskMatrix connects ChatGPT with Visual Foundation Models (image generation, editing, segmentation, visual QA, depth estimation, and more) to enable image-processing tasks during chat. It provides a Gradio web UI on port 7861.
@@ -10,7 +10,7 @@ TaskMatrix loads multiple large vision models simultaneously. The full model set
 - OS: Linux or Windows with WSL2 (macOS not supported for CUDA models)
 - Python 3.8
 - Conda
-- NVIDIA GPU: 8 GB+ VRAM minimum for a small subset of models; 16 GB+ for practical use; 60 GB+ for full model set
+- NVIDIA GPU: 8 GB+ VRAM minimum for a small subset of models. 16 GB+ for practical use. 60 GB+ for full model set
 - OpenAI API key
 - CUDA 11.6+ with matching PyTorch build
 
@@ -44,10 +44,10 @@ export OPENAI_API_KEY=your-key-here       # Linux/macOS
 Launch with the `--load` argument to select which models to load and on which device. Format: `ModelName_device:index` (e.g., `cuda:0`, `cpu`).
 
 ```bash
-# Minimal load -- 2 models, approximately 4-6 GB VRAM
+# Minimal load. 2 models, approximately 4-6 GB VRAM
 python visual_chatgpt.py --load "ImageCaptioning_cuda:0,Text2Image_cuda:0"
 
-# Small GPU (8GB) -- image captioning + basic generation
+# Small GPU (8GB). image captioning + basic generation
 python visual_chatgpt.py --load "ImageCaptioning_cuda:0,Text2Image_cuda:0,Image2Canny_cuda:0,CannyText2Image_cuda:0"
 
 # CPU-only fallback (very slow, for code inspection only)

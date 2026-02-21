@@ -1,4 +1,4 @@
-# pycorrector -- Reasoning Log
+# pycorrector. Reasoning Log
 
 ## Starting point
 
@@ -20,14 +20,14 @@ CMD /bin/bash
 
 Problems:
 1. Uses Python 3.8 (the project supports 3.8+ but there is no reason to use an old version)
-2. Uses `nikolaik/python-nodejs` -- unnecessary Node.js included
-3. Uses Chinese pip mirror (tsinghua.edu.cn) -- slow from outside China
-4. Installs pycorrector from PyPI *after* already copying the source -- redundant
-5. CMD is `/bin/bash` -- just opens a shell, does not serve anything
+2. Uses `nikolaik/python-nodejs`. unnecessary Node.js included
+3. Uses Chinese pip mirror (tsinghua.edu.cn). slow from outside China
+4. Installs pycorrector from PyPI *after* already copying the source. redundant
+5. CMD is `/bin/bash`. just opens a shell, does not serve anything
 6. No EXPOSE, no port binding, no web service
 
 ### Identifying the web interface
-Searched `examples/` and found `examples/macbert/gradio_demo.py`. This is a clean Gradio app that loads the MacBERT model and exposes a text correction interface. The MacBERT model (macbert4csc-base-chinese) is the recommended model per the README's evaluation table -- it has 224 QPS and good accuracy on SIGHAN-2015.
+Searched `examples/` and found `examples/macbert/gradio_demo.py`. This is a clean Gradio app that loads the MacBERT model and exposes a text correction interface. The MacBERT model (macbert4csc-base-chinese) is the recommended model per the README's evaluation table. it has 224 QPS and good accuracy on SIGHAN-2015.
 
 ### Choosing MacBERT over other models
 The repo supports many models. I chose MacBERT because:
@@ -54,7 +54,7 @@ Installed PyTorch from the CPU index (`https://download.pytorch.org/whl/cpu`) be
 ### Pre-downloading the model at build time
 Added this line in the Dockerfile:
 ```dockerfile
-RUN python -c "from pycorrector import MacBertCorrector; MacBertCorrector('shibing624/macbert4csc-base-chinese')"
+RUN python -c "from pycorrector import MacBertCorrector. MacBertCorrector('shibing624/macbert4csc-base-chinese')"
 ```
 This downloads and caches the ~400MB model during `docker build`. Without this, the model downloads on first request, causing a ~6-7 minute delay on container startup. With it, the container starts and serves requests in ~2 seconds.
 
@@ -82,10 +82,10 @@ Validates that the Gradio API is discoverable. Returns the schema of available e
 
 ### Tests 3-6: Chinese text correction
 Each test sentence has known errors from the README examples:
-- `今天新情很好` -- "新" should be "心" (phonetic similarity: xin)
-- `你找到你最喜欢的工作，我也很高心` -- "心" should be "兴" (phonetic: xin vs xing)
-- `机七学习是人工智能领遇最能体现智能的一个分知` -- "七" should be "器", "遇" should be "域" (visual/phonetic similarity)
-- `少先队员因该为老人让坐` -- "因" should be "应" (phonetic: yin vs ying)
+- `今天新情很好`. "新" should be "心" (phonetic similarity: xin)
+- `你找到你最喜欢的工作，我也很高心`. "心" should be "兴" (phonetic: xin vs xing)
+- `机七学习是人工智能领遇最能体现智能的一个分知`. "七" should be "器", "遇" should be "域" (visual/phonetic similarity)
+- `少先队员因该为老人让坐`. "因" should be "应" (phonetic: yin vs ying)
 
 These test the core model inference pipeline: tokenization, BERT forward pass, error detection, correction lookup. All returned correct results.
 
@@ -96,13 +96,13 @@ When testing from Git Bash on Windows, curl output shows Chinese characters as `
 
 ### Gradio API is two-step (async)
 Unlike a simple REST API, Gradio's API requires:
-1. POST to `/gradio_api/call/predict` with the input -- returns an `event_id`
-2. GET `/gradio_api/call/predict/{event_id}` -- returns the result as SSE
+1. POST to `/gradio_api/call/predict` with the input. returns an `event_id`
+2. GET `/gradio_api/call/predict/{event_id}`. returns the result as SSE
 
 This is because Gradio uses Server-Sent Events internally. The older `/api/predict` endpoint does not exist in newer Gradio versions.
 
 ### UNEXPECTED key warning during model load
-The log shows `bert.embeddings.position_ids | UNEXPECTED` during model loading. This is harmless -- it means the saved model has a `position_ids` tensor that the current model architecture does not expect. This is normal when loading older HuggingFace checkpoints and does not affect results.
+The log shows `bert.embeddings.position_ids | UNEXPECTED` during model loading. This is harmless. it means the saved model has a `position_ids` tensor that the current model architecture does not expect. This is normal when loading older HuggingFace checkpoints and does not affect results.
 
 ### Build time
 The Docker build takes roughly 7-10 minutes:

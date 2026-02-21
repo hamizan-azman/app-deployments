@@ -1,4 +1,4 @@
-# whispering -- Local Install Guide
+# whispering. Local Install Guide
 
 ## Overview
 Whispering (braden-w/whispering) is a desktop speech-to-text app built with Tauri and Svelte: press a global shortcut, speak, and get transcribed text. It uses OpenAI's Whisper API or a local Whisper backend.
@@ -62,9 +62,9 @@ pnpm tauri dev
 ## Environment Variables
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| OPENAI_API_KEY | Yes (via UI) | None | Entered in the app settings; used for Whisper API calls |
+| OPENAI_API_KEY | Yes (via UI) | None | Entered in the app settings. used for Whisper API calls |
 
 ## Notes
 - The original braden-w/whispering repository has been archived and redirects to EpicenterHQ/epicenter. Check that repo for the latest release.
-- Local Whisper (no API key) requires a separate Whisper server; see the app settings for supported local backends.
+- Local Whisper (no API key) requires a separate Whisper server. see the app settings for supported local backends.
 - GitHub: https://github.com/braden-w/whispering (archived, redirects to https://github.com/epicenter-so/epicenter)

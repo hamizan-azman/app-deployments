@@ -1,4 +1,4 @@
-# chemcrow-public -- Reasoning Log
+# chemcrow-public. Reasoning Log
 
 ## Repo Analysis
 
@@ -39,10 +39,10 @@ Since there's no web server, no ports are exposed. The container's CMD just veri
 ## Test Strategy
 
 ### Test 1: Agent Import
-`from chemcrow.agents import ChemCrow` -- verifies the main class loads, all its dependencies resolve, and the module structure is intact.
+`from chemcrow.agents import ChemCrow`. verifies the main class loads, all its dependencies resolve, and the module structure is intact.
 
 ### Test 2: All Tools Import
-`from chemcrow.tools import *` -- this imports all tool modules including rdkit, safety, search, reactions, chemspace. Verifies the entire tool chain loads.
+`from chemcrow.tools import *`. this imports all tool modules including rdkit, safety, search, reactions, chemspace. Verifies the entire tool chain loads.
 
 ### Test 3: RDKit Molecular Weight
 `SMILES2Weight().run('CC(=O)Oc1ccccc1C(=O)O')` returns 180.042258736 for aspirin. This exercises the RDKit chemistry engine end-to-end: SMILES parsing, molecular graph construction, property calculation. No API key needed.
@@ -74,10 +74,10 @@ First build failed with `ModuleNotFoundError: No module named 'paperscraper'`. T
 Uses `openai==0.27.8` which has a completely different API from modern openai>=1.0. The old API uses `openai.ChatCompletion.create()` instead of `client.chat.completions.create()`. This is intentional and correct for this library's era.
 
 ### RDKit Deprecation Warnings
-`DEPRECATION WARNING: please use MorganGenerator` -- RDKit deprecated the old Morgan fingerprint API. The library uses the old API but it still works. These are warnings, not errors.
+`DEPRECATION WARNING: please use MorganGenerator`. RDKit deprecated the old Morgan fingerprint API. The library uses the old API but it still works. These are warnings, not errors.
 
 ### Explosive Check Input Format
-The `ExplosiveCheck` tool expects CAS numbers, not SMILES. Passing a SMILES string returns "Please input a valid CAS number." This is correct behavior -- the tool checks against a database of known explosives by CAS number.
+The `ExplosiveCheck` tool expects CAS numbers, not SMILES. Passing a SMILES string returns "Please input a valid CAS number." This is correct behavior. the tool checks against a database of known explosives by CAS number.
 
 ### No Streamlit App
 Despite `streamlit` being in the dependencies, it's only used for the HuggingFace Spaces frontend (`chemcrow/frontend/`). The main library usage is Python API, not web interface.

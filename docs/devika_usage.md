@@ -1,4 +1,4 @@
-# Devika -- Usage Documentation
+# Devika. Usage Documentation
 
 ## Overview
 Devika is an AI software engineer that can understand high-level instructions, break them into steps, research relevant information, and write code. It uses a multi-agent architecture with planning, coding, and browser automation capabilities. The system consists of a Flask-SocketIO backend, a Svelte frontend, and an optional Ollama service for local LLMs.
@@ -218,4 +218,4 @@ Devika executes arbitrary code and commands inside the backend container via Pla
 - **docker-compose.yml**: Rewrote to use pre-built `hoomzoom/` images instead of building from source. Added health checks for backend and Ollama services. Added named volume for backend database persistence.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed - all minimum versions resolved successfully.

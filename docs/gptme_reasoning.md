@@ -1,4 +1,4 @@
-# gptme -- Reasoning Log
+# gptme. Reasoning Log
 
 ## Initial Analysis
 
@@ -93,7 +93,7 @@ Three endpoints were tested:
 Returns the Flask-served web interface. This is a static HTML page that loads the chat UI. Returns 200 with HTML content. No auth required.
 
 ### GET /api/docs/ (OpenAPI Docs)
-Returns the interactive Swagger/OpenAPI documentation page. This is useful for exploring the full API surface. Returns 200 with HTML content. No auth required. The trailing slash is important; without it the request may redirect.
+Returns the interactive Swagger/OpenAPI documentation page. This is useful for exploring the full API surface. Returns 200 with HTML content. No auth required. The trailing slash is important. without it the request may redirect.
 
 ### GET /api/conversations (List Conversations)
 Returns a JSON array of conversations. On a fresh server with no conversations, this returns an empty array `[]`. Requires the auth token in the Authorization header. Returns 200 with JSON content.

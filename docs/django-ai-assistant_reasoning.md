@@ -1,4 +1,4 @@
-# django-ai-assistant -- Reasoning Log
+# django-ai-assistant. Reasoning Log
 
 ## Initial Assessment
 

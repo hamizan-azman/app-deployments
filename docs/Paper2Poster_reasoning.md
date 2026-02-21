@@ -1,4 +1,4 @@
-# Paper2Poster -- Deployment Reasoning Log
+# Paper2Poster. Deployment Reasoning Log
 
 ## What is Paper2Poster?
 
@@ -123,7 +123,7 @@ RUN echo '#!/bin/bash\necho "OPENAI_API_KEY=$OPENAI_API_KEY" > /app/.env\ncd /ap
 
 **Issue 1: setuptools/pkg_resources**
 - Symptom: pip install fails with `ModuleNotFoundError: No module named 'pkg_resources'`
-- Root cause: setuptools 71+ removed pkg_resources; old packages still import it during build
+- Root cause: setuptools 71+ removed pkg_resources. old packages still import it during build
 - Fix: PIP_BUILD_CONSTRAINT with setuptools<71
 
 **Issue 2: docling_parse API mismatch**
@@ -143,27 +143,27 @@ RUN echo '#!/bin/bash\necho "OPENAI_API_KEY=$OPENAI_API_KEY" > /app/.env\ncd /ap
 
 ## Step 4: Test Selection and What Each Test Validates
 
-### Test 1: docker build -- PASS
+### Test 1: docker build. PASS
 **What it validates:** All 576 pip packages install without conflicts, system packages (LibreOffice, Java, poppler) install correctly, the setuptools constraint works.
 **Why this test matters:** With 576 dependencies, there are thousands of potential version conflicts. A successful build means the entire dependency graph resolved.
 
-### Test 2: python -m PosterAgent.new_pipeline --help -- PASS
+### Test 2: python -m PosterAgent.new_pipeline --help. PASS
 **What it validates:** The main pipeline module imports successfully, all its dependencies (camel, docling, sklearn, pptx, etc.) load without errors, and the argparse CLI works.
 **Why this test matters:** This exercises the import chain through the entire codebase. If the vendored docling or the pinned docling_parse were wrong, this would fail.
 
-### Test 3: import PosterAgent -- PASS
+### Test 3: import PosterAgent. PASS
 **What it validates:** The Python package is importable as a module. Tested with `python -c "import PosterAgent"`.
 **Why this test matters:** Quick smoke test that the package structure is correct and PYTHONPATH includes /app.
 
-### Test 4: libreoffice --version -- PASS (24.2.7.2)
+### Test 4: libreoffice --version. PASS (24.2.7.2)
 **What it validates:** LibreOffice is installed and runnable. The version number confirms we have a specific, known version.
 **Why this test matters:** LibreOffice is used to convert PPTX to PNG in the final rendering step. Without it, the pipeline completes but cannot produce poster images.
 
-### Test 5: pdftoppm -v -- PASS (24.02.0)
+### Test 5: pdftoppm -v. PASS (24.02.0)
 **What it validates:** The poppler-utils PDF tools are installed. pdftoppm converts PDF pages to images, used during paper parsing.
 **Why this test matters:** Paper parsing requires converting PDF pages to images for OCR and figure extraction. Without poppler, the parser cannot process input papers.
 
-### Test 6: Full pipeline (paper to poster) -- PASS
+### Test 6: Full pipeline (paper to poster). PASS
 **What it validates:** The entire end-to-end pipeline works: PDF parsing with docling, institution detection, logo matching, outline generation via LLM, panel layout optimization, content generation via LLM with overflow correction, style application, PowerPoint rendering, and PNG export.
 **Why this test matters:** This is the real test. All infrastructure tests can pass while the actual pipeline fails (wrong API format, missing model weights, incorrect file paths, etc.). Only running the full pipeline proves the tool actually works.
 

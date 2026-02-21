@@ -1,4 +1,4 @@
-# codeinterpreter-api -- Usage Documentation
+# codeinterpreter-api. Usage Documentation
 
 ## Overview
 Python library implementing ChatGPT's Code Interpreter using LangChain and CodeBox. Sends user prompts to an LLM (OpenAI/Azure/Anthropic), which generates Python code, executes it in a sandboxed Jupyter kernel (CodeBox), and returns results including text, files, and images.
@@ -76,28 +76,28 @@ settings.MODEL = "gpt-4-turbo"
 ## Key Classes
 
 ### CodeInterpreterSession
-- `start()` / `stop()` -- manage session lifecycle
-- `generate_response(user_msg, files=[])` -- send prompt, get response
-- `agenerate_response(user_msg, files=[])` -- async version
+- `start()` / `stop()`. manage session lifecycle
+- `generate_response(user_msg, files=[])`. send prompt, get response
+- `agenerate_response(user_msg, files=[])`. async version
 - Context manager support (`with` / `async with`)
 
 ### CodeInterpreterResponse
-- `content` -- text response from the LLM
-- `files` -- list of File objects (images, generated files)
-- `code_log` -- list of (code, output) tuples showing executed code
+- `content`. text response from the LLM
+- `files`. list of File objects (images, generated files)
+- `code_log`. list of (code, output) tuples showing executed code
 
 ### File
-- `File.from_path(path)` -- load file from disk
-- `File.from_url(url)` -- download file from URL
-- `save(path)` -- save file to disk
-- `show_image()` -- display image (Jupyter/IPython)
+- `File.from_path(path)`. load file from disk
+- `File.from_url(url)`. download file from URL
+- `save(path)`. save file to disk
+- `show_image()`. display image (Jupyter/IPython)
 
 ### settings (CodeInterpreterAPISettings)
-- `OPENAI_API_KEY` -- OpenAI API key
-- `MODEL` -- model name (default: gpt-3.5-turbo)
-- `TEMPERATURE` -- LLM temperature (default: 0.03)
-- `MAX_ITERATIONS` -- max agent iterations (default: 12)
-- `CUSTOM_PACKAGES` -- additional pip packages for CodeBox
+- `OPENAI_API_KEY`. OpenAI API key
+- `MODEL`. model name (default: gpt-3.5-turbo)
+- `TEMPERATURE`. LLM temperature (default: 0.03)
+- `MAX_ITERATIONS`. max agent iterations (default: 12)
+- `CUSTOM_PACKAGES`. additional pip packages for CodeBox
 
 ## Environment Variables
 | Variable | Required | Default | Description |
@@ -118,9 +118,9 @@ settings.MODEL = "gpt-4-turbo"
 | Library import | PASS |
 | Session creation | PASS |
 | Session start (local CodeBox) | PASS |
-| generate_response (simple math) | PASS -- "2 + 2 is 4" |
-| generate_response (fibonacci) | PASS -- code executed, correct output |
-| Code log capture | PASS -- code and output recorded |
+| generate_response (simple math) | PASS. "2 + 2 is 4" |
+| generate_response (fibonacci) | PASS. code executed, correct output |
+| Code log capture | PASS. code and output recorded |
 | Session stop | PASS |
 
 ## Notes
@@ -132,7 +132,7 @@ settings.MODEL = "gpt-4-turbo"
 - **Security: executes arbitrary code.** Code Interpreter runs LLM-generated Python in a sandboxed CodeBox, but the container itself has network access. High-value target for code injection research.
 
 ## Changes from Original
-None. Installed from the developer's pyproject.toml. This is a library with no web server -- deployed as-is.
+None. Installed from the developer's pyproject.toml. This is a library with no web server. deployed as-is.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed - all minimum versions resolved successfully.

@@ -1,4 +1,4 @@
-# codeinterpreter-api -- Reasoning Log
+# codeinterpreter-api. Reasoning Log
 
 ## What I Looked At
 
@@ -48,7 +48,7 @@ The `[all]` extra includes:
 - `streamlit`: web frontend for the examples
 
 ### CMD Choice
-The default CMD simply imports the library and prints a success message. This is a library container -- users override the CMD with their own Python scripts or interactive sessions. The CMD serves as a verification that the install succeeded.
+The default CMD simply imports the library and prints a success message. This is a library container. users override the CMD with their own Python scripts or interactive sessions. The CMD serves as a verification that the install succeeded.
 
 ### No OPENAI_API_KEY in Dockerfile
 The API key is passed at runtime via `-e OPENAI_API_KEY=...`. Never bake secrets into images.
@@ -65,7 +65,7 @@ The API key is passed at runtime via `-e OPENAI_API_KEY=...`. Never bake secrets
 **Result:** PASS. Session object created without errors.
 
 ### Test 3: Session Start
-**Why:** Tests that the local CodeBox (Jupyter kernel gateway) can start. This is the most complex infrastructure step -- it spawns a subprocess running `jupyter kernelgateway`.
+**Why:** Tests that the local CodeBox (Jupyter kernel gateway) can start. This is the most complex infrastructure step. it spawns a subprocess running `jupyter kernelgateway`.
 **Result:** PASS. Status returned "started".
 
 ### Test 4: Simple Response Generation
@@ -89,7 +89,7 @@ Initial CMD tried to print `codeboxapi.__version__` which doesn't exist. Minor i
 The library pins `langchain>=0.1, <0.2`. This is important because LangChain 0.2+ has breaking API changes (different import paths, deprecated agents). The `requirements.lock` pins to `langchain==0.1.20`. Pip resolves this correctly when installing from pyproject.toml.
 
 ### The _patch_parser Monkey Patch
-The library patches LangChain's output parser at import time (`from . import _patch_parser`). This is a hack to handle cases where OpenAI's function calling returns malformed JSON for the "python" tool. Without it, certain LLM responses would crash the agent. This is the kind of thing a pentester should be aware of -- it modifies LangChain's behavior globally.
+The library patches LangChain's output parser at import time (`from . import _patch_parser`). This is a hack to handle cases where OpenAI's function calling returns malformed JSON for the "python" tool. Without it, certain LLM responses would crash the agent. This is the kind of thing a pentester should be aware of. it modifies LangChain's behavior globally.
 
 ### CodeBox Local Execution
 When no `CODEBOX_API_KEY` is set, CodeBox runs locally by starting a `jupyter-kernel-gateway` subprocess. This means:

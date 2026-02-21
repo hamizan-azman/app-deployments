@@ -1,4 +1,4 @@
-# Paper2Poster -- Usage Documentation
+# Paper2Poster. Usage Documentation
 
 ## Overview
 Multi-agent system that converts academic papers (PDFs) into professional posters (PPTX). Uses a top-down, visual-in-the-loop pipeline: Parser extracts structured assets, Planner creates binary-tree layout, Painter-Commentor loop refines panels. Published at NeurIPS 2025.

@@ -1,4 +1,4 @@
-# local-deep-researcher -- Reasoning Log
+# local-deep-researcher. Reasoning Log
 
 ## Initial Assessment
 

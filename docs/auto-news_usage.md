@@ -1,4 +1,4 @@
-# auto-news -- Usage Documentation
+# auto-news. Usage Documentation
 
 ## Overview
 Automated news aggregation and summarization system built on Apache Airflow. Pulls content from multiple sources (RSS, Reddit, Twitter, YouTube, articles), summarizes with LLMs, and optionally pushes to Notion. Uses Celery for distributed task execution.
@@ -73,4 +73,4 @@ docker compose up -d
 - Default credentials: Airflow (airflow/airflow), MySQL (bot/bot), PostgreSQL (airflow/airflow).
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning NOT applied. Uses official pre-built image — cannot control dependency versions.
+Minimum version pinning NOT applied. Uses official pre-built image - cannot control dependency versions.

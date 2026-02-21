@@ -1,4 +1,4 @@
-# Zshot -- Usage Documentation
+# Zshot. Usage Documentation
 
 ## Overview
 Zero-shot named entity recognition using IBM's Zshot library. Uses spaCy pipeline with LinkerRegen (T5-based disambiguation) and MentionsExtractorSpacy to identify and link entities without task-specific training.
@@ -82,7 +82,7 @@ curl -X POST http://localhost:8000/visualize \
 ## Environment Variables
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| None | -- | -- | No environment variables needed |
+| None |. |. | No environment variables needed |
 
 ## Notes
 - First request after startup may be slow (~30s) as the T5 model runs inference. Subsequent requests are faster.
@@ -98,7 +98,7 @@ curl -X POST http://localhost:8000/visualize \
 | File | Change | Why |
 |------|--------|-----|
 | `zshot/knowledge_extractor/__init__.py` | Wrapped `relik` import in try/except ImportError | Prevents crash when optional `relik` package is not installed |
-| `zshot/linker/__init__.py` | Wrapped `blink`, `tars`, `relik`, `gliner` imports in try/except ImportError | Same -- optional backends |
+| `zshot/linker/__init__.py` | Wrapped `blink`, `tars`, `relik`, `gliner` imports in try/except ImportError | Same. optional backends |
 | `zshot/mentions_extractor/__init__.py` | Wrapped `gliner` import in try/except ImportError | Same |
 | `app.py` (NEW FILE) | FastAPI wrapper with `/health`, `/extract`, `/visualize` endpoints | Zshot is a library with no web interface. This custom wrapper was added to expose it as a service |
 
@@ -107,7 +107,7 @@ Dependency change: `transformers` pinned to `<5` (original unpinned). Transforme
 **WARNING:** The `app.py` FastAPI wrapper is entirely custom code not written by the original developer. It introduces HTTP endpoints that do not exist in the original library. Any vulnerability found in `app.py` is NOT a valid supply chain finding.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-- `torch==1` → `torch==2.0.0` (1.11.0 fails with libtorch executable stack error under QEMU cross-build; also version format "1" invalid)
+- `torch==1` → `torch==2.0.0` (1.11.0 fails with libtorch executable stack error under QEMU cross-build. also version format "1" invalid)
 - `requests==2.28` → `requests==2.28.0` (version format fix)
 - `prettytable==3.4` → `prettytable==3.4.0` (version format fix)
 - `transformers==4.20` → `transformers==4.30.0` (4.20.0 can't download models from new HuggingFace Hub API)

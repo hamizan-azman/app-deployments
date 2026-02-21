@@ -1,4 +1,4 @@
-# localGPT -- Usage Documentation
+# localGPT. Usage Documentation
 
 ## Overview
 Local RAG (Retrieval-Augmented Generation) system with document indexing, chat, and session management. Next.js frontend, Python backend with session/index management, Python RAG API with agentic retrieval pipeline. Uses Ollama for local LLM inference.
@@ -32,7 +32,7 @@ docker pull hoomzoom/localgpt-rag-api:latest
 - RAG API: http://localhost:8001
 - Ollama: http://localhost:11434
 
-## API Endpoints -- Backend (port 8000)
+## API Endpoints. Backend (port 8000)
 
 ### Health Check
 - **URL:** `/health`
@@ -93,7 +93,7 @@ docker pull hoomzoom/localgpt-rag-api:latest
 - **Method:** DELETE
 - **Tested:** No
 
-## API Endpoints -- RAG API (port 8001)
+## API Endpoints. RAG API (port 8001)
 
 ### Models
 - **URL:** `/models`
@@ -153,4 +153,4 @@ docker pull hoomzoom/localgpt-rag-api:latest
 None. All three of the developer's Dockerfiles used unmodified.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed - all minimum versions resolved successfully.

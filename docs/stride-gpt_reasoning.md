@@ -1,4 +1,4 @@
-# stride-gpt -- Reasoning Log
+# stride-gpt. Reasoning Log
 
 ## Initial Assessment
 
@@ -27,7 +27,7 @@ The Dockerfile is well-made. Two changes were needed.
 Same issue as AttackGen. The SHA256 pin causes Docker credential helper failures when building via SSH to Windows Docker Desktop. Removed the pin, using `python:3.12-slim` instead.
 
 ### Replaced curl healthcheck with Python urllib
-The original Dockerfile uses `curl --fail http://localhost:8501/_stcore/health` for the healthcheck. However, `python:3.12-slim` does not include curl. This means the container always reports as "unhealthy" even though the application works correctly. We replaced this with `python -c "import urllib.request; urllib.request.urlopen('http://localhost:8501/_stcore/health', timeout=2)"` which matches what AttackGen does and works without additional packages. This is a genuine bug fix in the original Dockerfile.
+The original Dockerfile uses `curl --fail http://localhost:8501/_stcore/health` for the healthcheck. However, `python:3.12-slim` does not include curl. This means the container always reports as "unhealthy" even though the application works correctly. We replaced this with `python -c "import urllib.request. urllib.request.urlopen('http://localhost:8501/_stcore/health', timeout=2)"` which matches what AttackGen does and works without additional packages. This is a genuine bug fix in the original Dockerfile.
 
 ### Did not add curl to the image
 An alternative fix would be to install curl in the Dockerfile. But adding packages increases attack surface and image size. Using Python's stdlib is cleaner and consistent with AttackGen's approach from the same developer.

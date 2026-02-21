@@ -1,4 +1,4 @@
-# codeqai -- Usage Documentation
+# codeqai. Usage Documentation
 
 ## Overview
 CLI + Streamlit app for semantic code search and GPT-powered chat over codebases. Indexes git repos into FAISS vector stores using embeddings (OpenAI or local sentence-transformers), then enables similarity search and conversational Q&A. Also exports finetuning datasets from code.
@@ -80,19 +80,19 @@ Interactive config wizard. Requires TTY.
 ### Main UI
 - **URL:** `/`
 - **Method:** GET
-- **Tested:** Yes -- 200 OK, Streamlit app renders
+- **Tested:** Yes. 200 OK, Streamlit app renders
 
 ### Health Check
 - **URL:** `/_stcore/health`
 - **Method:** GET
 - **Response:** `ok`
-- **Tested:** Yes -- 200 OK
+- **Tested:** Yes. 200 OK
 
 ### Host Config
 - **URL:** `/_stcore/host-config`
 - **Method:** GET
 - **Response:** JSON with allowed origins and settings
-- **Tested:** Yes -- 200 OK
+- **Tested:** Yes. 200 OK
 
 ## Environment Variables
 | Variable | Required | Default | Description |
@@ -123,4 +123,4 @@ Interactive config wizard. Requires TTY.
 Config pre-selects OpenAI backend (user would choose this interactively anyway). No application source code was modified.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed - all minimum versions resolved successfully.

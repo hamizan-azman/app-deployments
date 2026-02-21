@@ -1,11 +1,11 @@
-# gpt-migrate -- Reasoning Log
+# gpt-migrate. Reasoning Log
 
 ## Analyzing the repo
 
 ### Repository Structure
 - `pyproject.toml`: poetry-based project with Python 3.9+, deps: typer, langchain, yaspin, openai, tree-sitter. Identified this as a mid-2023 project (openai ^0.27.8, langchain ^0.0.238).
 - `gpt_migrate/requirements.txt`: simpler dep list with litellm==0.1.213 and pydantic==1.10.8 pinned. This is the actual install file used.
-- `gpt_migrate/main.py`: Typer CLI app. Interactive -- uses typer.confirm() and typer.prompt() for language detection and error recovery. Takes migration parameters (source/target dirs, languages, model).
+- `gpt_migrate/main.py`: Typer CLI app. Interactive. uses typer.confirm() and typer.prompt() for language detection and error recovery. Takes migration parameters (source/target dirs, languages, model).
 - `gpt_migrate/ai.py`: Uses litellm's `completion()` with hardcoded max_tokens=10000. Falls back to gpt-3.5-turbo if model validation fails.
 - `gpt_migrate/config.py`: Reads OPENAI_API_KEY from env. Has prompt template paths and file extension mappings.
 - `gpt_migrate/steps/setup.py`: Creates a Dockerfile for the target framework using LLM.
@@ -28,7 +28,7 @@ This means the container MUST have the Docker CLI binary and access to a Docker 
 - Slim variant to keep image small, but we need build-essential for tree-sitter C compilation.
 
 ### Docker CLI: Static binary from download.docker.com
-First attempt used `docker.io` apt package. This installed config files but NOT the Docker CLI binary on slim images. Second attempt used Docker 24.0.7 static binary, but the host Docker (29.x) requires API version 1.44+, and Docker 24.0.7 only speaks API 1.43. Final solution: Docker 27.4.1 static binary -- compatible with the host's API version.
+First attempt used `docker.io` apt package. This installed config files but NOT the Docker CLI binary on slim images. Second attempt used Docker 24.0.7 static binary, but the host Docker (29.x) requires API version 1.44+, and Docker 24.0.7 only speaks API 1.43. Final solution: Docker 27.4.1 static binary. compatible with the host's API version.
 
 The static binary approach is better than installing from Docker's apt repo because:
 - No need to add Docker's GPG key and apt source
@@ -52,7 +52,7 @@ Pins chosen:
 - `tree-sitter==0.20.4`: Last 0.20.x release, compatible with the tree-sitter grammar repos used
 
 ### Typer Version Conflict Fix
-First build installed typer 0.9.0 but pip also resolved typer-slim 0.21.2 (pulled by another dep). The newer typer-slim changed how options are parsed -- all `--option VALUE` args were treated as boolean flags. Symptoms:
+First build installed typer 0.9.0 but pip also resolved typer-slim 0.21.2 (pulled by another dep). The newer typer-slim changed how options are parsed. all `--option VALUE` args were treated as boolean flags. Symptoms:
 - `--model gpt-4` -> "Got unexpected extra arguments (gpt-4)"
 - `--model=gpt-4` -> "Option '--model' does not take a value"
 
@@ -70,7 +70,7 @@ Could have used `docker:dind` as base or a sidecar. Rejected because:
 - Socket mounting is simpler and what users expect
 
 ### Upgrading litellm to support newer models
-Could have upgraded litellm to a version that knows gpt-4o-mini, gpt-4-turbo, etc. Rejected per architectural fidelity rule -- this would change the app's dependency chain and potentially alter behavior.
+Could have upgraded litellm to a version that knows gpt-4o-mini, gpt-4-turbo, etc. Rejected per architectural fidelity rule. this would change the app's dependency chain and potentially alter behavior.
 
 ### Adding a web wrapper
 The app is purely CLI/interactive. Could have added a web API wrapper. Rejected per architectural fidelity rule.
@@ -103,7 +103,7 @@ Result: PASS. API calls reach OpenAI. Responses received (errors are about token
 
 ### Test 6: Full Migration Run
 Would require gpt-4-32k access (supports 32k tokens, enough for hardcoded max_tokens=10000).
-Result: NOT TESTED. Infrastructure is verified; the only barrier is model access.
+Result: NOT TESTED. Infrastructure is verified. the only barrier is model access.
 
 ## Gotchas
 

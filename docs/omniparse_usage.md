@@ -1,4 +1,4 @@
-# OmniParse -- Usage Documentation
+# OmniParse. Usage Documentation
 
 ## Overview
 Platform that ingests and parses unstructured data (documents, images, audio, video, web pages) into structured markdown optimized for GenAI applications. Completely local, no external APIs required.
@@ -35,7 +35,7 @@ http://localhost:8000
 - **Description:** Parse PDF documents to markdown
 - **Request:** `curl -X POST -F "file=@document.pdf" http://localhost:8000/parse_document/pdf`
 - **Response:** `{"text": "markdown content...", "metadata": {...}, "images": [...]}`
-- **Tested:** Yes -- extracted "Dummy PDF file" from W3C sample PDF
+- **Tested:** Yes. extracted "Dummy PDF file" from W3C sample PDF
 
 ### Parse PowerPoint
 - **URL:** `/parse_document/ppt`
@@ -59,7 +59,7 @@ http://localhost:8000
 - **Description:** Parse image files (PNG, JPEG, JPG, TIFF, WEBP) to text/markdown
 - **Request:** `curl -X POST -F "file=@photo.jpg" http://localhost:8000/parse_image/image`
 - **Response:** `{"text": "extracted text...", "metadata": {...}}`
-- **Tested:** Yes -- OCR extracted "HelloOmniParse" from test image
+- **Tested:** Yes. OCR extracted "HelloOmniParse" from test image
 
 ### Process Image (Advanced)
 - **URL:** `/parse_image/process_image`
@@ -75,7 +75,7 @@ http://localhost:8000
 - **Description:** Transcribe audio files (MP3, WAV, FLAC) via Whisper
 - **Request:** `curl -X POST -F "file=@audio.mp3" http://localhost:8000/parse_media/audio`
 - **Response:** `{"text": "transcribed text...", "metadata": {...}}`
-- **Tested:** No (requires sample audio file; Whisper model confirmed loaded)
+- **Tested:** No (requires sample audio file. Whisper model confirmed loaded)
 
 ### Parse Video
 - **URL:** `/parse_media/video`
@@ -83,7 +83,7 @@ http://localhost:8000
 - **Description:** Transcribe video files (MP4, AVI, MOV, MKV) via Whisper
 - **Request:** `curl -X POST -F "file=@video.mp4" http://localhost:8000/parse_media/video`
 - **Response:** `{"text": "transcribed text...", "metadata": {...}}`
-- **Tested:** No (requires sample video file; Whisper model confirmed loaded)
+- **Tested:** No (requires sample video file. Whisper model confirmed loaded)
 
 ### Parse Website
 - **URL:** `/parse_website/parse`
@@ -91,7 +91,7 @@ http://localhost:8000
 - **Description:** Crawl and parse a website URL to markdown
 - **Request:** `curl -X POST "http://localhost:8000/parse_website/parse?url=https://example.com"`
 - **Response:** `{"text": "page content as markdown...", "metadata": {...}}`
-- **Tested:** Yes -- crawled example.com, returned full HTML + markdown
+- **Tested:** Yes. crawled example.com, returned full HTML + markdown
 
 ## Environment Variables
 | Variable | Required | Default | Description |
@@ -106,7 +106,7 @@ http://localhost:8000
 - Image is ~9.35 GB. Based on CUDA 11.8 / Ubuntu 22.04.
 - PDF parsing uses Marker (Surya OCR). Best on digital PDFs, may struggle with heavy OCR or non-English text.
 - PPT and DOCX parsing converts to PDF via LibreOffice first.
-- **First startup downloads models (~2-4 GB).** Parsing models are downloaded on first run. This takes 5-20 minutes depending on connection speed. The container may appear to hang -- check progress with `docker logs -f <container>`. Subsequent launches are fast.
+- **First startup downloads models (~2-4 GB).** Parsing models are downloaded on first run. This takes 5-20 minutes depending on connection speed. The container may appear to hang. check progress with `docker logs -f <container>`. Subsequent launches are fast.
 
 ## Changes from Original
 None. Uses the developer's own pre-built image (savatar101/omniparse:0.1), byte-for-byte.

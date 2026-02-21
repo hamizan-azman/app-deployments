@@ -1,4 +1,4 @@
-# DataFlow -- Reasoning Log
+# DataFlow. Reasoning Log
 
 ## Analysis
 

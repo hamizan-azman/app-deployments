@@ -1,4 +1,4 @@
-# DataFlow -- Usage Documentation
+# DataFlow. Usage Documentation
 
 ## Overview
 Data preparation and training system for LLMs. CLI + WebUI for text/PDF data pipelines, reasoning enhancement, knowledge base cleaning, and agentic RAG. Includes vLLM for inference. GPU required.
@@ -88,4 +88,4 @@ dataflow webui --ui_mode pdf
 None. Uses the developer's own pre-built image (molyheci/dataflow:cu124).
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning NOT applied. Uses official pre-built image — cannot control dependency versions.
+Minimum version pinning NOT applied. Uses official pre-built image - cannot control dependency versions.

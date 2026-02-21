@@ -1,4 +1,4 @@
-# Local Deep Researcher -- Usage Documentation
+# Local Deep Researcher. Usage Documentation
 
 ## Overview
 LangGraph-based research assistant that uses local LLMs via Ollama to conduct iterative web research. Searches the web using DuckDuckGo (no API key needed), summarizes findings, and generates research reports.
@@ -78,4 +78,4 @@ http://localhost:2024
 No changes from original. The Dockerfile is used as provided by the developer.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed - all minimum versions resolved successfully.

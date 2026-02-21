@@ -1,4 +1,4 @@
-# gptme -- Usage Documentation
+# gptme. Usage Documentation
 
 ## Overview
 CLI and web-based AI coding assistant with a Flask API server. Supports interactive conversations, code execution, conversation management, and MCP integration.

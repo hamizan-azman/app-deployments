@@ -1,4 +1,4 @@
-# NarratoAI -- Usage Documentation
+# NarratoAI. Usage Documentation
 
 ## Overview
 NarratoAI is an AI-powered automated video narration tool. Provides script writing, automated video editing, voice-over (TTS), and subtitle generation via a Streamlit web UI. Uses LLMs (via LiteLLM) for video understanding and narration script generation.
@@ -31,7 +31,7 @@ http://localhost:9000
 - Supports 100+ LLM providers via LiteLLM (OpenAI, DeepSeek, Gemini, Qwen, Claude, etc.)
 
 ## Web Interface
-This is a Streamlit web application. All interaction happens through the browser UI. There is no REST API -- users interact via the Streamlit interface to upload videos, configure LLM/TTS settings, generate scripts, and produce narrated videos.
+This is a Streamlit web application. All interaction happens through the browser UI. There is no REST API. users interact via the Streamlit interface to upload videos, configure LLM/TTS settings, generate scripts, and produce narrated videos.
 
 ## Endpoints
 
@@ -61,7 +61,7 @@ This is a Streamlit web application. All interaction happens through the browser
 ### Video Generation (via UI)
 - **Description:** Upload video, configure LLM/TTS, generate narrated video
 - **Requires:** Valid LLM API key configured in config.toml or UI
-- **Tested:** Partial -- LLM connection confirmed (OpenAI API reached, rate-limited on low-tier key)
+- **Tested:** Partial. LLM connection confirmed (OpenAI API reached, rate-limited on low-tier key)
 
 ## Environment Variables
 | Variable | Required | Default | Description |
@@ -73,12 +73,12 @@ This is a Streamlit web application. All interaction happens through the browser
 LLM and TTS settings are configured via `config.toml` (copied from `config.example.toml` on first run) or through the web UI settings panel.
 
 Key config sections:
-- `[app]` -- LLM provider, model, API keys (vision + text models)
-- `[azure]` -- Azure TTS credentials
-- `[tencent]` -- Tencent TTS credentials
-- `[ui]` -- TTS engine selection, voice settings
-- `[proxy]` -- HTTP/HTTPS proxy
-- `[frames]` -- Video frame extraction interval
+- `[app]`. LLM provider, model, API keys (vision + text models)
+- `[azure]`. Azure TTS credentials
+- `[tencent]`. Tencent TTS credentials
+- `[ui]`. TTS engine selection, voice settings
+- `[proxy]`. HTTP/HTTPS proxy
+- `[frames]`. Video frame extraction interval
 
 To persist config, mount a volume: `-v ./config.toml:/NarratoAI/config.toml`
 

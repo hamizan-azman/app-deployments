@@ -1,4 +1,4 @@
-# bilingual_book_maker -- Usage Documentation
+# bilingual_book_maker. Usage Documentation
 
 ## Overview
 CLI tool to translate EPUB/TXT/MD/SRT/PDF files and produce bilingual outputs using OpenAI and other providers.
@@ -144,7 +144,7 @@ Supported providers include:
 - **Command:** `--translation_style <css>`
 - **Method:** CLI
 - **Description:** Apply CSS styling to translated text.
-- **Request:** `python3 make_book.py --book_name test_books/animal_farm.epub --translation_style "color: #808080; font-style: italic;" --openai_key ${OPENAI_API_KEY}`
+- **Request:** `python3 make_book.py --book_name test_books/animal_farm.epub --translation_style "color: #808080. font-style: italic;" --openai_key ${OPENAI_API_KEY}`
 - **Response:** Writes output files.
 - **Tested:** Yes
 
@@ -279,7 +279,7 @@ Supported providers include:
 ## Changes from Original
 **Category: Dependencies only.** Source code untouched.
 
-- `PyMuPDF==1.24.2` added (not in original requirements.txt). The code imports `fitz` at module load time -- this was a missing dependency in the original repo.
+- `PyMuPDF==1.24.2` added (not in original requirements.txt). The code imports `fitz` at module load time. this was a missing dependency in the original repo.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed - all minimum versions resolved successfully.

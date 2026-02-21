@@ -45,7 +45,7 @@
 | 40 | Biomni | DONE | Gradio, editable install + undeclared deps, 2/2 infra tests (full test needs 11GB data download + API key) |
 | 41 | Data-Copilot | DONE | Gradio, Chinese financial data, era-matched deps, 2/2 tests (query needs Tushare token + OpenAI key) |
 
-## SKIP (8) -- local install docs in docs/
+## SKIP (8). local install docs in docs/
 | App | Reason | Local Install Doc |
 |-----|--------|-------------------|
 | autoMate | Desktop RPA, requires GUI | docs/automate_usage.md |

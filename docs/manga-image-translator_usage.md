@@ -1,4 +1,4 @@
-# manga-image-translator -- Usage Documentation
+# manga-image-translator. Usage Documentation
 
 ## Overview
 One-click translation of text in manga/comic images. Detects text regions, performs OCR, translates (Japanese to English by default), inpaints the original text, and renders translated text. Supports 20+ languages.
@@ -38,7 +38,7 @@ http://localhost:5003
 - **Description:** Translate an image. Accepts image as URL, base64, or raw bytes in JSON body. Returns structured JSON with all detected text regions, translations, and background patches.
 - **Request:** `curl -X POST http://localhost:5003/translate/json -H "Content-Type: application/json" -d '{"image": "https://example.com/manga.png", "config": {}}'`
 - **Response:** `{"translations": [{"minX": 0, "minY": 0, "maxX": 100, "maxY": 100, "text": {"ENG": "Hello", "ja": "..."}, "background": "data:image/png;base64,..."}]}`
-- **Tested:** Yes -- translated manga page with 14 Japanese text regions to English, 200 OK, 386KB response
+- **Tested:** Yes. translated manga page with 14 Japanese text regions to English, 200 OK, 386KB response
 
 ### Translate (JSON body, image response)
 - **URL:** `/translate/image`
@@ -109,7 +109,7 @@ http://localhost:5003
 - **Description:** Returns number of tasks in the translation queue.
 - **Request:** `curl -X POST http://localhost:5003/queue-size`
 - **Response:** `0`
-- **Tested:** Yes -- returned 0
+- **Tested:** Yes. returned 0
 
 ### List Results
 - **URL:** `/results/list`
@@ -117,7 +117,7 @@ http://localhost:5003
 - **Description:** List all stored result directories (folders containing final.png).
 - **Request:** `curl http://localhost:5003/results/list`
 - **Response:** `{"directories": []}`
-- **Tested:** Yes -- returned empty list
+- **Tested:** Yes. returned empty list
 
 ### Get Result Image
 - **URL:** `/result/{folder_name}/final.png`
@@ -145,19 +145,19 @@ http://localhost:5003
 - **URL:** `/`
 - **Method:** GET
 - **Description:** Interactive web interface for uploading and translating manga images.
-- **Tested:** Yes -- 200 OK, 75KB HTML
+- **Tested:** Yes. 200 OK, 75KB HTML
 
 ### Manual Page
 - **URL:** `/manual`
 - **Method:** GET
 - **Description:** Manual/help page with usage instructions.
-- **Tested:** Yes -- 200 OK, 6.9KB HTML
+- **Tested:** Yes. 200 OK, 6.9KB HTML
 
 ### OpenAPI Docs
 - **URL:** `/docs`
 - **Method:** GET
 - **Description:** Auto-generated FastAPI/Swagger documentation.
-- **Tested:** Yes -- 200 OK
+- **Tested:** Yes. 200 OK
 
 ## Config Object
 The `config` field in translation requests accepts a JSON object. Key fields (all optional):
@@ -184,10 +184,10 @@ See `/docs` endpoint for full schema or the repo's README for all configuration 
 - Default translator is "sugoi" (offline, no API key needed) for Japanese-to-English. Other language pairs may require online translators (GPT, DeepL) with API keys.
 - The server runs on port 5003 (API) and spawns a translator instance on port 5004 internally.
 - `--ipc=host` flag recommended for shared memory when processing large images.
-- **First startup downloads models (~2-3 GB).** Translation and OCR models are downloaded on first run. This takes 5-15 minutes depending on connection speed. The container may appear to hang -- check progress with `docker logs -f <container>`. Subsequent launches are fast.
+- **First startup downloads models (~2-3 GB).** Translation and OCR models are downloaded on first run. This takes 5-15 minutes depending on connection speed. The container may appear to hang. check progress with `docker logs -f <container>`. Subsequent launches are fast.
 
 ## Changes from Original
 None. Uses the developer's own pre-built image (zyddnys/manga-image-translator:main). Entrypoint overridden at runtime to start the web server (developer's own server/main.py).
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning NOT applied. Uses official pre-built image — cannot control dependency versions.
+Minimum version pinning NOT applied. Uses official pre-built image - cannot control dependency versions.

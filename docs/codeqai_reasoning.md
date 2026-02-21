@@ -1,4 +1,4 @@
-# codeqai -- Reasoning Log
+# codeqai. Reasoning Log
 
 ## Understanding the App
 
@@ -63,7 +63,7 @@ chat-model: gpt-4o-mini
 Copied the codeqai Python package + pyproject.toml into the image as a sample project. Reasons:
 - The app MUST run inside a git repo (hard requirement in code)
 - Using codeqai's own source as demo is self-consistent and demonstrates real functionality
-- 32 Python files -- small enough for fast indexing, large enough to be meaningful
+- 32 Python files. small enough for fast indexing, large enough to be meaningful
 - Initialized with `git init && git add -A && git commit`
 
 ### Streamlit Environment Variables
@@ -94,8 +94,8 @@ Returns Streamlit's configuration as JSON. Confirms server settings (address, po
 
 ### Test 4: FAISS Index Exists
 Checked `/root/.cache/codeqai/` inside the container. Found:
-- `sample-project.faiss.bytes` (1.8MB) -- the vector index
-- `sample-project.json` (14.5KB) -- the filename-to-vector cache
+- `sample-project.faiss.bytes` (1.8MB). the vector index
+- `sample-project.json` (14.5KB). the filename-to-vector cache
 This proves the indexing pipeline works: tree-sitter parsed the Python files, OpenAI embeddings API was called, FAISS stored the vectors.
 
 ### Test 5: Config File
@@ -120,7 +120,7 @@ On Windows, if `OPENAI_API_KEY` is set as a User environment variable via PowerS
 The image is ~5GB because `langchain-huggingface` pulls in `sentence-transformers` which depends on `torch` (915MB) + NVIDIA CUDA libraries. These are needed even when using OpenAI embeddings because the dependency is unconditional in codeqai's pyproject.toml. No way to avoid this without modifying the package.
 
 ### Click + Argparse Interaction
-The `codeqai app` command uses argparse for its main CLI, then delegates to a click group (`run_streamlit`) for launching Streamlit. The click group reads `sys.argv` and finds "app" as its subcommand, which triggers `stcli._main_run()`. This works but is fragile -- sys.argv must contain "app" at the right position. In Docker CMD `["codeqai", "app"]`, this works correctly.
+The `codeqai app` command uses argparse for its main CLI, then delegates to a click group (`run_streamlit`) for launching Streamlit. The click group reads `sys.argv` and finds "app" as its subcommand, which triggers `stcli._main_run()`. This works but is fragile. sys.argv must contain "app" at the right position. In Docker CMD `["codeqai", "app"]`, this works correctly.
 
 ### First Run Indexing Time
 First container startup takes ~10-30 seconds for indexing (tree-sitter parsing + OpenAI embeddings API calls). Subsequent runs with the same container are instant since the FAISS index is cached in the container filesystem. If the container is removed, indexing repeats.

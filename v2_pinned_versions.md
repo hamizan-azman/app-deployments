@@ -1,4 +1,4 @@
-# V2 Minimum Version Pinning — Manifest
+# V2 Minimum Version Pinning - Manifest
 
 This document summarizes all dependency version changes made during V2 minimum version pinning across all 49 apps.
 
@@ -11,7 +11,7 @@ This document summarizes all dependency version changes made during V2 minimum v
 ### agenticSeek
 | Package | Original | Pinned | Reason |
 |---------|----------|--------|--------|
-| playsound3 | >=1.0.0 | ==3.0.0 | 1.0.0 doesn't exist on PyPI; 2.0.0 requires pygobject/Cairo system deps |
+| playsound3 | >=1.0.0 | ==3.0.0 | 1.0.0 doesn't exist on PyPI. 2.0.0 requires pygobject/Cairo system deps |
 | together | >=1.5.0 | ==1.5.2 | 1.5.0 doesn't exist on PyPI |
 | tqdm | >=4 | ==4.66.2 | together 1.5.2 requires tqdm>=4.66.2 |
 
@@ -43,7 +43,7 @@ This document summarizes all dependency version changes made during V2 minimum v
 ### gpt-engineer
 | Package | Original | Pinned | Reason |
 |---------|----------|--------|--------|
-| tiktoken | >=0.0.4 | ==0.7.0 | 0.0.4 doesn't exist; langchain-openai requires >=0.7 |
+| tiktoken | >=0.0.4 | ==0.7.0 | 0.0.4 doesn't exist. langchain-openai requires >=0.7 |
 | langchain | ^0.1.2 | ==0.2.0 | 0.1.2 incompatible with langchain-community==0.2.0 |
 | langchain-anthropic | ^0.1.1 | ==0.1.13 | 0.1.1 needs langchain-core<0.2 |
 | langchain_openai | * | ==0.1.7 | Compatible version for langchain 0.2.x |
@@ -54,7 +54,7 @@ This document summarizes all dependency version changes made during V2 minimum v
 ### gpt-researcher
 | Package | Original | Pinned | Reason |
 |---------|----------|--------|--------|
-| unstructured | >=0.13 | ==0.14.2 | 0.13 doesn't exist on PyPI; 0.13.x requires Python <3.12 |
+| unstructured | >=0.13 | ==0.14.2 | 0.13 doesn't exist on PyPI. 0.13.x requires Python <3.12 |
 | lxml | >=4.9.2 | ==4.9.3 | 4.9.2 fails to build on Python 3.12 |
 | langgraph | >=0.2.76 | ==1.0.0 | langchain 1.0.0 requires langgraph>=1.0.0 |
 | pydantic | >=2.5.1 | ==2.9.0 | ollama 0.6.0 requires pydantic>=2.9 |
@@ -70,7 +70,7 @@ This document summarizes all dependency version changes made during V2 minimum v
 ### HuixiangDou
 | Package | Original | Pinned | Reason |
 |---------|----------|--------|--------|
-| pydantic | ==1.10.13 | ==2.0.2 | gradio 4.44.1 requires pydantic>=2.0; fastapi 0.100.0 excludes 2.0.0 |
+| pydantic | ==1.10.13 | ==2.0.2 | gradio 4.44.1 requires pydantic>=2.0. fastapi 0.100.0 excludes 2.0.0 |
 | fastapi | *(unpinned)* | ==0.100.0 | First version compatible with pydantic v2 (QC fix) |
 | gradio | *(unpinned)* | ==4.44.1 | Era-match with huggingface_hub <1.0 |
 | gradio_client | *(unpinned)* | ==1.3.0 | Match gradio 4.44.1 |
@@ -93,7 +93,7 @@ This document summarizes all dependency version changes made during V2 minimum v
 | Package | Original | Pinned | Reason |
 |---------|----------|--------|--------|
 | docling_parse | *(unpinned)* | ==4.0.0 | Newer versions removed `pdf_parser_v2` API used by vendored docling code |
-| setuptools | *(unpinned)* | <71 | Build constraint; pkg_resources compatibility |
+| setuptools | *(unpinned)* | <71 | Build constraint. pkg_resources compatibility |
 
 ### pdfGPT
 | Package | Original | Pinned | Reason |
@@ -103,13 +103,13 @@ This document summarizes all dependency version changes made during V2 minimum v
 | openai | *(unpinned)* | ==0.27.8 | litellm 0.1.424 requires >=0.27.8 |
 | pydantic | *(unpinned)* | <2 | Jina 3.x crashes with pydantic v2 |
 | huggingface_hub | *(unpinned)* | <1.0 | Gradio 4.x imports HfFolder removed in hub >=1.0 |
-| setuptools | *(unpinned)* | <71 | Build constraint; langchain-serve uses pkg_resources |
+| setuptools | *(unpinned)* | <71 | Build constraint. langchain-serve uses pkg_resources |
 | opentelemetry-exporter-prometheus | *(unpinned)* | ==1.12.0rc1 | Yanked from PyPI but required by jina 3.14.1 |
 
 ### stride-gpt
 | Package | Original | Pinned | Reason |
 |---------|----------|--------|--------|
-| streamlit | >=1.40 | ==1.40.0 | 1.40 doesn't exist on PyPI; 1.40.0 is the actual release |
+| streamlit | >=1.40 | ==1.40.0 | 1.40 doesn't exist on PyPI. 1.40.0 is the actual release |
 
 ### TaskWeaver
 | Package | Original | Pinned | Reason |
@@ -124,7 +124,7 @@ This document summarizes all dependency version changes made during V2 minimum v
 ### zshot
 | Package | Original | Pinned | Reason |
 |---------|----------|--------|--------|
-| torch | ==1 | ==2.0.0 | 1.x fails with libtorch executable stack error under QEMU; version "1" invalid |
+| torch | ==1 | ==2.0.0 | 1.x fails with libtorch executable stack error under QEMU. version "1" invalid |
 | requests | ==2.28 | ==2.28.0 | Version format fix |
 | prettytable | ==3.4 | ==3.4.0 | Version format fix |
 | transformers | ==4.20 | ==4.30.0 | 4.20.0 can't download models from new HuggingFace Hub API |
@@ -163,7 +163,7 @@ All `>=`/`~=`/`^` specifiers converted to `==` at the originally declared minimu
 | App | Reason |
 |-----|--------|
 | attackgen | No version specifiers to pin (all deps unpinned) |
-| gptme | 40+ interdependent packages create cascading conflicts; built with original caret/tilde constraints |
+| gptme | 40+ interdependent packages create cascading conflicts. built with original caret/tilde constraints |
 | RD-Agent | No `>=` specifiers to convert (all deps unpinned) |
 
 ---
@@ -182,7 +182,7 @@ These apps use official or third-party pre-built Docker images. Dependency versi
 
 ---
 
-## Skipped Apps (8) — Local Install Docs Only
+## Skipped Apps (8) - Local Install Docs Only
 
 These apps were not containerized. Local installation instructions are in `docs/`.
 

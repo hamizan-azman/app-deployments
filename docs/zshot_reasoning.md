@@ -1,8 +1,8 @@
-# Zshot -- Deployment Reasoning Log
+# Zshot. Deployment Reasoning Log
 
 ## What is Zshot?
 
-Zshot is an IBM Research library for zero-shot named entity recognition (NER). It extends spaCy pipelines with components that can recognize entities without needing task-specific training data. You provide entity descriptions (e.g., "IBM -- an American multinational technology corporation") and Zshot uses transformer models to match spans of text to those entities.
+Zshot is an IBM Research library for zero-shot named entity recognition (NER). It extends spaCy pipelines with components that can recognize entities without needing task-specific training data. You provide entity descriptions (e.g., "IBM. an American multinational technology corporation") and Zshot uses transformer models to match spans of text to those entities.
 
 The library itself is a Python package with no built-in web interface. It's designed to be used as a library in Python code, not as a standalone service. This means we need to write a web wrapper ourselves.
 
@@ -14,7 +14,7 @@ The library itself is a Python package with no built-in web interface. It's desi
 
 - **setup.py / setup.cfg**: These define the package's dependencies. setup.cfg listed core deps (spacy, torch, transformers, etc.) and optional dep groups like `[blink]`, `[tars]`, `[relik]`, `[gliner]`. This told me that many backends are optional and their dependencies are not installed by default.
 
-- **zshot/config.py**: Found the critical constant `MODELS_CACHE_PATH = os.path.join(Path.home(), ".cache", "zshot")`. This tells us where Zshot looks for downloaded models -- not the default HuggingFace cache location, but `~/.cache/zshot/`. This became important later.
+- **zshot/config.py**: Found the critical constant `MODELS_CACHE_PATH = os.path.join(Path.home(), ".cache", "zshot")`. This tells us where Zshot looks for downloaded models. not the default HuggingFace cache location, but `~/.cache/zshot/`. This became important later.
 
 - **zshot/__init__.py, zshot/linker/__init__.py, zshot/mentions_extractor/__init__.py, zshot/knowledge_extractor/__init__.py**: These `__init__.py` files control what gets imported when you `import zshot`. Several of them had unconditional imports of optional backends (relik, gliner, blink, flair), which would cause ImportError at runtime if those optional packages weren't installed.
 
@@ -85,26 +85,26 @@ RUN python -m spacy download en_core_web_sm
 Pre-download the spaCy model so it's baked into the image. Without this, the first import of `spacy.load("en_core_web_sm")` would fail.
 
 ```dockerfile
-RUN python -c "from transformers import AutoTokenizer, AutoModelForSeq2SeqLM; cache = '/root/.cache/zshot/'; AutoTokenizer.from_pretrained('ibm/regen-disambiguation', cache_dir=cache); AutoModelForSeq2SeqLM.from_pretrained('ibm/regen-disambiguation', cache_dir=cache)"
+RUN python -c "from transformers import AutoTokenizer, AutoModelForSeq2SeqLM. cache = '/root/.cache/zshot/'. AutoTokenizer.from_pretrained('ibm/regen-disambiguation', cache_dir=cache). AutoModelForSeq2SeqLM.from_pretrained('ibm/regen-disambiguation', cache_dir=cache)"
 ```
 Pre-download the LinkerRegen model. Critical detail: we specify `cache_dir='/root/.cache/zshot/'` because that's where Zshot's `config.py` looks for cached models. If we let HuggingFace download to its default cache (`~/.cache/huggingface/`), Zshot wouldn't find the model at runtime and would try to re-download it (which would fail in an air-gapped environment or add startup latency).
 
 ## Step 4: Errors Encountered and Fixes
 
-### Error 1: ModuleNotFoundError -- relik, gliner, blink, flair
+### Error 1: ModuleNotFoundError. relik, gliner, blink, flair
 
 **What happened**: Container started, Python imported zshot, and immediately crashed because `zshot/knowledge_extractor/__init__.py` had `from zshot.knowledge_extractor.knowledge_extractor_relik import KnowledgeExtractorRelik` without a try/except guard. Same issue in linker and mentions_extractor __init__ files.
 
 **Root cause**: The upstream code assumes all optional dependencies are installed. The setup.cfg has optional dependency groups (`[blink]`, `[tars]`, `[relik]`, `[gliner]`) but the `__init__.py` files don't guard their imports.
 
 **Fix**: Wrapped the optional imports in try/except ImportError blocks in three files:
-- `zshot/knowledge_extractor/__init__.py` -- wrapped relik import
-- `zshot/linker/__init__.py` -- wrapped blink, tars, relik, gliner imports
-- `zshot/mentions_extractor/__init__.py` -- wrapped gliner import
+- `zshot/knowledge_extractor/__init__.py`. wrapped relik import
+- `zshot/linker/__init__.py`. wrapped blink, tars, relik, gliner imports
+- `zshot/mentions_extractor/__init__.py`. wrapped gliner import
 
 **Why this is safe**: These are optional backends. If someone needs LinkerBlink, they install the `[blink]` extras. Our deployment only uses LinkerRegen and MentionsExtractorSpacy, neither of which requires these optional packages.
 
-### Error 2: AttributeError -- T5Tokenizer.batch_encode_plus
+### Error 2: AttributeError. T5Tokenizer.batch_encode_plus
 
 **What happened**: After fixing the import errors, the /extract endpoint crashed with `AttributeError: 'T5Tokenizer' object has no attribute 'batch_encode_plus'`.
 
@@ -114,7 +114,7 @@ Pre-download the LinkerRegen model. Critical detail: we specify `cache_dir='/roo
 
 **Why >=4.20**: Zshot's setup.cfg requires `transformers>=4.20` as the minimum version.
 
-### Error 3: OSError -- Can't load model ibm/regen-disambiguation
+### Error 3: OSError. Can't load model ibm/regen-disambiguation
 
 **What happened**: The model pre-download step in the Dockerfile used the default HuggingFace cache, but Zshot looks in `~/.cache/zshot/`.
 
@@ -122,7 +122,7 @@ Pre-download the LinkerRegen model. Critical detail: we specify `cache_dir='/roo
 
 **Fix**: Added `cache_dir='/root/.cache/zshot/'` to the Dockerfile pre-download command so the model is cached in the exact location Zshot expects.
 
-### Error 4: AttributeError -- Zshot.cfg
+### Error 4: AttributeError. Zshot.cfg
 
 **What happened**: An earlier version of app.py had a `/configure` endpoint that tried to modify the pipeline's entity list at runtime. This called methods that accessed `self.cfg` on the Zshot pipeline component, which doesn't exist in the current version.
 
@@ -132,21 +132,21 @@ Pre-download the LinkerRegen model. Critical detail: we specify `cache_dir='/roo
 
 ### Test 1: GET /health
 - **Why**: Confirms the container started, uvicorn is listening, and the app module loaded without errors.
-- **Result**: `{"status":"ok"}` -- PASS
+- **Result**: `{"status":"ok"}`. PASS
 
 ### Test 2: GET /docs
 - **Why**: Confirms FastAPI's auto-generated Swagger docs are accessible. This validates that the FastAPI framework is properly configured.
-- **Result**: HTTP 200 -- PASS
+- **Result**: HTTP 200. PASS
 
 ### Test 3: POST /extract
 - **Why**: This is the core functionality. Sends a text about IBM and checks that the NER pipeline correctly identifies and links entities.
 - **Input**: "International Business Machines Corporation (IBM) is an American multinational technology corporation headquartered in Armonk, New York."
 - **Expected**: Should find IBM, American, Armonk, New York as entities matching the default entity descriptions.
-- **Result**: Correctly extracted 5 entities: "International Business Machines Corporation"->IBM, "IBM"->IBM, "American"->American, "Armonk"->Armonk, "New York"->New York -- PASS
+- **Result**: Correctly extracted 5 entities: "International Business Machines Corporation"->IBM, "IBM"->IBM, "American"->American, "Armonk"->Armonk, "New York"->New York. PASS
 
 ### Test 4: POST /visualize
 - **Why**: Tests the displacy HTML rendering path. Different code path from /extract (uses zshot's displacy module instead of just returning JSON).
-- **Result**: HTTP 200, returns HTML content -- PASS
+- **Result**: HTTP 200, returns HTML content. PASS
 
 ## Summary
 

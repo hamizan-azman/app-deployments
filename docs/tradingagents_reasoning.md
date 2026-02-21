@@ -1,8 +1,8 @@
-# TradingAgents -- Reasoning Log
+# TradingAgents. Reasoning Log
 
 ## Initial Assessment
 
-TradingAgents is a Python CLI/library tool by TauricResearch for LLM-powered stock analysis. It uses LangGraph to orchestrate multiple specialized agents (analysts, researchers, traders, risk managers) that debate and produce investment decisions. No existing Dockerfile. No web server -- pure CLI with an optional library API.
+TradingAgents is a Python CLI/library tool by TauricResearch for LLM-powered stock analysis. It uses LangGraph to orchestrate multiple specialized agents (analysts, researchers, traders, risk managers) that debate and produce investment decisions. No existing Dockerfile. No web server. pure CLI with an optional library API.
 
 ## What Was Checked
 
@@ -46,7 +46,7 @@ This is a CLI tool. Adding a Flask/FastAPI wrapper would violate architectural f
 Ran `docker run --rm hoomzoom/tradingagents --help`. Returned usage information with options. Validates that the package installed correctly and the entry point works.
 
 ### Test 2: Library import
-Ran `docker run --rm --entrypoint python hoomzoom/tradingagents -c "from tradingagents.graph.trading_graph import TradingAgentsGraph; from tradingagents.default_config import DEFAULT_CONFIG; print('Import OK')"`. Both imports succeeded. Validates the internal package structure is intact.
+Ran `docker run --rm --entrypoint python hoomzoom/tradingagents -c "from tradingagents.graph.trading_graph import TradingAgentsGraph. from tradingagents.default_config import DEFAULT_CONFIG. print('Import OK')"`. Both imports succeeded. Validates the internal package structure is intact.
 
 ### Test 3: yfinance data fetch
 Ran a script inside the container that fetched 5-day NVDA history via yfinance. Returned real market data. Validates that the data pipeline works and network access is functional. This is the default data vendor so it exercises the most common code path.

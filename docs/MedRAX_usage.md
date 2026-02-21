@@ -1,4 +1,4 @@
-# MedRAX -- Local Install Guide
+# MedRAX. Local Install Guide
 
 ## Overview
 MedRAX is an AI agent for chest X-ray analysis that integrates multiple specialized medical imaging models (CheXagent, LLaVA-Med, MedSAM, Maira-2) with GPT-4o to perform detection, classification, segmentation, and report generation. It exposes a Gradio web interface.
@@ -7,9 +7,9 @@ MedRAX is an AI agent for chest X-ray analysis that integrates multiple speciali
 MedRAX loads multiple large vision-language models simultaneously. The official deployment configuration used an NVIDIA RTX 6000 (48 GB VRAM). Even with 8-bit quantization, the combined model stack requires well beyond the 8 GB available on the RTX 3070. The models are also downloaded dynamically from HuggingFace at first launch, making Docker image size unmanageable.
 
 ## Requirements
-- OS: Linux or Windows with WSL2 (recommended); macOS (CPU only, very slow)
+- OS: Linux or Windows with WSL2 (recommended). macOS (CPU only, very slow)
 - Python 3.8+
-- NVIDIA GPU: 12 GB+ VRAM minimum (for a subset of tools); 24 GB+ for full tool set; 48 GB for full official configuration
+- NVIDIA GPU: 12 GB+ VRAM minimum (for a subset of tools). 24 GB+ for full tool set. 48 GB for full official configuration
 - CUDA 11.8+ and matching PyTorch
 - OpenAI API key (GPT-4o used as the reasoning backbone)
 - 50+ GB free disk space for model weights
