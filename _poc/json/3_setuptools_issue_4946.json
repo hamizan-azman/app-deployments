@@ -1,0 +1,15 @@
+{
+  "file_id": "3_setuptools_issue_4946",
+  "numeric_id": "3",
+  "library_hint": "setuptools",
+  "source": "github_issue",
+  "title": "Path traversal in PackageIndex.download leads to arbitrary file write due to insufficient sanitization of URL-derived filename",
+  "cve": "N/A",
+  "cwe": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+  "library": "setuptools",
+  "affected_version": ">= 0, < 78.1.1",
+  "vulnerable_function": "PackageIndex._download_url",
+  "triggerability": "indirect",
+  "trigger_payload": "http://localhost:8000/%2fhome%2fuser%2f.ssh%2fauthorized_keys",
+  "oracle": "File written to /home/user/.ssh/authorized_keys"
+}

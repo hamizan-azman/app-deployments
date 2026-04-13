@@ -190,3 +190,39 @@
 [submodule "apps/morphik-core"]
 	path = apps/morphik-core
 	url = https://github.com/morphik-org/morphik-core
+[submodule "apps/sparrow"]
+	path = apps/sparrow
+	url = https://github.com/katanaml/sparrow
+[submodule "apps/zotero-arxiv-daily"]
+	path = apps/zotero-arxiv-daily
+	url = https://github.com/TideDra/zotero-arxiv-daily
+[submodule "apps/shell_gpt"]
+	path = apps/shell_gpt
+	url = https://github.com/TheR1D/shell_gpt
+[submodule "apps/SurfSense"]
+	path = apps/SurfSense
+	url = https://github.com/MODSetter/SurfSense
+[submodule "apps/khoj"]
+	path = apps/khoj
+	url = https://github.com/khoj-ai/khoj
+[submodule "apps/onyx"]
+	path = apps/onyx
+	url = https://github.com/onyx-dot-app/onyx
+[submodule "apps/Verba"]
+	path = apps/Verba
+	url = https://github.com/weaviate/Verba
+[submodule "apps/kotaemon"]
+	path = apps/kotaemon
+	url = https://github.com/Cinnamon/kotaemon
+[submodule "apps/screenshot-to-code"]
+	path = apps/screenshot-to-code
+	url = https://github.com/abi/screenshot-to-code
+[submodule "apps/sql-explorer"]
+	path = apps/sql-explorer
+	url = https://github.com/explorerhq/sql-explorer
+[submodule "apps/DeepBI"]
+	path = apps/DeepBI
+	url = https://github.com/DeepInsight-AI/DeepBI
+[submodule "apps/openclaw"]
+	path = apps/openclaw
+	url = https://github.com/openclaw/openclaw

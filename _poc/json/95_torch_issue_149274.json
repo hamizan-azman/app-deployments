@@ -1,0 +1,15 @@
+{
+  "file_id": "95_torch_issue_149274",
+  "numeric_id": "95",
+  "library_hint": "torch",
+  "source": "github_issue",
+  "title": "Floating point exception in torch.mkldnn_max_pool2d due to invalid stride=0",
+  "cve": "CVE-2025-2953",
+  "cwe": "CWE-758: Incorrectly Handled Exception",
+  "library": "pytorch",
+  "affected_version": ">= 2.6.0, < 2.7.1",
+  "vulnerable_function": "torch.mkldnn_max_pool2d",
+  "triggerability": "indirect",
+  "trigger_payload": "import torch\nx = torch.randn(2, 64, 32, 32).to_mkldnn()\nout2 = torch.mkldnn_max_pool2d(x, kernel_size=3, stride=0)",
+  "oracle": "Floating point exception crash"
+}

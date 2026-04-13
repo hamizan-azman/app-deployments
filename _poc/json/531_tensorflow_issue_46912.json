@@ -1,0 +1,15 @@
+{
+  "file_id": "531_tensorflow_issue_46912",
+  "numeric_id": "531",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "tf.sparse.eye crashes when num_rows is set to a very large number due to integer overflow",
+  "cve": "N/A",
+  "cwe": "CWE-190: Integer Overflow or Wraparound",
+  "library": "tensorflow",
+  "affected_version": ">= 2.1.0, < 2.5.0",
+  "vulnerable_function": "tf.sparse.eye",
+  "triggerability": "indirect",
+  "trigger_payload": "import tensorflow as tf\nimport numpy as np\ntf.sparse.eye(num_rows=9223372036854775807, num_columns=None)",
+  "oracle": "process aborts (core dumped) with a check failure in tensor_shape.cc"
+}

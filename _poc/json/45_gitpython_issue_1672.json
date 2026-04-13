@@ -1,0 +1,15 @@
+{
+  "file_id": "45_gitpython_issue_1672",
+  "numeric_id": "45",
+  "library_hint": "gitpython",
+  "source": "github_issue",
+  "title": "Inadequate validation of refnames in GitPython allows for invalid reference names to be processed",
+  "cve": "CVE-2023-41040",
+  "cwe": "CWE-20: Improper Input Validation",
+  "library": "GitPython",
+  "affected_version": ">= 3.1.36, < 3.1.37",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "The vulnerability is fixed by adding more robust checks for refname validity, preventing the use of invalid reference names."
+}

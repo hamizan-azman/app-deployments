@@ -1,0 +1,15 @@
+{
+  "file_id": "333_gradio_huntr_21d2ff0c-d43a-4afd-bb4d-049ee8da5b5c",
+  "numeric_id": "333",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Command injection in GitHub Actions workflow due to untrusted input in github.event.workflow_run.head_branch",
+  "cve": "CVE-2023-6572",
+  "cwe": "CWE-77: Command Injection",
+  "library": "gradio-app/gradio",
+  "affected_version": "latest",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "Fork the vulnerable repository.\nCreate a branch name with attacker payload. A branch name can be a shell command (can be reverse shell) as explained here. zzz\";echo${IFS}\"hello\";#\nOpen a pull request to the base repository.",
+  "oracle": "Command injection in workflow runner, leading to GITHUB_TOKEN exfiltration and potential repository manipulation"
+}

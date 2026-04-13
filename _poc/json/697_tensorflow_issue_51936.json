@@ -1,0 +1,15 @@
+{
+  "file_id": "697_tensorflow_issue_51936",
+  "numeric_id": "697",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "MaxPooling3D and AveragePooling3D functions crash or return infinite values when pool_size contains zero or negative values",
+  "cve": "N/A",
+  "cwe": "CWE-758: Improperly Handled Exception",
+  "library": "tensorflow",
+  "affected_version": ">= 2.0, < 2.6.1",
+  "vulnerable_function": "tf.keras.layers.MaxPooling3D, tf.keras.layers.AveragePooling3D",
+  "triggerability": "indirect",
+  "trigger_payload": "import tensorflow as tf\npool_size = [2, 2, 0]\nlayer = tf.keras.layers.MaxPooling3D(strides=1, pool_size=pool_size)\ninput_tensor = tf.random.uniform([3, 4, 10, 11, 12], dtype=tf.float32)\nres = layer(input_tensor)",
+  "oracle": "crash with Floating point exception (core dumped) or output tensor with all inf values"
+}

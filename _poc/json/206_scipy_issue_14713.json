@@ -1,0 +1,15 @@
+{
+  "file_id": "206_scipy_issue_14713",
+  "numeric_id": "206",
+  "library_hint": "scipy",
+  "source": "github_issue",
+  "title": "Use-after-free bug in Py_FindObjects due to double decrement of reference count after memory allocation failure",
+  "cve": "CVE-2023-29824",
+  "cwe": "CWE-416: Use After Free",
+  "library": "scipy",
+  "affected_version": ">= 1.0, < 1.8.0",
+  "vulnerable_function": "Py_FindObjects",
+  "triggerability": "indirect",
+  "trigger_payload": "void f() {\n    PyObject *result = PyList_New(1); // <-- new reference returned (line 878)\n    assert(result);\n    printf(\"%ld\\n\", result->ob_refcnt); // 1\n    PyErr_NoMemory(); // <-- error happens, an exception is thrown (line 890)\n    Py_XDECREF(result); // <-- destruction here (line 924)\n    printf(\"%ld\\n\", result->ob_refcnt); // 0\n    if (PyErr_Occurred()) {\n        Py_XDECREF(result); // <-- use after free here (line 931)\n        printf(\"%ld\\n\", result->ob_refcnt); // -1\n    }\n}",
+  "oracle": "Reference count of the PyObject becomes -1, indicating use-after-free"
+}

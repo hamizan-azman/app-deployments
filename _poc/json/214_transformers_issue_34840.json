@@ -1,0 +1,15 @@
+{
+  "file_id": "214_transformers_issue_34840",
+  "numeric_id": "214",
+  "library_hint": "transformers",
+  "source": "github_issue",
+  "title": "Vulnerabilities in model conversion scripts in transformers library are not in release wheels",
+  "cve": "N/A",
+  "cwe": "N/A",
+  "library": "transformers",
+  "affected_version": ">= 4.0, < 4.48",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "presence of conversion scripts in the library distribution"
+}

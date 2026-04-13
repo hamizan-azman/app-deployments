@@ -1,0 +1,15 @@
+{
+  "file_id": "714_tensorflow_issue_40861",
+  "numeric_id": "714",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "Inefficient path traversal in GetMatchingPaths function due to collecting all possible paths before wildcard matching",
+  "cve": "N/A",
+  "cwe": "CWE-400: Uncontrolled Resource Consumption",
+  "library": "tensorflow",
+  "affected_version": "N/A",
+  "vulnerable_function": "GetMatchingPaths",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Performance degradation and high memory usage when matching patterns like \"/*\""
+}

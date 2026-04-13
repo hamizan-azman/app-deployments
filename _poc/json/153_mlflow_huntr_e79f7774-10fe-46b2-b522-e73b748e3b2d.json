@@ -1,0 +1,15 @@
+{
+  "file_id": "153_mlflow_huntr_e79f7774-10fe-46b2-b522-e73b748e3b2d",
+  "numeric_id": "153",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Admin can create user without setting a password, leading to weak password requirements",
+  "cve": "CVE-2025-1474",
+  "cwe": "CWE-521: Weak Password Requirements",
+  "library": "mlflow/mlflow",
+  "affected_version": "== 2.18",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "Log in as an admin.\nNavigate to the signup page\nFill in the required fields (e.g., username) but leave the password field blank.\nSubmit the form to create the user.",
+  "oracle": "User account is created without a password, potentially allowing unauthorized access."
+}

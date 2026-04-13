@@ -1,0 +1,15 @@
+{
+  "file_id": "262_llama-index_huntr_cd7b9082-7d75-42e4-84f5-dbee23cbc467",
+  "numeric_id": "262",
+  "library_hint": "llama-index",
+  "source": "huntr",
+  "title": "Uncontrolled recursion in KnowledgeBaseWebReader.get_article_urls due to missing depth increment in recursive calls",
+  "cve": "CVE-2025-1752",
+  "cwe": "CWE-674: Uncontrolled Recursion",
+  "library": "llama-index-readers-web",
+  "affected_version": "< 0.3.6",
+  "vulnerable_function": "get_article_urls",
+  "triggerability": "indirect",
+  "trigger_payload": "def get_article_urls(\n    self, browser: Any, root_url: str, current_url: str, max_depth: int = 100\n) -> List[str]:\n    page = browser.new_page(ignore_https_errors=True)\n    page.set_default_timeout(60000)\n    page.goto(current_url, wait_until=\"domcontentloaded\")\n    if self.article_path in current_url:\n        print(\"Found an article: \", current_url)\n        page.close()\n        return [current_url]\n    article_urls = []\n    links = []\n    for link_selector in self.link_selectors:\n        ahrefs = page.query_selector_all(link_selector)\n        links.extend(ahrefs)\n    for link in links:\n        url = root_url + page.evaluate(\"(node) => node.getAttribute('href')\", link)\n        article_urls.extend(\n            self.get_article_urls(browser, root_url, url, max_depth)\n        )\n    page.close()\n    return article_urls",
+  "oracle": "Python process crashes due to exceeding recursion limit"
+}

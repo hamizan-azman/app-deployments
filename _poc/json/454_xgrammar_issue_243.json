@@ -1,0 +1,15 @@
+{
+  "file_id": "454_xgrammar_issue_243",
+  "numeric_id": "454",
+  "library_hint": "xgrammar",
+  "source": "github_issue",
+  "title": "Implementation of LRU cache for grammar compiler with size limit",
+  "cve": "N/A",
+  "cwe": "N/A",
+  "library": "xgrammar",
+  "affected_version": "N/A",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "N/A"
+}

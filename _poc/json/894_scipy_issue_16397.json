@@ -1,0 +1,15 @@
+{
+  "file_id": "894_scipy_issue_16397",
+  "numeric_id": "894",
+  "library_hint": "scipy",
+  "source": "github_issue",
+  "title": "Memory leak in Py_FindObjects due to new reference not being decreased",
+  "cve": "N/A",
+  "cwe": "CWE-401: Improper Release of Memory",
+  "library": "scipy",
+  "affected_version": ">= 1.10.0, < 1.10.0",
+  "vulnerable_function": "Py_FindObjects",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Memory leak in function Py_FindObjects due to new reference not being decreased"
+}

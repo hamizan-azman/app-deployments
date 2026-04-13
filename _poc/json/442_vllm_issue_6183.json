@@ -1,0 +1,15 @@
+{
+  "file_id": "442_vllm_issue_6183",
+  "numeric_id": "442",
+  "library_hint": "vllm",
+  "source": "github_issue",
+  "title": "Add ZeroMQ fallback for broadcasting large objects in distributed communication",
+  "cve": "N/A",
+  "cwe": "N/A",
+  "library": "vllm",
+  "affected_version": "N/A",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "N/A"
+}

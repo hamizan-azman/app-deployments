@@ -1,0 +1,15 @@
+{
+  "file_id": "212_transformers_huntr_e1a3e548-e53a-48df-b708-9ee62140963c",
+  "numeric_id": "212",
+  "library_hint": "transformers",
+  "source": "huntr",
+  "title": "Remote code execution via unsafe pickle.load in TransfoXLTokenizer when loading vocab.pkl from remote repositories",
+  "cve": "N/A",
+  "cwe": "CWE-502: Deserialization of Untrusted Data",
+  "library": "huggingface/transformers",
+  "affected_version": "prior to the fix in PR #27776",
+  "vulnerable_function": "AutoTokenizer.from_pretrained",
+  "triggerability": "indirect",
+  "trigger_payload": "from transformers import AutoTokenizer, AutoModelForCausalLM\ntokenizer = AutoTokenizer.from_pretrained(\"zpbrent/test\")",
+  "oracle": "A file named HACKED is created in the victim's local machine"
+}

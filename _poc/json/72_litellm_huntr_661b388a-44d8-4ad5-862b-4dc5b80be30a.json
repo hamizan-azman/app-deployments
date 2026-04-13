@@ -1,0 +1,15 @@
+{
+  "file_id": "72_litellm_huntr_661b388a-44d8-4ad5-862b-4dc5b80be30a",
+  "numeric_id": "72",
+  "library_hint": "litellm",
+  "source": "huntr",
+  "title": "Exposure of Langfuse API keys in team exception handling due to missing team_id in error response",
+  "cve": "CVE-2025-0330",
+  "cwe": "CWE-1230: Exposure of Sensitive Information Through Metadata",
+  "library": "litellm",
+  "affected_version": "== 1.52.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "Use these settings:\n\nlitellm_settings:\n  telemetry: False\n  drop_params: True\n  return_response_headers: True\n  redact_messages_in_exceptions: True\n  cache: True\n  cache_params:\n    type: s3\n    s3_bucket_name: os.environ/CACHING_S3_BUCKET_NAME\n    s3_region_name: os.environ/CACHING_AWS_DEFAULT_REGION\n    s3_aws_access_key_id: os.environ/CACHING_AWS_ACCESS_KEY_ID\n    s3_aws_secret_access_key: os.environ/CACHING_AWS_SECRET_ACCESS_KEY\n    s3_endpoint_url: os.environ/CACHING_AWS_ENDPOINT_URL_S3\n  failure_callback: [\"sentry\", \"langfuse\"]\n  request_timeout: 3600\n  success_callback: [\"langfuse\", \"s3\"]\n  s3_callback_params:\n    s3_bucket_name: os.environ/LOGGING_S3_BUCKET_NAME\n    s3_region_name: os.environ/LOGGING_AWS_DEFAULT_REGION\n    s3_aws_access_key_id: os.environ/LOGGING_AWS_ACCESS_KEY_ID\n    s3_aws_secret_access_key: os.environ/LOGGING_AWS_SECRET_ACCESS_KEY\n    s3_endpoint_url: os.environ/LOGGING_AWS_ENDPOINT_URL_S3\n  default_team_settings:\n    - team_id: test_dev\n      success_callback: [\"langfuse\", \"s3\"]\n      langfuse_secret: os.environ/LANGFUSE_PRIVATE_KEY_TEST\n      langfuse_public_key: os.environ/LANGFUSE_PUBLIC_KEY_TEST\n    - team_id: my_workflows\n      success_callback: [\"langfuse\", \"s3\"]\n      langfuse_secret: os.environ/LANGFUSE_PRIVATE_KEY_WORKFLOWS\n      langfuse_public_key: os.environ/LANGFUSE_PUBLIC_KEY_WORKFLOWS\nThen send a completion request with an API key from the my_workflows team.",
+  "oracle": "Error response contains Langfuse secret and public key, leading to exposure of sensitive information"
+}

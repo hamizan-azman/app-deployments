@@ -1,0 +1,15 @@
+{
+  "file_id": "69_litellm_huntr_a9e0a164-6de0-43a4-a640-0cbfb54220a4",
+  "numeric_id": "69",
+  "library_hint": "litellm",
+  "source": "huntr",
+  "title": "Server-Side Template Injection in /completions endpoint due to improper neutralization of Jinja template input from tokenizer_config.json",
+  "cve": "CVE-2024-2952",
+  "cwe": "CWE-76: Improper Neutralization of Equivalent Special Elements",
+  "library": "litellm",
+  "affected_version": "== 1.23.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "curl -X 'POST' \\n'http://localhost:8000/completions' \\n-H 'accept: application/json' \\n-d '{\"model\":\"huggingface/<user_name>/<model_name>\",\"prompt\":\"hi\"}'",
+  "oracle": "file /tmp/1337 is created"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "19_langchain_issue_8363",
+  "numeric_id": "19",
+  "library_hint": "langchain",
+  "source": "github_issue",
+  "title": "Arbitrary code execution in LLMMathChain due to unsafe use of numexpr.evaluate function",
+  "cve": "CVE-2023-39631",
+  "cwe": "CWE-94: Improper Control of Generation of Code ('Code Injection')",
+  "library": "langchain",
+  "affected_version": ">= 0.0.244, < 0.0.325",
+  "vulnerable_function": "numexpr.evaluate",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "arbitrary code execution on the target machine"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "172_mlflow_huntr_9e4cc07b-6fff-421b-89bd-9445ef61d34d",
+  "numeric_id": "172",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Jinja2 template rendering without sandbox in MLflow allows remote code execution via SSTI",
+  "cve": "CVE-2023-6709",
+  "cwe": "CWE-1336: Improper Neutralization of Special Elements Used in a Template Engine",
+  "library": "mlflow",
+  "affected_version": ">= 2.7.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "import os\nfrom mlflow.recipes import Recipe\nos.chdir(\"./recipes\")\nregression_recipe = Recipe(profile=\"local\")",
+  "oracle": "File /tmp/rce is created on the system"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "592_tensorflow_issue_45770",
+  "numeric_id": "592",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "Segmentation fault in tf.histogram_fixed_width when values contain NaN",
+  "cve": "N/A",
+  "cwe": "CWE-758: Incorrectly Handled Exception",
+  "library": "tensorflow",
+  "affected_version": ">= 2.1.0, < 2.9.0",
+  "vulnerable_function": "tf.histogram_fixed_width",
+  "triggerability": "indirect",
+  "trigger_payload": "import tensorflow as tf\nimport numpy as np\ntf.histogram_fixed_width(values=np.nan, value_range=[1,2])",
+  "oracle": "Segmentation fault occurs"
+}

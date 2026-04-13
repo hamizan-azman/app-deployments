@@ -1,0 +1,15 @@
+{
+  "file_id": "377_aiomysql_issue_1044",
+  "numeric_id": "377",
+  "library_hint": "aiomysql",
+  "source": "github_issue",
+  "title": "Arbitrary file access vulnerability when connecting to malicious servers due to improper handling of LOAD_LOCAL packets",
+  "cve": "GHSA-r397-ff8c-wv2g",
+  "cwe": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+  "library": "aiomysql",
+  "affected_version": "prior to 0.3",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "arbitrary file access when connecting to malicious servers"
+}

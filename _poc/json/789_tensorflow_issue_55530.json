@@ -1,0 +1,15 @@
+{
+  "file_id": "789_tensorflow_issue_55530",
+  "numeric_id": "789",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "Incorrect size_t vs int logic in CHECK_OP causing test failure in TensorFlow 2.8",
+  "cve": "N/A",
+  "cwe": "CWE-680: Incorrect Calculation",
+  "library": "tensorflow",
+  "affected_version": ">= 2.8.0, < 2.8.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "$ git checkout r2.8\n$ bazel --host_jvm_args=-Xmx32g test --jobs=12 --config=dbg --verbose_failures -k //tensorflow/core:__tensorflow_core_lib_math_math_util_test",
+  "oracle": "test fails"
+}

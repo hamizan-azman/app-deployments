@@ -1,0 +1,15 @@
+{
+  "file_id": "142_langchain-community_huntr_e62d4895-2901-405b-9559-38276b6a5273",
+  "numeric_id": "142",
+  "library_hint": "langchain-community",
+  "source": "huntr",
+  "title": "SSRF vulnerability in Web Research Retriever due to unrestricted remote requests allowing access to local addresses",
+  "cve": "CVE-2024-3095",
+  "cwe": "CWE-918: Server-Side Request Forgery (SSRF)",
+  "library": "langchain-community",
+  "affected_version": "0.1.5",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "Step 1: Launch the langchain Web Explorer https://github.com/langchain-ai/web-explorer/ (which implements a user interface for the Web Research Retriever) Step 2: Edit an attacker-owned google-indexed website with a code like this:\n<?php\n// Check for the real IP if behind Cloudflare\n$realIP = $_SERVER['HTTP_CF_CONNECTING_IP'] ?? $_SERVER['REMOTE_ADDR'];\nif ($realIP === 'victim_ip') {\n// Redirect to the specified URL\nheader('Location: http://localhost:4321/real');\nexit; // Ensure no further execution in case of redirect\n}\n?>\nThe example code is written for an attacker website that is behind Cloudflare. If the victim IP is not known, one can also use a range allowlist / denylist instead. The IP check is only there to prevent Google and other search engines from de-indexing the site (the Googlebot should not be redirected).\nStep 3: Send a query in the Web Explorer that will run a search which returns the attacker website in the search results. What the exact query is depends on the content of your specific site. I tried that briefly with a modified subsite of my own website to confirm the vulnerability (using my hardcoded IP), but took that change offline quickly for obvious reasons. The WebResearchRetriever will open all the websites of the first few search results, and it will follow redirects, also our redirect to the local IP address. This is the SSRF vulnerability. We can also direct the Web Explorer in our LLM query to print back the response content of the websites, allowing us to read response data from local services.",
+  "oracle": "The Web Research Retriever opens the attacker-controlled website, follows the redirect to a local address (e.g., http://localhost:4321/real), and returns the response content, allowing the attacker to read data from local services or metadata endpoints."
+}

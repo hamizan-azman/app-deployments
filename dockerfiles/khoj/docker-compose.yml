@@ -1,0 +1,99 @@
+# =============================================================================
+# khoj — Research Deployment Compose
+# Upstream: https://github.com/khoj-ai/khoj
+# Image: ghcr.io/khoj-ai/khoj:latest
+# Main port: 42110
+# Usage:
+#   1. Copy .env.example to .env and fill in required values
+#   2. docker compose up -d
+# Notes:
+#   - The optional "computer" VNC service is omitted (desktop GUI, not headless).
+#   - SearxNG volume khoj_search needs a settings.yml for web search to work.
+#     See upstream docs: https://docs.khoj.dev/
+# =============================================================================
+
+name: khoj
+
+services:
+  database:
+    image: docker.io/pgvector/pgvector:pg15
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+    volumes:
+      - khoj_db:/var/lib/postgresql/data/
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  sandbox:
+    image: ghcr.io/khoj-ai/terrarium:latest
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 2
+
+  search:
+    image: docker.io/searxng/searxng:latest
+    volumes:
+      - khoj_search:/etc/searxng
+    environment:
+      - SEARXNG_BASE_URL=http://localhost:8080/
+    restart: unless-stopped
+
+  server:
+    image: ghcr.io/khoj-ai/khoj:latest
+    ports:
+      - "${KHOJ_PORT:-42110}:42110"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    working_dir: /app
+    volumes:
+      - khoj_config:/root/.khoj/
+      - khoj_models:/root/.cache/torch/sentence_transformers
+      - khoj_models:/root/.cache/huggingface
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-postgres}
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_HOST=database
+      - POSTGRES_PORT=5432
+      - KHOJ_DJANGO_SECRET_KEY=${KHOJ_DJANGO_SECRET_KEY:-change-me-in-production}
+      - KHOJ_DEBUG=False
+      - KHOJ_ADMIN_EMAIL=${KHOJ_ADMIN_EMAIL:-admin@example.com}
+      - KHOJ_ADMIN_PASSWORD=${KHOJ_ADMIN_PASSWORD:-change-me-in-production}
+      - KHOJ_TERRARIUM_URL=http://sandbox:8080
+      - KHOJ_SEARXNG_URL=http://search:8080
+      # Uncomment to use OpenAI, Anthropic, or Google models
+      # - OPENAI_API_KEY=your_openai_api_key
+      # - GEMINI_API_KEY=your_gemini_api_key
+      # - ANTHROPIC_API_KEY=your_anthropic_api_key
+      # Uncomment to disable telemetry
+      # - KHOJ_TELEMETRY_DISABLE=True
+    depends_on:
+      database:
+        condition: service_healthy
+    restart: unless-stopped
+    command: --host="0.0.0.0" --port=42110 -vv --anonymous-mode --non-interactive
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:42110/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+volumes:
+  khoj_config:
+    name: khoj-config
+  khoj_db:
+    name: khoj-db
+  khoj_models:
+    name: khoj-models
+  khoj_search:
+    name: khoj-search

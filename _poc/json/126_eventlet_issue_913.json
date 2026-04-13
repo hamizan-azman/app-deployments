@@ -1,0 +1,15 @@
+{
+  "file_id": "126_eventlet_issue_913",
+  "numeric_id": "126",
+  "library_hint": "eventlet",
+  "source": "github_issue",
+  "title": "API change in dnspython 2.6.0 breaks eventlet's monkeypatched dns.query.udp() function",
+  "cve": "CVE-2023-29483",
+  "cwe": "CWE-20: Improper Input Validation",
+  "library": "dnspython",
+  "affected_version": ">= 2.6.0",
+  "vulnerable_function": "dns.query.udp",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "DNS resolution failures when dnspython 2.6.0 or later is used with eventlet"
+}

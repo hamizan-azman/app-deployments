@@ -1,0 +1,15 @@
+{
+  "file_id": "881_aiohttp_issue_6772",
+  "numeric_id": "881",
+  "library_hint": "aiohttp",
+  "source": "github_issue",
+  "title": "Invalid IPv6 URL handling in aiohttp leads to ValueError exception, but no actual DoS vulnerability proven",
+  "cve": "CVE-2022-33124",
+  "cwe": "CWE-703: Improper Error Handling",
+  "library": "aiohttp",
+  "affected_version": "== 3.8.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Exception raised: ValueError: Invalid IPv6 URL"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "429_ray_issue_50266",
+  "numeric_id": "429",
+  "library_hint": "ray",
+  "source": "github_issue",
+  "title": "Redis password is logged in plain text when starting Ray Client server",
+  "cve": "N/A",
+  "cwe": "CWE-532: Information Exposure Through Log Files",
+  "library": "ray",
+  "affected_version": "N/A",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Redis password is logged in plain text in the server logs"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "367_fastmcp_issue_2090",
+  "numeric_id": "367",
+  "library_hint": "fastmcp",
+  "source": "github_issue",
+  "title": "Unescaped user-controlled query parameters in OAuth callback page lead to reflected XSS",
+  "cve": "N/A",
+  "cwe": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+  "library": "fastmcp",
+  "affected_version": "N/A",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "curl \"{BASE_URL}/oauth/callback?error=<script>alert(1)</script>\"",
+  "oracle": "JavaScript payload executes in the victim's browser when the callback page renders"
+}

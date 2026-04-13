@@ -1,0 +1,15 @@
+{
+  "file_id": "891_selenium_issue_8259",
+  "numeric_id": "891",
+  "library_hint": "selenium",
+  "source": "github_issue",
+  "title": "Cross-site scripting (XSS) in Selenium Grid hub's web interface due to unvalidated user input from node configuration",
+  "cve": "N/A",
+  "cwe": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+  "library": "Selenium Grid",
+  "affected_version": "== 3.141.59",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "A node can register to a hub using the following configuration file, where an XSS payload is given in the hub parameter.",
+  "oracle": "Injected JavaScript code is executed on the user's browser and can be seen by inspecting the page source."
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "379_cryptography_issue_9785",
+  "numeric_id": "379",
+  "library_hint": "cryptography",
+  "source": "github_issue",
+  "title": "Side-channel timing vulnerability in RSA PKCS#1 v1.5 decryption due to non-constant-time exception handling in cryptography",
+  "cve": "CVE-2023-50782",
+  "cwe": "CWE-310: Cryptographic Issues",
+  "library": "cryptography",
+  "affected_version": ">= 2.0, < 42.0.0",
+  "vulnerable_function": "rsa.generate_private_key().decrypt",
+  "triggerability": "indirect",
+  "trigger_payload": "from cryptography.hazmat.primitives.asymmetric import padding, rsa\nrsa.generate_private_key(65537, 2048).decrypt(b\"\\x00\" * 256, padding.PKCS1v15())",
+  "oracle": "exception is raised if vulnerable, returns random junk if not vulnerable"
+}

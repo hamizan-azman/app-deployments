@@ -1,0 +1,15 @@
+{
+  "file_id": "893_scipy_issue_15013",
+  "numeric_id": "893",
+  "library_hint": "scipy",
+  "source": "github_issue",
+  "title": "Use-after-free bug in scipy.ndimage due to redundant Py_XDECREF call",
+  "cve": "N/A",
+  "cwe": "CWE-416: Use After Free",
+  "library": "scipy",
+  "affected_version": ">= 1.0, < 1.8.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Ref count becomes negative, leading to use-after-free condition"
+}

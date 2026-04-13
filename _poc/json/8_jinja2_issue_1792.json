@@ -1,0 +1,15 @@
+{
+  "file_id": "8_jinja2_issue_1792",
+  "numeric_id": "8",
+  "library_hint": "jinja2",
+  "source": "github_issue",
+  "title": "SyntaxError in f-string due to invalid template filename containing Jinja expressions during macro import",
+  "cve": "N/A",
+  "cwe": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+  "library": "jinja2",
+  "affected_version": ">= 3.1.0, < 3.1.5",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "environment.get_template('{% if True %}a{%endif%}.txt.jinja').render(var=True)",
+  "oracle": "SyntaxError: f-string: invalid syntax"
+}

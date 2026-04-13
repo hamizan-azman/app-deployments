@@ -1,0 +1,15 @@
+{
+  "file_id": "55_numpy_issue_18993",
+  "numeric_id": "55",
+  "library_hint": "numpy",
+  "source": "github_issue",
+  "title": "Insecure string comparison due to incomplete string length check in _convert_from_str function",
+  "cve": "CVE-2021-3575",
+  "cwe": "CWE-467: Use of sizeof() on a Pointer Type",
+  "library": "numpy",
+  "affected_version": ">= 1.20, < 1.22",
+  "vulnerable_function": "_convert_from_str",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Deprecation warning for Numeric-style type codes is not triggered for strings that have the deprecated prefix, or the comparison logic is incorrect"
+}

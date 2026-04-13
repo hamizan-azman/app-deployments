@@ -1,0 +1,15 @@
+{
+  "file_id": "152_mlflow_issue_10874",
+  "numeric_id": "152",
+  "library_hint": "mlflow",
+  "source": "github_issue",
+  "title": "Privilege escalation vulnerability in MLflow when using spark_udf due to insecure temporary directory permissions",
+  "cve": "N/A",
+  "cwe": "CWE-377: Insecure Temporary File",
+  "library": "mlflow",
+  "affected_version": "N/A",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Privilege escalation due to insecure temporary directory permissions"
+}

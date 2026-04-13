@@ -1,0 +1,15 @@
+{
+  "file_id": "913_redis_issue_8712",
+  "numeric_id": "913",
+  "library_hint": "redis",
+  "source": "github_issue",
+  "title": "Redis crashes due to assertion failure in server.c when processing psync command with invalid arguments",
+  "cve": "N/A",
+  "cwe": "CWE-703: Improper Check or Handling of Exceptional Conditions",
+  "library": "redis",
+  "affected_version": ">= 6.2.1, < 6.2.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "nc 127.0.0.1 6379 < ./input",
+  "oracle": "Redis server crashes with assertion failure in server.c:3570"
+}

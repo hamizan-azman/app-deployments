@@ -1,0 +1,15 @@
+{
+  "file_id": "311_pillow_issue_39827",
+  "numeric_id": "311",
+  "library_hint": "pillow",
+  "source": "github_issue",
+  "title": "Out-of-bounds write in BuildHuffmanTable function in libwebp",
+  "cve": "CVE-2023-4863",
+  "cwe": "CWE-787: Out-of-bounds Write",
+  "library": "libwebp",
+  "affected_version": "Prior to 1.2.4",
+  "vulnerable_function": "BuildHuffmanTable",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Out-of-bounds write in BuildHuffmanTable function"
+}

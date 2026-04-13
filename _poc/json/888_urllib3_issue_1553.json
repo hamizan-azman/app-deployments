@@ -1,0 +1,15 @@
+{
+  "file_id": "888_urllib3_issue_1553",
+  "numeric_id": "888",
+  "library_hint": "urllib3",
+  "source": "github_issue",
+  "title": "CRLF injection vulnerability in urllib3 due to improper handling of control characters in URLs",
+  "cve": "CVE-2019-11236",
+  "cwe": "CWE-113: Improper Neutralization of CRLF Sequences in HTTP Headers",
+  "library": "urllib3",
+  "affected_version": ">= 1.24.0, < 1.24.3",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "urllib3.PoolManager().request('GET', 'http://localhost:8000/ HTTP/1.1\\r\\nHEADER: INJECTED\\r\\nIgnore:')",
+  "oracle": "ValueError: URL can't contain control characters. http://localhost:8000/ HTTP/1.1\\r\\nHEADER: INJECTED\\r\\nIgnore:"
+}

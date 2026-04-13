@@ -1,0 +1,15 @@
+{
+  "file_id": "14_langchain_issue_12747",
+  "numeric_id": "14",
+  "library_hint": "langchain",
+  "source": "github_issue",
+  "title": "APIChain allows unrestricted domain access leading to Server-Side Request Forgery (SSRF)",
+  "cve": "CVE-2023-32786",
+  "cwe": "CWE-918: Server-Side Request Forgery",
+  "library": "langchain",
+  "affected_version": "Prior to the fix in commit b1caae6",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Server-Side Request Forgery (SSRF) vulnerability allowing unauthorized network access"
+}

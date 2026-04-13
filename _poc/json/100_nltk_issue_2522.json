@@ -1,0 +1,15 @@
+{
+  "file_id": "100_nltk_issue_2522",
+  "numeric_id": "100",
+  "library_hint": "nltk",
+  "source": "github_issue",
+  "title": "Unsafe pickle loading in NLTK allows arbitrary code execution",
+  "cve": "N/A",
+  "cwe": "CWE-502: Deserialization of Untrusted Data",
+  "library": "nltk",
+  "affected_version": "N/A",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "arbitrary code execution"
+}

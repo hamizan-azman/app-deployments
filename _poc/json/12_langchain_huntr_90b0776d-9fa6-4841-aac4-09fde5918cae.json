@@ -1,0 +1,15 @@
+{
+  "file_id": "12_langchain_huntr_90b0776d-9fa6-4841-aac4-09fde5918cae",
+  "numeric_id": "12",
+  "library_hint": "langchain",
+  "source": "huntr",
+  "title": "Infinite recursion in SitemapLoader.parse_sitemap due to lack of self-reference check",
+  "cve": "N/A",
+  "cwe": "CWE-400: Uncontrolled Resource Consumption",
+  "library": "langchain",
+  "affected_version": "N/A",
+  "vulnerable_function": "parse_sitemap",
+  "triggerability": "indirect",
+  "trigger_payload": "from langchain_community.document_loaders.sitemap import SitemapLoader\nsitemap_loader = SitemapLoader(web_path=\"http://10.3.228.5:8080/12_langchain_huntr_90b0776d-9fa6-4841-aac4-09fde5918cae.xml\")\ndocs = sitemap_loader.load()",
+  "oracle": "RecursionError: maximum recursion depth exceeded while calling a Python object"
+}

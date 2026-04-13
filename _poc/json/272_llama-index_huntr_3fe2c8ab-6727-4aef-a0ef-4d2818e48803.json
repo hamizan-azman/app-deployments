@@ -1,0 +1,15 @@
+{
+  "file_id": "272_llama-index_huntr_3fe2c8ab-6727-4aef-a0ef-4d2818e48803",
+  "numeric_id": "272",
+  "library_hint": "llama-index",
+  "source": "huntr",
+  "title": "World-writable NLTK cache directory allows local users to tamper with or delete NLP data in llama_index",
+  "cve": "CVE-2025-7707",
+  "cwe": "CWE-377: Insecure Temporary File",
+  "library": "llama_index",
+  "affected_version": "<= 0.12.33",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Local users can overwrite, delete, or corrupt NLTK data files, leading to denial of service, data tampering, or potential privilege escalation."
+}

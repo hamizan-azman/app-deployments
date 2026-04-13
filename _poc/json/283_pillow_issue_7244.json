@@ -1,0 +1,15 @@
+{
+  "file_id": "283_pillow_issue_7244",
+  "numeric_id": "283",
+  "library_hint": "pillow",
+  "source": "github_issue",
+  "title": "Pillow's ImageFont class allows denial of service via excessive string length in font rendering",
+  "cve": "CVE-2023-44271",
+  "cwe": "CWE-400: Uncontrolled Resource Consumption",
+  "library": "Pillow",
+  "affected_version": ">= 1.0, < 10.2.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Denial of service due to excessive resource consumption when rendering very long strings with ImageFont"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "617_tensorflow_issue_55274",
+  "numeric_id": "617",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "Missing input validation in tf.signal.rfft2d leading to crash when length contains negative value",
+  "cve": "N/A",
+  "cwe": "CWE-758: Improperly Controlled Modification of Assumed-Immutable Data",
+  "library": "tensorflow",
+  "affected_version": "Prior to 0a8a781",
+  "vulnerable_function": "tf.signal.rfft2d",
+  "triggerability": "indirect",
+  "trigger_payload": "tf.signal.rfft2d(input, length=[-1, 1])",
+  "oracle": "crash"
+}

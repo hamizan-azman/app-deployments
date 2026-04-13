@@ -1,0 +1,15 @@
+{
+  "file_id": "25_langchain_issue_18600",
+  "numeric_id": "25",
+  "library_hint": "langchain",
+  "source": "github_issue",
+  "title": "Path traversal vulnerability in try_load_from_hub function when loading unsanitized user input",
+  "cve": "CVE-2024-28088",
+  "cwe": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+  "library": "langchain",
+  "affected_version": "Prior to the fix in commit e1924b3",
+  "vulnerable_function": "try_load_from_hub",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Ability to load files from arbitrary locations in GitHub other than the hwchase17/langchain-hub repository"
+}

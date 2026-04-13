@@ -1,0 +1,15 @@
+{
+  "file_id": "349_gradio_issue_8853",
+  "numeric_id": "349",
+  "library_hint": "gradio",
+  "source": "github_issue",
+  "title": "Code injection vulnerability in gradio.component_meta.create_pyi due to unsafe use of __class__ and __subclasses__",
+  "cve": "CVE-2024-39236",
+  "cwe": "CWE-94: Improper Control of Generation of Code ('Code Injection')",
+  "library": "gradio",
+  "affected_version": ">= 4.38.1, < 5.49.1",
+  "vulnerable_function": "gradio.component_meta.create_pyi",
+  "triggerability": "indirect",
+  "trigger_payload": "import gradio as gr\n# Define the events\nevents = [\"on_load\"]\npyi_code = gr.component_meta.create_pyi(''.__class__.__base__.__subclasses__()[139].__init__",
+  "oracle": "Code injection via crafted input in create_pyi function"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "89_transformers_huntr_ccba0730-9248-4853-b7ff-5c20e6364f09",
+  "numeric_id": "89",
+  "library_hint": "transformers",
+  "source": "huntr",
+  "title": "Insecure URL validation in huggingface/transformers allows username injection bypass",
+  "cve": "CVE-2025-3777",
+  "cwe": "CWE-20: Improper Input Validation",
+  "library": "huggingface/transformers",
+  "affected_version": "<= 4.49.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "https://youtube.com@evil.com/evil.exe",
+  "oracle": "The URL resolves to evil.com instead of YouTube, enabling phishing or malware delivery."
+}

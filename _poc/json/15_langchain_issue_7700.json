@@ -1,0 +1,15 @@
+{
+  "file_id": "15_langchain_issue_7700",
+  "numeric_id": "15",
+  "library_hint": "langchain",
+  "source": "github_issue",
+  "title": "Prompt injection leading to arbitrary code execution in LangChain agents due to unvalidated input in PythonREPLTool",
+  "cve": "N/A",
+  "cwe": "CWE-94: Improper Control of Generation of Code ('Code Injection')",
+  "library": "langchain",
+  "affected_version": "< 0.0.325",
+  "vulnerable_function": "PythonREPLTool._run",
+  "triggerability": "indirect",
+  "trigger_payload": "import os\nfrom langchain.agents.agent_toolkits import create_python_agent\nfrom langchain.tools.python.tool import PythonREPLTool\nfrom langchain.python import PythonREPL\nfrom langchain.llms.openai import OpenAI\nfrom langchain.agents.agent_types import AgentType\nfrom langchain.chat_models import ChatOpenAI\nos.environ[\"OPENAI_API_KEY\"] = \nagent_executor = create_python_agent(\nllm=OpenAI(temperature=0, max_tokens=1000),\ntool=PythonREPLTool(),\nverbose=True,\nagent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION,\n)\nagent_executor.run(\"__import__('os').system('ls')\")",
+  "oracle": "arbitrary code execution (e.g., command execution via os.system) and observable output from the executed command"
+}

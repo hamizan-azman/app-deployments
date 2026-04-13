@@ -1,0 +1,15 @@
+{
+  "file_id": "301_pillow_issue_5567",
+  "numeric_id": "301",
+  "library_hint": "pillow",
+  "source": "github_issue",
+  "title": "Use of sprintf without length limitation in Pillow's Convert.c leads to buffer overflow",
+  "cve": "CVE-2021-34552",
+  "cwe": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+  "library": "Pillow",
+  "affected_version": "Prior to 8.2.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Buffer overflow in Pillow's Convert.c when processing image modes larger than 10 characters"
+}

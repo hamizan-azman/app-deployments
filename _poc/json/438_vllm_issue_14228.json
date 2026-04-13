@@ -1,0 +1,15 @@
+{
+  "file_id": "438_vllm_issue_14228",
+  "numeric_id": "438",
+  "library_hint": "vllm",
+  "source": "github_issue",
+  "title": "Use of unsafe pickle serialization for KV caches in Mooncake Pipe",
+  "cve": "N/A",
+  "cwe": "CWE-502: Deserialization of Untrusted Data",
+  "library": "vllm",
+  "affected_version": "N/A",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Improved security by replacing pickle with safetensors for KV cache serialization"
+}

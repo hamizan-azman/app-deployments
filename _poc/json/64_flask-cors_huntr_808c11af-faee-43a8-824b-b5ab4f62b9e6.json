@@ -1,0 +1,15 @@
+{
+  "file_id": "64_flask-cors_huntr_808c11af-faee-43a8-824b-b5ab4f62b9e6",
+  "numeric_id": "64",
+  "library_hint": "flask-cors",
+  "source": "huntr",
+  "title": "Case-insensitive path matching in Flask-CORS leads to CORS policy bypass",
+  "cve": "CVE-2024-6866",
+  "cwe": "CWE-178: Improper Handling of Case Sensitivity",
+  "library": "flask-cors",
+  "affected_version": "== 4.01",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "GET /api/super_Secret HTTP/1.1\nHost: 127.0.0.1:5000\nOrigin: https://notlowercase.com",
+  "oracle": "Server returns response with Access-Control-Allow-Origin header set to unauthorized origin, allowing access to restricted endpoint"
+}

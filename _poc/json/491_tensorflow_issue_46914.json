@@ -1,0 +1,15 @@
+{
+  "file_id": "491_tensorflow_issue_46914",
+  "numeric_id": "491",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "tf.keras.layers.UpSampling2D crashes when size parameter is set to a large value due to integer overflow",
+  "cve": "N/A",
+  "cwe": "CWE-190: Integer Overflow or Wraparound",
+  "library": "tensorflow",
+  "affected_version": ">= 2.0, < 2.6.1",
+  "vulnerable_function": "tf.keras.layers.UpSampling2D",
+  "triggerability": "indirect",
+  "trigger_payload": "import tensorflow as tf\nimport numpy as np\ntf.keras.layers.UpSampling2D(size=1610637938, data_format='channels_first', interpolation='b')",
+  "oracle": "process crashes with a fatal error (Aborted (core dumped))"
+}

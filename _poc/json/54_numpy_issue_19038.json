@@ -1,0 +1,15 @@
+{
+  "file_id": "54_numpy_issue_19038",
+  "numeric_id": "54",
+  "library_hint": "numpy",
+  "source": "github_issue",
+  "title": "Missing return-value validation in PyArray_DescrNew leads to NULL pointer dereference",
+  "cve": "CVE-2021-41495",
+  "cwe": "CWE-416: Use After Free",
+  "library": "numpy",
+  "affected_version": ">= 1.22.0, < 1.22.2",
+  "vulnerable_function": "PyArray_DescrNew",
+  "triggerability": "indirect",
+  "trigger_payload": "import numpy as np\nnp.array([1, 2, 3], dtype=np.dtype('int32'))",
+  "oracle": "Process crashes due to NULL pointer dereference when memory is exhausted"
+}

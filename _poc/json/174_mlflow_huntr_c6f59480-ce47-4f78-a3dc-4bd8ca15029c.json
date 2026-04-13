@@ -1,0 +1,15 @@
+{
+  "file_id": "174_mlflow_huntr_c6f59480-ce47-4f78-a3dc-4bd8ca15029c",
+  "numeric_id": "174",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Jinja2 SSTI vulnerability in mlflow due to improper sandboxing in file_utils.py",
+  "cve": "CVE-2023-6940",
+  "cwe": "CWE-77: Command Injection",
+  "library": "mlflow",
+  "affected_version": ">= 2.9.0, < 2.9.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "full command execution on the victim system"
+}

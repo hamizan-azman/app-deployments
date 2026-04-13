@@ -1,0 +1,15 @@
+{
+  "file_id": "351_gradio_huntr_667d664d-8189-458c-8ed7-483fe8f33c76",
+  "numeric_id": "351",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Path traversal in Gradio Audio component leads to arbitrary file content deletion",
+  "cve": "CVE-2024-10648",
+  "cwe": "CWE-29: Path Traversal",
+  "library": "gradio",
+  "affected_version": "git 98cbcae",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "curl -X POST http://127.0.0.1:7860/run/predict -H \"Content-Type: application/json\" -d",
+  "oracle": "the file content of /tmp/123 is cleared"
+}

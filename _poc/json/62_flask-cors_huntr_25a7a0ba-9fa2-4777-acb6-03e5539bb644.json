@@ -1,0 +1,15 @@
+{
+  "file_id": "62_flask-cors_huntr_25a7a0ba-9fa2-4777-acb6-03e5539bb644",
+  "numeric_id": "62",
+  "library_hint": "flask-cors",
+  "source": "huntr",
+  "title": "Log injection vulnerability due to improper output neutralization for logs in Flask-CORS",
+  "cve": "CVE-2024-1681",
+  "cwe": "CWE-117: Improper Output Neutralization for Logs",
+  "library": "flask-cors",
+  "affected_version": "== 4.0.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "http://127.0.0.1:5000/api/test%0D%0A%0D%0ALOGINJECTION%0D%0A%0D%0A",
+  "oracle": "Fake log entries are injected into the log file, including the string 'LOGINJECTION' in the log output."
+}

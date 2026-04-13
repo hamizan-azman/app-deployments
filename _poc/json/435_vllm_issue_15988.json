@@ -1,0 +1,15 @@
+{
+  "file_id": "435_vllm_issue_15988",
+  "numeric_id": "435",
+  "library_hint": "vllm",
+  "source": "github_issue",
+  "title": "TCPStore listens on 0.0.0.0 by default, consuming unnecessary OS resources",
+  "cve": "N/A",
+  "cwe": "N/A",
+  "library": "vllm",
+  "affected_version": "N/A",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "N/A"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "35_pypdf_issue_3430",
+  "numeric_id": "35",
+  "library_hint": "pypdf",
+  "source": "github_issue",
+  "title": "Uncontrolled decompression in FlateDecode filter leading to potential denial of service",
+  "cve": "N/A",
+  "cwe": "CWE-400: Uncontrolled Resource Consumption",
+  "library": "pypdf",
+  "affected_version": ">= 6.0.0, < 6.0.0",
+  "vulnerable_function": "FlateDecode",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Server crashes or hangs due to excessive memory usage during decompression"
+}

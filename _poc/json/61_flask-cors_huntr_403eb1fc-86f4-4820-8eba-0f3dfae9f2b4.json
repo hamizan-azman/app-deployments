@@ -1,0 +1,15 @@
+{
+  "file_id": "61_flask-cors_huntr_403eb1fc-86f4-4820-8eba-0f3dfae9f2b4",
+  "numeric_id": "61",
+  "library_hint": "flask-cors",
+  "source": "huntr",
+  "title": "Improper sorting of regex length in flask-cors leads to less restrictive CORS policies being applied to sensitive endpoints",
+  "cve": "CVE-2024-6839",
+  "cwe": "CWE-41: Improper Resolution of Path Equivalence",
+  "library": "flask-cors",
+  "affected_version": "== 4.0.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "from flask import Flask, jsonify\nimport logging\ntry:\n    from flask_cors import CORS # The typical way to import flask-cors\nexcept ImportError:\n    # Path hack allows examples to be run without installation.\n    import os\n    parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\n    os.sys.path.insert(0, parentdir)\n    from flask_cors import CORS\napp = Flask('FlaskCorsAppBasedExample')\nlogging.basicConfig(level=logging.INFO)\n# To enable logging for flask-cors,\nlogging.getLogger('flask_cors').level = logging.DEBUG\nCORS(app, resources={\n    r'/[Aa]pi([Vv][12])?/*': {'origins': ['*']}, # This match /api, /apiv1,\n    r'/api/super_Secret': {'origins': ['https://onlythis.com']}\n})\n@app.route(\"/api/super_Secret\")\ndef secret():\n    return \"Very Confidential. Only serve to https://onlythis.com\"\n@app.route(\"/apiv1/users/\")\ndef list_users():\n    return jsonify(user=\"joe\")\nif __name__ == \"__main__\":\n    app.run(debug=True)",
+  "oracle": "The server responds to a request to /api/super_Secret with Access-Control-Allow-Origin set to https://evil.com, allowing cross-origin access from an unauthorized domain."
+}

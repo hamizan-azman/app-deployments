@@ -1,0 +1,15 @@
+{
+  "file_id": "60_flask-cors_huntr_731a6cd4-d05f-4fe6-8f5b-fe088d7b34e0",
+  "numeric_id": "60",
+  "library_hint": "flask-cors",
+  "source": "huntr",
+  "title": "Inconsistent CORS matching due to incorrect handling of '+' in URL path by unquote_plus function",
+  "cve": "CVE-2024-6844",
+  "cwe": "CWE-346: Origin Validation Error",
+  "library": "flask-cors",
+  "affected_version": "== 4.0.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "GET /api/super+Secret HTTP/1.1\nHost: {BASE_URL}\nOrigin: https://evil.com\nConnection: close",
+  "oracle": "Access-Control-Allow-Origin header is set to https://evil.com instead of being restricted to https://onlythis.com, allowing unauthorized cross-origin access"
+}

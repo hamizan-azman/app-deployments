@@ -1,0 +1,15 @@
+{
+  "file_id": "423_deepdiff_issue_180",
+  "numeric_id": "423",
+  "library_hint": "deepdiff",
+  "source": "github_issue",
+  "title": "pydash.get prevents access to dunder variables to avoid global namespace exposure",
+  "cve": "N/A",
+  "cwe": "CWE-471: Modification of Assumed-Immutable Data",
+  "library": "pydash",
+  "affected_version": ">= 6.0.0, < 6.0.2",
+  "vulnerable_function": "pydash.get",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Access to dunder variables like __globals__ is blocked, preventing potential exposure of global namespace data."
+}

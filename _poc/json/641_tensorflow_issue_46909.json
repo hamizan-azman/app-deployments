@@ -1,0 +1,15 @@
+{
+  "file_id": "641_tensorflow_issue_46909",
+  "numeric_id": "641",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "tf.summary.create_file_writer crashes when non-scalar values are passed to flush_millis parameter",
+  "cve": "N/A",
+  "cwe": "CWE-703: Improper Check or Handling of Exceptional Conditions",
+  "library": "tensorflow",
+  "affected_version": ">= 2.1.0, < 2.6.0",
+  "vulnerable_function": "tf.summary.create_file_writer",
+  "triggerability": "indirect",
+  "trigger_payload": "import tensorflow as tf\nimport numpy as np\ntf.summary.create_file_writer(logdir='', flush_millis=np.ones((1,2)))",
+  "oracle": "process aborts with F tensorflow/core/framework/tensor.cc:669] Check failed: 1 == Nu"
+}

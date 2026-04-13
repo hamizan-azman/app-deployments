@@ -1,0 +1,15 @@
+{
+  "file_id": "53_numpy_issue_19000",
+  "numeric_id": "53",
+  "library_hint": "numpy",
+  "source": "github_issue",
+  "title": "Buffer overflow in array_from_pyobj due to unbounded string operations in fortranobject.c",
+  "cve": "CVE-2021-41496",
+  "cwe": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+  "library": "numpy",
+  "affected_version": ">= 1.0, < 1.22.0",
+  "vulnerable_function": "array_from_pyobj",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Buffer overflow leading to potential memory corruption or crash when creating arrays with negative dimensions"
+}

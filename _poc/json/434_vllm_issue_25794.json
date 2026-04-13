@@ -1,0 +1,15 @@
+{
+  "file_id": "434_vllm_issue_25794",
+  "numeric_id": "434",
+  "library_hint": "vllm",
+  "source": "github_issue",
+  "title": "Arbitrary code execution via malicious chat templates due to unfiltered kwargs passed to Jinja2 template renderer",
+  "cve": "N/A",
+  "cwe": "CWE-94: Improper Control of Generation of Code ('Code Injection')",
+  "library": "vllm",
+  "affected_version": ">= 0.11.0, < 0.11.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Arbitrary code execution via malicious chat template injection"
+}

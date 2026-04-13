@@ -1,0 +1,15 @@
+{
+  "file_id": "47_gitpython_issue_1609",
+  "numeric_id": "47",
+  "library_hint": "gitpython",
+  "source": "github_issue",
+  "title": "Blocking insecure non-multi options in clone/clone_from function",
+  "cve": "CVE-2023-40267",
+  "cwe": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+  "library": "GitPython",
+  "affected_version": ">= 3.1.31, < 3.1.32",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Prevention of insecure non-multi options in clone/clone_from function"
+}

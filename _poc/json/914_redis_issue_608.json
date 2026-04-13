@@ -1,0 +1,15 @@
+{
+  "file_id": "914_redis_issue_608",
+  "numeric_id": "914",
+  "library_hint": "redis",
+  "source": "github_issue",
+  "title": "Segmentation fault in RedisRaft module when running with Redis 7.0.10",
+  "cve": "CVE-2023-31655",
+  "cwe": "CWE-787: Out-of-bounds Write",
+  "library": "redisraft",
+  "affected_version": ">= 7.0.10, < unstable",
+  "vulnerable_function": "callReplyIsResp3",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Redis server crashes with signal 11 (segmentation fault)"
+}

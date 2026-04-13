@@ -1,0 +1,15 @@
+{
+  "file_id": "899_keras_huntr_f94f5beb-54d8-4e6a-8bac-86d9aee103f4",
+  "numeric_id": "899",
+  "library_hint": "keras",
+  "source": "huntr",
+  "title": "Directory traversal in keras.utils.get_file() due to missing tarfile extractall filter parameter",
+  "cve": "N/A",
+  "cwe": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+  "library": "keras",
+  "affected_version": ">= 2.0, < 3.11.4",
+  "vulnerable_function": "tarfile.extractall",
+  "triggerability": "indirect",
+  "trigger_payload": "import keras\nget_file = keras.utils.get_file\nextracted_path = get_file(\"keras_dataset\", \"http://127.0.0.1:8005/keras_dataset.tgz\", cache_dir=\"/test/keras_cache\", extract=True)",
+  "oracle": "File created at /test/exploit/keras_pwned.txt with content 'KERAS VULNERABILITY CONFIRMED!\\nThis file was created outside the cache directory!\\nKeras get_file() is vulnerable to PATH_MAX symlink attacks!\\n'"
+}

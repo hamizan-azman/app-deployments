@@ -1,0 +1,15 @@
+{
+  "file_id": "453_xgrammar_issue_250",
+  "numeric_id": "453",
+  "library_hint": "xgrammar",
+  "source": "github_issue",
+  "title": "Segmentation fault due to infinite recursion in GrammarMatcherBase::ExpandEquivalentStackElements",
+  "cve": "N/A",
+  "cwe": "CWE-672: Improper Control of a Resource Through its Lifetime",
+  "library": "xgrammar",
+  "affected_version": ">= 0.1.16, < 0.1.21",
+  "vulnerable_function": "xgrammar::GrammarMatcherBase::ExpandEquivalentStackElements",
+  "triggerability": "indirect",
+  "trigger_payload": "import xgrammar as xgr\nfrom json import dumps\nfrom transformers import AutoTokenizer, AutoConfig\ndevice = \"cuda\"\nmodel_name = \"meta-llama/Llama-3.2-1B-Instruct\"\ntokenizer = AutoTokenizer.from_pretrained(model_name)\nconfig = AutoConfig.from_pretrained(model_name)\njson_schema= {\"$schema\": \"http://json-schema.org/draft-04/schema#\", \"type\": \"object\", \"requi\"}\ntokenizer_info = xgr.TokenizerInfo.from_huggingface(tokenizer, vocab_size=config.vocab_size)\ngrammar_compiler = xgr.GrammarCompiler(tokenizer_info, max_threads=1)\ncompiled_grammar = grammar_compiler.compile_json_schema(schema=dumps(json_schema))\nprint(compiled_grammar)",
+  "oracle": "Segmentation fault (SIGSEGV) occurs during grammar compilation"
+}

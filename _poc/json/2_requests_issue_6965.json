@@ -1,0 +1,15 @@
+{
+  "file_id": "2_requests_issue_6965",
+  "numeric_id": "2",
+  "library_hint": "requests",
+  "source": "github_issue",
+  "title": "Netrc credential leak vulnerability due to improper hostname extraction in URL parsing",
+  "cve": "CVE-2024-47081",
+  "cwe": "CWE-200: Information Exposure",
+  "library": "requests",
+  "affected_version": ">= 2.0, < 2.32.4",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Credential leak via .netrc file when processing malicious URLs"
+}

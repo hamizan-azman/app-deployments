@@ -1,0 +1,15 @@
+{
+  "file_id": "386_cryptography_issue_5507",
+  "numeric_id": "386",
+  "library_hint": "cryptography",
+  "source": "github_issue",
+  "title": "RSA decryption is vulnerable to Bleichenbacher attacks due to insufficient padding validation",
+  "cve": "N/A",
+  "cwe": "CWE-326: Inadequate Encryption Strength",
+  "library": "cryptography",
+  "affected_version": "prior to 3.3",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Server crashes or returns error during RSA decryption when malformed ciphertext is provided"
+}

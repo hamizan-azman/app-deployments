@@ -1,0 +1,15 @@
+{
+  "file_id": "184_mlflow_issue_10893",
+  "numeric_id": "184",
+  "library_hint": "mlflow",
+  "source": "github_issue",
+  "title": "Pandas style.to_html escape parameter does not properly escape HTML content",
+  "cve": "N/A",
+  "cwe": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+  "library": "pandas",
+  "affected_version": ">= 1.0, < 2.0",
+  "vulnerable_function": "pandas_df.style.to_html",
+  "triggerability": "indirect",
+  "trigger_payload": "p1 = pd.DataFrame({'a': ['<div><script></script></div>']})\nprint(p1.style.to_html(escape=False))\nprint(p1.style.to_html(escape=True))\nprint(p1.to_html(escape=False))\nprint(p1.to_html(escape=True))",
+  "oracle": "The output of p1.style.to_html(escape=True) does not escape HTML content, allowing script execution, while p1.to_html(escape=True) correctly escapes the content."
+}

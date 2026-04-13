@@ -1,0 +1,15 @@
+{
+  "file_id": "92_torch_issue_150835",
+  "numeric_id": "92",
+  "library_hint": "torch",
+  "source": "github_issue",
+  "title": "Floating point exception in torch.nn.functional.ctc_loss when called with empty tensors on CUDA",
+  "cve": "CVE-2025-3730",
+  "cwe": "CWE-754: Improper Check for Unusual or Exceptional Conditions",
+  "library": "pytorch",
+  "affected_version": ">= 2.6.0, < 2.8",
+  "vulnerable_function": "torch.nn.functional.ctc_loss",
+  "triggerability": "indirect",
+  "trigger_payload": "import torch\nimport torch.nn.functional as F\ndevice = \"cuda\" # \"cpu\" is fine\nnum_classes = 4\nlog_probs = torch.rand(0, 0, num_classes, device=device)\ntargets = torch.tensor([], device=device, dtype=torch.long)\ninput_lengths = torch.tensor([], device=device, dtype=torch.long)\ntarget_lengths = torch.tensor([], device=device, dtype=torch.long)\nresult = F.ctc_loss(log_probs, targets, input_lengths, target_lengths, reduction='none')",
+  "oracle": "Floating point exception (core dumped)"
+}

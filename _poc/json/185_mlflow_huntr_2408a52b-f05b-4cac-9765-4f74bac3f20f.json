@@ -1,0 +1,15 @@
+{
+  "file_id": "185_mlflow_huntr_2408a52b-f05b-4cac-9765-4f74bac3f20f",
+  "numeric_id": "185",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Bypass of validate_path_is_safe() check allows arbitrary file upload to arbitrary directories in MLflow",
+  "cve": "CVE-2023-6976",
+  "cwe": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+  "library": "mlflow",
+  "affected_version": "== 2.8.1",
+  "vulnerable_function": "upload_artifact_handler",
+  "triggerability": "direct",
+  "trigger_payload": "python3 pwn_mlflow.py --url='http://localhost:5000' --cmd='write' --path='/tmp/b' --content='xxxx'",
+  "oracle": "arbitrary file written to arbitrary location on the server filesystem"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "189_mlflow_huntr_438b0524-da0e-4d08-976a-6f270c688393",
+  "numeric_id": "189",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "SSRF due to default redirect following in HTTP artifact downloads",
+  "cve": "CVE-2023-6974",
+  "cwe": "CWE-918: Server-Side Request Forgery (SSRF)",
+  "library": "mlflow",
+  "affected_version": ">= 2.7.1",
+  "vulnerable_function": "http_request",
+  "triggerability": "direct",
+  "trigger_payload": "curl 'http://127.0.0.1:5000/model-versions/get-artifact?path=whatever&name=poc&version=3'",
+  "oracle": "Server makes HTTP request to internal IP (e.g., 169.254.169.254) and returns response content, enabling SSRF and potential RCE"
+}

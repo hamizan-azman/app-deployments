@@ -1,0 +1,15 @@
+{
+  "file_id": "24_langchain_issue_4394",
+  "numeric_id": "24",
+  "library_hint": "langchain",
+  "source": "github_issue",
+  "title": "Template injection in Jinja2-based PromptTemplate leading to arbitrary code execution via load_prompt function",
+  "cve": "N/A",
+  "cwe": "CWE-94: Improper Control of Generation of Code ('Code Injection')",
+  "library": "langchain",
+  "affected_version": "prior to 0.0.203",
+  "vulnerable_function": "load_prompt",
+  "triggerability": "indirect",
+  "trigger_payload": "from langchain.prompts import load_prompt\nloaded_prompt = load_prompt(\"pt.json\")\nloaded_prompt.format(history=\"\", prompt=\"What is 1 + 1?\")",
+  "oracle": "arbitrary code execution (e.g., directory listing via dir command) when the prompt template is processed"
+}

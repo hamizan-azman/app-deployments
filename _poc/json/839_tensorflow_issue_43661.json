@@ -1,0 +1,15 @@
+{
+  "file_id": "839_tensorflow_issue_43661",
+  "numeric_id": "839",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "Core dump in TFLite interpreter due to invalid quantization parameters in quantized comparison operation",
+  "cve": "N/A",
+  "cwe": "CWE-787: Out-of-bounds Write",
+  "library": "tensorflow",
+  "affected_version": ">= 2.3, < 2.8",
+  "vulnerable_function": "tflite::ops::builtin::comparisons::(anonymous namespace)::GreaterEval",
+  "triggerability": "indirect",
+  "trigger_payload": "image = np.random.randint(low=0, high=255, size=(1, 480, 640, 3), dtype='uint8')\ntflite_model = tf.lite.Interpreter('models/minimal_093011.tflite')\ntflite_model.allocate_tensors()\ninput_details = tflite_model.get_input_details()\ntflite_model.set_tensor(input_details[0]['index'], image)\ntflite_model.invoke()",
+  "oracle": "core dump error"
+}

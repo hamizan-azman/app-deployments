@@ -1,0 +1,15 @@
+{
+  "file_id": "621_tensorflow_issue_46911",
+  "numeric_id": "621",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "tf.keras.backend.tile crashes when n is large due to integer overflow in tensor shape validation",
+  "cve": "N/A",
+  "cwe": "CWE-787: Out-of-bounds Write",
+  "library": "tensorflow",
+  "affected_version": ">= 2.0, < 2.5",
+  "vulnerable_function": "tf.keras.backend.tile",
+  "triggerability": "indirect",
+  "trigger_payload": "import tensorflow as tf\nimport numpy as np\ntf.keras.backend.tile(x=np.ones((1,1,1)), n=[100000000,100000000, 100000000])",
+  "oracle": "process crashes with 'Check failed: 0' and 'Aborted (core dumped)'"
+}

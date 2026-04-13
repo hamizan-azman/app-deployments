@@ -1,0 +1,15 @@
+{
+  "file_id": "122_markdownify_issue_143",
+  "numeric_id": "122",
+  "library_hint": "markdownify",
+  "source": "github_issue",
+  "title": "Invalid HTML heading tags (h5555555555, h{sys.maxsize}) cause excessive memory usage due to unbounded string multiplication in convert_hn function",
+  "cve": "N/A",
+  "cwe": "CWE-400: Uncontrolled Resource Consumption",
+  "library": "markdownify",
+  "affected_version": "== 0.13.1",
+  "vulnerable_function": "convert_hn",
+  "triggerability": "indirect",
+  "trigger_payload": "markdownify(\"<html><body><h5555555555>My First Heading</h5555555555><p>My first paragraph.</p></body></html>\")\nimport sys\nmarkdownify(f\"<h5{sys.maxsize // 10}>\")\nimport sys\nmarkdownify(f\"<h{sys.maxsize + 1}>\")",
+  "oracle": "machine freezes due to excessive memory usage, memory usage goes to 100% in 2-3 seconds, MemoryError or OverflowError in traceback"
+}

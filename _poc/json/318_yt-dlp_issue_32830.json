@@ -1,0 +1,15 @@
+{
+  "file_id": "318_yt-dlp_issue_32830",
+  "numeric_id": "318",
+  "library_hint": "yt-dlp",
+  "source": "github_issue",
+  "title": "Missing validation of file extensions in yt-dlp leading to potential path traversal on Windows",
+  "cve": "CVE-2024-4184",
+  "cwe": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+  "library": "youtube-dl",
+  "affected_version": ">= 2024.06.20, < 2024.07.02",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "yt-dlp --output '%(title)s\\..\\..\\..\\windows\\system32\\cmd.exe' https://example.com",
+  "oracle": "File created at /windows/system32/cmd.exe on Windows systems"
+}

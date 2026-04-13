@@ -1,0 +1,15 @@
+{
+  "file_id": "694_tensorflow_issue_55199",
+  "numeric_id": "694",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "Missing input validation in tf.ragged.constant leads to denial of service via excessive memory consumption",
+  "cve": "N/A",
+  "cwe": "CWE-400: Uncontrolled Resource Consumption",
+  "library": "tensorflow",
+  "affected_version": ">= 2.0, < 2.8.1",
+  "vulnerable_function": "tf.ragged.constant",
+  "triggerability": "indirect",
+  "trigger_payload": "import tensorflow as tf\ntf.ragged.constant(pylist=[],ragged_rank=8968073515812833920)",
+  "oracle": "All RAM is consumed, causing the notebook to crash"
+}

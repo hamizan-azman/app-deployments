@@ -1,0 +1,15 @@
+{
+  "file_id": "306_pillow_issue_6700",
+  "numeric_id": "306",
+  "library_hint": "pillow",
+  "source": "github_issue",
+  "title": "Large SAMPLESPERPIXEL value in TIFF files causes memory and runtime denial-of-service in TiffImagePlugin.py",
+  "cve": "CVE-2022-45199",
+  "cwe": "CWE-400: Uncontrolled Resource Consumption",
+  "library": "Pillow",
+  "affected_version": ">= 9.2.0, < 9.3.0",
+  "vulnerable_function": "TiffImagePlugin.py",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "memory and runtime DOS (denial-of-service) during image decoding"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "110_aiohttp_issue_8074",
+  "numeric_id": "110",
+  "library_hint": "aiohttp",
+  "source": "github_issue",
+  "title": "Inadequate validation of HTTP version and header separators in aiohttp's HTTP parser",
+  "cve": "N/A",
+  "cwe": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross Site Scripting)",
+  "library": "aiohttp",
+  "affected_version": ">= 3.9, < 3.9.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "HTTP parser fails to validate malformed HTTP requests, potentially leading to parsing errors or security issues."
+}

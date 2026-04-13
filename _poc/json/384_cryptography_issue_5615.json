@@ -1,0 +1,15 @@
+{
+  "file_id": "384_cryptography_issue_5615",
+  "numeric_id": "384",
+  "library_hint": "cryptography",
+  "source": "github_issue",
+  "title": "Integer overflow in Fernet encryption/decryption leading to buffer overflows and crashes",
+  "cve": "CVE-2020-36242",
+  "cwe": "CWE-190: Integer Overflow or Wraparound",
+  "library": "cryptography",
+  "affected_version": ">= 3.3, < 3.3.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "import cryptography.fernet as cf\n# OK\ndata_size = 2**31 - 1\n# Fails with SIGABRT and stderr: \"free(): invalid size\" or \"munmap_chunk(): invalid pointer\"\n#\n# OK if _CipherContext._MAX_CHUNK_SIZE is set to 2 ** 31 - 1 - 8\ndata_size = 2**32 - 1\n# Fails with SIGABRT or SIGSEGV and stderr: \"free(): invalid size\" or \"munmap_chunk(): invalid pointer\"\n# cryptography.exceptions.InternalError: Unknown OpenSSL error.\n# This error is commonly encountered when another library is not cleaning up the OpenSSL error stack.\n# If you are using cryptography with another library that uses OpenSSL try disabling it before using cryptography.\n# Otherwise please file an issue at https://github.com/pyca/cryptography/issues with information about your environment.\n# ([_OpenSSLErrorWithText(code=101560482, lib=6, func=219, reason=162, reason_text=b'error:06065064:lib(6):func(219):reason(162)'))\n#\n# Fails due to plaintext != original_plaintext if _CipherContext._MAX_CHUNK_SIZE is set to 2 ** 31 - 1 - 16\n#\n# OK if _CipherContext._MAX_CHUNK_SIZE is set to 2 ** 31 - 1 - 16\ndata_size = 2**33 - 1\noriginal_plaintext = bytes(data_size)\nfernet = cf.Fernet(cf.Fernet.generate_key())\nciphertext = fernet.encrypt(original_plaintext)\nplaintext = fernet.decrypt(ciphertext)\nassert plaintext == original_plaintext",
+  "oracle": "segfault, SIGABRT, SIGSEGV, or decrypted plaintext differing from original plaintext"
+}

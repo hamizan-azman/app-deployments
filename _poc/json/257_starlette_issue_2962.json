@@ -1,0 +1,15 @@
+{
+  "file_id": "257_starlette_issue_2962",
+  "numeric_id": "257",
+  "library_hint": "starlette",
+  "source": "github_issue",
+  "title": "Starlette's UploadFile handles multi-part file uploads in a way that can cause blocking I/O on the main event loop during file rollover",
+  "cve": "N/A",
+  "cwe": "CWE-400: Uncontrolled Resource Consumption",
+  "library": "starlette",
+  "affected_version": "N/A",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Server hangs or becomes unresponsive during large file uploads due to blocking I/O on the main thread"
+}

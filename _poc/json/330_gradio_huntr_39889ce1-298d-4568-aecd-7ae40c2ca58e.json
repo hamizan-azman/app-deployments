@@ -1,0 +1,15 @@
+{
+  "file_id": "330_gradio_huntr_39889ce1-298d-4568-aecd-7ae40c2ca58e",
+  "numeric_id": "330",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Local file read via JSON component due to improper handling of 'path' keys in JSON data",
+  "cve": "CVE-2024-4941",
+  "cwe": "CWE-22: Path Traversal",
+  "library": "gradio",
+  "affected_version": "== 4.25",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "python poc.py --url='http://127.0.0.1:7860' --path='/proc/self/environ'",
+  "oracle": "The file specified by the path is copied to a temporary directory and can be downloaded via the /file=.. endpoint, revealing its contents."
+}

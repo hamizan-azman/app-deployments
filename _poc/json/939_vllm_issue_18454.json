@@ -1,0 +1,15 @@
+{
+  "file_id": "939_vllm_issue_18454",
+  "numeric_id": "939",
+  "library_hint": "vllm",
+  "source": "github_issue",
+  "title": "Catastrophic backtracking in regex parsing due to unoptimized regular expressions",
+  "cve": "CVE-2025-23456",
+  "cwe": "CWE-400: Uncontrolled Resource Consumption",
+  "library": "regex",
+  "affected_version": ">= 2025.05.21, < 2025.05.24",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "import regex as re\nre.match(args.regex, act)",
+  "oracle": "The regex matching operation takes significantly longer than expected, indicating catastrophic backtracking."
+}

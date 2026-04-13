@@ -1,0 +1,15 @@
+{
+  "file_id": "207_scipy_issue_16235",
+  "numeric_id": "207",
+  "library_hint": "scipy",
+  "source": "github_issue",
+  "title": "Memory leak in ndimage.find_objects due to un-decreased reference count of PyTuple_New return value",
+  "cve": "CVE-2023-25399",
+  "cwe": "CWE-775: Improper Release of Resource",
+  "library": "scipy",
+  "affected_version": ">= 1.0, < 1.10.0",
+  "vulnerable_function": "ndimage.find_objects",
+  "triggerability": "indirect",
+  "trigger_payload": "import scipy.ndimage\nscipy.ndimage.find_objects([[1]])",
+  "oracle": "Memory leak occurs in the function due to an un-decreased reference count of a PyTuple_New return value, which is not used after creation."
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "75_litellm_huntr_70897f59-a966-4d93-b71e-745e3da91970",
+  "numeric_id": "75",
+  "library_hint": "litellm",
+  "source": "huntr",
+  "title": "Improper access control in team management allows authenticated users to perform admin actions without proper authorization",
+  "cve": "N/A",
+  "cwe": "CWE-284: Improper Access Control",
+  "library": "berriai/litellm",
+  "affected_version": "N/A",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "curl --location 'http://localhost:4000/team/delete' --header 'Authorization: Bearer sk-EDPWei'",
+  "oracle": "The team is deleted without proper authorization, indicating that the user can perform admin actions despite not having admin privileges."
+}

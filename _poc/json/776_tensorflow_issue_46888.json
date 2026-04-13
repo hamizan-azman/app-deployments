@@ -1,0 +1,15 @@
+{
+  "file_id": "776_tensorflow_issue_46888",
+  "numeric_id": "776",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "tf.math.segment_max/min/mean/sum/prod crashes when segment_ids is large due to unchecked integer overflow",
+  "cve": "N/A",
+  "cwe": "CWE-190: Integer Overflow or Wraparound",
+  "library": "tensorflow",
+  "affected_version": ">= 2.1.0, < 2.12.0",
+  "vulnerable_function": "tf.math.segment_max, tf.math.segment_min, tf.math.segment_mean, tf.math.segment_sum, tf.math.segment_prod",
+  "triggerability": "indirect",
+  "trigger_payload": "tf.math.segment_max(data=np.ones((1,10,1)), segment_ids=[1676240524292489355])\ntf.math.segment_min(data=np.ones((1,10,1)), segment_ids=[1676240524292489355])\ntf.math.segment_mean(data=np.ones((1,10,1)), segment_ids=[1676240524292489355])\ntf.math.segment_sum(data=np.ones((1,10,1)), segment_ids=[1676240524292489355])\ntf.math.segment_prod(data=np.ones((1,10,1)), segment_ids=[1676240524292489355])",
+  "oracle": "program crashes (aborts) with a core dump and error message 'Check failed: 0' in tensor_shape.cc"
+}

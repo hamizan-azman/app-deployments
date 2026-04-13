@@ -1,0 +1,15 @@
+{
+  "file_id": "205_zipp_huntr_be898306-11f9-46b4-b28c-f4c4aa4ffbae",
+  "numeric_id": "205",
+  "library_hint": "zipp",
+  "source": "huntr",
+  "title": "Infinite loop in zipp.Path and zipfile.Path due to leading double slashes in zip file entries",
+  "cve": "CVE-2024-5569",
+  "cwe": "CWE-835: Loop with Unreachable Exit Condition ('Infinite Loop')",
+  "library": "jaraco/zipp",
+  "affected_version": "All",
+  "vulnerable_function": "zipp.Path.joinpath, zipp.Path.iterdir, zipfile.Path.iterdir",
+  "triggerability": "indirect",
+  "trigger_payload": "import zipp\nzf = zipp.Path(\"exploit.zip\")\nlist(zf.iterdir())",
+  "oracle": "infinite loop causing the process to hang indefinitely"
+}

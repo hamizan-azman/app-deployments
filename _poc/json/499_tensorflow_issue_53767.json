@@ -1,0 +1,15 @@
+{
+  "file_id": "499_tensorflow_issue_53767",
+  "numeric_id": "499",
+  "library_hint": "tensorflow",
+  "source": "github_issue",
+  "title": "TFLite Converter segfaults when converting per-channel quantized transposed convolutions",
+  "cve": "N/A",
+  "cwe": "CWE-787: Out-of-bounds Write",
+  "library": "tensorflow",
+  "affected_version": ">= 2.6, < 2.10",
+  "vulnerable_function": "tf.lite.TFLiteConverter.convert",
+  "triggerability": "indirect",
+  "trigger_payload": "import tensorflow as tf\n\nclass QuantConv2DTransposed(tf.keras.layers.Layer):\n    def build(self, input_shape):\n        self.kernel = self.add_weight(\"kernel\", [3, 3, input_shape[-1], 24])\n    \n    def call(self, inputs):\n        filters = tf.quantization.fake_quant_with_min_max_vars_per_channel(\n            self.kernel, -3.0 * tf.ones([24]), 3.0 * tf.ones([24]), narrow_range=True\n        )\n        filters = tf.transpose(filters, (0, 1, 3, 2))\n        return tf.nn.conv2d_transpose(inputs, filters, [*inputs.shape[:-1], 24], 1)\n\ninp = tf.keras.Input(shape=(6, 8, 48), batch_size=1)\nx = tf.quantization.fake_quant_with_min_max_vars(inp, -3.0, 3.0, narrow_range=True)\nx = QuantConv2DTransposed()(x)\nx = tf.quantization.fake_quant_with_min_max_vars(x, -3.0, 3.0, narrow_range=True)\nmodel = tf.keras.Model(inp, x)\nmodel.save(\"/tmp/testing\")\nconverter = tf.lite.TFLiteConverter.from_saved_model(\"/tmp/testing\")\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\ntflite_model = converter.convert()",
+  "oracle": "Python process crashes with SIGSEGV (Address boundary error)"
+}

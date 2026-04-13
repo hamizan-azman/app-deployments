@@ -1,0 +1,15 @@
+{
+  "file_id": "166_mlflow_huntr_8d96374a-ce8d-480e-9cb0-0a7e5165c24a",
+  "numeric_id": "166",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "URL encoding allows creation of duplicate models with same name, leading to denial of service and data model poisoning",
+  "cve": "CVE-2024-3099",
+  "cwe": "CWE-475: Undefined Behavior for Input to API",
+  "library": "mlflow/mlflow",
+  "affected_version": "< 2.11.3",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "An authenticated user cannot access their intended model as it redirects to a previously created model with the same name due to URL encoding, leading to denial of service and potential data model poisoning."
+}

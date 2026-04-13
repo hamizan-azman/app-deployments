@@ -1,0 +1,15 @@
+{
+  "file_id": "98_scikit-learn_huntr_14bc0917-a85b-4106-a170-d09d5191517c",
+  "numeric_id": "98",
+  "library_hint": "scikit-learn",
+  "source": "huntr",
+  "title": "Sensitive data leakage in sklearn.feature_extraction.text.TfidfVectorizer due to storing all unique tokens in stop_words_ attribute",
+  "cve": "CVE-2024-34567",
+  "cwe": "CWE-200: Information Exposure",
+  "library": "scikit-learn",
+  "affected_version": ">= 1.0, < 1.4.2",
+  "vulnerable_function": "sklearn.feature_extraction.text.TfidfVectorizer.fit",
+  "triggerability": "indirect",
+  "trigger_payload": "import pandas as pd\nfrom sklearn.feature_extraction.text import TfidfVectorizer\nvectorizer = TfidfVectorizer(max_features=2).fit(pd.Series([\"hello\", \"world\", \"hello\", \"world\", \"secretkey\", \"password123\"]))\nprint(vectorizer.vocabulary_)\nprint(vectorizer.stop_words_)",
+  "oracle": "The stop_words_ attribute contains sensitive tokens like 'secretkey' and 'password123' that were not part of the final vocabulary, indicating unintended data leakage."
+}

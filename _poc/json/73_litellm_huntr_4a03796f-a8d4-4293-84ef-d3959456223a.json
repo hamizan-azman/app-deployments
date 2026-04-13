@@ -1,0 +1,15 @@
+{
+  "file_id": "73_litellm_huntr_4a03796f-a8d4-4293-84ef-d3959456223a",
+  "numeric_id": "73",
+  "library_hint": "litellm",
+  "source": "huntr",
+  "title": "Improper output neutralization for logs in litellm_logging.py leads to API key leakage",
+  "cve": "CVE-2024-9606",
+  "cwe": "CWE-117: Improper Output Neutralization for Logs",
+  "library": "litellm",
+  "affected_version": "== 1.44.9",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "API key is partially exposed in logs, with only the first 5 characters masked instead of the entire key"
+}

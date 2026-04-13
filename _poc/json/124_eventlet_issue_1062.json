@@ -1,0 +1,15 @@
+{
+  "file_id": "124_eventlet_issue_1062",
+  "numeric_id": "124",
+  "library_hint": "eventlet",
+  "source": "github_issue",
+  "title": "Discarding trailers in WSGI requests to prevent request smuggling",
+  "cve": "N/A",
+  "cwe": "CWE-444: Inconsistent Interpretation of HTTP Requests",
+  "library": "eventlet",
+  "affected_version": "prior to 4.16.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Request smuggling vulnerability is mitigated by properly discarding trailers in WSGI requests"
+}

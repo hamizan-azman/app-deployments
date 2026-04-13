@@ -1,0 +1,15 @@
+{
+  "file_id": "316_redis_issue_2624",
+  "numeric_id": "316",
+  "library_hint": "redis",
+  "source": "github_issue",
+  "title": "Canceling async Redis command leaves connection in unsafe state, causing off-by-1 response parsing",
+  "cve": "N/A",
+  "cwe": "CWE-770: Allocation of Resources Without Limits or Throttling",
+  "library": "redis-py",
+  "affected_version": ">= 4.5.1, < 5.0.0",
+  "vulnerable_function": "_send_command_parse_response",
+  "triggerability": "indirect",
+  "trigger_payload": "import asyncio\nfrom redis.asyncio import Redis\nimport sys\nasync def main():\n    myhost, mypassword = sys.argv[1:]\n    async with Redis(host=myhost, password=mypassword, ssl=True, single_connection_client=True) as r:\n        await r.set('foo', 'foo')\n        await r.set('bar', 'bar')\n        t = asyncio.create_task(r.get('foo'))\n        await asyncio.sleep(0.001)\n        t.cancel()\n        try:\n            await t\n            print('try again, we did not cancel the task in time')\n        except asyncio.CancelledError:\n            print('managed to cancel the task, connection is left open with unread response')\n        print('bar:', await r.get('bar'))\n        print('ping:', await r.ping())\n        print('foo:', await r.get('foo'))\nif __name__ == '__main__':\n    asyncio.run(main())",
+  "oracle": "Connection is left in unsafe state, causing subsequent commands to read response from previous canceled command, resulting in incorrect data (e.g. 'bar' returns 'foo', 'ping' returns False)"
+}

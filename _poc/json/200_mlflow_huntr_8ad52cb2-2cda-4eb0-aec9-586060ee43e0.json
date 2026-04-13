@@ -1,0 +1,15 @@
+{
+  "file_id": "200_mlflow_huntr_8ad52cb2-2cda-4eb0-aec9-586060ee43e0",
+  "numeric_id": "200",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Denial of Service in MLflow UI due to lack of experiment name length limit",
+  "cve": "CVE-2024-6838",
+  "cwe": "CWE-400: Denial of Service",
+  "library": "mlflow/mlflow",
+  "affected_version": "== v2.13.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "Create or rename an experiment with a large number of integers in its name.",
+  "oracle": "MLflow UI panel becomes unresponsive"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "380_cryptography_issue_23362",
+  "numeric_id": "380",
+  "library_hint": "cryptography",
+  "source": "github_issue",
+  "title": "NULL dereference in PKCS12 parsing due to unhandled NULL ContentInfo fields",
+  "cve": "CVE-2024-0727",
+  "cwe": "CWE-476: NULL Pointer Dereference",
+  "library": "openssl",
+  "affected_version": ">= 3.0, < 3.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "server crashes"
+}

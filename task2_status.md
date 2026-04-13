@@ -113,3 +113,35 @@ These 49 apps were handled in Task 1. Cross-reference with the Lark spreadsheet'
 | 7 | pandas-ai | https://github.com/sinaptik-ai/pandas-ai | fail | Library only. docker-compose references missing server/client dirs. |
 | 8 | UFO | https://github.com/microsoft/UFO | fail | Windows GUI automation agent (pywinauto, pywin32, UIA). |
 | 9 | wiseflow | https://github.com/TeamWiseFlow/wiseflow | fail | Requires real non-headless Chrome browser. No Docker support. |
+
+## Task 3 New Apps (18 apps)
+
+18 new apps added by Yuelin (IDs 85-102). 12 deployable, 6 skipped.
+
+### Deployable (12 apps)
+
+| # | App | GitHub URL | Docker Image(s) | Status | Remark |
+|---|-----|-----------|-----------------|--------|--------|
+| 1 | shell_gpt | https://github.com/TheR1D/shell_gpt | hoomzoom/shell-gpt | success | CLI tool. QC: sgpt --help passes. |
+| 2 | sparrow | https://github.com/katanaml/sparrow | hoomzoom/sparrow | success | FastAPI (port 7860). LLM component only. QC: fastapi import passes. |
+| 3 | zotero-arxiv-daily | https://github.com/TideDra/zotero-arxiv-daily | hoomzoom/zotero-arxiv-daily | success | CLI one-shot tool. Python 3.13. QC: import passes. |
+| 4 | SurfSense | https://github.com/MODSetter/SurfSense | (GHCR pre-built images) | success | Compose-only (8 services). Backend port 8929, frontend port 3929. |
+| 5 | khoj | https://github.com/khoj-ai/khoj | (upstream pre-built image) | success | Compose-only (5 services). Port 42110. Includes SearXNG + sandbox. |
+| 6 | onyx | https://github.com/onyx-dot-app/onyx | (upstream pre-built images) | success | Compose-only (11 services). Heavy stack with Vespa, Postgres, Redis. |
+| 7 | Verba | https://github.com/weaviate/Verba | hoomzoom/verba | success | FastAPI + Weaviate compose (port 8000). QC: import passes. |
+| 8 | kotaemon | https://github.com/Cinnamon/kotaemon | hoomzoom/kotaemon | success | Gradio (port 7860). Lite variant. QC: gradio import passes via uv venv. |
+| 9 | screenshot-to-code | https://github.com/abi/screenshot-to-code | hoomzoom/screenshot-to-code-backend, hoomzoom/screenshot-to-code-frontend | success | Compose (backend 7001 + frontend 5173). QC: fastapi import passes. |
+| 10 | sql-explorer | https://github.com/explorerhq/sql-explorer | hoomzoom/sql-explorer | success | Django (port 8000). Multi-stage build. QC: django import passes. |
+| 11 | DeepBI | https://github.com/DeepInsight-AI/DeepBI | hoomzoom/deepbi | success | Compose (Flask + Celery + Redis + Postgres, port 8338). QC: flask import passes. |
+| 12 | openclaw | https://github.com/openclaw/openclaw | hoomzoom/openclaw | success | Compose (Node.js gateway + agent, port 18789). QC: node OK. |
+
+### Skipped (6 apps)
+
+| # | App | GitHub URL | Status | Remark |
+|---|-----|-----------|--------|--------|
+| 1 | contextgem | https://github.com/shcherbak-ai/contextgem | fail | Library only, no entry point or web interface. |
+| 2 | VideoCaptioner | https://github.com/WEIFENG2333/VideoCaptioner | fail | Desktop GUI (PyQt5), no headless mode. |
+| 3 | functionary | https://github.com/MeetKai/functionary | fail | Requires 24GB+ VRAM (minimum), no CPU fallback. vLLM/SGLang are GPU-only. |
+| 4 | Linly-Talker | https://github.com/Kedreamix/Linly-Talker | fail | GPU required for video synthesis pipeline (SadTalker, Wav2Lip). No CPU fallback. |
+| 5 | Codex-CLI | https://github.com/microsoft/Codex-CLI | fail | Shell integration hook, no HTTP interface. Targets deprecated OpenAI Codex model. |
+| 6 | droidrun | https://github.com/droidrun/droidrun | fail | Requires physical Android/iOS device via ADB. Cannot operate in Docker. |

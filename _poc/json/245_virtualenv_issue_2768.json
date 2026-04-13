@@ -1,0 +1,15 @@
+{
+  "file_id": "245_virtualenv_issue_2768",
+  "numeric_id": "245",
+  "library_hint": "virtualenv",
+  "source": "github_issue",
+  "title": "Command injection in virtualenv activation script due to unquoted template strings",
+  "cve": "CVE-2024-9287",
+  "cwe": "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+  "library": "virtualenv",
+  "affected_version": "prior to 21.3.1",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "envname=\"';uname -a;':\"\nmkdir \"$envname\"\ncd \"$envname\"\nvirtualenv .\n. ./bin/activate",
+  "oracle": "command execution in the shell context (e.g., uname -a output is printed)"
+}

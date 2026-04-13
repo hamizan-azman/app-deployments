@@ -1,0 +1,15 @@
+{
+  "file_id": "218_transformers_huntr_423611ee-7a2a-442a-babb-3ed2f8385c16",
+  "numeric_id": "218",
+  "library_hint": "transformers",
+  "source": "huntr",
+  "title": "Deserialization of untrusted data in RagRetriever.from_pretrained() leads to RCE and worm infection by bypassing pickle scanning",
+  "cve": "CVE-2023-6730",
+  "cwe": "CWE-502: Deserialization of Untrusted Data",
+  "library": "huggingface/transformers",
+  "affected_version": "<= 4.35.2",
+  "vulnerable_function": "RagRetriever.from_pretrained",
+  "triggerability": "indirect",
+  "trigger_payload": "RagRetriever.from_pretrained(\"zpbrent/RagRetriever\")",
+  "oracle": "HACKED and HACKED-2 files are created in the disk, and a new repo pzhoutest/RagRetriever is created and uploaded in the victim's account"
+}

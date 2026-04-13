@@ -1,0 +1,15 @@
+{
+  "file_id": "80_requests_issue_6655",
+  "numeric_id": "80",
+  "library_hint": "requests",
+  "source": "github_issue",
+  "title": "Connection reuse between requests with different TLS verification settings allows potential bypass of certificate validation",
+  "cve": "CVE-2024-35195",
+  "cwe": "CWE-295: Improper Certificate Validation",
+  "library": "requests",
+  "affected_version": ">= 2.0, < 2.32.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "s = requests.Session()\n    r1 = s.get(\"https://invalid.broken\")\n    assert r1.status_code == 421\n    with pytest.raises(requests.exceptions.SSLError):\n        s.get(\"https://invalid.broken\")",
+  "oracle": "The second request raises an SSLError, indicating that TLS verification is properly enforced after a previous request with verification disabled."
+}

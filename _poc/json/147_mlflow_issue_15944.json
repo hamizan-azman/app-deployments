@@ -1,0 +1,15 @@
+{
+  "file_id": "147_mlflow_issue_15944",
+  "numeric_id": "147",
+  "library_hint": "mlflow",
+  "source": "github_issue",
+  "title": "Missing validation of gateway_path in gateway_proxy_handler leading to potential security vulnerability",
+  "cve": "N/A",
+  "cwe": "CWE-20: Improper Input Validation",
+  "library": "mlflow",
+  "affected_version": "N/A",
+  "vulnerable_function": "gateway_proxy_handler",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Potential security vulnerability due to lack of gateway_path validation"
+}

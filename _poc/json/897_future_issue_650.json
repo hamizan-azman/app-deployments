@@ -1,0 +1,15 @@
+{
+  "file_id": "897_future_issue_650",
+  "numeric_id": "897",
+  "library_hint": "future",
+  "source": "github_issue",
+  "title": "CVE-2025-50817 is disputed and considered invalid due to misclassification of a standard Python import behavior as a security vulnerability",
+  "cve": "CVE-2025-50817",
+  "cwe": "CWE-117: Improper Output Neutralization for Logs",
+  "library": "future",
+  "affected_version": "N/A",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "The CVE was marked as disputed and invalid due to the fact that the reported behavior is a standard Python import mechanism, not a security flaw."
+}

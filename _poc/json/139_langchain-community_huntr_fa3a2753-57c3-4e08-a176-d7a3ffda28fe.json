@@ -1,0 +1,15 @@
+{
+  "file_id": "139_langchain-community_huntr_fa3a2753-57c3-4e08-a176-d7a3ffda28fe",
+  "numeric_id": "139",
+  "library_hint": "langchain-community",
+  "source": "huntr",
+  "title": "Pickle deserialization vulnerability in FAISS.deserialize_from_bytes function",
+  "cve": "CVE-2024-5998",
+  "cwe": "CWE-502: Deserialization of Untrusted Data",
+  "library": "langchain-ai/langchain",
+  "affected_version": ">= 0.2.0, < 0.2.9",
+  "vulnerable_function": "FAISS.deserialize_from_bytes",
+  "triggerability": "indirect",
+  "trigger_payload": "import base64\nfrom langchain_community.embeddings.huggingface import HuggingFaceEmbeddings\nfrom langchain_community.vectorstores import FAISS\nembeddings = HuggingFaceEmbeddings(model_name=\"all-MiniLM-L6-v2\")\ndb = FAISS.deserialize_from_bytes(\nembeddings=embeddings, serialized=base64.b64decode(b'This is the serialized dat'))",
+  "oracle": "os.system function is executed, which makes a curl request to http://example.com/test"
+}

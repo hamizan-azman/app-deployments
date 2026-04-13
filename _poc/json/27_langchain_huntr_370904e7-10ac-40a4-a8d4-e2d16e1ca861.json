@@ -1,0 +1,15 @@
+{
+  "file_id": "27_langchain_huntr_370904e7-10ac-40a4-a8d4-e2d16e1ca861",
+  "numeric_id": "27",
+  "library_hint": "langchain",
+  "source": "huntr",
+  "title": "SSRF bypass in RecursiveUrlLoader due to improper URL validation in extract_sub_links function",
+  "cve": "CVE-2024-0243",
+  "cwe": "CWE-918: Server-Side Request Forgery (SSRF)",
+  "library": "langchain-community",
+  "affected_version": "<= 0.0.353",
+  "vulnerable_function": "extract_sub_links",
+  "triggerability": "indirect",
+  "trigger_payload": "from langchain_community.document_loaders.recursive_url_loader import (RecursiveUrlLoader,)\nfrom bs4 import BeautifulSoup as Soup\nloader = RecursiveUrlLoader(\n    \"http://localhost\",\n    max_depth=2,\n    extractor=lambda x: Soup(x, \"html.parser\").text,\n)\ndata = loader.load()",
+  "oracle": "A request is sent to the internal service http://localhost:9999/ssrf, which can be observed on the server listening on port 9999."
+}

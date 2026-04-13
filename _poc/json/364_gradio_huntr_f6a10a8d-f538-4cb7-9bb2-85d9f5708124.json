@@ -1,0 +1,15 @@
+{
+  "file_id": "364_gradio_huntr_f6a10a8d-f538-4cb7-9bb2-85d9f5708124",
+  "numeric_id": "364",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Timing attack vulnerability in password comparison due to non-constant time comparison",
+  "cve": "CVE-2024-1729",
+  "cwe": "CWE-367: Time-of-check Time-of-use (TOCTOU) Race Condition",
+  "library": "gradio",
+  "affected_version": "< 4.19.2",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Timing difference in response time allows an attacker to guess the password"
+}

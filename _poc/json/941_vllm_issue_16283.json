@@ -1,0 +1,15 @@
+{
+  "file_id": "941_vllm_issue_16283",
+  "numeric_id": "941",
+  "library_hint": "vllm",
+  "source": "github_issue",
+  "title": "Unbounded memory cache in xgrammar allows denial of service via excessive unique grammars",
+  "cve": "GHSA-389x-67px-mjg3",
+  "cwe": "CWE-400: Uncontrolled Resource Consumption",
+  "library": "xgrammar",
+  "affected_version": "< 0.1.18",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "N/A",
+  "oracle": "Host's RAM is consumed completely, leading to denial of service"
+}

