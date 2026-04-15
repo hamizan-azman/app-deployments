@@ -1,4 +1,4 @@
-# BruteForceAI Usage Documentation
+# BruteForceAI. Usage Documentation
 
 ## Overview
 CLI tool that uses AI to perform intelligent login brute force attacks and analyze authentication endpoints. Supports local LLMs via Ollama or cloud inference via Groq. Uses Playwright with Chromium for browser-based interaction with login forms.

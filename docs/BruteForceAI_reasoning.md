@@ -1,4 +1,4 @@
-# BruteForceAI Deployment Reasoning
+# BruteForceAI. Reasoning Log
 
 ## App Type
 CLI tool. No web interface, no server, no exposed port.

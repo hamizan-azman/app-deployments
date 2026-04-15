@@ -1,4 +1,4 @@
-# BabelDOC Deployment Reasoning
+# BabelDOC. Reasoning Log
 
 ## App Type
 CLI tool. No web server, no port. Invoked directly via the `babeldoc` command.

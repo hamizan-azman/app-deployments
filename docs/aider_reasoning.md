@@ -1,4 +1,4 @@
-# Aider. Deployment Reasoning
+# Aider. Reasoning Log
 
 ## App Classification
 CLI tool. No web server by default. Runs interactively in the terminal against a mounted code repository. Optional `--browser` flag launches a Streamlit-based UI on port 8501, but this is not the primary interface.

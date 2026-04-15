@@ -1,4 +1,4 @@
-# FinGenius. Deployment Reasoning
+# FinGenius. Reasoning Log
 
 ## App Type
 CLI tool. Multi-agent LLM pipeline that accepts a stock code, runs a set of specialized research agents, and writes a Markdown report. No web server, no persistent port.

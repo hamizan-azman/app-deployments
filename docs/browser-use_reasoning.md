@@ -1,4 +1,4 @@
-# browser-use. Deployment Reasoning
+# browser-use. Reasoning Log
 
 ## App Type
 CLI tool and Python library. No web UI. Entry point is the `browser-use` binary installed by uv into `/app/.venv/bin/`.

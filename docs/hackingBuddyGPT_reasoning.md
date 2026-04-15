@@ -1,4 +1,4 @@
-# hackingBuddyGPT. Deployment Reasoning
+# hackingBuddyGPT. Reasoning Log
 
 ## Decision: Deploy (CLI, no web interface)
 

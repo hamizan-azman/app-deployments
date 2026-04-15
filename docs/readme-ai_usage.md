@@ -1,4 +1,4 @@
-# readme-ai Usage Documentation
+# readme-ai. Usage Documentation
 
 ## Overview
 CLI tool that automatically generates README files for software projects using LLMs. Supports OpenAI, Anthropic, and Google AI as backend providers. Also supports offline mode using local templates without an API key.

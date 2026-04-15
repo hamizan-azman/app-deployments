@@ -1,4 +1,4 @@
-# pr-agent. Deployment Reasoning
+# pr-agent. Reasoning Log
 
 ## App Type
 FastAPI webhook server (GitHub App mode) with a secondary CLI interface. Receives GitHub webhook events and dispatches AI-powered PR review commands. Port 3000.

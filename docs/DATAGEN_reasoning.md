@@ -1,4 +1,4 @@
-# DATAGEN. Deployment Reasoning
+# DATAGEN. Reasoning Log
 
 ## App Classification
 - Type: CLI multi-agent pipeline (no web UI)

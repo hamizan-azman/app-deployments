@@ -1,4 +1,4 @@
-# BabelDOC Usage Documentation
+# BabelDOC. Usage Documentation
 
 ## Overview
 Command-line PDF document translator powered by an OpenAI-compatible API. Translates academic papers and documents while preserving layout, formatting, and structure. Outputs bilingual or translated-only PDFs.

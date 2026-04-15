@@ -1,4 +1,4 @@
-# gpt-pilot. Deployment Reasoning
+# gpt-pilot. Reasoning Log
 
 ## App Type
 CLI tool. Interactive coding agent with no web interface. No port exposed.

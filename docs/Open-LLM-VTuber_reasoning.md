@@ -12,7 +12,7 @@ Open-LLM-VTuber is an AI companion application with a Live2D animated avatar. It
 
 3. **uv.lock**: Frozen lock file. Covers all runtime dependencies.
 
-4. **conf.yaml.example**: Comprehensive configuration file covering LLM backend, ASR engine, TTS engine, Live2D model paths, character configuration, and audio settings.
+4. **conf.yaml.example**: Configuration file covering LLM backend, ASR engine, TTS engine, Live2D model paths, character configuration, and audio settings.
 
 5. **run_server.py**: Application entry point. Reads conf.yaml and starts the FastAPI/WebSocket server on port 12393.
 

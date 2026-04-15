@@ -1,4 +1,4 @@
-# readme-ai Deployment Reasoning
+# readme-ai. Reasoning Log
 
 ## App Type
 CLI tool. No web interface, no port exposed.

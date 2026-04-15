@@ -1,4 +1,4 @@
-# ChatDev. Deployment Reasoning
+# ChatDev. Reasoning Log
 
 ## App Type
 FastAPI backend (multi-agent software development system, DevAll v2.0). Backend-only deployment. Port 6400.

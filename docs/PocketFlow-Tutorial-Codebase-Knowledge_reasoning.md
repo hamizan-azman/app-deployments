@@ -1,4 +1,4 @@
-# PocketFlow-Tutorial-Codebase-Knowledge. Deployment Reasoning
+# PocketFlow-Tutorial-Codebase-Knowledge. Reasoning Log
 
 ## App Type
 CLI tool. No web interface, no port exposed, no persistent storage required.
