@@ -58,16 +58,16 @@ Start with `-p` port mapping and access from a browser or HTTP client.
 | 41 | [morphik-core](https://github.com/morphik-org/morphik-core) | Document processing and retrieval system | 8000 | FastAPI (compose) | `hoomzoom/morphik-core` | Yes | 1/1 | - |
 | 42 | [chatgpt_telegram_bot](https://github.com/father-bot/chatgpt_telegram_bot) | ChatGPT Telegram bot with voice support | - | Telegram bot (compose) | `hoomzoom/chatgpt-telegram-bot` | Yes | 1/1 | - |
 | 43 | [Decepticon](https://github.com/PurpleAILAB/Decepticon) | Autonomous offensive security platform | - | Compose (pre-built) | (pre-built images) | Yes | - | - |
-| 44 | [sparrow](https://github.com/katanaml/sparrow) | Document data extraction with LLM agents | 7860 | FastAPI | `hoomzoom/sparrow` | No | 1/1 | - |
-| 45 | [SurfSense](https://github.com/MODSetter/SurfSense) | Personal AI assistant with web browsing | 8929, 3929 | FastAPI + Next.js (compose) | (GHCR pre-built) | Yes | - | - |
-| 46 | [khoj](https://github.com/khoj-ai/khoj) | Self-hosted AI assistant with search | 42110 | FastAPI + Django (compose) | (upstream pre-built) | No | - | - |
-| 47 | [onyx](https://github.com/onyx-dot-app/onyx) | Enterprise AI knowledge assistant | 80 | FastAPI + Next.js (compose) | (upstream pre-built) | Yes | - | - |
-| 48 | [Verba](https://github.com/weaviate/Verba) | RAG chatbot with Weaviate vector DB | 8000 | FastAPI (compose) | `hoomzoom/verba` | No | 1/1 | - |
-| 49 | [kotaemon](https://github.com/Cinnamon/kotaemon) | Document QA with RAG pipeline | 7860 | Gradio | `hoomzoom/kotaemon` | No | 1/1 | - |
-| 50 | [screenshot-to-code](https://github.com/abi/screenshot-to-code) | Convert screenshots to frontend code | 7001, 5173 | FastAPI + Vite (compose) | `hoomzoom/screenshot-to-code-*` | Yes | 1/1 | - |
-| 51 | [sql-explorer](https://github.com/explorerhq/sql-explorer) | Collaborative SQL query editor | 8000 | Django | `hoomzoom/sql-explorer` | No | 1/1 | - |
-| 52 | [DeepBI](https://github.com/DeepInsight-AI/DeepBI) | AI-powered business intelligence | 8338 | Flask (compose) | `hoomzoom/deepbi` | No | 1/1 | - |
-| 53 | [openclaw](https://github.com/openclaw/openclaw) | Local gateway for AI coding tools | 18789 | Node.js (compose) | `hoomzoom/openclaw` | No | 1/1 | - |
+| 44 | [sparrow](https://github.com/katanaml/sparrow) | Document data extraction with LLM agents | 7860 | FastAPI | `hoomzoom/sparrow` | No | 1/1 | [usage](docs/sparrow_usage.md) |
+| 45 | [SurfSense](https://github.com/MODSetter/SurfSense) | Personal AI assistant with web browsing | 8929, 3929 | FastAPI + Next.js (compose) | (GHCR pre-built) | Yes | - | [usage](docs/SurfSense_usage.md) |
+| 46 | [khoj](https://github.com/khoj-ai/khoj) | Self-hosted AI assistant with search | 42110 | FastAPI + Django (compose) | (upstream pre-built) | No | - | [usage](docs/khoj_usage.md) |
+| 47 | [onyx](https://github.com/onyx-dot-app/onyx) | Enterprise AI knowledge assistant | 80 | FastAPI + Next.js (compose) | (upstream pre-built) | Yes | - | [usage](docs/onyx_usage.md) |
+| 48 | [Verba](https://github.com/weaviate/Verba) | RAG chatbot with Weaviate vector DB | 8000 | FastAPI (compose) | `hoomzoom/verba` | No | 1/1 | [usage](docs/Verba_usage.md) |
+| 49 | [kotaemon](https://github.com/Cinnamon/kotaemon) | Document QA with RAG pipeline | 7860 | Gradio | `hoomzoom/kotaemon` | No | 1/1 | [usage](docs/kotaemon_usage.md) |
+| 50 | [screenshot-to-code](https://github.com/abi/screenshot-to-code) | Convert screenshots to frontend code | 7001, 5173 | FastAPI + Vite (compose) | `hoomzoom/screenshot-to-code-*` | Yes | 1/1 | [usage](docs/screenshot-to-code_usage.md) |
+| 51 | [sql-explorer](https://github.com/explorerhq/sql-explorer) | Collaborative SQL query editor | 8000 | Django | `hoomzoom/sql-explorer` | No | 1/1 | [usage](docs/sql-explorer_usage.md) |
+| 52 | [DeepBI](https://github.com/DeepInsight-AI/DeepBI) | AI-powered business intelligence | 8338 | Flask (compose) | `hoomzoom/deepbi` | No | 1/1 | [usage](docs/DeepBI_usage.md) |
+| 53 | [openclaw](https://github.com/openclaw/openclaw) | Local gateway for AI coding tools | 18789 | Node.js (compose) | `hoomzoom/openclaw` | No | 1/1 | [usage](docs/openclaw_usage.md) |
 
 ## CLI / Library Apps (26)
 
@@ -99,8 +99,8 @@ Run commands inside the container with `docker exec` or `docker run`.
 | 65 | [browser-use](https://github.com/browser-use/browser-use) | AI browser automation library | `browser-use` | `hoomzoom/browser-use` | Yes | 1/1 | - |
 | 66 | [hcaptcha-challenger](https://github.com/QIN2DIM/hcaptcha-challenger) | AI hCaptcha solver with Playwright | `hc` | `hoomzoom/hcaptcha-challenger` | Yes | 1/1 | - |
 | 67 | [BallonsTranslator](https://github.com/dmMaze/BallonsTranslator) | Manga/comic translator with OCR+inpainting | `python launch.py --headless` | `hoomzoom/ballonstranslator` | No | 1/1 | - |
-| 68 | [shell_gpt](https://github.com/TheR1D/shell_gpt) | CLI assistant with shell integration | `sgpt` | `hoomzoom/shell-gpt` | Yes | 1/1 | - |
-| 69 | [zotero-arxiv-daily](https://github.com/TideDra/zotero-arxiv-daily) | Automated arxiv paper digest for Zotero | `python -m zotero_arxiv_daily` | `hoomzoom/zotero-arxiv-daily` | Yes | 1/1 | - |
+| 68 | [shell_gpt](https://github.com/TheR1D/shell_gpt) | CLI assistant with shell integration | `sgpt` | `hoomzoom/shell-gpt` | Yes | 1/1 | [usage](docs/shell_gpt_usage.md) |
+| 69 | [zotero-arxiv-daily](https://github.com/TideDra/zotero-arxiv-daily) | Automated arxiv paper digest for Zotero | `python -m zotero_arxiv_daily` | `hoomzoom/zotero-arxiv-daily` | Yes | 1/1 | [usage](docs/zotero-arxiv-daily_usage.md) |
 
 ---
 
