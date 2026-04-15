@@ -224,10 +224,31 @@ These apps either had all deps already pinned with == or were installed via pip 
 
 ---
 
-## Skipped Apps (17) - Local Install Docs Only
+## Task 3 New Apps (12 deployed)
+
+| App | Approach | Notes |
+|-----|----------|-------|
+| shell_gpt | pip install . | Upstream Dockerfile adapted. Pinned to python:3.11-slim. |
+| sparrow | pip install -r requirements.txt | LLM component only. Python bumped from 3.10 to 3.12. Added poppler-utils. |
+| zotero-arxiv-daily | pip install . | Python 3.13. Installed via pyproject.toml. |
+| SurfSense | compose-only (GHCR images) | No custom build. 8 services. |
+| khoj | compose-only (upstream image) | No custom build. 5 services. |
+| onyx | compose-only (upstream images) | No custom build. 11 services. |
+| Verba | pip install . | Upstream Dockerfile adapted. Weaviate as compose service. |
+| kotaemon | uv sync --frozen | Lite variant. No Ollama baked in. |
+| screenshot-to-code | Poetry (backend) + yarn (frontend) | Two separate Dockerfiles. |
+| sql-explorer | pip install -r requirements.txt | Multi-stage with NVM/Node. Upstream approach. |
+| DeepBI | pip install -r vrequment.txt | Upstream Dockerfile.template renamed. Python 3.8. |
+| openclaw | pnpm + Bun (Node.js) | SHA256 digest pins removed from base images. |
+
+---
+
+## Skipped Apps (23) - Local Install Docs Only
 
 These apps were not containerized. Local installation instructions are in `docs/` where provided.
 
 Task 1 (8): autoMate, whispering, TaskMatrix, MedRAX, home-llm, AiNiee, itext2kg, Windrecorder
 
 Task 2 (9): AI_NovelGenerator, AppAgent, Cradle, ExtractThinker, GLaDOS, Open-Interface, pandas-ai, UFO, wiseflow
+
+Task 3 (6): contextgem, VideoCaptioner, functionary, Linly-Talker, Codex-CLI, droidrun

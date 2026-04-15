@@ -1,6 +1,6 @@
 # Task 2 Deployment Status
 
-84 total apps. 50 from Task 1 (mark status). 34 new (deploy and mark status).
+102 total apps. 49 from Task 1 (41 success, 8 fail). 35 new in Task 2 (26 success, 9 fail). 18 new in Task 3 (12 success, 6 fail). Grand total: 79 deployed, 23 skipped.
 
 ## Task 1 Apps (Pre-filled from Task 1 results)
 
