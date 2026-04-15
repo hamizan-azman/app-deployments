@@ -45,19 +45,19 @@ Start with `-p` port mapping and access from a browser or HTTP client.
 | 28 | [auto-news](https://github.com/finaldie/auto-news) | News aggregation and summarization | 8080 | Airflow (compose, 9 containers) | `finaldie/auto-news:0.9.15` | Yes | 6/6 | [usage](docs/auto-news_usage.md) |
 | 29 | [RD-Agent](https://github.com/microsoft/RD-Agent) | Autonomous R&D for quant trading | 8501 | Streamlit (also has CLI) | `hoomzoom/rd-agent` | Yes | 5/5 | [usage](docs/RD-Agent_usage.md) |
 | 30 | [SWE-agent](https://github.com/SWE-agent/SWE-agent) | Autonomous agent that fixes GitHub issues | 8000 | Web UI (also has CLI) | `hoomzoom/swe-agent` | Yes | 10/10 | [usage](docs/SWE-agent_usage.md) |
-| 31 | [DeepGit](https://github.com/zamalali/DeepGit) | GitHub repo deep search with LLM agents | 7860 | Gradio | `hoomzoom/deepgit` | Yes | 1/1 | - |
-| 32 | [ChatDev](https://github.com/OpenBMB/ChatDev) | Multi-agent software development | 6400 | FastAPI | `hoomzoom/chatdev` | Yes | 1/1 | - |
-| 33 | [pr-agent](https://github.com/qodo-ai/pr-agent) | AI-powered PR review and analysis | 3000 | FastAPI webhook | `hoomzoom/pr-agent` | Yes | 1/1 | - |
-| 34 | [ai-goofish-monitor](https://github.com/Usagi-org/ai-goofish-monitor) | AI-powered marketplace price monitor | 8000 | FastAPI + Vue | `hoomzoom/ai-goofish-monitor` | Yes | 1/1 | - |
-| 35 | [MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) | Automated short video generation | 8501, 8080 | Streamlit + FastAPI | `hoomzoom/moneyprinterturbo` | Yes | 1/1 | - |
-| 36 | [BiliNote](https://github.com/JefferyHcool/BiliNote) | AI video note generation from Bilibili/YouTube | 8483 | FastAPI (backend) | `hoomzoom/bilinote` | Yes | 1/1 | - |
-| 37 | [deepwiki-open](https://github.com/AsyncFuncAI/deepwiki-open) | AI wiki generator from code repos | 3000, 8001 | Next.js + FastAPI | `hoomzoom/deepwiki-open` | Yes | 1/1 | - |
-| 38 | [docetl](https://github.com/ucbepic/docetl) | LLM-powered document ETL pipeline | 3000, 8000 | FastAPI + Next.js | `hoomzoom/docetl` | Yes | 1/1 | - |
-| 39 | [Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber) | AI VTuber with Live2D and speech | 12393 | FastAPI/WebSocket | `hoomzoom/open-llm-vtuber` | Yes | 1/1 | - |
-| 40 | [skyvern](https://github.com/Skyvern-AI/skyvern) | AI browser automation with visual understanding | 8000, 6080 | FastAPI + React + VNC (compose) | `hoomzoom/skyvern` | Yes | 1/1 | - |
-| 41 | [morphik-core](https://github.com/morphik-org/morphik-core) | Document processing and retrieval system | 8000 | FastAPI (compose) | `hoomzoom/morphik-core` | Yes | 1/1 | - |
-| 42 | [chatgpt_telegram_bot](https://github.com/father-bot/chatgpt_telegram_bot) | ChatGPT Telegram bot with voice support | - | Telegram bot (compose) | `hoomzoom/chatgpt-telegram-bot` | Yes | 1/1 | - |
-| 43 | [Decepticon](https://github.com/PurpleAILAB/Decepticon) | Autonomous offensive security platform | - | Compose (pre-built) | (pre-built images) | Yes | - | - |
+| 31 | [DeepGit](https://github.com/zamalali/DeepGit) | GitHub repo deep search with LLM agents | 7860 | Gradio | `hoomzoom/deepgit` | Yes | 1/1  [usage](docs/DeepGit_usage.md) |
+| 32 | [ChatDev](https://github.com/OpenBMB/ChatDev) | Multi-agent software development | 6400 | FastAPI | `hoomzoom/chatdev` | Yes | 1/1  [usage](docs/ChatDev_usage.md) |
+| 33 | [pr-agent](https://github.com/qodo-ai/pr-agent) | AI-powered PR review and analysis | 3000 | FastAPI webhook | `hoomzoom/pr-agent` | Yes | 1/1  [usage](docs/pr-agent_usage.md) |
+| 34 | [ai-goofish-monitor](https://github.com/Usagi-org/ai-goofish-monitor) | AI-powered marketplace price monitor | 8000 | FastAPI + Vue | `hoomzoom/ai-goofish-monitor` | Yes | 1/1  [usage](docs/ai-goofish-monitor_usage.md) |
+| 35 | [MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo) | Automated short video generation | 8501, 8080 | Streamlit + FastAPI | `hoomzoom/moneyprinterturbo` | Yes | 1/1  [usage](docs/MoneyPrinterTurbo_usage.md) |
+| 36 | [BiliNote](https://github.com/JefferyHcool/BiliNote) | AI video note generation from Bilibili/YouTube | 8483 | FastAPI (backend) | `hoomzoom/bilinote` | Yes | 1/1  [usage](docs/BiliNote_usage.md) |
+| 37 | [deepwiki-open](https://github.com/AsyncFuncAI/deepwiki-open) | AI wiki generator from code repos | 3000, 8001 | Next.js + FastAPI | `hoomzoom/deepwiki-open` | Yes | 1/1  [usage](docs/deepwiki-open_usage.md) |
+| 38 | [docetl](https://github.com/ucbepic/docetl) | LLM-powered document ETL pipeline | 3000, 8000 | FastAPI + Next.js | `hoomzoom/docetl` | Yes | 1/1  [usage](docs/docetl_usage.md) |
+| 39 | [Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber) | AI VTuber with Live2D and speech | 12393 | FastAPI/WebSocket | `hoomzoom/open-llm-vtuber` | Yes | 1/1  [usage](docs/Open-LLM-VTuber_usage.md) |
+| 40 | [skyvern](https://github.com/Skyvern-AI/skyvern) | AI browser automation with visual understanding | 8000, 6080 | FastAPI + React + VNC (compose) | `hoomzoom/skyvern` | Yes | 1/1  [usage](docs/skyvern_usage.md) |
+| 41 | [morphik-core](https://github.com/morphik-org/morphik-core) | Document processing and retrieval system | 8000 | FastAPI (compose) | `hoomzoom/morphik-core` | Yes | 1/1  [usage](docs/morphik-core_usage.md) |
+| 42 | [chatgpt_telegram_bot](https://github.com/father-bot/chatgpt_telegram_bot) | ChatGPT Telegram bot with voice support | - | Telegram bot (compose) | `hoomzoom/chatgpt-telegram-bot` | Yes | 1/1  [usage](docs/chatgpt_telegram_bot_usage.md) |
+| 43 | [Decepticon](https://github.com/PurpleAILAB/Decepticon) | Autonomous offensive security platform | - | Compose (pre-built) | (pre-built images) | Yes | -  [usage](docs/Decepticon_usage.md) |
 | 44 | [sparrow](https://github.com/katanaml/sparrow) | Document data extraction with LLM agents | 7860 | FastAPI | `hoomzoom/sparrow` | No | 1/1 | [usage](docs/sparrow_usage.md) |
 | 45 | [SurfSense](https://github.com/MODSetter/SurfSense) | Personal AI assistant with web browsing | 8929, 3929 | FastAPI + Next.js (compose) | (GHCR pre-built) | Yes | - | [usage](docs/SurfSense_usage.md) |
 | 46 | [khoj](https://github.com/khoj-ai/khoj) | Self-hosted AI assistant with search | 42110 | FastAPI + Django (compose) | (upstream pre-built) | No | - | [usage](docs/khoj_usage.md) |
@@ -75,32 +75,32 @@ Run commands inside the container with `docker exec` or `docker run`.
 
 | # | App | What It Does | Usage | Docker Image | API Key | Tests | Docs |
 |---|-----|-------------|-------|-------------|---------|-------|------|
-| 44 | [ChatDBG](https://github.com/plasma-umass/ChatDBG) | LLM-powered debugger (pdb, lldb, gdb) | `chatdbg` | `hoomzoom/chatdbg` | Yes | 7/7 | [usage](docs/ChatDBG_usage.md) |
-| 45 | [Paper2Poster](https://github.com/Paper2Poster/Paper2Poster) | Convert academic papers to posters | `python pipeline.py` | `hoomzoom/paper2poster` | Yes | 5/5 | [usage](docs/Paper2Poster_usage.md) |
-| 46 | [rawdog](https://github.com/AbanteAI/rawdog) | CLI assistant that generates and runs Python | `rawdog` | `hoomzoom/rawdog` | Yes | 3/3 | [usage](docs/rawdog_usage.md) |
-| 47 | [bilingual_book_maker](https://github.com/yihong0618/bilingual_book_maker) | Translate EPUB/TXT/SRT into bilingual books | `python make_book.py` | `hoomzoom/bilingual_book_maker` | Yes | 3/3 | [usage](docs/bilingual_book_maker_usage.md) |
-| 48 | [gpt-engineer](https://github.com/AntonOsika/gpt-engineer) | Generate/improve code from natural language | `gpte` | `hoomzoom/gpt-engineer` | Yes | 11/11 | [usage](docs/gpt-engineer_usage.md) |
-| 49 | [gpt-migrate](https://github.com/joshpxyne/gpt-migrate) | Migrate codebases between languages | `python main.py` | `hoomzoom/gpt-migrate` | Yes | 5/6 | [usage](docs/gpt-migrate_usage.md) |
-| 50 | [TradingAgents](https://github.com/TauricResearch/TradingAgents) | Multi-agent stock analysis | `python main.py` | `hoomzoom/tradingagents` | Yes | 3/3 | [usage](docs/tradingagents_usage.md) |
-| 51 | [Integuru](https://github.com/Integuru-AI/Integuru) | Reverse-engineer API integrations | `python main.py` | `hoomzoom/integuru` | Yes | 3/3 | [usage](docs/integuru_usage.md) |
-| 52 | [pyvideotrans](https://github.com/jianchang512/pyvideotrans) | Video translation with speech recognition | `python cli.py` | `hoomzoom/pyvideotrans` | No | 2/2 | [usage](docs/pyvideotrans_usage.md) |
-| 53 | [codeinterpreter-api](https://github.com/shroominic/codeinterpreter-api) | Code Interpreter via LangChain + CodeBox | `from codeinterpreterapi import CodeInterpreterSession` | `hoomzoom/codeinterpreter-api` | Yes | - | [usage](docs/codeinterpreter-api_usage.md) |
-| 54 | [chemcrow-public](https://github.com/ur-whitelab/chemcrow-public) | LLM agent for chemistry tasks | `from chemcrow import ChemCrow` | `hoomzoom/chemcrow` | Yes | - | [usage](docs/chemcrow-public_usage.md) |
-| 55 | [vulnhuntr](https://github.com/protectai/vulnhuntr) | Zero-shot vulnerability scanner for Python | `vulnhuntr -r /target -l claude` | `hoomzoom/vulnhuntr` | Yes | 1/1 | - |
-| 56 | [readme-ai](https://github.com/eli64s/readme-ai) | AI-powered README generator | `readmeai --repo <url>` | `hoomzoom/readme-ai` | Yes | 1/1 | - |
-| 57 | [PocketFlow](https://github.com/The-Pocket/PocketFlow-Tutorial-Codebase-Knowledge) | Codebase tutorial generator | `python main.py --repo <url>` | `hoomzoom/pocketflow` | Yes | 1/1 | - |
-| 58 | [aider](https://github.com/Aider-AI/aider) | AI pair programming in the terminal | `aider` | `hoomzoom/aider` | Yes | 1/1 | - |
-| 59 | [hackingBuddyGPT](https://github.com/ipa-lab/hackingBuddyGPT) | LLM-powered penetration testing framework | `wintermute` | `hoomzoom/hackingbuddygpt` | Yes | 1/1 | - |
-| 60 | [FinGenius](https://github.com/HuaYaoAI/FinGenius) | Multi-agent financial analysis | `python main.py <stock>` | `hoomzoom/fingenius` | Yes | 1/1 | - |
-| 61 | [BabelDOC](https://github.com/funstory-ai/BabelDOC) | PDF document translator | `babeldoc` | `hoomzoom/babeldoc` | Yes | 1/1 | - |
-| 62 | [gpt-pilot](https://github.com/Pythagora-io/gpt-pilot) | AI coding agent that builds apps | `python main.py` | `hoomzoom/gpt-pilot` | Yes | 1/1 | - |
-| 63 | [DATAGEN](https://github.com/starpig1129/DATAGEN) | Multi-agent data analysis pipeline | `python main.py` | `hoomzoom/datagen` | Yes | 1/1 | - |
-| 64 | [BruteForceAI](https://github.com/MorDavid/BruteForceAI) | AI-powered login brute force tool | `python BruteForceAI.py analyze` | `hoomzoom/bruteforceai` | Yes | 1/1 | - |
-| 65 | [browser-use](https://github.com/browser-use/browser-use) | AI browser automation library | `browser-use` | `hoomzoom/browser-use` | Yes | 1/1 | - |
-| 66 | [hcaptcha-challenger](https://github.com/QIN2DIM/hcaptcha-challenger) | AI hCaptcha solver with Playwright | `hc` | `hoomzoom/hcaptcha-challenger` | Yes | 1/1 | - |
-| 67 | [BallonsTranslator](https://github.com/dmMaze/BallonsTranslator) | Manga/comic translator with OCR+inpainting | `python launch.py --headless` | `hoomzoom/ballonstranslator` | No | 1/1 | - |
-| 68 | [shell_gpt](https://github.com/TheR1D/shell_gpt) | CLI assistant with shell integration | `sgpt` | `hoomzoom/shell-gpt` | Yes | 1/1 | [usage](docs/shell_gpt_usage.md) |
-| 69 | [zotero-arxiv-daily](https://github.com/TideDra/zotero-arxiv-daily) | Automated arxiv paper digest for Zotero | `python -m zotero_arxiv_daily` | `hoomzoom/zotero-arxiv-daily` | Yes | 1/1 | [usage](docs/zotero-arxiv-daily_usage.md) |
+| 54 | [ChatDBG](https://github.com/plasma-umass/ChatDBG) | LLM-powered debugger (pdb, lldb, gdb) | `chatdbg` | `hoomzoom/chatdbg` | Yes | 7/7 | [usage](docs/ChatDBG_usage.md) |
+| 55 | [Paper2Poster](https://github.com/Paper2Poster/Paper2Poster) | Convert academic papers to posters | `python pipeline.py` | `hoomzoom/paper2poster` | Yes | 5/5 | [usage](docs/Paper2Poster_usage.md) |
+| 56 | [rawdog](https://github.com/AbanteAI/rawdog) | CLI assistant that generates and runs Python | `rawdog` | `hoomzoom/rawdog` | Yes | 3/3 | [usage](docs/rawdog_usage.md) |
+| 57 | [bilingual_book_maker](https://github.com/yihong0618/bilingual_book_maker) | Translate EPUB/TXT/SRT into bilingual books | `python make_book.py` | `hoomzoom/bilingual_book_maker` | Yes | 3/3 | [usage](docs/bilingual_book_maker_usage.md) |
+| 58 | [gpt-engineer](https://github.com/AntonOsika/gpt-engineer) | Generate/improve code from natural language | `gpte` | `hoomzoom/gpt-engineer` | Yes | 11/11 | [usage](docs/gpt-engineer_usage.md) |
+| 59 | [gpt-migrate](https://github.com/joshpxyne/gpt-migrate) | Migrate codebases between languages | `python main.py` | `hoomzoom/gpt-migrate` | Yes | 5/6 | [usage](docs/gpt-migrate_usage.md) |
+| 60 | [TradingAgents](https://github.com/TauricResearch/TradingAgents) | Multi-agent stock analysis | `python main.py` | `hoomzoom/tradingagents` | Yes | 3/3 | [usage](docs/tradingagents_usage.md) |
+| 61 | [Integuru](https://github.com/Integuru-AI/Integuru) | Reverse-engineer API integrations | `python main.py` | `hoomzoom/integuru` | Yes | 3/3 | [usage](docs/integuru_usage.md) |
+| 62 | [pyvideotrans](https://github.com/jianchang512/pyvideotrans) | Video translation with speech recognition | `python cli.py` | `hoomzoom/pyvideotrans` | No | 2/2 | [usage](docs/pyvideotrans_usage.md) |
+| 63 | [codeinterpreter-api](https://github.com/shroominic/codeinterpreter-api) | Code Interpreter via LangChain + CodeBox | `from codeinterpreterapi import CodeInterpreterSession` | `hoomzoom/codeinterpreter-api` | Yes | - | [usage](docs/codeinterpreter-api_usage.md) |
+| 64 | [chemcrow-public](https://github.com/ur-whitelab/chemcrow-public) | LLM agent for chemistry tasks | `from chemcrow import ChemCrow` | `hoomzoom/chemcrow` | Yes | - | [usage](docs/chemcrow-public_usage.md) |
+| 65 | [vulnhuntr](https://github.com/protectai/vulnhuntr) | Zero-shot vulnerability scanner for Python | `vulnhuntr -r /target -l claude` | `hoomzoom/vulnhuntr` | Yes | 1/1  [usage](docs/vulnhuntr_usage.md) |
+| 66 | [readme-ai](https://github.com/eli64s/readme-ai) | AI-powered README generator | `readmeai --repo <url>` | `hoomzoom/readme-ai` | Yes | 1/1  [usage](docs/readme-ai_usage.md) |
+| 67 | [PocketFlow](https://github.com/The-Pocket/PocketFlow-Tutorial-Codebase-Knowledge) | Codebase tutorial generator | `python main.py --repo <url>` | `hoomzoom/pocketflow` | Yes | 1/1 | [usage](docs/PocketFlow-Tutorial-Codebase-Knowledge_usage.md) |
+| 68 | [aider](https://github.com/Aider-AI/aider) | AI pair programming in the terminal | `aider` | `hoomzoom/aider` | Yes | 1/1  [usage](docs/aider_usage.md) |
+| 69 | [hackingBuddyGPT](https://github.com/ipa-lab/hackingBuddyGPT) | LLM-powered penetration testing framework | `wintermute` | `hoomzoom/hackingbuddygpt` | Yes | 1/1  [usage](docs/hackingBuddyGPT_usage.md) |
+| 70 | [FinGenius](https://github.com/HuaYaoAI/FinGenius) | Multi-agent financial analysis | `python main.py <stock>` | `hoomzoom/fingenius` | Yes | 1/1  [usage](docs/FinGenius_usage.md) |
+| 71 | [BabelDOC](https://github.com/funstory-ai/BabelDOC) | PDF document translator | `babeldoc` | `hoomzoom/babeldoc` | Yes | 1/1  [usage](docs/BabelDOC_usage.md) |
+| 72 | [gpt-pilot](https://github.com/Pythagora-io/gpt-pilot) | AI coding agent that builds apps | `python main.py` | `hoomzoom/gpt-pilot` | Yes | 1/1  [usage](docs/gpt-pilot_usage.md) |
+| 73 | [DATAGEN](https://github.com/starpig1129/DATAGEN) | Multi-agent data analysis pipeline | `python main.py` | `hoomzoom/datagen` | Yes | 1/1  [usage](docs/DATAGEN_usage.md) |
+| 74 | [BruteForceAI](https://github.com/MorDavid/BruteForceAI) | AI-powered login brute force tool | `python BruteForceAI.py analyze` | `hoomzoom/bruteforceai` | Yes | 1/1  [usage](docs/BruteForceAI_usage.md) |
+| 75 | [browser-use](https://github.com/browser-use/browser-use) | AI browser automation library | `browser-use` | `hoomzoom/browser-use` | Yes | 1/1  [usage](docs/browser-use_usage.md) |
+| 76 | [hcaptcha-challenger](https://github.com/QIN2DIM/hcaptcha-challenger) | AI hCaptcha solver with Playwright | `hc` | `hoomzoom/hcaptcha-challenger` | Yes | 1/1  [usage](docs/hcaptcha-challenger_usage.md) |
+| 77 | [BallonsTranslator](https://github.com/dmMaze/BallonsTranslator) | Manga/comic translator with OCR+inpainting | `python launch.py --headless` | `hoomzoom/ballonstranslator` | No | 1/1  [usage](docs/BallonsTranslator_usage.md) |
+| 78 | [shell_gpt](https://github.com/TheR1D/shell_gpt) | CLI assistant with shell integration | `sgpt` | `hoomzoom/shell-gpt` | Yes | 1/1 | [usage](docs/shell_gpt_usage.md) |
+| 79 | [zotero-arxiv-daily](https://github.com/TideDra/zotero-arxiv-daily) | Automated arxiv paper digest for Zotero | `python -m zotero_arxiv_daily` | `hoomzoom/zotero-arxiv-daily` | Yes | 1/1 | [usage](docs/zotero-arxiv-daily_usage.md) |
 
 ---
 
