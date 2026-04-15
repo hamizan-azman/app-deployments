@@ -15,6 +15,7 @@ BiliNote is an AI note-taking tool for videos. It accepts a Bilibili or YouTube 
 4. **backend/requirements.txt**: Lists fastapi, ctranslate2, yt-dlp, faster-whisper, and LLM client libraries.
 
 5. **frontend/ directory**: Vue 3 Vite project. The `npm run build` command was tested and failed due to missing node_modules and incompatible package versions in the repository state.
+Spent a while trying to get the Vite frontend to build before giving up. Some Vue dependency resolution issue that would have required modifying frontend source code to fix.
 
 6. **Upstream Dockerfile**: None existed for the backend alone. A Dockerfile was written for this deployment.
 

@@ -23,6 +23,7 @@ The upstream repo has no Dockerfile. Used `python:3.11-slim` as the base, matchi
 The pinned requirements file lives at `dockerfiles/DeepGit/requirements.txt` in the outer monorepo, not inside `apps/DeepGit/`. The Dockerfile needs to COPY from both locations. This requires the build context to be the repo root so both paths are accessible. The build command is therefore run from the repo root with `-f dockerfiles/DeepGit/Dockerfile`.
 
 ### Added GRADIO_SERVER_NAME=0.0.0.0
+Took me a while to figure out why the container was healthy internally but unreachable from the host. Turns out Gradio defaults to 127.0.0.1 binding which is basically invisible outside the container.
 This is the critical fix that makes the container usable. Gradio defaults to binding on `127.0.0.1`. Inside a Docker container, `127.0.0.1` is the loopback interface of the container itself. Any port published with `-p 7860:7860` still maps the host port to the container's network interface, but Gradio only listens on loopback, so connections from outside the container are refused. Setting `GRADIO_SERVER_NAME=0.0.0.0` tells Gradio to listen on all interfaces, which is the standard Docker pattern for web servers. This was added as an `ENV` instruction in the Dockerfile so it applies automatically without requiring the user to pass the variable at runtime.
 
 ### Set HEALTHCHECK to import check with curl fallback

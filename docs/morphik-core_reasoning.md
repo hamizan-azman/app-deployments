@@ -13,6 +13,7 @@ Morphik Core is a multimodal document processing and retrieval system. It ingest
 3. **GHCR uv image reference**: The upstream Dockerfile included a `# syntax=docker/dockerfile:1.4` directive and a `FROM ghcr.io/astral-sh/uv AS uv-provider` stage. This syntax directive requires BuildKit's frontend feature, and the GHCR image pull fails when building in environments without authenticated GHCR access. The fix is to remove the syntax directive and install uv via pip in the builder stage.
 
 4. **uv.lock CUDA conflict**: The upstream uv lock file was generated on a CUDA-capable machine and includes `torch` pinned to the CUDA variant. Running `uv sync` in a standard Docker build pulls the CUDA wheel (several GB, and can fail on pip-managed environments that do not have the CUDA runtime). Installing CPU-only torch first via `pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu` before `uv sync` resolves this because the CPU torch is already satisfied when the lock file resolver runs.
+The uv.lock was generated on a machine with a CUDA GPU so all the nvidia packages were baked in. Had to force CPU-only torch before running uv sync, otherwise it would try to download CUDA libraries that do not exist on the build machine.
 
 5. **docker-compose.yml**: Four services: morphik (API), worker (ARQ), postgres (pgvector/pgvector:pg16), redis (redis:7-alpine). The API and worker share the same image with different CMD arguments. Both depend on postgres and redis being healthy before starting.
 

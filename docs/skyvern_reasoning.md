@@ -13,6 +13,7 @@ Skyvern is an LLM-powered browser automation platform. The agent receives a task
 3. **Playwright base image requirement**: Playwright requires several Debian libraries (`libgbm1`, `libnspr4`, `libnss3`, etc.) that are present in `bookworm` but not in the default `slim` image which tracks `trixie`. Using `python:3.11-slim-bookworm` avoids this.
 
 4. **xdpyinfo vs x11-utils**: The upstream apt install list included `xdpyinfo` as a package name. That name is not a valid apt package. The `xdpyinfo` binary is provided by the `x11-utils` package. The fix is to replace `xdpyinfo` with `x11-utils`.
+This was one of the more involved builds. The VNC streaming setup with Xvfb and websockify is pretty complex for what is essentially a browser automation tool.
 
 5. **entrypoint-skyvern.sh**: A shell script that starts Xvfb, x11vnc, websockify (noVNC), and the FastAPI server. The script has Windows line endings when cloned on a Windows host, causing `/bin/bash: bad interpreter: No such file or directory`. The `sed -i 's/\r$//'` fix in the Dockerfile normalises line endings at build time.
 

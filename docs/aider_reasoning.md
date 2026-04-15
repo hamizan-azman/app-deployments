@@ -6,6 +6,7 @@ CLI tool. No web server by default. Runs interactively in the terminal against a
 ## Why PyPI Install Instead of Source
 
 The upstream aider repo uses setuptools-scm to derive its version from git tags. When the repo is cloned as a git submodule (as in this project), it has no tags. setuptools-scm fails with a version detection error and the build aborts.
+This was annoying to debug. The error message just said "tag not found" which was misleading since the real issue was the submodule .git reference not having full history.
 
 The official aider documentation lists `pip install aider-chat` as the standard install method. The PyPI package is identical to a source install at runtime. There is no loss of functionality. This is not a workaround, it is the documented install path.
 

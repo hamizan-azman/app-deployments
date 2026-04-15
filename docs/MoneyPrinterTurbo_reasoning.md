@@ -21,6 +21,7 @@ MoneyPrinterTurbo is a tool for automated short video generation. It takes a top
 ### Used the existing Dockerfile with modifications
 
 The upstream Dockerfile is functional and correct in structure. The main issues were the Chinese mirror references and the ImageMagick policy fix (which the upstream already addressed).
+The original Dockerfile had a pretty elaborate mirror fallback chain (Aliyun first, then Tsinghua, then standard Debian). Simplified it to just standard mirrors since we are not building from within China.
 
 ### Removed Chinese mirrors
 

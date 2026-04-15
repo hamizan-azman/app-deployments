@@ -3,6 +3,7 @@
 ## Initial Assessment
 
 kotaemon is a Gradio-based document QA application with an existing multi-stage Dockerfile. The upstream provides two build targets: `lite` (no pre-downloaded models) and a full variant that downloads embedding models at build time. The lite variant is the appropriate choice for our deployment.
+Went with the lite variant to keep the image size reasonable. The full variant pulls in LibreOffice, Tesseract OCR, and a bunch of image processing libraries that balloon it past 8GB.
 
 ## What Was Checked
 

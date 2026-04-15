@@ -15,6 +15,7 @@ OpenClaw is a Node.js application that acts as a local gateway for AI coding ass
 4. **Build scripts**: The build runs several pnpm commands including `canvas:a2ui:bundle` (which may fail non-fatally), `build:docker`, `ui:build`, and `qa:lab:build`.
 
 5. **SHA256 pins**: The upstream Dockerfile uses `node:24-bookworm@sha256:...` pins. On Windows Docker Desktop with SSH-based remote builds, these cause credential helper failures.
+Same credential helper issue that hit several other builds on this Windows Docker Desktop setup. BuildKit tries to verify the digest but the credential helper fails to authenticate.
 
 6. **docker-compose.yml**: Two services from the same image. The CLI container uses `network_mode: "service:openclaw-gateway"` so both containers share the gateway's network. The CLI container has `stdin_open: true` and `tty: true` for interactive use.
 
