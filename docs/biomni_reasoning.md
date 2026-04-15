@@ -19,7 +19,7 @@ This is the most significant finding. The pyproject.toml declares `langchain` as
 - `langchain_anthropic` (used for Claude model support)
 - `langchain_text_splitters` (used in RAG pipeline)
 
-These are separate PyPI packages since the langchain 0.2.x ecosystem split. Without explicitly adding them, the container builds but crashes at runtime with `ModuleNotFoundError`. This is a supply chain concern — undeclared dependencies mean the app silently depends on packages not auditable from pyproject.toml alone.
+These are separate PyPI packages since the langchain 0.2.x ecosystem split. Without explicitly adding them, the container builds but crashes at runtime with `ModuleNotFoundError`. This is a supply chain concern. Undeclared dependencies mean the app silently depends on packages not auditable from pyproject.toml alone.
 
 ### Custom entrypoint.py
 The repo has no CLI entry point, server script, or `__main__.py`. The only way to launch the Gradio demo is programmatically: instantiate `A1()` and call `launch_gradio_demo()`. Created a minimal 5-line script for this.

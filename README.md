@@ -1,15 +1,15 @@
 # LLM Application Deployment Collection
 
-Dockerized deployment of 67 open-source LLM applications for supply chain security research. Each app is containerized, tested, and documented with usage guides and reasoning logs.
+Dockerized deployment of 79 open-source LLM applications for supply chain security research. Each app is containerized, tested, and documented with usage guides and reasoning logs.
 
-- **67 apps deployed** across web UIs, CLI tools, and libraries (Task 1: 41, Task 2: 26)
-- **17 apps skipped** (incompatible with Docker, local install docs provided)
-- **73 Docker images** published to [Docker Hub](https://hub.docker.com/u/hoomzoom) under `hoomzoom/`
+- **79 apps deployed** across web UIs, CLI tools, and libraries
+- **23 apps skipped** (incompatible with Docker, local install docs provided)
+- **83 Docker images** published to [Docker Hub](https://hub.docker.com/u/hoomzoom) under `hoomzoom/`
 - **Every app tested** with documented pass/fail results per endpoint
 
 ---
 
-## Web UI / API Apps (43)
+## Web UI / API Apps (53)
 
 Start with `-p` port mapping and access from a browser or HTTP client.
 
@@ -58,8 +58,18 @@ Start with `-p` port mapping and access from a browser or HTTP client.
 | 41 | [morphik-core](https://github.com/morphik-org/morphik-core) | Document processing and retrieval system | 8000 | FastAPI (compose) | `hoomzoom/morphik-core` | Yes | 1/1 | - |
 | 42 | [chatgpt_telegram_bot](https://github.com/father-bot/chatgpt_telegram_bot) | ChatGPT Telegram bot with voice support | - | Telegram bot (compose) | `hoomzoom/chatgpt-telegram-bot` | Yes | 1/1 | - |
 | 43 | [Decepticon](https://github.com/PurpleAILAB/Decepticon) | Autonomous offensive security platform | - | Compose (pre-built) | (pre-built images) | Yes | - | - |
+| 44 | [sparrow](https://github.com/katanaml/sparrow) | Document data extraction with LLM agents | 7860 | FastAPI | `hoomzoom/sparrow` | No | 1/1 | - |
+| 45 | [SurfSense](https://github.com/MODSetter/SurfSense) | Personal AI assistant with web browsing | 8929, 3929 | FastAPI + Next.js (compose) | (GHCR pre-built) | Yes | - | - |
+| 46 | [khoj](https://github.com/khoj-ai/khoj) | Self-hosted AI assistant with search | 42110 | FastAPI + Django (compose) | (upstream pre-built) | No | - | - |
+| 47 | [onyx](https://github.com/onyx-dot-app/onyx) | Enterprise AI knowledge assistant | 80 | FastAPI + Next.js (compose) | (upstream pre-built) | Yes | - | - |
+| 48 | [Verba](https://github.com/weaviate/Verba) | RAG chatbot with Weaviate vector DB | 8000 | FastAPI (compose) | `hoomzoom/verba` | No | 1/1 | - |
+| 49 | [kotaemon](https://github.com/Cinnamon/kotaemon) | Document QA with RAG pipeline | 7860 | Gradio | `hoomzoom/kotaemon` | No | 1/1 | - |
+| 50 | [screenshot-to-code](https://github.com/abi/screenshot-to-code) | Convert screenshots to frontend code | 7001, 5173 | FastAPI + Vite (compose) | `hoomzoom/screenshot-to-code-*` | Yes | 1/1 | - |
+| 51 | [sql-explorer](https://github.com/explorerhq/sql-explorer) | Collaborative SQL query editor | 8000 | Django | `hoomzoom/sql-explorer` | No | 1/1 | - |
+| 52 | [DeepBI](https://github.com/DeepInsight-AI/DeepBI) | AI-powered business intelligence | 8338 | Flask (compose) | `hoomzoom/deepbi` | No | 1/1 | - |
+| 53 | [openclaw](https://github.com/openclaw/openclaw) | Local gateway for AI coding tools | 18789 | Node.js (compose) | `hoomzoom/openclaw` | No | 1/1 | - |
 
-## CLI / Library Apps (24)
+## CLI / Library Apps (26)
 
 Run commands inside the container with `docker exec` or `docker run`.
 
@@ -89,10 +99,12 @@ Run commands inside the container with `docker exec` or `docker run`.
 | 65 | [browser-use](https://github.com/browser-use/browser-use) | AI browser automation library | `browser-use` | `hoomzoom/browser-use` | Yes | 1/1 | - |
 | 66 | [hcaptcha-challenger](https://github.com/QIN2DIM/hcaptcha-challenger) | AI hCaptcha solver with Playwright | `hc` | `hoomzoom/hcaptcha-challenger` | Yes | 1/1 | - |
 | 67 | [BallonsTranslator](https://github.com/dmMaze/BallonsTranslator) | Manga/comic translator with OCR+inpainting | `python launch.py --headless` | `hoomzoom/ballonstranslator` | No | 1/1 | - |
+| 68 | [shell_gpt](https://github.com/TheR1D/shell_gpt) | CLI assistant with shell integration | `sgpt` | `hoomzoom/shell-gpt` | Yes | 1/1 | - |
+| 69 | [zotero-arxiv-daily](https://github.com/TideDra/zotero-arxiv-daily) | Automated arxiv paper digest for Zotero | `python -m zotero_arxiv_daily` | `hoomzoom/zotero-arxiv-daily` | Yes | 1/1 | - |
 
 ---
 
-## Skipped Apps (17)
+## Skipped Apps (23)
 
 Cannot run meaningfully in Docker. Local install docs provided in `docs/`.
 
@@ -115,6 +127,12 @@ Cannot run meaningfully in Docker. Local install docs provided in `docs/`.
 | [pandas-ai](https://github.com/sinaptik-ai/pandas-ai) | Library only, server/client dirs missing from repo |
 | [UFO](https://github.com/microsoft/UFO) | Windows GUI automation agent (pywinauto, pywin32, UIA) |
 | [wiseflow](https://github.com/TeamWiseFlow/wiseflow) | Requires real non-headless Chrome browser. No Docker support |
+| [contextgem](https://github.com/shcherbak-ai/contextgem) | Library only, no entry point or web interface |
+| [VideoCaptioner](https://github.com/WEIFENG2333/VideoCaptioner) | Desktop GUI (PyQt5), no headless mode |
+| [functionary](https://github.com/MeetKai/functionary) | Requires 24GB+ VRAM, no CPU fallback. vLLM/SGLang are GPU-only |
+| [Linly-Talker](https://github.com/Kedreamix/Linly-Talker) | GPU required for video synthesis pipeline, no CPU fallback |
+| [Codex-CLI](https://github.com/microsoft/Codex-CLI) | Shell integration hook, no HTTP interface. Targets deprecated OpenAI Codex model |
+| [droidrun](https://github.com/droidrun/droidrun) | Requires physical Android/iOS device via ADB |
 
 ---
 

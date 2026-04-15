@@ -80,9 +80,9 @@ Reports are written to `./results/{ticker}/{date}/reports/`:
 ## Notes
 - CLI is interactive (uses typer + questionary). Run with `-it` flag.
 - For non-interactive use, override entrypoint and run `main.py` or custom script.
-- DuckDuckGo is not used here; stock data comes from yfinance by default.
+- DuckDuckGo is not used here. Stock data comes from yfinance by default.
 - Redis is in requirements but not actively used in the codebase.
 - Chainlit is a dependency but not the primary interface.
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed. All minimum versions resolved successfully.

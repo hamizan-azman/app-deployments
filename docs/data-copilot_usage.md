@@ -60,4 +60,4 @@ docker pull hoomzoom/data-copilot:latest
 - CJK fonts pre-installed for matplotlib chart rendering
 
 ## V2 Dependency Changes (Minimum Version Pinning)
-Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed — all minimum versions resolved successfully.
+Minimum version pinning applied (all `>=`/`~=`/`^` changed to `==`). No dependency bumps were needed. All minimum versions resolved successfully.

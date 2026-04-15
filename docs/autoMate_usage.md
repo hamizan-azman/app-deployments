@@ -7,10 +7,10 @@ autoMate is an AI-powered RPA tool built on OmniParser that takes natural langua
 autoMate captures and controls the live desktop display. It uses `pyautogui` and `pynput` to simulate input and reads the screen via OmniParser's OCR pipeline. Docker containers have no display server or input device access, and there is no headless mode.
 
 ## Requirements
-- OS: Windows 10/11 (primary; macOS reported to work with caveats)
+- OS: Windows 10/11 (primary. macOS reported to work with caveats)
 - Python 3.12
 - Conda (miniconda or anaconda)
-- NVIDIA GPU with 4GB+ VRAM strongly recommended (OmniParser's OCR pipeline is GPU-intensive; CPU fallback is very slow)
+- NVIDIA GPU with 4GB+ VRAM strongly recommended (OmniParser's OCR pipeline is GPU-intensive. CPU fallback is very slow)
 - OpenAI API key (gpt-4o or later; requires multimodal + structured output support)
 
 ## Installation

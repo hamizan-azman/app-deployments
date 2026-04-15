@@ -43,7 +43,7 @@ Open http://localhost:8080 for the UI. Open http://localhost:6080 for the VNC vi
 - **URL:** `http://localhost:8000/api/v1/health`
 - **Method:** GET
 - **Response:** JSON status object
-- **Tested:** Yes (import-level; full endpoint requires LLM key)
+- **Tested:** Yes (import-level. Full endpoint requires LLM key)
 
 ## Environment Variables
 Set these in the `environment` block of the `skyvern` service in `docker-compose.yml`.

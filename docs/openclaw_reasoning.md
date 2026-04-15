@@ -2,7 +2,7 @@
 
 ## Initial Assessment
 
-OpenClaw is a Node.js application that acts as a local gateway for AI coding assistants. It is similar in concept to a self-hosted Claude Code environment. The upstream repo includes a well-structured multi-stage Dockerfile. The build process is complex: it uses pnpm, Bun, and a 4-stage build to produce a minimal runtime image.
+OpenClaw is a Node.js application that acts as a local gateway for AI coding assistants. It is similar in concept to a self-hosted AI coding assistant gateway. The upstream repo includes a well-structured multi-stage Dockerfile. The build process is complex: it uses pnpm, Bun, and a 4-stage build to produce a minimal runtime image.
 
 ## What Was Checked
 
