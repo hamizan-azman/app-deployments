@@ -3,7 +3,7 @@
 Dockerized deployment of 79 open-source LLM applications for supply chain security research. Each app is containerized, tested, and documented with usage guides and reasoning logs.
 
 - **79 apps deployed** across web UIs, CLI tools, and libraries
-- **23 apps skipped** (incompatible with Docker, local install docs provided)
+- **23 apps skipped** (incompatible with Docker). Local install docs per app plus a [categorised failure analysis](docs/DEPLOYMENT_FAILURE_ANALYSIS.md) with pie chart
 - **83 Docker images** published to [Docker Hub](https://hub.docker.com/u/hoomzoom) under `hoomzoom/`
 - **Every app tested** with documented pass/fail results per endpoint
 
@@ -108,6 +108,8 @@ Run commands inside the container with `docker exec` or `docker run`.
 
 Cannot run meaningfully in Docker. Local install docs provided in `docs/`.
 
+![Failure reasons pie chart](docs/benchmark/failure_reasons_pie.png)
+
 | App | Reason |
 |-----|--------|
 | [autoMate](https://github.com/yuruotong1/autoMate) | Desktop RPA, requires GUI and mouse/keyboard control |
@@ -133,6 +135,8 @@ Cannot run meaningfully in Docker. Local install docs provided in `docs/`.
 | [Linly-Talker](https://github.com/Kedreamix/Linly-Talker) | GPU required for video synthesis pipeline, no CPU fallback |
 | [Codex-CLI](https://github.com/microsoft/Codex-CLI) | Shell integration hook, no HTTP interface. Targets deprecated OpenAI Codex model |
 | [droidrun](https://github.com/droidrun/droidrun) | Requires physical Android/iOS device via ADB |
+
+Full categorised breakdown, classification criteria, and per-category technical blockers: **[docs/DEPLOYMENT_FAILURE_ANALYSIS.md](docs/DEPLOYMENT_FAILURE_ANALYSIS.md)**. Pie chart is there too. Vector PDF and per-app CSV mapping in [`docs/benchmark/`](docs/benchmark/).
 
 ---
 
@@ -163,7 +167,8 @@ Each app's usage doc has the exact commands.
 app-deployments/
   apps/                    # Git submodules pointing to upstream repos (reference only)
   dockerfiles/             # Dockerfiles, compose files, configs, pinned dependency files
-  docs/                    # Usage docs (*_usage.md) and reasoning docs (*_reasoning.md)
+  docs/                    # Usage docs (*_usage.md), reasoning docs (*_reasoning.md), DEPLOYMENT_FAILURE_ANALYSIS.md
+  docs/benchmark/          # Failure pie chart (PNG + PDF), PoC benchmark protocol, Dockerfile + attack.py templates
   v2_pinned_versions.md    # Manifest of all V2 dependency version changes
 ```
 
@@ -174,6 +179,8 @@ app-deployments/
 | Dockerfiles and compose files | `dockerfiles/<name>/` |
 | What was changed and why | `docs/<name>_usage.md`, "V2 Dependency Changes" section |
 | Quick reference of all version bumps | `v2_pinned_versions.md` |
+| Why each skipped app was skipped, with categorised pie chart | `docs/DEPLOYMENT_FAILURE_ANALYSIS.md` |
+| PoC benchmark protocol and per-PoC Dockerfile + attack.py templates | `docs/benchmark/BENCHMARK_PROTOCOL.md`, `docs/benchmark/_template_cli/`, `docs/benchmark/_template_server/` |
 
 The `apps/` submodules contain original code with original version specifiers. For V2 (supply chain security analysis), all `>=` versions were pinned to `==` minimums. Those pinned files live in `dockerfiles/`, which is what was actually used to build the Docker images.
 
