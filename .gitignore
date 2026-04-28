@@ -50,3 +50,6 @@ SETUP.md
 
 # Local workspace data
 dockerfiles/auto-news/workspace/
+
+# Engineering reasoning docs (kept locally, not published)
+docs/*_reasoning.md
