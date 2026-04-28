@@ -183,14 +183,6 @@ app-deployments/
   README.md                # This document
 ```
 
-| What you need | Where to look |
-|---------------|---------------|
-| Original upstream source code | `apps/<name>/` (git submodules) |
-| Pinned dependency files used for builds | `dockerfiles/<name>/` (requirements.txt, pyproject.toml, etc.) |
-| Dockerfiles and compose files | `dockerfiles/<name>/` |
-| Per-app install / usage commands | `docs/<name>_usage.md` |
-| Quick reference of all version bumps | `v2_pinned_versions.md` |
-
 The `apps/` submodules contain original code with original version specifiers. For V2 (supply chain security analysis), all `>=` versions were pinned to `==` minimums. Those pinned files live in `dockerfiles/`, which is what was actually used to build the Docker images.
 
 ---
