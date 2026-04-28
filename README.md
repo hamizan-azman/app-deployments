@@ -172,30 +172,6 @@ Click the app name to open its install guide. The "How to start" column has the 
 
 ---
 
-## Findings
-
-1. **autoMate's upstream replaced the project we documented.** The v0.x we wrote about was an OmniParser-based RPA tool with a `python install.py` step and a Gradio UI at port 7888. v4.5.7 (the current version) is a "smart NAS for AI", an MCP-over-HTTP tool hub for AI clients (OpenClaw, Claude Desktop, Cursor, Cline). Same maintainer, same repo URL, completely different product. New install: `pip install 'automate-hub[full]'`. `autoMate_usage.md` was rewritten for v4.5.7.
-
-2. **wiseflow was rewritten by upstream as a TypeScript/Node codebase.** The Python + Chromium + PocketBase install path the doc describes no longer applies. `wiseflow_usage.md` needs a full rewrite before deployment.
-
-3. **droidrun is mid-migration with the mobilerun package.** `pip install droidrun` (v0.5.9) succeeds, but `from droidrun import DroidAgent` raises `ImportError: cannot import name 'AsyncMobilerun' from 'mobilerun'`. The latest mobilerun (v0.6.0rc2) no longer exports `AsyncMobilerun`, while droidrun's `tools/driver/cloud.py` still imports it. Track upstream for a coordinated version pair.
-
-4. **Cradle pins a yanked dependency.** `requirements.txt` pins `matplotlib==3.9.1`, which the matplotlib maintainers yanked from PyPI in 2024 (Windows wheels caused segfaults in unrelated user code). The pin still resolves on machines that have the wheel cached, but a fresh `pip install --no-cache-dir -r requirements.txt` fails with "No matching distribution found". Bump upstream to `matplotlib>=3.9.2`.
-
-5. **Windrecorder fails on two Windows-host quirks.** First, `onboard_setting.py` (the first-run wizard) crashes with `UnicodeEncodeError` on Windows hosts whose default codepage is `cp1252` when launched from a non-TTY context. The crash is on the welcome banner which contains a Chinese line. Workaround: `chcp 65001` and `$env:PYTHONIOENCODING='utf-8'` before invoking. Second, `start_app.bat` uses an `mshta vbscript:...` trick on line 21 to hide its console window. On hosts where mshta is blocked by anti-virus, the bat exits and the spawned hidden process dies before launching Streamlit. Workaround: launch the UI directly with `.venv\Scripts\python.exe -m streamlit run webui.py`.
-
-6. **home-llm hardcodes the request path suffix.** The "OpenAI Compatible Conversations API" backend in `backends/generic_openai.py:206` returns `endpoint = "/chat/completions"` and the client appends it to the user-supplied "API Path" field. Setting `API Path = v1/chat/completions` (intuitive) returns HTTP 404 because the URL becomes `/v1/chat/completions/chat/completions`. The correct value is `API Path = v1`. The HA configuration UI gives no hint of this convention.
-
-7. **AppAgent has four operational issues.** `requirements.txt` omits `openai`. Default `config.yaml` uses retired `gpt-4-vision-preview` (change to `gpt-4o`). `scripts/and_controller.py` `get_device_size()` crashes on rooted phones with a display-size override (workaround: `adb shell wm size reset`). Swipe coordinates do not always register on Samsung One UI (extends upstream's existing "Xiaomi or OPPO" caveat).
-
-8. **Four GitHub URL renames affected our docs.** `droidrun/droidrun` -> `droidrun/mobilerun`. `moymix/TaskMatrix` -> `chenfei-wu/TaskMatrix` (the original `microsoft/TaskMatrix` mirror is dead). `epicenter-so/epicenter` -> `EpicenterHQ/epicenter` (whispering's successor). `shcheklein/contextgem` -> `shcherbak-ai/contextgem` (was 404).
-
-## Methodology
-
-An app is non-Docker when one of these applies: needs a live desktop display, needs synthetic input to physical input devices, needs a hardware device unavailable to a container (mic, speaker, camera, Android phone via ADB, iOS, game controller, Home Assistant host integration), needs Windows-only APIs, needs GPU VRAM above the workstation Docker host's ceiling, is a pure Python library with no long-running entry point, is a plugin or custom integration for a separate host system, or depends on a deprecated upstream model. For every app we read the upstream README, Dockerfile, docker-compose.yml, requirements.txt, pyproject.toml, and package.json. For compose stacks we ran `docker compose config` to verify referenced build paths. For GPU walls we looked for an explicit CPU mode, a `device=cpu` config, or a `torch.cuda.is_available()` fallback that does not raise. Where any path produced a runnable container, the app was Docker deployed. Where none did, it was placed in the appropriate non-Docker bucket.
-
----
-
 ## Repo Structure
 
 ```
@@ -216,17 +192,6 @@ app-deployments/
 | Quick reference of all version bumps | `v2_pinned_versions.md` |
 
 The `apps/` submodules contain original code with original version specifiers. For V2 (supply chain security analysis), all `>=` versions were pinned to `==` minimums. Those pinned files live in `dockerfiles/`, which is what was actually used to build the Docker images.
-
----
-
-## Notes
-
-- **API keys:** About half the apps need an OpenAI API key (or similar) for full functionality. Without a key, the infrastructure still runs, you just can't make LLM calls. Each usage doc specifies which env vars to set.
-- **Multi-container apps:** pdfGPT (4), agenticSeek (4), localGPT (4), AgentGPT (3), devika (3), BettaFish (2), auto-news (9) use docker-compose. Usage docs have the exact compose commands.
-- **GPU required:** DataFlow requires NVIDIA GPU with CUDA 12.4+ and the NVIDIA Container Toolkit. Run with `--gpus all`.
-- **Code execution by design:** rawdog, gpt-engineer, SWE-agent, codeinterpreter-api, gpt-migrate, gptme, TaskWeaver, devika all execute arbitrary code as their core function. Do not run them with access to sensitive data or networks.
-- **Docker socket:** SWE-agent requires `-v /var/run/docker.sock:/var/run/docker.sock`, giving the container full Docker daemon access. Run on an isolated machine only.
-- **Model downloads:** FunClip, omniparse, manga-image-translator, zshot, pycorrector download ML models on first startup (1-5 GB). First launch takes 5-30 minutes. Check logs with `docker logs -f <container>` to monitor progress.
 
 ---
 
